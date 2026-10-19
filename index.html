@@ -164,7 +164,7 @@
         </div>
       </div>
 
-      <!-- Columna Derecha: Tarjeta con Video Interactiva -->
+      <!-- Columna Derecha: Tarjeta con Video y Portada Inicial Interactiva -->
       <div class="about-photo-box p-6 rounded-2xl border border-slate-200 bg-slate-50 text-center relative shadow-inner group">
         <div class="absolute -top-3 -right-3 bg-tambo-green text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-30">
           El Tambo 2027
@@ -173,42 +173,45 @@
         <!-- Contenedor del Video 16:9 -->
         <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-4 shadow-md bg-slate-900 border border-slate-200">
           
-          <!-- Video con 'muted' nativo para garantizar autoplay -->
+          <!-- El Video sin autoplay (controles habilitados) -->
           <video 
             id="videoMiguel"
-            class="w-full h-full object-cover transition-opacity duration-300" 
-            autoplay 
-            muted 
-            playsinline 
-            preload="auto">
+            class="w-full h-full object-cover" 
+            controls 
+            preload="metadata">
             <source src="assets/video/quien-soy.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video HTML5.
           </video>
 
-          <!-- BOTÓN MUTE / UNMUTE -->
-          <button 
-            id="btnMuteToggle" 
-            type="button"
-            class="absolute top-3 left-3 z-30 bg-slate-900/80 hover:bg-slate-900 text-white p-3 rounded-full backdrop-blur-md border border-white/20 transition-all transform active:scale-95 flex items-center justify-center shadow-lg cursor-pointer"
-            title="Activar / Desactivar sonido">
-            <i id="iconMute" class="fa-solid fa-volume-xmark text-base"></i>
-          </button>
+          <!-- PANTALLA INICIAL (Capa con la foto y el botón Play) -->
+          <div id="capaPortada" class="absolute inset-0 bg-slate-950/80 flex flex-col items-center justify-center gap-4 z-30 transition-opacity duration-500">
+            <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-60">
+            
+            <!-- Botón Play Principal -->
+            <button 
+              id="btnPlayInicial" 
+              type="button"
+              class="relative z-10 w-20 h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/50"
+              title="Reproducir video">
+              <i class="fa-solid fa-play text-3xl ml-1"></i>
+            </button>
+            <span class="relative z-10 text-white text-xs font-bold tracking-widest uppercase drop-shadow-md bg-black/40 px-3 py-1 rounded-full">Ver video de presentación</span>
+          </div>
 
-          <!-- PANTALLA FINAL DINÁMICA -->
+          <!-- PANTALLA FINAL (Aparece al terminar el video) -->
           <div id="pantallaFinal" class="absolute inset-0 bg-slate-950/90 flex flex-col items-center justify-center gap-4 z-20 hidden opacity-0 transition-opacity duration-500">
             <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-30">
             
-            <button id="btnReplay" class="relative z-10 w-16 h-16 rounded-full bg-white/20 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all transform hover:scale-110 shadow-xl cursor-pointer">
+            <button 
+              id="btnReplay" 
+              type="button"
+              class="relative z-10 w-16 h-16 rounded-full bg-white/20 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all transform hover:scale-110 shadow-xl cursor-pointer">
               <i class="fa-solid fa-rotate-right text-2xl"></i>
             </button>
             <span class="relative z-10 text-white text-xs font-semibold tracking-wider uppercase">Volver a reproducir</span>
           </div>
 
         </div>
-
-        <h3 class="font-display font-bold text-lg text-slate-900">Miguel López</h3>
-        <p class="text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
-      </div>
 
         <h3 class="font-display font-bold text-lg text-slate-900">Miguel López</h3>
         <p class="text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
@@ -534,80 +537,40 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const video = document.getElementById('videoMiguel');
+      const capaPortada = document.getElementById('capaPortada');
+      const btnPlayInicial = document.getElementById('btnPlayInicial');
       const pantallaFinal = document.getElementById('pantallaFinal');
       const btnReplay = document.getElementById('btnReplay');
-      const btnMuteToggle = document.getElementById('btnMuteToggle');
-      const iconMute = document.getElementById('iconMute');
 
-      // 1. Iniciar el video automáticamente en silencio
-      if (video) {
-        video.muted = true;
-        video.play().catch(err => {
-          console.log('Autoplay iniciado con interacción requerida:', err);
-        });
-      }
-
-      // 2. CONTROL DE MUTE / UNMUTE REFORZADO
-      btnMuteToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (video.muted) {
-          // Desmutear y asegurar reproducción con sonido
-          video.muted = false;
-          video.volume = 1.0;
-          
-          // Reintentar play por si el navegador pausó el canal de audio
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.then(() => {
-              iconMute.className = 'fa-solid fa-volume-high text-base';
-            }).catch(err => {
-              console.log('Error al activar sonido:', err);
-            });
-          } else {
-            iconMute.className = 'fa-solid fa-volume-high text-base';
-          }
-        } else {
-          // Silenciar
-          video.muted = true;
-          iconMute.className = 'fa-solid fa-volume-xmark text-base';
-        }
+      // 1. Iniciar reproducción al hacer clic en el botón de portada
+      btnPlayInicial.addEventListener('click', () => {
+        capaPortada.classList.add('opacity-0');
+        setTimeout(() => {
+          capaPortada.classList.add('hidden');
+          video.muted = false; // Con sonido ya que es por interacción del usuario
+          video.play();
+        }, 300);
       });
 
-      // 3. PANTALLA FINAL AL CONCLUIR EL VIDEO
+      // 2. Al finalizar el video, mostrar la pantalla final con la foto
       video.addEventListener('ended', () => {
-        video.style.opacity = '0';
         pantallaFinal.classList.remove('hidden');
         setTimeout(() => {
           pantallaFinal.classList.add('opacity-100');
         }, 10);
       });
 
-      // 4. BOTÓN REPLAY
+      // 3. Botón para volver a reproducir
       btnReplay.addEventListener('click', () => {
         pantallaFinal.classList.remove('opacity-100');
         pantallaFinal.classList.add('opacity-0');
         
         setTimeout(() => {
           pantallaFinal.classList.add('hidden');
-          video.style.opacity = '1';
           video.currentTime = 0;
-          video.muted = false; // Al reiniciar de forma manual, inicia con sonido
-          iconMute.className = 'fa-solid fa-volume-high text-base';
+          video.muted = false;
           video.play();
         }, 300);
-      });
-
-      // 5. PAUSAR SOLO SI SE CAMBIA DE PESTAÑA
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          video.pause();
-        } else {
-          if (video.currentTime < video.duration) {
-            video.play();
-          }
-        }
       });
     });
   </script>
