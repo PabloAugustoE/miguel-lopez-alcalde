@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
+
 <body class="bg-tambo-light text-tambo-dark font-sans antialiased selection:bg-tambo-green selection:text-white overflow-x-hidden relative min-h-screen">
 
   <!-- Fondo Estable y Limpio (Sin parpadeos) -->
@@ -120,36 +121,102 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 2: LIDERAZGO -->
-    <section id="quien-es" class="sec-about py-24 px-4 sm:px-6 max-w-7xl mx-auto">
-      <div class="about-container rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden bg-white">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="space-y-6">
-            <span class="text-xs font-bold tracking-widest text-tambo-red uppercase bg-red-50 px-3 py-1 rounded-full border border-red-200">Liderazgo Cercano</span>
-            <h2 class="text-3xl sm:text-4xl font-display font-bold text-slate-900">¿Quién es Miguel López?</h2>
-            <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
-              Un tambeño de convicción firme, dedicado al servicio comunitario y al progreso productivo de nuestra tierra. Su enfoque combina la gerencia eficiente de recursos con una profunda sensibilidad social hacia los agricultores, artesanos y jóvenes del cantón.
-            </p>
-            <div class="space-y-3 pt-2">
-              <div class="flex items-start gap-3">
-                <div class="w-7 h-7 rounded-lg bg-green-100 text-tambo-green flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></div>
-                <p class="text-xs sm:text-sm text-slate-700"><strong class="text-slate-900">Compromiso Rural y Urbano:</strong> Soluciones viales y de agua potable adaptadas a cada comunidad parroquial.</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <div class="w-7 h-7 rounded-lg bg-green-100 text-tambo-green flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></div>
-                <p class="text-xs sm:text-sm text-slate-700"><strong class="text-slate-900">Honradez Comprobada:</strong> Cero tolerancia a la burocracia ineficiente y cuentas claras para todos.</p>
-              </div>
+    <!-- SECCIÓN: ¿Quién es Miguel López? -->
+<section id="quien-es" class="py-20 px-4 bg-white relative z-10">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Columna Izquierda: Texto de Presentación en Primera Persona -->
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-tambo-red animate-pulse"></span>
+          <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Liderazgo Cercano</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-display font-bold text-slate-900 tracking-tight leading-tight">
+          ¿Quién es Miguel López?
+        </h2>
+
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+          Un tambeño de convicción firme, dedicado al servicio comunitario y al progreso productivo de nuestra tierra. Mi enfoque combina la gerencia eficiente de recursos con una profunda sensibilidad social hacia los agricultores, artesanos y jóvenes del cantón.
+        </p>
+
+        <div class="space-y-4 pt-2">
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <div class="w-8 h-8 rounded-xl bg-emerald-100 text-tambo-green flex items-center justify-center shrink-0 mt-0.5">
+              <i class="fa-solid fa-check text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Compromiso Rural y Urbano</h4>
+              <p class="text-xs text-slate-500 mt-1">Soluciones viales y de agua potable adaptadas a cada comunidad parroquial.</p>
             </div>
           </div>
-          <div class="about-photo-box p-6 rounded-2xl border text-center relative shadow-inner">
-            <div class="absolute -top-3 -right-3 bg-tambo-green text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">El Tambo 2027</div>
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Miguel López" class="rounded-xl w-full h-[300px] object-cover mb-4 shadow-md">
-            <h3 class="font-display font-bold text-lg text-slate-900">Miguel López</h3>
-            <p class="text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
+
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <div class="w-8 h-8 rounded-xl bg-emerald-100 text-tambo-green flex items-center justify-center shrink-0 mt-0.5">
+              <i class="fa-solid fa-check text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Honradez Comprobada</h4>
+              <p class="text-xs text-slate-500 mt-1">Cero tolerancia a la burocracia ineficiente y cuentas claras para todos.</p>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+
+      <!-- Columna Derecha: Tarjeta con Video Interactiva -->
+      <div class="about-photo-box p-6 rounded-2xl border border-slate-200 bg-slate-50 text-center relative shadow-inner group">
+        <div class="absolute -top-3 -right-3 bg-tambo-green text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-30">
+          El Tambo 2027
+        </div>
+        
+        <!-- Contenedor del Video 16:9 -->
+        <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-4 shadow-md bg-slate-900 border border-slate-200">
+          
+          <!-- Video con 'muted' nativo para garantizar autoplay -->
+          <video 
+            id="videoMiguel"
+            class="w-full h-full object-cover transition-opacity duration-300" 
+            autoplay 
+            muted 
+            playsinline 
+            preload="auto">
+            <source src="assets/video/quien-soy.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video HTML5.
+          </video>
+
+          <!-- BOTÓN MUTE / UNMUTE -->
+          <button 
+            id="btnMuteToggle" 
+            type="button"
+            class="absolute top-3 left-3 z-30 bg-slate-900/80 hover:bg-slate-900 text-white p-3 rounded-full backdrop-blur-md border border-white/20 transition-all transform active:scale-95 flex items-center justify-center shadow-lg cursor-pointer"
+            title="Activar / Desactivar sonido">
+            <i id="iconMute" class="fa-solid fa-volume-xmark text-base"></i>
+          </button>
+
+          <!-- PANTALLA FINAL DINÁMICA -->
+          <div id="pantallaFinal" class="absolute inset-0 bg-slate-950/90 flex flex-col items-center justify-center gap-4 z-20 hidden opacity-0 transition-opacity duration-500">
+            <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-30">
+            
+            <button id="btnReplay" class="relative z-10 w-16 h-16 rounded-full bg-white/20 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all transform hover:scale-110 shadow-xl cursor-pointer">
+              <i class="fa-solid fa-rotate-right text-2xl"></i>
+            </button>
+            <span class="relative z-10 text-white text-xs font-semibold tracking-wider uppercase">Volver a reproducir</span>
+          </div>
+
+        </div>
+
+        <h3 class="font-display font-bold text-lg text-slate-900">Miguel López</h3>
+        <p class="text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
+      </div>
+
+        <h3 class="font-display font-bold text-lg text-slate-900">Miguel López</h3>
+        <p class="text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
     <!-- SECCIÓN 3: PROPUESTAS (Con enlaces a páginas internas detalladas) -->
     <section id="propuestas" class="sec-proposals py-24 px-4 sm:px-6 max-w-7xl mx-auto">
@@ -462,5 +529,87 @@
   </footer>
 
   <script src="js/main.js"></script>
+
+  <!-- Script para controlar el comportamiento del video final -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('videoMiguel');
+      const pantallaFinal = document.getElementById('pantallaFinal');
+      const btnReplay = document.getElementById('btnReplay');
+      const btnMuteToggle = document.getElementById('btnMuteToggle');
+      const iconMute = document.getElementById('iconMute');
+
+      // 1. Iniciar el video automáticamente en silencio
+      if (video) {
+        video.muted = true;
+        video.play().catch(err => {
+          console.log('Autoplay iniciado con interacción requerida:', err);
+        });
+      }
+
+      // 2. CONTROL DE MUTE / UNMUTE REFORZADO
+      btnMuteToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (video.muted) {
+          // Desmutear y asegurar reproducción con sonido
+          video.muted = false;
+          video.volume = 1.0;
+          
+          // Reintentar play por si el navegador pausó el canal de audio
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              iconMute.className = 'fa-solid fa-volume-high text-base';
+            }).catch(err => {
+              console.log('Error al activar sonido:', err);
+            });
+          } else {
+            iconMute.className = 'fa-solid fa-volume-high text-base';
+          }
+        } else {
+          // Silenciar
+          video.muted = true;
+          iconMute.className = 'fa-solid fa-volume-xmark text-base';
+        }
+      });
+
+      // 3. PANTALLA FINAL AL CONCLUIR EL VIDEO
+      video.addEventListener('ended', () => {
+        video.style.opacity = '0';
+        pantallaFinal.classList.remove('hidden');
+        setTimeout(() => {
+          pantallaFinal.classList.add('opacity-100');
+        }, 10);
+      });
+
+      // 4. BOTÓN REPLAY
+      btnReplay.addEventListener('click', () => {
+        pantallaFinal.classList.remove('opacity-100');
+        pantallaFinal.classList.add('opacity-0');
+        
+        setTimeout(() => {
+          pantallaFinal.classList.add('hidden');
+          video.style.opacity = '1';
+          video.currentTime = 0;
+          video.muted = false; // Al reiniciar de forma manual, inicia con sonido
+          iconMute.className = 'fa-solid fa-volume-high text-base';
+          video.play();
+        }, 300);
+      });
+
+      // 5. PAUSAR SOLO SI SE CAMBIA DE PESTAÑA
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          video.pause();
+        } else {
+          if (video.currentTime < video.duration) {
+            video.play();
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
