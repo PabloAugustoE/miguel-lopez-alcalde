@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale5.0">
+  <title>Soberanía Agrícola | Miguel López Alcalde</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Estilo CSS exclusivo para la ficha de Agricultura */
+    :root { --accent-agri: #059669; --bg-agri: #ecfdf5; }
+    .agri-header { background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%); border-bottom: 4px solid var(--accent-agri); }
+    .agri-card { background: #ffffff; border-left: 5px solid var(--accent-agri); box-shadow: 0 10px 30px rgba(5, 150, 105, 0.08); }
+    .badge-agri { background: var(--bg-agri); color: var(--accent-agri); border: 1px solid #a7f3d0; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
+  
+  <header class="agri-header py-5 px-6 text-white">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-xs font-bold text-slate-300 hover:text-white flex items-center gap-2 transition-colors"><i class="fa-solid fa-arrow-left"></i> Volver a la Propuesta General</a>
+      <span class="badge-agri text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Eje 3: Soberanía Agrícola</span>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto py-12 px-4 space-y-8">
+    <div class="agri-card p-8 sm:p-12 rounded-3xl space-y-6">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl shrink-0">
+          <i class="fa-solid fa-wheat-awn"></i>
+        </div>
+        <div>
+          <h1 class="text-2xl sm:text-4xl font-display font-extrabold text-slate-900">Centro de Acopio y Soberanía Agrícola</h1>
+          <p class="text-xs text-slate-500 mt-1">Cantón El Tambo · Provincia del Cañar</p>
+        </div>
+      </div>
+
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+        El productor agrícola de El Tambo sufre históricamente la especulación de intermediarios que pagan precios injustos por sus cosechas de papa, maíz y hortalizas. Proponemos un sistema municipal de comercialización directa y fortalecimiento técnico.
+      </p>
+
+      <div class="space-y-4 pt-4 border-t border-slate-100">
+        <h3 class="font-display font-bold text-lg text-slate-900">Estrategias de Producción y Comercialización:</h3>
+        <div class="grid gap-3 text-xs sm:text-sm text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>1. Creación del Centro Municipal de Acopio:</strong> Infraestructura con áreas de clasificación, almacenamiento seguro y cadena de frío para evitar pérdidas post-cosecha.
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>2. Asistencia Técnica Agronómica:</strong> Convenios con universidades e ingenieros agrónomos para entregar semillas certificadas y asesoría en control fitosanitario.
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>3. Ruedas de Negocios Directas:</strong> Enlace comercial institucional entre los productores tambeños y mercados mayoristas regionales sin intermediarios abusivos.
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-200 text-emerald-900">
+        <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Meta Concreta al 2031</h4>
+        <p class="text-xs sm:text-sm font-medium">Incrementar al menos un 30% los ingresos netos de las familias agricultoras del cantón mediante la venta directa regulada.</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

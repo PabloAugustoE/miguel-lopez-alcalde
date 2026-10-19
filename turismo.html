@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turismo e Ingapirca | Miguel López Alcalde</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Estilo CSS exclusivo para la ficha de Turismo */
+    :root { --accent-tur: #16a34a; --bg-tur: #f0fdf4; }
+    .tur-header { background: linear-gradient(135deg, #0f172a 0%, #14532d 100%); border-bottom: 4px solid var(--accent-tur); }
+    .tur-card { background: #ffffff; border-left: 5px solid var(--accent-tur); box-shadow: 0 10px 30px rgba(22, 163, 74, 0.08); }
+    .badge-tur { background: var(--bg-tur); color: var(--accent-tur); border: 1px solid #bbf7d0; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
+  
+  <header class="tur-header py-5 px-6 text-white">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-xs font-bold text-slate-300 hover:text-white flex items-center gap-2 transition-colors"><i class="fa-solid fa-arrow-left"></i> Volver a la Propuesta General</a>
+      <span class="badge-tur text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Eje 2: Turismo e Identidad</span>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto py-12 px-4 space-y-8">
+    <div class="tur-card p-8 sm:p-12 rounded-3xl space-y-6">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center text-2xl shrink-0">
+          <i class="fa-solid fa-monument"></i>
+        </div>
+        <div>
+          <h1 class="text-2xl sm:text-4xl font-display font-extrabold text-slate-900">Corredor Turístico, Cultural y Arqueológico</h1>
+          <p class="text-xs text-slate-500 mt-1">Cantón El Tambo · Provincia del Cañar</p>
+        </div>
+      </div>
+
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+        El Tambo es el portal geográfico e histórico del complejo arqueológico de Ingapirca. Sin embargo, los turistas actuales apenas pernoctan unas horas en el cantón sin dejar réditos económicos locales. Transformaremos esta realidad con una estrategia de integración turística comunitaria.
+      </p>
+
+      <div class="space-y-4 pt-4 border-t border-slate-100">
+        <h3 class="font-display font-bold text-lg text-slate-900">Pilares del Desarrollo Turístico:</h3>
+        <div class="grid gap-3 text-xs sm:text-sm text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>1. Marca Cantonal "El Tambo Vivo":</strong> Campaña digital y de posicionamiento internacional para incentivar circuitos de turismo andino, caminatas y fotografía patrimonial.
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>2. Circuito Gastronómico y Artesanal:</strong> Establecimiento de plazas y ferias permanentes donde se expenda gastronomía típica (cuy, hornado, tortillas) y textiles cañaris con denominación de origen cantonal.
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>3. Alianzas con Hotelería y Guianza:</strong> Capacitación formal a emprendedores locales para certificar hospedajes comunitarios y guías nativos bilingües.
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-green-50 p-6 rounded-2xl border border-green-200 text-green-900">
+        <h4 class="font-bold text-xs uppercase tracking-wider text-green-700 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Meta Concreta al 2031</h4>
+        <p class="text-xs sm:text-sm font-medium">Incrementar en un 50% el tiempo de permanencia de los visitantes en El Tambo, generando empleo directo para jóvenes y artesanos.</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

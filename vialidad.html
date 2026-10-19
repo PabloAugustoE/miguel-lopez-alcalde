@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vialidad Conectada | Miguel López Alcalde</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Estilo CSS exclusivo para la ficha de Vialidad */
+    :root { --accent-vial: #dc2626; --bg-vial: #fef2f2; }
+    .vial-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-bottom: 4px solid var(--accent-vial); }
+    .vial-card { background: #ffffff; border-left: 5px solid var(--accent-vial); box-shadow: 0 10px 30px rgba(220, 38, 38, 0.08); }
+    .badge-vial { background: var(--bg-vial); color: var(--accent-vial); border: 1px solid #fecaca; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
+  
+  <header class="vial-header py-5 px-6 text-white">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-xs font-bold text-slate-300 hover:text-white flex items-center gap-2 transition-colors"><i class="fa-solid fa-arrow-left"></i> Volver a la Propuesta General</a>
+      <span class="badge-vial text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Eje 1: Vialidad y Conectividad</span>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto py-12 px-4 space-y-8">
+    <div class="vial-card p-8 sm:p-12 rounded-3xl space-y-6">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-2xl shrink-0">
+          <i class="fa-solid fa-road"></i>
+        </div>
+        <div>
+          <h1 class="text-2xl sm:text-4xl font-display font-extrabold text-slate-900">Plan Maestro de Vialidad Conectada</h1>
+          <p class="text-xs text-slate-500 mt-1">Cantón El Tambo · Provincia del Cañar</p>
+        </div>
+      </div>
+
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+        El desarrollo económico y agrícola de El Tambo está directamente atado al estado de sus vías. La falta de mantenimiento preventivo ha provocado el aislamiento temporal de comunidades rurales productivas durante la época invernal. Proponemos un plan técnico inmediato basado en el rescate del equipo caminero municipal.
+      </p>
+
+      <div class="space-y-4 pt-4 border-t border-slate-100">
+        <h3 class="font-display font-bold text-lg text-slate-900">Fases de Ejecución Técnica:</h3>
+        <div class="grid gap-3 text-xs sm:text-sm text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>1. Repotenciación del Equipo Caminero:</strong> Mantenimiento correctivo total de volquetas, motoniveladoras y excavadoras propias para reducir costos de alquiler a terceros.
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>2. Convenio Mancomunado Prefectura-Municipio:</strong> Intervención vial coordinada para asegurar que las vías interparroquiales y arterias de acceso a sectores clave reciban asfalto y lastrado técnico.
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <strong>3. Programa de Adoquinado Comunitario:</strong> Modelo tripartito donde el cabildo aporta adoquines, la prefectura el material granular y la comunidad la mano de obra organizada.
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-red-50 p-6 rounded-2xl border border-red-200 text-red-900">
+        <h4 class="font-bold text-xs uppercase tracking-wider text-red-700 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Meta Concreta al 2031</h4>
+        <p class="text-xs sm:text-sm font-medium">Intervención y mantenimiento permanente en más de 45 kilómetros de caminos vecinales y acceso rural prioritario.</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

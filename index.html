@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miguel López | Alcalde de El Tambo 2027</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            tambo: {
+              red: '#dc2626',
+              green: '#16a34a',
+              dark: '#0f172a',
+              light: '#f8fafc',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-tambo-light text-tambo-dark font-sans antialiased selection:bg-tambo-green selection:text-white overflow-x-hidden relative min-h-screen">
+
+  <!-- Fondo Estable y Limpio (Sin parpadeos) -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute w-[500px] h-[500px] top-[-100px] left-[-100px] bg-red-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute w-[600px] h-[600px] bottom-[-100px] right-[-100px] bg-green-500/10 rounded-full blur-[140px]"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto nav-glass rounded-2xl px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-tambo-red via-tambo-green to-emerald-500 p-[2px] shadow-md">
+          <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
+            <i class="fa-solid fa-flag text-tambo-red text-base"></i>
+          </div>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-lg tracking-tight text-slate-900 block leading-none">MIGUEL LÓPEZ</span>
+          <span class="text-[10px] tracking-widest text-tambo-green font-bold uppercase">El Tambo · Cañar</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="#hero" class="hover:text-tambo-red transition-colors">Inicio</a>
+        <a href="#quien-es" class="hover:text-tambo-red transition-colors">Liderazgo</a>
+        <a href="#propuestas" class="hover:text-tambo-red transition-colors">Propuestas</a>
+        <a href="#recursos" class="hover:text-tambo-red transition-colors">Recursos</a>
+        <a href="#roadmap" class="hover:text-tambo-red transition-colors">Roadmap Táctil</a>
+      </nav>
+
+      <div>
+        <a href="#propuestas" class="px-5 py-2.5 rounded-xl bg-tambo-red text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-tambo-red/30 hover:bg-red-700 transition-all inline-block">
+          Súmate
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-28">
+
+    <!-- SECCIÓN 1: HERO -->
+    <section id="hero" class="sec-hero min-h-[85vh] flex items-center justify-center px-4 sm:px-6 relative py-12">
+      <div class="max-w-5xl mx-auto text-center space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-200 text-xs sm:text-sm font-semibold text-tambo-green">
+          <span class="w-2.5 h-2.5 rounded-full bg-tambo-green animate-ping"></span>
+          <span>Candidatura Oficial Alcaldía 2027 · Cantón El Tambo, Cañar</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.15] text-slate-900">
+          Un nuevo rumbo de honor y progreso para <span class="text-gradient-flag">El Tambo</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed">
+          Gobernemos con honestidad, transparencia y desarrollo tecnológico. Potenciando nuestro legado histórico en Ingapirca, la agricultura y el bienestar familiar.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <a href="#roadmap" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-tambo-green text-white font-bold shadow-lg shadow-tambo-green/30 hover:bg-green-700 transition-all text-center">
+            <i class="fa-solid fa-pen-nib mr-2"></i> Explorar Roadmap Táctil
+          </a>
+          <a href="#quien-es" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-all text-center shadow-sm">
+            Conoce la Visión
+          </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 max-w-4xl mx-auto">
+          <div class="hero-card p-5 rounded-2xl text-center shadow-md">
+            <div class="text-2xl sm:text-3xl font-display font-bold text-tambo-red">100%</div>
+            <div class="text-xs text-slate-500 mt-1 font-medium">Transparencia Pública</div>
+          </div>
+          <div class="hero-card p-5 rounded-2xl text-center shadow-md">
+            <div class="text-2xl sm:text-3xl font-display font-bold text-tambo-green">4 Ejes</div>
+            <div class="text-xs text-slate-500 mt-1 font-medium">Desarrollo Integral</div>
+          </div>
+          <div class="hero-card p-5 rounded-2xl text-center shadow-md">
+            <div class="text-2xl sm:text-3xl font-display font-bold text-slate-800">Cañar</div>
+            <div class="text-xs text-slate-500 mt-1 font-medium">Identidad Cultural</div>
+          </div>
+          <div class="hero-card p-5 rounded-2xl text-center shadow-md">
+            <div class="text-2xl sm:text-3xl font-display font-bold text-tambo-red">Futuro</div>
+            <div class="text-xs text-slate-500 mt-1 font-medium">Innovación Cantonal</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: LIDERAZGO -->
+    <section id="quien-es" class="sec-about py-24 px-4 sm:px-6 max-w-7xl mx-auto">
+      <div class="about-container rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden bg-white">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <span class="text-xs font-bold tracking-widest text-tambo-red uppercase bg-red-50 px-3 py-1 rounded-full border border-red-200">Liderazgo Cercano</span>
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-slate-900">¿Quién es Miguel López?</h2>
+            <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+              Un tambeño de convicción firme, dedicado al servicio comunitario y al progreso productivo de nuestra tierra. Su enfoque combina la gerencia eficiente de recursos con una profunda sensibilidad social hacia los agricultores, artesanos y jóvenes del cantón.
+            </p>
+            <div class="space-y-3 pt-2">
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-lg bg-green-100 text-tambo-green flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></div>
+                <p class="text-xs sm:text-sm text-slate-700"><strong class="text-slate-900">Compromiso Rural y Urbano:</strong> Soluciones viales y de agua potable adaptadas a cada comunidad parroquial.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-lg bg-green-100 text-tambo-green flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></div>
+                <p class="text-xs sm:text-sm text-slate-700"><strong class="text-slate-900">Honradez Comprobada:</strong> Cero tolerancia a la burocracia ineficiente y cuentas claras para todos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="about-photo-box p-6 rounded-2xl border text-center relative shadow-inner">
+            <div class="absolute -top-3 -right-3 bg-tambo-green text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">El Tambo 2027</div>
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Miguel López" class="rounded-xl w-full h-[300px] object-cover mb-4 shadow-md">
+            <h3 class="font-display font-bold text-lg text-slate-900">Miguel López</h3>
+            <p class="text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: PROPUESTAS (Con enlaces a páginas internas detalladas) -->
+    <section id="propuestas" class="sec-proposals py-24 px-4 sm:px-6 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold tracking-widest text-tambo-green uppercase bg-green-50 px-3 py-1 rounded-full border border-green-200">Plan de Gobierno Técnico</span>
+        <h2 class="text-3xl sm:text-5xl font-display font-bold text-slate-900">Pilares de Transformación</h2>
+        <p class="text-slate-600">Haz clic en cada ficha para acceder al documento técnico detallado de cada propuesta.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Ficha 1: Vialidad -->
+        <a href="vialidad.html" class="proposal-card p-6 rounded-3xl shadow-lg bg-white block group text-left">
+          <div class="w-12 h-12 rounded-2xl bg-red-100 text-tambo-red flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-road"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-tambo-red transition-colors">Vialidad Conectada</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">
+            Mantenimiento continuo y asfaltado prioritario de vías rurales para garantizar la conectividad de los productores.
+          </p>
+          <span class="text-xs font-bold text-tambo-red flex items-center gap-1 mt-2">
+            Ver ficha técnica completa <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- Ficha 2: Turismo -->
+        <a href="turismo.html" class="proposal-card p-6 rounded-3xl shadow-lg bg-white block group text-left">
+          <div class="w-12 h-12 rounded-2xl bg-green-100 text-tambo-green flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-monument"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-tambo-green transition-colors">Turismo e Ingapirca</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">
+            Posicionar a El Tambo como el portal cultural del Cañar, impulsando economía local, gastronomía y artesanías.
+          </p>
+          <span class="text-xs font-bold text-tambo-green flex items-center gap-1 mt-2">
+            Ver ficha técnica completa <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- Ficha 3: Soberanía Agrícola -->
+        <a href="agricultura.html" class="proposal-card p-6 rounded-3xl shadow-lg bg-white block group text-left">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">Soberanía Agrícola</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">
+            Centros de acopio tecnificado y asistencia directa al agricultor para eliminar intermediarios abusivos.
+          </p>
+          <span class="text-xs font-bold text-emerald-600 flex items-center gap-1 mt-2">
+            Ver ficha técnica completa <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- Ficha 4: Cantón Seguro -->
+        <a href="seguridad.html" class="proposal-card p-6 rounded-3xl shadow-lg bg-white block group text-left">
+          <div class="w-12 h-12 rounded-2xl bg-red-100 text-tambo-red flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-tambo-red transition-colors">Cantón Seguro</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">
+            Central de monitoreo municipal, cámaras de alta resolución y articulación comunitaria 24/7.
+          </p>
+          <span class="text-xs font-bold text-tambo-red flex items-center gap-1 mt-2">
+            Ver ficha técnica completa <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: RECURSOS, INVERSORES Y MAQUINARIA (Con páginas internas multimedia) -->
+    <section id="recursos" class="sec-resources py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+        <span class="text-xs font-bold tracking-widest text-tambo-red uppercase bg-red-50 px-3 py-1 rounded-full border border-red-200">Sustento Operativo</span>
+        <h2 class="text-2xl sm:text-4xl font-display font-bold text-slate-900">Inversores, Maquinaria y Materiales</h2>
+        <p class="text-xs text-slate-500">Haz clic en cada tarjeta para conocer el detalle financiero, técnico y multimedia de ejecución.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        
+        <!-- Ficha 1: Financiamiento -->
+        <a href="financiamiento.html" class="resource-box p-6 rounded-2xl shadow-lg bg-white block group text-left">
+          <div class="w-12 h-12 rounded-xl bg-red-100 text-tambo-red flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-coins"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-2 group-hover:text-tambo-red transition-colors">Financiamiento y BDE</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">Gestión de recursos mediante asignaciones fiscales eficientes, Banco de Desarrollo del Ecuador y cooperación internacional.</p>
+          <span class="text-xs font-bold text-tambo-red flex items-center gap-1">
+            Ver desglose financiero <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- Ficha 2: Maquinaria -->
+        <a href="maquinaria.html" class="resource-box p-6 rounded-2xl shadow-lg bg-white block group text-left">
+          <div class="w-12 h-12 rounded-xl bg-green-100 text-tambo-green flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-truck-monster"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-2 group-hover:text-tambo-green transition-colors">Equipo Caminero Propio</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">Repotenciación de volquetas, motoniveladoras y excavadoras para mantenimiento preventivo constante en todo el cantón.</p>
+          <span class="text-xs font-bold text-tambo-green flex items-center gap-1">
+            Ver inventario y videos <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- Ficha 3: Mano de Obra -->
+        <a href="mano-de-obra.html" class="resource-box p-6 rounded-2xl shadow-lg bg-white block group text-left">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-people-group"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-2 group-hover:text-emerald-600 transition-colors">Mano de Obra Local</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">Contratación preferente de ingenieros, constructores, canteras y proveedores oriundos de El Tambo y la provincia del Cañar.</p>
+          <span class="text-xs font-bold text-emerald-600 flex items-center gap-1">
+            Ver compromiso local <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: ROADMAP TÁCTIL -->
+    <section id="roadmap" class="sec-roadmap py-20 px-4 sm:px-6 max-w-4xl mx-auto">
+      <div class="text-center mb-12 space-y-3">
+        <span class="text-xs font-bold tracking-widest text-tambo-green uppercase bg-green-50 px-3 py-1 rounded-full border border-green-200">Cronograma de Mandato</span>
+        <h2 class="text-2xl sm:text-4xl font-display font-bold text-slate-900">Roadmap Interactivo (2027 - 2031)</h2>
+        <p class="text-xs text-slate-500">Usa tu mouse, dedo o lápiz óptico (stylus) para tocar cada fase y desplegar su detalle operativo.</p>
+      </div>
+      <div class="roadmap-wrapper relative pl-8 sm:pl-12 space-y-8">
+        <div class="roadmap-node p-6 rounded-2xl shadow-md cursor-pointer transition-all bg-white relative" data-phase="1">
+          <span class="absolute -left-[43px] sm:-left-[51px] top-6 w-8 h-8 rounded-full bg-tambo-red text-white font-bold text-xs flex items-center justify-center shadow-md">1</span>
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Año 2027</span>
+              <h4 class="font-bold text-slate-900 text-lg mt-1">Casa en Orden y Vías Urgentes</h4>
+            </div>
+            <span class="stylus-badge text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg border border-slate-200"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span>
+          </div>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">Auditoría financiera transparente, modernización de trámites en línea e inicio inmediato del plan de bacheo vial.</p>
+          <div class="phase-details hidden mt-4 pt-3 border-t border-slate-200 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl">
+            <strong>Objetivo clave:</strong> Cero trámites burocráticos lentos y atención prioritaria a accesos rurales críticos.
+          </div>
+        </div>
+        <div class="roadmap-node p-6 rounded-2xl shadow-md cursor-pointer transition-all bg-white relative" data-phase="2">
+          <span class="absolute -left-[43px] sm:-left-[51px] top-6 w-8 h-8 rounded-full bg-tambo-green text-white font-bold text-xs flex items-center justify-center shadow-md">2</span>
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs font-bold text-tambo-green uppercase tracking-wider">Año 2028</span>
+              <h4 class="font-bold text-slate-900 text-lg mt-1">Infraestructura y Centro de Acopio</h4>
+            </div>
+            <span class="stylus-badge text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg border border-slate-200"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span>
+          </div>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">Construcción del centro agropecuario y despliegue del sistema cantonal de videovigilancia y monitoreo.</p>
+          <div class="phase-details hidden mt-4 pt-3 border-t border-slate-200 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl">
+            <strong>Objetivo clave:</strong> Garantizar precios justos para productores y seguridad 24/7 en mercados y calles.
+          </div>
+        </div>
+        <div class="roadmap-node p-6 rounded-2xl shadow-md cursor-pointer transition-all bg-white relative" data-phase="3">
+          <span class="absolute -left-[43px] sm:-left-[51px] top-6 w-8 h-8 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center shadow-md">3</span>
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Año 2029</span>
+              <h4 class="font-bold text-slate-900 text-lg mt-1">Potencia Turística e Ingapirca</h4>
+            </div>
+            <span class="stylus-badge text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg border border-slate-200"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span>
+          </div>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">Lanzamiento internacional de la marca turística cantonal y apoyo financiero a emprendimientos locales.</p>
+          <div class="phase-details hidden mt-4 pt-3 border-t border-slate-200 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl">
+            <strong>Objetivo clave:</strong> Atraer visitantes nacionales y extranjeros para dinamizar hoteles, restaurantes y artesanos.
+          </div>
+        </div>
+        <div class="roadmap-node p-6 rounded-2xl shadow-md cursor-pointer transition-all bg-white relative" data-phase="4">
+          <span class="absolute -left-[43px] sm:-left-[51px] top-6 w-8 h-8 rounded-full bg-tambo-red text-white font-bold text-xs flex items-center justify-center shadow-md">4</span>
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Año 2030+</span>
+              <h4 class="font-bold text-slate-900 text-lg mt-1">Consolidación y Futuro Sostenible</h4>
+            </div>
+            <span class="stylus-badge text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg border border-slate-200"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span>
+          </div>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">Evaluación ciudadana de metas cumplidas y proyección financiera a largo plazo para un cantón próspero.</p>
+          <div class="phase-details hidden mt-4 pt-3 border-t border-slate-200 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl">
+            <strong>Objetivo clave:</strong> Rendición de cuentas final y entrega de un municipio 100% autosustentable.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+ <!-- SECCIÓN: GALERÍA EN MOVIMIENTO (Bucle Infinito Funcional) -->
+    <section class="py-20 bg-white overflow-hidden border-t border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 mb-10 text-center space-y-2">
+        <span class="text-xs font-bold tracking-widest text-tambo-red uppercase bg-red-50 px-3 py-1 rounded-full border border-red-200">Galería en Acción</span>
+        <h2 class="text-2xl sm:text-4xl font-display font-bold text-slate-900">Miguel López con el Pueblo de El Tambo</h2>
+        <p class="text-xs sm:text-sm text-slate-500">Recorridos permanentes escuchando las necesidades de cada comunidad y barrio.</p>
+      </div>
+
+      <!-- Contenedor del Marquee -->
+      <div class="marquee-container py-4">
+        
+        <!-- Degradados laterales para difuminar los bordes -->
+        <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+        <div class="marquee-track">
+          
+          <!-- SET 1 DE FOTOS -->
+          <div class="w-80 h-52 rounded-2xl overflow-hidden shadow-md shrink-0 border border-slate-200 relative bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80" alt="El Tambo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-white text-xs font-semibold">Asamblea comunitaria en la zona rural</span>
+            </div>
+          </div>
+
+          <div class="w-80 h-52 rounded-2xl overflow-hidden shadow-md shrink-0 border border-slate-200 relative bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80" alt="El Tambo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-white text-xs font-semibold">Reunión con emprendedores y artesanos</span>
+            </div>
+          </div>
+
+          <div class="w-80 h-52 rounded-2xl overflow-hidden shadow-md shrink-0 border border-slate-200 relative bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="El Tambo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-white text-xs font-semibold">Diálogo abierto con jóvenes y profesionales</span>
+            </div>
+          </div>
+
+          <div class="w-80 h-52 rounded-2xl overflow-hidden shadow-md shrink-0 border border-slate-200 relative bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=600&q=80" alt="El Tambo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-white text-xs font-semibold">Recorrido por vías y sectores productivos</span>
+            </div>
+          </div>
+
+          <!-- SET 2 DUPLICADO (Esencial para el bucle infinito continuo sin saltos) -->
+          <div class="w-80 h-52 rounded-2xl overflow-hidden shadow-md shrink-0 border border-slate-200 relative bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80" alt="El Tambo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-white text-xs font-semibold">Asamblea comunitaria en la zona rural</span>
+            </div>
+          </div>
+
+          <div class="w-80 h-52 rounded-2xl overflow-hidden shadow-md shrink-0 border border-slate-200 relative bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80" alt="El Tambo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-white text-xs font-semibold">Reunión con emprendedores y artesanos</span>
+            </div>
+          </div>
+
+          <div class="w-80 h-52 rounded-2xl overflow-hidden shadow-md shrink-0 border border-slate-200 relative bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="El Tambo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-white text-xs font-semibold">Diálogo abierto con jóvenes y profesionales</span>
+            </div>
+          </div>
+
+          <div class="w-80 h-52 rounded-2xl overflow-hidden shadow-md shrink-0 border border-slate-200 relative bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=600&q=80" alt="El Tambo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-white text-xs font-semibold">Recorrido por vías y sectores productivos</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  <!-- Footer -->
+  <footer class="sec-footer border-t border-slate-200 mt-20 py-10 px-4 bg-white">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500">
+      <div class="flex items-center gap-3">
+        <span class="font-display text-slate-900 font-bold text-sm">Miguel López Alcalde</span>
+        <span>© 2026. El Tambo, Cañar, Ecuador.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-tambo-red transition-colors"><i class="fa-brands fa-facebook text-lg"></i></a>
+        <a href="#" class="hover:text-tambo-red transition-colors"><i class="fa-brands fa-tiktok text-lg"></i></a>
+        <a href="#" class="hover:text-tambo-red transition-colors"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
