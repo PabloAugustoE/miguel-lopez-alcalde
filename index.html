@@ -69,11 +69,64 @@
         <a href="#roadmap" class="hover:text-tambo-red transition-colors">Roadmap Táctil</a>
       </nav>
 
-      <div>
-        <a href="https://chat.whatsapp.com/CqIVBBFbPhqBV8ubm4bNtJ?s=cl&p=a&mlu=4&ilr=4" class="px-5 py-2.5 rounded-xl bg-tambo-red text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-tambo-red/30 hover:bg-red-700 transition-all inline-block">
-          Súmate
-        </a>
-      </div>
+      <!-- Menú Desplegable "SÚMATE" en el Navbar con Bordes Anteriores (rounded-xl) -->
+<div class="relative inline-block text-left group-sumate">
+  
+  <!-- Botón Principal "SÚMATE" conservando bordes anteriores rounded-xl -->
+  <button 
+    id="btnSumate" 
+    type="button" 
+    class="bg-tambo-red hover:bg-red-700 text-white text-xs font-extrabold uppercase tracking-wider px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 cursor-pointer focus:outline-none"
+    aria-expanded="false">
+    <span>Súmate</span>
+    <i id="iconSumateArrow" class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300"></i>
+  </button>
+
+  <!-- Lista Desplegable de Redes Sociales -->
+  <div 
+    id="menuSumate" 
+    class="hidden absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 transition-all duration-200 transform origin-top-right">
+    
+    <div class="px-4 py-2 border-b border-slate-100">
+      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Únete a la campaña</p>
+    </div>
+
+    <div class="py-1">
+      <!-- WhatsApp -->
+      <a href="https://chat.whatsapp.com/CqIVBBFbPhqBV8ubm4bNtJ?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">
+        <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm shrink-0">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+        <span>Grupo de WhatsApp</span>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@miguel_l78?_r=1&_t=ZS-9AfvGUDpd6C" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors">
+        <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-900 flex items-center justify-center text-sm shrink-0">
+          <i class="fa-brands fa-tiktok"></i>
+        </div>
+        <span>TikTok Oficial</span>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/share/1DwUsgrKMW/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+        <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm shrink-0">
+          <i class="fa-brands fa-facebook-f"></i>
+        </div>
+        <span>Facebook</span>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/miguel.lopez1912?srtk=OHRwZGl0ZHAxa2Nw" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-pink-50 hover:text-pink-600 transition-colors">
+        <div class="w-7 h-7 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-sm shrink-0">
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <span>Instagram</span>
+      </a>
+    </div>
+
+  </div>
+</div>
     </div>
   </header>
 
@@ -666,6 +719,37 @@
         targetElement.classList.remove('hidden');
       });
     });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnSumate = document.getElementById('btnSumate');
+    const menuSumate = document.getElementById('menuSumate');
+    const iconSumateArrow = document.getElementById('iconSumateArrow');
+
+    if (btnSumate && menuSumate) {
+      // Toggle abrir/cerrar desplegable
+      btnSumate.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !menuSumate.classList.contains('hidden');
+
+        if (isOpen) {
+          menuSumate.classList.add('hidden');
+          iconSumateArrow.classList.remove('rotate-180');
+        } else {
+          menuSumate.classList.remove('hidden');
+          iconSumateArrow.classList.add('rotate-180');
+        }
+      });
+
+      // Cerrar al hacer clic fuera del menú
+      document.addEventListener('click', (e) => {
+        if (!menuSumate.contains(e.target) && !btnSumate.contains(e.target)) {
+          menuSumate.classList.add('hidden');
+          if (iconSumateArrow) iconSumateArrow.classList.remove('rotate-180');
+        }
+      });
+    }
   });
 </script>
 </body>
