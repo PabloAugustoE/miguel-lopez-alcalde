@@ -131,7 +131,7 @@ Roadmap Interactivo (2027 - 2031)
 Usa tu mouse, dedo o lápiz óptico (stylus) para tocar cada fase y desplegar su detalle operativo.
 
 /* ==========================================================================
-   GALERÍA HORIZONTAL EN BUCLE INFINITO (MARQUEE PURO)
+   GALERÍA HORIZONTAL EN BUCLE INFINITO (CONTINUA Y SIN PAUSA)
    ========================================================================== */
 .marquee-container {
   overflow: hidden;
