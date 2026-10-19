@@ -602,6 +602,80 @@
       </div>
     </section>
 
+    <!-- SECCIÓN: Simulación de Casilla Electoral 2027 -->
+<section id="simulacion-voto" class="py-16 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <!-- Encabezado -->
+    <div class="max-w-2xl mx-auto mb-10 space-y-2">
+      <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-4 py-1.5 rounded-full shadow-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-tambo-red animate-pulse"></span>
+        <span class="text-xs font-bold text-tambo-red uppercase tracking-widest">Simulador Electoral 2027</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+        ¡Tu Voto Transforma El Tambo!
+      </h2>
+      <p class="text-slate-600 text-xs sm:text-sm">
+        Haz clic en el casillero para simular tu raya de voto por el cambio y la transparencia.
+      </p>
+    </div>
+
+    <!-- TARJETA PAPELETA SIMULADA -->
+    <div class="max-w-md mx-auto bg-white rounded-3xl shadow-2xl border-2 border-slate-200 p-6 sm:p-8 relative overflow-hidden">
+      
+      <!-- Encabezado estilo Papeleta Oficial -->
+      <div class="flex justify-between items-center border-b border-slate-200 pb-4 mb-6 text-left">
+        <div>
+          <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Elecciones Seccionales 2027</span>
+          <h3 class="font-display font-black text-lg text-slate-900">Alcaldía de El Tambo</h3>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-500 font-bold text-xs">
+          2027
+        </div>
+      </div>
+
+      <!-- Fila de Candidato con Casilla -->
+      <div class="flex items-center justify-between bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 transition-all hover:border-tambo-red">
+        
+        <!-- Info Candidato con la foto miguel-perfil.jpg -->
+        <div class="flex items-center gap-4 text-left">
+          <img src="assets/img/miguel-perfil.jpg" alt="Miguel López" class="w-14 h-14 rounded-xl object-cover border-2 border-tambo-red shadow-sm">
+          <div>
+            <h4 class="font-display font-extrabold text-base text-slate-900">Miguel López</h4>
+            <p class="text-xs text-tambo-red font-bold uppercase tracking-wider">Candidato a Alcalde</p>
+          </div>
+        </div>
+
+        <!-- CASILLA PARA RAYAR / SUBRAYAR -->
+        <button 
+          id="casillaVoto" 
+          type="button" 
+          class="relative w-16 h-16 sm:w-20 sm:h-20 bg-white border-3 border-dashed border-slate-400 rounded-2xl flex items-center justify-center cursor-pointer hover:bg-blue-50/50 hover:border-blue-600 transition-all focus:outline-none shrink-0 shadow-inner group"
+          title="Haz clic para rayar tu voto">
+          
+          <span id="textoRayar" class="text-[10px] font-black text-slate-400 uppercase tracking-tight group-hover:text-blue-600 transition-colors">VOTA AQUÍ</span>
+          
+          <!-- TRAZO DIAGONAL AZUL (ANIMADO DE ARRIBA HACIA ABAJO: (82,18) -> (18,82)) -->
+          <svg id="svgTrazo" class="absolute inset-0 w-full h-full p-2 pointer-events-none hidden" viewBox="0 0 100 100">
+            <path id="pathRayadoDiagonal" d="M 82 18 L 18 82" stroke="#2563EB" stroke-width="9" stroke-linecap="round" class="trazo-linea-azul" />
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Mensaje de Confirmación al Rayar -->
+      <div id="mensajeVotoConfirmado" class="mt-6 hidden transition-all duration-300">
+        <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-extrabold px-4 py-2 rounded-full border border-emerald-300 shadow-sm">
+          <i class="fa-solid fa-circle-check text-sm text-emerald-600"></i>
+          <span>¡Voto registrado por el progreso de El Tambo!</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
   <!-- Footer Oficial de Campaña -->
   <footer class="sec-footer border-t border-slate-200 mt-20 py-10 px-4 bg-white relative z-10">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500">
@@ -747,6 +821,179 @@
         if (!menuSumate.contains(e.target) && !btnSumate.contains(e.target)) {
           menuSumate.classList.add('hidden');
           if (iconSumateArrow) iconSumateArrow.classList.remove('rotate-180');
+        }
+      });
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const casillaVoto = document.getElementById('casillaVoto');
+    const svgTrazo = document.getElementById('svgTrazo');
+    const textoRayar = document.getElementById('textoRayar');
+    const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
+
+    let votado = false;
+
+    // Función para reproducir sonido sintético de trazo de lápiz/marcador
+    function reproducirSonidoLapiz() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        
+        const audioCtx = new AudioContext();
+        
+        // Crear ruido blanco simulando el frotado de lápiz en papel
+        const bufferSize = audioCtx.sampleRate * 0.3; // 0.3 segundos de trazo
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        // Filtro para dar textura de papel
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 1200;
+        filter.Q.value = 3;
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        noise.start();
+      } catch (e) {
+        console.log('Audio de trazo no disponible:', e);
+      }
+    }
+
+    if (casillaVoto) {
+      casillaVoto.addEventListener('click', () => {
+        votado = !votado;
+
+        if (votado) {
+          // Reproducir sonido de trazo
+          reproducirSonidoLapiz();
+
+          // Ocultar texto y mostrar trazo
+          textoRayar.classList.add('hidden');
+          svgTrazo.classList.remove('hidden');
+          casillaVoto.classList.remove('border-dashed', 'border-slate-400');
+          casillaVoto.classList.add('border-solid', 'border-tambo-red', 'bg-red-50/40');
+          
+          if (mensajeVotoConfirmado) {
+            mensajeVotoConfirmado.classList.remove('hidden');
+          }
+        } else {
+          // Desmarcar / Reiniciar casilla
+          svgTrazo.classList.add('hidden');
+          textoRayar.classList.remove('hidden');
+          casillaVoto.classList.add('border-dashed', 'border-slate-400');
+          casillaVoto.classList.remove('border-solid', 'border-tambo-red', 'bg-red-50/40');
+          
+          if (mensajeVotoConfirmado) {
+            mensajeVotoConfirmado.classList.add('hidden');
+          }
+        }
+      });
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const casillaVoto = document.getElementById('casillaVoto');
+    const svgTrazo = document.getElementById('svgTrazo');
+    const textoRayar = document.getElementById('textoRayar');
+    const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
+
+    let votado = false;
+    let audioCtx = null;
+
+    // Función de sonido optimizada para respuesta instantánea
+    function reproducirSonidoLapizInmediato() {
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) audioCtx = new AudioContextClass();
+        }
+
+        if (audioCtx) {
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+
+          const duration = 0.22; // Duración sincronizada exactamente con el dibujo de la línea
+          const bufferSize = audioCtx.sampleRate * duration;
+          const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+          const data = buffer.getChannelData(0);
+
+          // Generar ruido blanco con textura de fricción
+          for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+          }
+
+          const noise = audioCtx.createBufferSource();
+          noise.buffer = buffer;
+
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'bandpass';
+          filter.frequency.value = 1400; // Frecuencia que simula un marcador/lápiz
+          filter.Q.value = 2.5;
+
+          const gain = audioCtx.createGain();
+          const now = audioCtx.currentTime;
+          
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          noise.start(now);
+        }
+      } catch (e) {
+        console.log('Audio no disponible:', e);
+      }
+    }
+
+    if (casillaVoto) {
+      casillaVoto.addEventListener('click', (e) => {
+        e.preventDefault();
+        votado = !votado;
+
+        if (votado) {
+          // 1. REPRODUCIR SONIDO INMEDIATAMENTE
+          reproducirSonidoLapizInmediato();
+
+          // 2. ACTIVAR LA ANIMACIÓN EN DIAGONAL AZUL
+          textoRayar.classList.add('hidden');
+          svgTrazo.classList.remove('hidden');
+          casillaVoto.classList.remove('border-dashed', 'border-slate-400');
+          casillaVoto.classList.add('border-solid', 'border-blue-600', 'bg-blue-50/40');
+          
+          if (mensajeVotoConfirmado) {
+            mensajeVotoConfirmado.classList.remove('hidden');
+          }
+        } else {
+          // Desmarcar / Limpiar casilla
+          svgTrazo.classList.add('hidden');
+          textoRayar.classList.remove('hidden');
+          casillaVoto.classList.add('border-dashed', 'border-slate-400');
+          casillaVoto.classList.remove('border-solid', 'border-blue-600', 'bg-blue-50/40');
+          
+          if (mensajeVotoConfirmado) {
+            mensajeVotoConfirmado.classList.add('hidden');
+          }
         }
       });
     }
