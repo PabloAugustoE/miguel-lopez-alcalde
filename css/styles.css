@@ -131,20 +131,29 @@ Roadmap Interactivo (2027 - 2031)
 Usa tu mouse, dedo o lápiz óptico (stylus) para tocar cada fase y desplegar su detalle operativo.
 
 /* ==========================================================================
-   GALERÍA HORIZONTAL EN BUCLE INFINITO (CONTINUA Y SIN PAUSA)
+   GALERÍA HORIZONTAL EN BUCLE CONTINUO (ININTERRUMPIBLE)
    ========================================================================== */
 .marquee-container {
   overflow: hidden;
   width: 100%;
   position: relative;
   display: flex;
+  pointer-events: none; /* Desactiva la interacción con las fotos */
 }
 
 .marquee-track {
   display: flex;
   gap: 1.5rem;
   width: max-content;
-  animation: scrollMarquee 30s linear infinite;
+  animation: scrollMarquee 30s linear infinite !important;
+  pointer-events: none !important;
+}
+
+/* Forzamos que incluso al pasar el cursor o presionar la pantalla la animación continúe */
+.marquee-track:hover,
+.marquee-track:focus,
+.marquee-track:active {
+  animation-play-state: running !important;
 }
 
 @keyframes scrollMarquee {
