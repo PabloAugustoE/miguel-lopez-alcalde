@@ -339,72 +339,106 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 5: ROADMAP TÁCTIL -->
-    <section id="roadmap" class="sec-roadmap py-20 px-4 sm:px-6 max-w-4xl mx-auto">
-      <div class="text-center mb-12 space-y-3">
-        <span class="text-xs font-bold tracking-widest text-tambo-green uppercase bg-green-50 px-3 py-1 rounded-full border border-green-200">Cronograma de Mandato</span>
-        <h2 class="text-2xl sm:text-4xl font-display font-bold text-slate-900">Roadmap Interactivo (2027 - 2031)</h2>
-        <p class="text-xs text-slate-500">Usa tu mouse, dedo o lápiz óptico (stylus) para tocar cada fase y desplegar su detalle operativo.</p>
+    <!-- SECCIÓN: Roadmap Táctil - Ruta de Recorrido sobre el Mapa -->
+<section id="roadmap" class="relative py-24 px-4 overflow-hidden bg-slate-50 text-slate-900">
+  
+  <!-- Imagen de fondo del mapa con opacidad suave para conservar los tonos claros -->
+  <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+    <img src="assets/img/mapa.jpg" alt="Mapa El Tambo" class="w-full h-full object-cover object-center">
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+      <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-4 py-1.5 rounded-full">
+        <span class="w-2.5 h-2.5 rounded-full bg-tambo-red animate-pulse"></span>
+        <span class="text-xs font-bold text-tambo-red uppercase tracking-widest">Ruta de Campaña 2027</span>
       </div>
-      <div class="roadmap-wrapper relative pl-8 sm:pl-12 space-y-8">
-        <div class="roadmap-node p-6 rounded-2xl shadow-md cursor-pointer transition-all bg-white relative" data-phase="1">
-          <span class="absolute -left-[43px] sm:-left-[51px] top-6 w-8 h-8 rounded-full bg-tambo-red text-white font-bold text-xs flex items-center justify-center shadow-md">1</span>
-          <div class="flex justify-between items-start">
-            <div>
-              <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Año 2027</span>
-              <h4 class="font-bold text-slate-900 text-lg mt-1">Casa en Orden y Vías Urgentes</h4>
-            </div>
-            <span class="stylus-badge text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg border border-slate-200"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span>
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+        Ruta Táctil de Transformación
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+        El recorrido estratégico planificado paso a paso sobre el territorio de nuestro cantón.
+      </p>
+    </div>
+
+    <!-- CONTENEDOR DE LA RUTA SERPENSIÓN TIPO MAPA -->
+    <div class="relative py-12 px-4 sm:px-12">
+      
+      <!-- Línea SVG curva que imita exactamente el trazo del dibujo sobre el mapa -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none z-0 stroke-tambo-red/40" viewBox="0 0 600 800" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M450,80 C350,150 150,200 200,320 C250,440 450,480 350,620 C250,760 450,750 400,780" stroke-width="4" stroke-dasharray="6 6" />
+      </svg>
+
+      <!-- Puntos de la Ruta (Hitos 1 al 5 distribuidos sobre la curva) -->
+      <div class="relative z-10 flex flex-col gap-16 sm:gap-24">
+        
+        <!-- Hito 1 -->
+        <div class="flex flex-col sm:flex-row items-center gap-6 sm:justify-end text-center sm:text-right">
+          <div class="bg-white/90 backdrop-blur-md border border-slate-200 p-6 rounded-2xl shadow-md max-w-sm">
+            <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Parada 01</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mt-1">Diálogo Comunitario Inicial</h3>
+            <p class="text-xs text-slate-600 mt-2">Reuniones base en sectores clave para catastrar necesidades urgentes de vialidad y agua.</p>
           </div>
-          <p class="text-xs text-slate-600 mt-2 leading-relaxed">Auditoría financiera transparente, modernización de trámites en línea e inicio inmediato del plan de bacheo vial.</p>
-          <div class="phase-details hidden mt-4 pt-3 border-t border-slate-200 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl">
-            <strong>Objetivo clave:</strong> Cero trámites burocráticos lentos y atención prioritaria a accesos rurales críticos.
-          </div>
-        </div>
-        <div class="roadmap-node p-6 rounded-2xl shadow-md cursor-pointer transition-all bg-white relative" data-phase="2">
-          <span class="absolute -left-[43px] sm:-left-[51px] top-6 w-8 h-8 rounded-full bg-tambo-green text-white font-bold text-xs flex items-center justify-center shadow-md">2</span>
-          <div class="flex justify-between items-start">
-            <div>
-              <span class="text-xs font-bold text-tambo-green uppercase tracking-wider">Año 2028</span>
-              <h4 class="font-bold text-slate-900 text-lg mt-1">Infraestructura y Centro de Acopio</h4>
-            </div>
-            <span class="stylus-badge text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg border border-slate-200"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span>
-          </div>
-          <p class="text-xs text-slate-600 mt-2 leading-relaxed">Construcción del centro agropecuario y despliegue del sistema cantonal de videovigilancia y monitoreo.</p>
-          <div class="phase-details hidden mt-4 pt-3 border-t border-slate-200 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl">
-            <strong>Objetivo clave:</strong> Garantizar precios justos para productores y seguridad 24/7 en mercados y calles.
-          </div>
-        </div>
-        <div class="roadmap-node p-6 rounded-2xl shadow-md cursor-pointer transition-all bg-white relative" data-phase="3">
-          <span class="absolute -left-[43px] sm:-left-[51px] top-6 w-8 h-8 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center shadow-md">3</span>
-          <div class="flex justify-between items-start">
-            <div>
-              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Año 2029</span>
-              <h4 class="font-bold text-slate-900 text-lg mt-1">Potencia Turística e Ingapirca</h4>
-            </div>
-            <span class="stylus-badge text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg border border-slate-200"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span>
-          </div>
-          <p class="text-xs text-slate-600 mt-2 leading-relaxed">Lanzamiento internacional de la marca turística cantonal y apoyo financiero a emprendimientos locales.</p>
-          <div class="phase-details hidden mt-4 pt-3 border-t border-slate-200 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl">
-            <strong>Objetivo clave:</strong> Atraer visitantes nacionales y extranjeros para dinamizar hoteles, restaurantes y artesanos.
+          <div class="w-12 h-12 rounded-full bg-tambo-red text-white flex items-center justify-center font-bold text-lg shadow-lg shrink-0 border-4 border-white">
+            1
           </div>
         </div>
-        <div class="roadmap-node p-6 rounded-2xl shadow-md cursor-pointer transition-all bg-white relative" data-phase="4">
-          <span class="absolute -left-[43px] sm:-left-[51px] top-6 w-8 h-8 rounded-full bg-tambo-red text-white font-bold text-xs flex items-center justify-center shadow-md">4</span>
-          <div class="flex justify-between items-start">
-            <div>
-              <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Año 2030+</span>
-              <h4 class="font-bold text-slate-900 text-lg mt-1">Consolidación y Futuro Sostenible</h4>
-            </div>
-            <span class="stylus-badge text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg border border-slate-200"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span>
+
+        <!-- Hito 2 -->
+        <div class="flex flex-col sm:flex-row items-center gap-6 sm:justify-start text-center sm:text-left sm:pl-16">
+          <div class="w-12 h-12 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-lg shadow-lg shrink-0 border-4 border-white order-2 sm:order-1">
+            2
           </div>
-          <p class="text-xs text-slate-600 mt-2 leading-relaxed">Evaluación ciudadana de metas cumplidas y proyección financiera a largo plazo para un cantón próspero.</p>
-          <div class="phase-details hidden mt-4 pt-3 border-t border-slate-200 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl">
-            <strong>Objetivo clave:</strong> Rendición de cuentas final y entrega de un municipio 100% autosustentable.
+          <div class="bg-white/90 backdrop-blur-md border border-slate-200 p-6 rounded-2xl shadow-md max-w-sm order-1 sm:order-2">
+            <span class="text-xs font-bold text-tambo-green uppercase tracking-wider">Parada 02</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mt-1">Estructuración del Plan</h3>
+            <p class="text-xs text-slate-600 mt-2">Diseño técnico y social de las soluciones gerenciales para cada comunidad parroquial.</p>
           </div>
         </div>
+
+        <!-- Hito 3 -->
+        <div class="flex flex-col sm:flex-row items-center gap-6 sm:justify-center text-center">
+          <div class="bg-white/90 backdrop-blur-md border border-slate-200 p-6 rounded-2xl shadow-md max-w-sm">
+            <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Parada 03</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mt-1">Socialización Ciudadana</h3>
+            <p class="text-xs text-slate-600 mt-2">Presentación abierta de propuestas de desarrollo productivo y reactivación económica.</p>
+          </div>
+          <div class="w-12 h-12 rounded-full bg-tambo-red text-white flex items-center justify-center font-bold text-lg shadow-lg shrink-0 border-4 border-white">
+            3
+          </div>
+        </div>
+
+        <!-- Hito 4 -->
+        <div class="flex flex-col sm:flex-row items-center gap-6 sm:justify-start text-center sm:text-left sm:pl-32">
+          <div class="w-12 h-12 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-lg shadow-lg shrink-0 border-4 border-white order-2 sm:order-1">
+            4
+          </div>
+          <div class="bg-white/90 backdrop-blur-md border border-slate-200 p-6 rounded-2xl shadow-md max-w-sm order-1 sm:order-2">
+            <span class="text-xs font-bold text-tambo-green uppercase tracking-wider">Parada 04</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mt-1">Despliegue Territorial Total</h3>
+            <p class="text-xs text-slate-600 mt-2">Campaña de cercanía puerta a puerta llevando el mensaje de cuentas claras.</p>
+          </div>
+        </div>
+
+        <!-- Hito 5 -->
+        <div class="flex flex-col sm:flex-row items-center gap-6 sm:justify-end text-center sm:text-right">
+          <div class="bg-white/90 backdrop-blur-md border border-slate-200 p-6 rounded-2xl shadow-md max-w-sm">
+            <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Elecciones 2027</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mt-1">Victoria y Gestión Municipal</h3>
+            <p class="text-xs text-slate-600 mt-2">Inicio de la nueva administración municipal eficiente para El Tambo.</p>
+          </div>
+          <div class="w-12 h-12 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-lg shadow-lg shrink-0 border-4 border-white">
+            5
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div>
+
+  </div>
+</section>
 
   </main>
 
