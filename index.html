@@ -340,34 +340,35 @@
     </section>
 
     <!-- SECCIÓN: Roadmap Táctil - Ruta Interactiva Desplegable -->
-<section id="roadmap" class="relative py-20 px-4 overflow-hidden bg-slate-50 text-slate-900">
+<section id="roadmap" class="relative py-16 sm:py-20 bg-slate-50 text-slate-900 border-t border-slate-200">
   
-  <!-- Imagen de fondo del mapa de El Tambo -->
-  <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
-    <img src="assets/img/mapa.jpg" alt="Mapa El Tambo" class="w-full h-full object-cover object-center">
+  <!-- Imagen de fondo del mapa con mayor claridad -->
+  <div class="absolute inset-0 z-0 opacity-35 pointer-events-none">
+    <img src="assets/img/mapa.jpg" alt="Mapa El Tambo" class="w-full h-full object-cover object-center filter contrast-105">
   </div>
 
-  <div class="relative z-10 max-w-4xl mx-auto">
+  <!-- Contenedor alineado idéntico a las demás secciones (Márgenes y Paddings estandarizados) -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Encabezado de la Sección -->
-    <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
-      <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-4 py-1.5 rounded-full">
+    <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+      <div class="inline-flex items-center gap-2 bg-red-50/90 border border-red-200 px-4 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
         <span class="w-2.5 h-2.5 rounded-full bg-tambo-red animate-pulse"></span>
         <span class="text-xs font-bold text-tambo-red uppercase tracking-widest">Ruta de Campaña 2027</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900">
         Ruta Táctil de Transformación
       </h2>
-      <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+      <p class="text-slate-700 font-medium text-sm sm:text-base leading-relaxed">
         Haz clic en cada número del mapa para explorar el plan estratégico en cada etapa de nuestro recorrido.
       </p>
     </div>
 
-    <!-- CONTENEDOR DE LA RUTA SERPENTINA MÁS COMPACTA -->
-    <div class="relative py-6 px-4">
+    <!-- CONTENEDOR DE LA RUTA SERPENTINA COMPACTA -->
+    <div class="relative py-4 px-2 sm:px-6">
       
       <!-- Línea SVG serpenteante limpia -->
-      <svg class="absolute inset-0 w-full h-full pointer-events-none z-0 stroke-tambo-red/40" viewBox="0 0 600 500" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="absolute inset-0 w-full h-full pointer-events-none z-0 stroke-tambo-red/50" viewBox="0 0 600 500" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M450,40 C350,90 150,130 200,210 C250,290 450,320 350,400 C250,470 450,460 400,480" stroke-width="4" stroke-dasharray="6 6" />
       </svg>
 
@@ -377,7 +378,7 @@
         <!-- HITO 1 -->
         <div class="hito-item flex flex-col items-center sm:items-end">
           <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-1">
-            <span class="font-display font-bold text-sm text-slate-800 bg-white/80 px-3 py-1 rounded-full border border-slate-200 shadow-sm group-hover:border-tambo-red transition-colors">
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 bg-white/95 px-3.5 py-1.5 rounded-full border border-slate-200 shadow-sm group-hover:border-tambo-red transition-colors">
               Parada 01: Diálogo Comunitario
             </span>
             <div class="w-10 h-10 rounded-full bg-tambo-red text-white flex items-center justify-center font-bold text-base shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform">
@@ -385,7 +386,6 @@
             </div>
           </button>
           
-          <!-- Contenido Desplegable (Oculto por defecto) -->
           <div id="info-1" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white/95 backdrop-blur-md border border-slate-200 p-4 rounded-2xl shadow-xl text-left transition-all">
             <span class="text-[10px] font-bold text-tambo-red uppercase tracking-wider block">Parada 01</span>
             <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Diálogo Comunitario Inicial</h3>
@@ -399,7 +399,7 @@
             <div class="w-10 h-10 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-base shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform">
               2
             </div>
-            <span class="font-display font-bold text-sm text-slate-800 bg-white/80 px-3 py-1 rounded-full border border-slate-200 shadow-sm group-hover:border-tambo-green transition-colors">
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 bg-white/95 px-3.5 py-1.5 rounded-full border border-slate-200 shadow-sm group-hover:border-tambo-green transition-colors">
               Parada 02: Estructuración del Plan
             </span>
           </button>
@@ -414,7 +414,7 @@
         <!-- HITO 3 -->
         <div class="hito-item flex flex-col items-center">
           <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-3">
-            <span class="font-display font-bold text-sm text-slate-800 bg-white/80 px-3 py-1 rounded-full border border-slate-200 shadow-sm group-hover:border-tambo-red transition-colors">
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 bg-white/95 px-3.5 py-1.5 rounded-full border border-slate-200 shadow-sm group-hover:border-tambo-red transition-colors">
               Parada 03: Socialización
             </span>
             <div class="w-10 h-10 rounded-full bg-tambo-red text-white flex items-center justify-center font-bold text-base shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform">
@@ -435,7 +435,7 @@
             <div class="w-10 h-10 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-base shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform">
               4
             </div>
-            <span class="font-display font-bold text-sm text-slate-800 bg-white/80 px-3 py-1 rounded-full border border-slate-200 shadow-sm group-hover:border-tambo-green transition-colors">
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 bg-white/95 px-3.5 py-1.5 rounded-full border border-slate-200 shadow-sm group-hover:border-tambo-green transition-colors">
               Parada 04: Despliegue Territorial
             </span>
           </button>
@@ -450,7 +450,7 @@
         <!-- HITO 5 -->
         <div class="hito-item flex flex-col items-center sm:items-end">
           <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-5">
-            <span class="font-display font-bold text-sm text-slate-800 bg-white/80 px-3 py-1 rounded-full border border-slate-200 shadow-sm group-hover:border-slate-900 transition-colors">
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 bg-white/95 px-3.5 py-1.5 rounded-full border border-slate-200 shadow-sm group-hover:border-slate-900 transition-colors">
               Elecciones 2027: Victoria
             </span>
             <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-base shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform">
