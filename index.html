@@ -168,101 +168,314 @@
 
 </section>
 
-    <!-- SECCIÓN: ¿Quién es Miguel López? -->
-<section id="quien-es" class="py-20 px-4 bg-white relative z-10">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <!-- Fuente Juvenil y Minimalista (Plus Jakarta Sans) + CDN GSAP & ScrollTrigger -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- SECCIÓN: ¿Quién es Miguel López? -->
+<section id="quien-es" class="py-20 px-4 sm:px-6 bg-white relative z-10 font-jakarta">
+  <div class="max-w-4xl mx-auto space-y-10">
+    
+    <!-- 1. TÍTULO Y SUBTÍTULO (Primer elemento en aparecer) -->
+    <div class="text-center max-w-3xl mx-auto space-y-3 reveal-block">
+      <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full mx-auto">
+        <span class="w-2 h-2 rounded-full bg-tambo-red animate-pulse"></span>
+        <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Liderazgo Cercano</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl font-display font-bold text-slate-900 tracking-tight leading-tight">
+        ¿Quién es Miguel López?
+      </h2>
+
+      <p class="text-base sm:text-lg font-medium text-slate-600 leading-relaxed">
+        Una vida de trabajo, raíces profundas y compromiso firme con El Tambo.
+      </p>
+    </div>
+
+    <!-- 2. TARJETA CON VIDEO Y PORTADA (Segundo elemento en aparecer) -->
+    <div class="about-photo-box p-4 sm:p-6 rounded-2xl border border-slate-200 bg-slate-50 text-center relative shadow-inner reveal-block max-w-3xl mx-auto">
+      <div class="absolute -top-3 -right-3 bg-tambo-green text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md z-30">
+        El Tambo 2027
+      </div>
       
-      <!-- Columna Izquierda: Texto de Presentación en Primera Persona -->
-      <div class="space-y-6">
-        <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full">
-          <span class="w-2 h-2 rounded-full bg-tambo-red animate-pulse"></span>
-          <span class="text-xs font-bold text-tambo-red uppercase tracking-wider">Liderazgo Cercano</span>
+      <!-- Contenedor del Video 16:9 -->
+      <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-4 shadow-md bg-slate-900 border border-slate-200">
+        
+        <!-- El Video -->
+        <video 
+          id="videoMiguel"
+          class="w-full h-full object-cover" 
+          controls 
+          preload="metadata">
+          <source src="assets/video/quien-soy.mp4" type="video/mp4">
+          Tu navegador no soporta la reproducción de video HTML5.
+        </video>
+
+        <!-- PANTALLA INICIAL (Capa con la foto y botón Play adaptado a móvil) -->
+        <div id="capaPortada" class="absolute inset-0 bg-slate-950/80 flex flex-col items-center justify-center gap-3 z-30 transition-opacity duration-500">
+          <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-60">
+          
+          <button 
+            id="btnPlayInicial" 
+            type="button"
+            class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/50"
+            title="Reproducir video">
+            <i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>
+          </button>
+          <span class="relative z-10 text-white text-[10px] sm:text-xs font-bold tracking-widest uppercase drop-shadow-md bg-black/40 px-3 py-1 rounded-full">Ver video de presentación</span>
         </div>
 
-        <h2 class="text-3xl sm:text-5xl font-display font-bold text-slate-900 tracking-tight leading-tight">
-          ¿Quién es Miguel López?
-        </h2>
+        <!-- PANTALLA FINAL -->
+        <div id="pantallaFinal" class="absolute inset-0 bg-slate-950/90 flex flex-col items-center justify-center gap-3 z-20 hidden opacity-0 transition-opacity duration-500">
+          <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-30">
+          
+          <button 
+            id="btnReplay" 
+            type="button"
+            class="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/20 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all transform hover:scale-110 shadow-xl cursor-pointer">
+            <i class="fa-solid fa-rotate-right text-lg sm:text-2xl"></i>
+          </button>
+          <span class="relative z-10 text-white text-[10px] sm:text-xs font-semibold tracking-wider uppercase">Volver a reproducir</span>
+        </div>
 
-        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
-          Soy un tambeño de convicción firme, criado entre la calidez y la fuerza de nuestra tierra. Mi compromiso nace de haber trabajado codo a codo con ustedes.<br>Combino gerencia eficiente con sensibilidad social hacia nuestros agricultores, artesanos, comerciantes y jóvenes.<br>No vengo a prometer lo imposible. Vengo a trabajar con honestidad, transparencia y la determinación de nuestra gente.
-        </p>
+      </div>
 
-        <div class="space-y-4 pt-2">
-          <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-            <div class="w-8 h-8 rounded-xl bg-emerald-100 text-tambo-green flex items-center justify-center shrink-0 mt-0.5">
-              <i class="fa-solid fa-check text-sm"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-slate-900 text-sm">Compromiso Rural y Urbano</h4>
-              <p class="text-xs text-slate-500 mt-1">Soluciones efectivas en agua potable y vías para cada comunidad parroquial, garantizando desarrollo equitativo sin dejar a nadie atrás.</p>
-            </div>
-          </div>
+      <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">Miguel López</h3>
+      <p class="text-[11px] sm:text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
+    </div>
 
-          <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-            <div class="w-8 h-8 rounded-xl bg-emerald-100 text-tambo-green flex items-center justify-center shrink-0 mt-0.5">
-              <i class="fa-solid fa-check text-sm"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-slate-900 text-sm">Gerencia Firme y Cero Burocracia</h4>
-              <p class="text-xs text-slate-500 mt-1">Un municipio ágil, dinámico y sin trabas, donde los trámites avancen y los recursos se inviertan con eficiencia total.</p>
-            </div>
-          </div>
+    <!-- 3. BLOQUE DE TEXTO CON ANIMACIÓN DE PALABRAS DE ABAJO HACIA ARRIBA -->
+    <div class="max-w-3xl mx-auto space-y-6 text-slate-700 text-base sm:text-lg leading-relaxed">
+      <p class="word-reveal-text">
+        Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos.
+      </p>
+      <p class="word-reveal-text">
+        Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECCIÓN: Simulación de Casilla Electoral 2027 -->
+<section id="simulacion-voto" class="py-16 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <!-- Encabezado -->
+    <div class="max-w-2xl mx-auto mb-10 space-y-2">
+      <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-4 py-1.5 rounded-full shadow-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-tambo-red animate-pulse"></span>
+        <span class="text-xs font-bold text-tambo-red uppercase tracking-widest">Simulador Electoral 2027</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+        ¡Tu Voto Transforma El Tambo!
+      </h2>
+      <p class="text-slate-600 text-xs sm:text-sm">
+        Haz clic en el casillero para simular tu raya de voto por el cambio y la transparencia.
+      </p>
+    </div>
+
+    <!-- TARJETA PAPELETA SIMULADA -->
+    <div class="max-w-md mx-auto bg-white rounded-3xl shadow-2xl border-2 border-slate-200 p-6 sm:p-8 relative overflow-hidden">
+      
+      <!-- Encabezado estilo Papeleta Oficial -->
+      <div class="flex justify-between items-center border-b border-slate-200 pb-4 mb-6 text-left">
+        <div>
+          <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Elecciones Seccionales 2027</span>
+          <h3 class="font-display font-black text-lg text-slate-900">Alcaldía de El Tambo</h3>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-500 font-bold text-xs">
+          2027
         </div>
       </div>
 
-      <!-- Columna Derecha: Tarjeta con Video y Portada Inicial Interactiva -->
-      <div class="about-photo-box p-4 sm:p-6 rounded-2xl border border-slate-200 bg-slate-50 text-center relative shadow-inner group">
-        <div class="absolute -top-3 -right-3 bg-tambo-green text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md z-30">
-          El Tambo 2027
+      <!-- Fila de Candidato con Casilla -->
+      <div class="flex items-center justify-between bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 transition-all hover:border-tambo-red">
+        
+        <!-- Info Candidato con la foto miguel-perfil.jpg -->
+        <div class="flex items-center gap-4 text-left">
+          <img src="assets/img/miguel-perfil.jpg" alt="Miguel López" class="w-14 h-14 rounded-xl object-cover border-2 border-tambo-red shadow-sm">
+          <div>
+            <h4 class="font-display font-extrabold text-base text-slate-900">Miguel López</h4>
+            <p class="text-xs text-tambo-red font-bold uppercase tracking-wider">Candidato a Alcalde</p>
+          </div>
+        </div>
+
+        <!-- CASILLA PARA RAYAR / SUBRAYAR -->
+        <button 
+          id="casillaVoto" 
+          type="button" 
+          class="relative w-16 h-16 sm:w-20 sm:h-20 bg-white border-3 border-dashed border-slate-400 rounded-2xl flex items-center justify-center cursor-pointer hover:bg-blue-50/50 hover:border-blue-600 transition-all focus:outline-none shrink-0 shadow-inner group"
+          title="Haz clic para rayar tu voto">
+          
+          <span id="textoRayar" class="text-[10px] font-black text-slate-400 uppercase tracking-tight group-hover:text-blue-600 transition-colors">VOTA AQUÍ</span>
+          
+          <!-- TRAZO DIAGONAL AZUL (ANIMADO DE ARRIBA HACIA ABAJO: (82,18) -> (18,82)) -->
+          <svg id="svgTrazo" class="absolute inset-0 w-full h-full p-2 pointer-events-none hidden" viewBox="0 0 100 100">
+            <path id="pathRayadoDiagonal" d="M 82 18 L 18 82" stroke="#2563EB" stroke-width="9" stroke-linecap="round" class="trazo-linea-azul" />
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Mensaje de Confirmación al Rayar -->
+      <div id="mensajeVotoConfirmado" class="mt-6 hidden transition-all duration-300">
+        <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-extrabold px-4 py-2 rounded-full border border-emerald-300 shadow-sm">
+          <i class="fa-solid fa-circle-check text-sm text-emerald-600"></i>
+          <span>¡Voto registrado por el progreso de El Tambo!</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- SECCIÓN: Novedades & Voces del Pueblo (Noticias de Campaña) -->
+<section id="novedades" class="py-16 sm:py-20 bg-slate-50 text-slate-900 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+      <div class="space-y-2 max-w-2xl">
+        <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-4 py-1.5 rounded-full shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-tambo-red animate-pulse"></span>
+          <span class="text-xs font-bold text-tambo-red uppercase tracking-widest">Escucha Activa en Territorio</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900">
+          Novedades & Voces del Pueblo
+        </h2>
+        <p class="text-slate-600 text-xs sm:text-sm">
+          Acompaña nuestro recorrido diario por los barrios y comunidades: las necesidades de la gente convertidas en compromisos reales.
+        </p>
+      </div>
+
+      <!-- Indicador informativo -->
+      <div class="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-500 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm shrink-0">
+        <i class="fa-solid fa-newspaper text-tambo-red"></i>
+        <span>Actualizado semanalmente</span>
+      </div>
+    </div>
+
+    <!-- GRID DE TARJETAS DE NOVEDADES -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Noticia 1: Solicitud de Agua Potable y Riego -->
+      <article class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+        <div class="relative h-48 overflow-hidden bg-slate-200">
+          <img src="assets/img/quien-soy.mp4" alt="Reunión comunitaria" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 hidden">
+          <!-- Placeholder visual mientras cargas fotos -->
+          <div class="w-full h-full bg-gradient-to-br from-red-500/10 to-emerald-500/10 flex items-center justify-center p-6 text-center">
+            <i class="fa-solid fa-droplet text-4xl text-tambo-red/60 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <span class="absolute top-4 left-4 bg-tambo-red text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+            Solicitud Ciudadana
+          </span>
         </div>
         
-        <!-- Contenedor del Video 16:9 -->
-        <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-4 shadow-md bg-slate-900 border border-slate-200">
-          
-          <!-- El Video -->
-          <video 
-            id="videoMiguel"
-            class="w-full h-full object-cover" 
-            controls 
-            preload="metadata">
-            <source src="assets/video/quien-soy.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de video HTML5.
-          </video>
-
-          <!-- PANTALLA INICIAL (Capa con la foto y botón Play adaptado a móvil) -->
-          <div id="capaPortada" class="absolute inset-0 bg-slate-950/80 flex flex-col items-center justify-center gap-3 z-30 transition-opacity duration-500">
-            <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-60">
-            
-            <!-- Botón Play Principal (Más pequeño en móvil: w-14 h-14, normal en desktop: sm:w-20 sm:h-20) -->
-            <button 
-              id="btnPlayInicial" 
-              type="button"
-              class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/50"
-              title="Reproducir video">
-              <i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>
-            </button>
-            <span class="relative z-10 text-white text-[10px] sm:text-xs font-bold tracking-widest uppercase drop-shadow-md bg-black/40 px-3 py-1 rounded-full">Ver video de presentación</span>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-[11px] font-semibold text-slate-400">
+              <i class="fa-regular fa-calendar"></i>
+              <span>Recorrido Sector Coyoctor</span>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-slate-900 group-hover:text-tambo-red transition-colors">
+              Pobladores proponen plan emergente para la calidad del agua potable
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Durante el diálogo en Coyoctor, las familias expusieron la necesidad de fiscalizar y mejorar las plantas de tratamiento. Escuchamos sus ideas para integrar un monitoreo técnico permanente.
+            </p>
           </div>
 
-          <!-- PANTALLA FINAL -->
-          <div id="pantallaFinal" class="absolute inset-0 bg-slate-950/90 flex flex-col items-center justify-center gap-3 z-20 hidden opacity-0 transition-opacity duration-500">
-            <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-30">
-            
-            <button 
-              id="btnReplay" 
-              type="button"
-              class="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/20 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all transform hover:scale-110 shadow-xl cursor-pointer">
-              <i class="fa-solid fa-rotate-right text-lg sm:text-2xl"></i>
-            </button>
-            <span class="relative z-10 text-white text-[10px] sm:text-xs font-semibold tracking-wider uppercase">Volver a reproducir</span>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
+              Compromiso asumido
+            </span>
+            <span class="text-xs text-slate-400 group-hover:translate-x-1 transition-transform">
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
           </div>
-
         </div>
+      </article>
 
-        <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">Miguel López</h3>
-        <p class="text-[11px] sm:text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
-      </div>
+      <!-- Noticia 2: Reactivación Agrícola y Ganadera -->
+      <article class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+        <div class="relative h-48 overflow-hidden bg-slate-200">
+          <div class="w-full h-full bg-gradient-to-br from-emerald-500/10 to-slate-500/10 flex items-center justify-center p-6 text-center">
+            <i class="fa-solid fa-wheat-awn text-4xl text-tambo-green/60 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <span class="absolute top-4 left-4 bg-tambo-green text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+            Propuesta Popular
+          </span>
+        </div>
+        
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-[11px] font-semibold text-slate-400">
+              <i class="fa-regular fa-calendar"></i>
+              <span>Feria de Productores</span>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-slate-900 group-hover:text-tambo-green transition-colors">
+              Creación de la Feria Agroecológica Directa "Del Campo a la Mesa"
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Agricultores locales sugirieron eliminar los intermediarios mediante un mercado cantonal organizado con apoyo del Municipio para vender directo al consumidor.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
+              Incorporado al Plan
+            </span>
+            <span class="text-xs text-slate-400 group-hover:translate-x-1 transition-transform">
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Noticia 3: Emprendimiento Juvenil y Seguridad -->
+      <article class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+        <div class="relative h-48 overflow-hidden bg-slate-200">
+          <div class="w-full h-full bg-gradient-to-br from-red-500/10 to-blue-500/10 flex items-center justify-center p-6 text-center">
+            <i class="fa-solid fa-lightbulb text-4xl text-tambo-red/60 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <span class="absolute top-4 left-4 bg-slate-900 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+            Iniciativa Juvenil
+          </span>
+        </div>
+        
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-[11px] font-semibold text-slate-400">
+              <i class="fa-regular fa-calendar"></i>
+              <span>Encuentro de Jóvenes</span>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-slate-900 group-hover:text-tambo-red transition-colors">
+              Capital Semilla e Impulso al Turismo Comunitario Cañari
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Jóvenes emprendedores presentaron proyectos de rutas turísticas y artesanales. Nos comprometemos a crear el fondo municipal de capacitación y financiamiento.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
+              Propuesta en Desarrollo
+            </span>
+            <span class="text-xs text-slate-400 group-hover:translate-x-1 transition-transform">
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
 </section>
 
     <!-- SECCIÓN 3: PROPUESTAS (Con enlaces a páginas internas detalladas) -->
@@ -620,226 +833,6 @@
         </div>
       </div>
     </section>
-
-    <!-- SECCIÓN: Novedades & Voces del Pueblo (Noticias de Campaña) -->
-<section id="novedades" class="py-16 sm:py-20 bg-slate-50 text-slate-900 border-t border-slate-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Encabezado de la Sección -->
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
-      <div class="space-y-2 max-w-2xl">
-        <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-4 py-1.5 rounded-full shadow-sm">
-          <span class="w-2.5 h-2.5 rounded-full bg-tambo-red animate-pulse"></span>
-          <span class="text-xs font-bold text-tambo-red uppercase tracking-widest">Escucha Activa en Territorio</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900">
-          Novedades & Voces del Pueblo
-        </h2>
-        <p class="text-slate-600 text-xs sm:text-sm">
-          Acompaña nuestro recorrido diario por los barrios y comunidades: las necesidades de la gente convertidas en compromisos reales.
-        </p>
-      </div>
-
-      <!-- Indicador informativo -->
-      <div class="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-500 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm shrink-0">
-        <i class="fa-solid fa-newspaper text-tambo-red"></i>
-        <span>Actualizado semanalmente</span>
-      </div>
-    </div>
-
-    <!-- GRID DE TARJETAS DE NOVEDADES -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- Noticia 1: Solicitud de Agua Potable y Riego -->
-      <article class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
-        <div class="relative h-48 overflow-hidden bg-slate-200">
-          <img src="assets/img/quien-soy.mp4" alt="Reunión comunitaria" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 hidden">
-          <!-- Placeholder visual mientras cargas fotos -->
-          <div class="w-full h-full bg-gradient-to-br from-red-500/10 to-emerald-500/10 flex items-center justify-center p-6 text-center">
-            <i class="fa-solid fa-droplet text-4xl text-tambo-red/60 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <span class="absolute top-4 left-4 bg-tambo-red text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
-            Solicitud Ciudadana
-          </span>
-        </div>
-        
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div class="space-y-2">
-            <div class="flex items-center gap-2 text-[11px] font-semibold text-slate-400">
-              <i class="fa-regular fa-calendar"></i>
-              <span>Recorrido Sector Coyoctor</span>
-            </div>
-            <h3 class="font-display font-extrabold text-lg text-slate-900 group-hover:text-tambo-red transition-colors">
-              Pobladores proponen plan emergente para la calidad del agua potable
-            </h3>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Durante el diálogo en Coyoctor, las familias expusieron la necesidad de fiscalizar y mejorar las plantas de tratamiento. Escuchamos sus ideas para integrar un monitoreo técnico permanente.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
-              Compromiso asumido
-            </span>
-            <span class="text-xs text-slate-400 group-hover:translate-x-1 transition-transform">
-              <i class="fa-solid fa-arrow-right"></i>
-            </span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Noticia 2: Reactivación Agrícola y Ganadera -->
-      <article class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
-        <div class="relative h-48 overflow-hidden bg-slate-200">
-          <div class="w-full h-full bg-gradient-to-br from-emerald-500/10 to-slate-500/10 flex items-center justify-center p-6 text-center">
-            <i class="fa-solid fa-wheat-awn text-4xl text-tambo-green/60 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <span class="absolute top-4 left-4 bg-tambo-green text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
-            Propuesta Popular
-          </span>
-        </div>
-        
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div class="space-y-2">
-            <div class="flex items-center gap-2 text-[11px] font-semibold text-slate-400">
-              <i class="fa-regular fa-calendar"></i>
-              <span>Feria de Productores</span>
-            </div>
-            <h3 class="font-display font-extrabold text-lg text-slate-900 group-hover:text-tambo-green transition-colors">
-              Creación de la Feria Agroecológica Directa "Del Campo a la Mesa"
-            </h3>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Agricultores locales sugirieron eliminar los intermediarios mediante un mercado cantonal organizado con apoyo del Municipio para vender directo al consumidor.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
-              Incorporado al Plan
-            </span>
-            <span class="text-xs text-slate-400 group-hover:translate-x-1 transition-transform">
-              <i class="fa-solid fa-arrow-right"></i>
-            </span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Noticia 3: Emprendimiento Juvenil y Seguridad -->
-      <article class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
-        <div class="relative h-48 overflow-hidden bg-slate-200">
-          <div class="w-full h-full bg-gradient-to-br from-red-500/10 to-blue-500/10 flex items-center justify-center p-6 text-center">
-            <i class="fa-solid fa-lightbulb text-4xl text-tambo-red/60 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <span class="absolute top-4 left-4 bg-slate-900 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
-            Iniciativa Juvenil
-          </span>
-        </div>
-        
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div class="space-y-2">
-            <div class="flex items-center gap-2 text-[11px] font-semibold text-slate-400">
-              <i class="fa-regular fa-calendar"></i>
-              <span>Encuentro de Jóvenes</span>
-            </div>
-            <h3 class="font-display font-extrabold text-lg text-slate-900 group-hover:text-tambo-red transition-colors">
-              Capital Semilla e Impulso al Turismo Comunitario Cañari
-            </h3>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Jóvenes emprendedores presentaron proyectos de rutas turísticas y artesanales. Nos comprometemos a crear el fondo municipal de capacitación y financiamiento.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
-              Propuesta en Desarrollo
-            </span>
-            <span class="text-xs text-slate-400 group-hover:translate-x-1 transition-transform">
-              <i class="fa-solid fa-arrow-right"></i>
-            </span>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-
-
-    <!-- SECCIÓN: Simulación de Casilla Electoral 2027 -->
-<section id="simulacion-voto" class="py-16 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <!-- Encabezado -->
-    <div class="max-w-2xl mx-auto mb-10 space-y-2">
-      <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-4 py-1.5 rounded-full shadow-sm">
-        <span class="w-2.5 h-2.5 rounded-full bg-tambo-red animate-pulse"></span>
-        <span class="text-xs font-bold text-tambo-red uppercase tracking-widest">Simulador Electoral 2027</span>
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-        ¡Tu Voto Transforma El Tambo!
-      </h2>
-      <p class="text-slate-600 text-xs sm:text-sm">
-        Haz clic en el casillero para simular tu raya de voto por el cambio y la transparencia.
-      </p>
-    </div>
-
-    <!-- TARJETA PAPELETA SIMULADA -->
-    <div class="max-w-md mx-auto bg-white rounded-3xl shadow-2xl border-2 border-slate-200 p-6 sm:p-8 relative overflow-hidden">
-      
-      <!-- Encabezado estilo Papeleta Oficial -->
-      <div class="flex justify-between items-center border-b border-slate-200 pb-4 mb-6 text-left">
-        <div>
-          <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Elecciones Seccionales 2027</span>
-          <h3 class="font-display font-black text-lg text-slate-900">Alcaldía de El Tambo</h3>
-        </div>
-        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-500 font-bold text-xs">
-          2027
-        </div>
-      </div>
-
-      <!-- Fila de Candidato con Casilla -->
-      <div class="flex items-center justify-between bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 transition-all hover:border-tambo-red">
-        
-        <!-- Info Candidato con la foto miguel-perfil.jpg -->
-        <div class="flex items-center gap-4 text-left">
-          <img src="assets/img/miguel-perfil.jpg" alt="Miguel López" class="w-14 h-14 rounded-xl object-cover border-2 border-tambo-red shadow-sm">
-          <div>
-            <h4 class="font-display font-extrabold text-base text-slate-900">Miguel López</h4>
-            <p class="text-xs text-tambo-red font-bold uppercase tracking-wider">Candidato a Alcalde</p>
-          </div>
-        </div>
-
-        <!-- CASILLA PARA RAYAR / SUBRAYAR -->
-        <button 
-          id="casillaVoto" 
-          type="button" 
-          class="relative w-16 h-16 sm:w-20 sm:h-20 bg-white border-3 border-dashed border-slate-400 rounded-2xl flex items-center justify-center cursor-pointer hover:bg-blue-50/50 hover:border-blue-600 transition-all focus:outline-none shrink-0 shadow-inner group"
-          title="Haz clic para rayar tu voto">
-          
-          <span id="textoRayar" class="text-[10px] font-black text-slate-400 uppercase tracking-tight group-hover:text-blue-600 transition-colors">VOTA AQUÍ</span>
-          
-          <!-- TRAZO DIAGONAL AZUL (ANIMADO DE ARRIBA HACIA ABAJO: (82,18) -> (18,82)) -->
-          <svg id="svgTrazo" class="absolute inset-0 w-full h-full p-2 pointer-events-none hidden" viewBox="0 0 100 100">
-            <path id="pathRayadoDiagonal" d="M 82 18 L 18 82" stroke="#2563EB" stroke-width="9" stroke-linecap="round" class="trazo-linea-azul" />
-          </svg>
-        </button>
-
-      </div>
-
-      <!-- Mensaje de Confirmación al Rayar -->
-      <div id="mensajeVotoConfirmado" class="mt-6 hidden transition-all duration-300">
-        <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-extrabold px-4 py-2 rounded-full border border-emerald-300 shadow-sm">
-          <i class="fa-solid fa-circle-check text-sm text-emerald-600"></i>
-          <span>¡Voto registrado por el progreso de El Tambo!</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
 
   <!-- Footer Oficial de Campaña -->
   <footer class="sec-footer border-t border-slate-200 mt-20 py-10 px-4 bg-white relative z-10">
