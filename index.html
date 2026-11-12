@@ -131,48 +131,42 @@
 
   <main class="relative z-10 pt-28">
 
-    <!-- SECCIÓN 1: HERO -->
-    <section id="hero" class="sec-hero min-h-[85vh] flex items-center justify-center px-4 sm:px-6 relative py-12">
-      <div class="max-w-5xl mx-auto text-center space-y-8">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-200 text-xs sm:text-sm font-semibold text-tambo-green">
-          <span class="w-2.5 h-2.5 rounded-full bg-tambo-green animate-ping"></span>
-          <span>Candidatura Oficial Alcaldía 2027 · Cantón El Tambo, Cañar</span>
-        </div>
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.15] text-slate-900">
-          Un nuevo rumbo de honor y progreso para <span class="text-gradient-flag">El Tambo</span>
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed">
-          Gobernemos con honestidad, cuentas claras y tecnología para la gente.
-Impulsemos nuestro patrimonio en Coyoctor, el trabajo del campo y el futuro de nuestras familias tambeñas.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <a href="#roadmap" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-tambo-green text-white font-bold shadow-lg shadow-tambo-green/30 hover:bg-green-700 transition-all text-center">
-            <i class="fa-solid fa-pen-nib mr-2"></i> Explorar Roadmap Táctil
-          </a>
-          <a href="#quien-es" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-all text-center shadow-sm">
-            Conoce la Visión
-          </a>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 max-w-4xl mx-auto">
-          <div class="hero-card p-5 rounded-2xl text-center shadow-md">
-            <div class="text-2xl sm:text-3xl font-display font-bold text-tambo-red">100%</div>
-            <div class="text-xs text-slate-500 mt-1 font-medium">Transparencia Pública</div>
-          </div>
-          <div class="hero-card p-5 rounded-2xl text-center shadow-md">
-            <div class="text-2xl sm:text-3xl font-display font-bold text-tambo-green">4 Ejes</div>
-            <div class="text-xs text-slate-500 mt-1 font-medium">Desarrollo Integral</div>
-          </div>
-          <div class="hero-card p-5 rounded-2xl text-center shadow-md">
-            <div class="text-2xl sm:text-3xl font-display font-bold text-slate-800">Cañari</div>
-            <div class="text-xs text-slate-500 mt-1 font-medium">Identidad Cultural</div>
-          </div>
-          <div class="hero-card p-5 rounded-2xl text-center shadow-md">
-            <div class="text-2xl sm:text-3xl font-display font-bold text-tambo-red">Futuro</div>
-            <div class="text-xs text-slate-500 mt-1 font-medium">Innovación Cantonal</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- SECCIÓN 1: HERO (Con imagen de fondo y ajuste exacto sin scroll) -->
+<section id="hero" class="sec-hero h-[calc(100vh-80px)] min-h-[450px] md:min-h-0 flex flex-col justify-between items-center px-4 sm:px-6 relative bg-cover bg-center bg-no-repeat overflow-hidden pt-3 sm:pt-6 pb-6 sm:pb-10" style="background-image: url('assets/img/miguel-consejales1.jpg');">
+  
+  <!-- Capa oscura/translúcida superpuesta para garantizar la legibilidad del texto -->
+  <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-[1px]"></div>
+
+  <!-- GRUPO SUPERIOR: Tag y Título pegados arriba (Con z-10 para estar por encima del fondo) -->
+  <div class="max-w-4xl mx-auto text-center space-y-2 sm:space-y-3 relative z-10">
+    
+    <!-- 1. Tag de Candidatura Reducido -->
+    <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/90 border border-slate-300 text-[10px] sm:text-[11px] font-bold text-slate-800 shadow-sm">
+      <span class="relative flex h-1.5 w-1.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-600"></span>
+      </span>
+      <span>Candidatura Oficial Alcaldía 2027 · Cantón El Tambo, Cañar</span>
+    </div>
+
+    <!-- 2. Título Principal Reducido con Palabra Dinámica -->
+    <h1 class="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-tight text-white drop-shadow-md">
+      Por un Tambo <span id="typewriter-word" class="typewriter-span text-red-500"></span>
+    </h1>
+
+  </div>
+
+  <!-- GRUPO INFERIOR: Botones colocados en la zona central-baja (Con z-10) -->
+  <div class="w-full max-w-md mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 sm:mt-10 mb-4 relative z-10">
+    <a href="#roadmap" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-tambo-red text-white text-sm font-bold shadow-lg shadow-tambo-red/30 hover:bg-red-700 transition-all text-center">
+      <i class="fa-solid fa-pen-nib mr-2"></i> Explorar Roadmap Táctil
+    </a>
+    <a href="#quien-es" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-white/95 border border-slate-300 text-slate-800 text-sm font-semibold hover:bg-white transition-all text-center shadow-md">
+      Conoce la Visión
+    </a>
+  </div>
+
+</section>
 
     <!-- SECCIÓN: ¿Quién es Miguel López? -->
 <section id="quien-es" class="py-20 px-4 bg-white relative z-10">
@@ -1170,6 +1164,7 @@ Impulsemos nuestro patrimonio en Coyoctor, el trabajo del campo y el futuro de n
     }
   });
 </script>
+
 
 
 </body>
