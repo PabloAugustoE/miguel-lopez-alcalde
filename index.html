@@ -740,92 +740,112 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 8: Roadmap Táctil -->
-    <section id="roadmap" class="sec-roadmap py-20 px-4 sm:px-6 max-w-4xl mx-auto text-center">
-      <div class="mb-12 space-y-3">
-        <span class="text-xs font-bold tracking-widest text-tambo-red uppercase bg-red-50 px-3 py-1 rounded-full border border-red-200 shadow-sm">Cronograma de Mandato</span>
-        <h2 class="text-2xl sm:text-4xl font-display font-extrabold text-slate-900">Roadmap Interactivo (2027 - 2031)</h2>
-        <p class="text-xs sm:text-sm text-slate-600">Usa tu mouse, dedo o lápiz óptico (stylus) para tocar cada fase y desplegar su detalle operativo.</p>
-      </div>
+    <!-- CONTENEDOR DE LA RUTA SERPENTINA COMPACTA -->
+    <div class="relative py-4 px-2 sm:px-6">
+      
+      <!-- Línea SVG serpenteante limpia -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none z-0 stroke-tambo-red" viewBox="0 0 600 500" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M450,40 C350,90 150,130 200,210 C250,290 450,320 350,400 C250,470 450,460 400,480" stroke-width="4" stroke-dasharray="6 6" />
+      </svg>
 
-      <div class="relative py-4 px-2 sm:px-6">
-        <svg class="absolute inset-0 w-full h-full pointer-events-none z-0 stroke-tambo-red" viewBox="0 0 600 500" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M450,40 C350,90 150,130 200,210 C250,290 450,320 350,400 C250,470 450,460 400,480" stroke-width="4" stroke-dasharray="6 6" />
-        </svg>
-
-        <div class="relative z-10 flex flex-col gap-6">
-          <!-- Hito 1 -->
-          <div class="hito-item flex flex-col items-center sm:items-end roadmap-node">
-            <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-1">
-              <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-red transition-colors">Parada 01: Diálogo Comunitario</span>
-              <div class="w-10 h-10 rounded-full bg-tambo-red text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">1</div>
-            </button>
-            <div id="info-1" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all phase-details">
-              <span class="text-[10px] font-bold text-tambo-red uppercase tracking-wider block">Parada 01</span>
-              <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Diálogo Comunitario Inicial</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Reuniones base en sectores clave para catastrar necesidades urgentes de vialidad y agua potable.</p>
-              <div class="mt-3 text-right"><span class="stylus-indicator text-[10px] font-bold px-2 py-1 rounded border border-slate-200 bg-slate-50 text-slate-500"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span></div>
+      <!-- Lista de Puntos Interactivos (1 al 5) -->
+      <div class="relative z-10 flex flex-col gap-6">
+        
+        <!-- HITO 1 -->
+        <div class="hito-item flex flex-col items-center sm:items-end">
+          <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-1">
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-red transition-colors">
+              Parada 01: Diálogo Comunitario
+            </span>
+            <div class="w-10 h-10 rounded-full bg-tambo-red text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">
+              1
             </div>
-          </div>
-
-          <!-- Hito 2 -->
-          <div class="hito-item flex flex-col items-center sm:items-start sm:pl-16 roadmap-node">
-            <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-2">
-              <div class="w-10 h-10 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">2</div>
-              <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-green transition-colors">Parada 02: Estructuración del Plan</span>
-            </button>
-            <div id="info-2" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all phase-details">
-              <span class="text-[10px] font-bold text-tambo-green uppercase tracking-wider block">Parada 02</span>
-              <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Estructuración del Plan</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Diseño técnico y social de las soluciones gerenciales para cada comunidad parroquial.</p>
-              <div class="mt-3 text-right"><span class="stylus-indicator text-[10px] font-bold px-2 py-1 rounded border border-slate-200 bg-slate-50 text-slate-500"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span></div>
-            </div>
-          </div>
-
-          <!-- Hito 3 -->
-          <div class="hito-item flex flex-col items-center roadmap-node">
-            <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-3">
-              <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-red transition-colors">Parada 03: Socialización</span>
-              <div class="w-10 h-10 rounded-full bg-tambo-red text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">3</div>
-            </button>
-            <div id="info-3" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all phase-details">
-              <span class="text-[10px] font-bold text-tambo-red uppercase tracking-wider block">Parada 03</span>
-              <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Socialización Ciudadana</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Presentación abierta de propuestas de desarrollo productivo y reactivación económica.</p>
-              <div class="mt-3 text-right"><span class="stylus-indicator text-[10px] font-bold px-2 py-1 rounded border border-slate-200 bg-slate-50 text-slate-500"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span></div>
-            </div>
-          </div>
-
-          <!-- Hito 4 -->
-          <div class="hito-item flex flex-col items-center sm:items-start sm:pl-28 roadmap-node">
-            <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-4">
-              <div class="w-10 h-10 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">4</div>
-              <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-green transition-colors">Parada 04: Despliegue Territorial</span>
-            </button>
-            <div id="info-4" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all phase-details">
-              <span class="text-[10px] font-bold text-tambo-green uppercase tracking-wider block">Parada 04</span>
-              <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Despliegue Territorial Total</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Campaña de cercanía puerta a puerta llevando el mensaje de cuentas claras.</p>
-              <div class="mt-3 text-right"><span class="stylus-indicator text-[10px] font-bold px-2 py-1 rounded border border-slate-200 bg-slate-50 text-slate-500"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span></div>
-            </div>
-          </div>
-
-          <!-- Hito 5 -->
-          <div class="hito-item flex flex-col items-center sm:items-end roadmap-node">
-            <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-5">
-              <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-slate-900 transition-colors">Elecciones 2027: Victoria</span>
-              <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">5</div>
-            </button>
-            <div id="info-5" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all phase-details">
-              <span class="text-[10px] font-bold text-tambo-red uppercase tracking-wider block">Elecciones 2027</span>
-              <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Victoria y Gestión Municipal</h3>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed">Consolidación del voto popular e inicio de la nueva administración municipal eficiente para El Tambo.</p>
-              <div class="mt-3 text-right"><span class="stylus-indicator text-[10px] font-bold px-2 py-1 rounded border border-slate-200 bg-slate-50 text-slate-500"><i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus</span></div>
-            </div>
+          </button>
+          
+          <div id="info-1" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all">
+            <span class="text-[10px] font-bold text-tambo-red uppercase tracking-wider block">Parada 01</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Diálogo Comunitario Inicial</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">Reuniones base en sectores clave para catastrar necesidades urgentes de vialidad y agua potable.</p>
           </div>
         </div>
+
+        <!-- HITO 2 -->
+        <div class="hito-item flex flex-col items-center sm:items-start sm:pl-16">
+          <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-2">
+            <div class="w-10 h-10 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">
+              2
+            </div>
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-green transition-colors">
+              Parada 02: Estructuración del Plan
+            </span>
+          </button>
+          
+          <div id="info-2" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all">
+            <span class="text-[10px] font-bold text-tambo-green uppercase tracking-wider block">Parada 02</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Estructuración del Plan</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">Diseño técnico y social de las soluciones gerenciales para cada comunidad parroquial.</p>
+          </div>
+        </div>
+
+        <!-- HITO 3 -->
+        <div class="hito-item flex flex-col items-center">
+          <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-3">
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-red transition-colors">
+              Parada 03: Socialización
+            </span>
+            <div class="w-10 h-10 rounded-full bg-tambo-red text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">
+              3
+            </div>
+          </button>
+          
+          <div id="info-3" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all">
+            <span class="text-[10px] font-bold text-tambo-red uppercase tracking-wider block">Parada 03</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Socialización Ciudadana</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">Presentación abierta de propuestas de desarrollo productivo y reactivación económica.</p>
+          </div>
+        </div>
+
+        <!-- HITO 4 -->
+        <div class="hito-item flex flex-col items-center sm:items-start sm:pl-28">
+          <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-4">
+            <div class="w-10 h-10 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">
+              4
+            </div>
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-green transition-colors">
+              Parada 04: Despliegue Territorial
+            </span>
+          </button>
+          
+          <div id="info-4" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all">
+            <span class="text-[10px] font-bold text-tambo-green uppercase tracking-wider block">Parada 04</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Despliegue Territorial Total</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">Campaña de cercanía puerta a puerta llevando el mensaje de cuentas claras.</p>
+          </div>
+        </div>
+
+        <!-- HITO 5 -->
+        <div class="hito-item flex flex-col items-center sm:items-end">
+          <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-5">
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-slate-900 transition-colors">
+              Elecciones 2027: Victoria
+            </span>
+            <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-base shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform">
+              5
+            </div>
+          </button>
+          
+          <div id="info-5" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-2xl text-left transition-all">
+            <span class="text-[10px] font-bold text-tambo-red uppercase tracking-wider block">Elecciones 2027</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-0.5">Victoria y Gestión Municipal</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">Consolidación del voto popular e inicio de la nueva administración municipal eficiente para El Tambo.</p>
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div>
+
+  </div>
+</section>
 
   </main>
 
