@@ -126,17 +126,17 @@
       <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/20 to-slate-950/75 z-0"></div>
       
       <div class="max-w-4xl mx-auto text-center relative z-10">
-        <!-- Pastilla superior adaptable con texto fijo en blanco + typewriter dinámico en rojo -->
-        <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-900/75 backdrop-blur-md border border-white/25 text-xs sm:text-base font-display font-extrabold text-white shadow-md mx-auto">
-          <span class="relative flex h-2 w-2 shrink-0 mr-0.5">
+        <!-- Pastilla superior con ancho mínimo fijo para evitar parpadeos y bugs de redimensionamiento -->
+        <div class="inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/25 text-xs sm:text-base font-display font-extrabold text-white shadow-lg mx-auto min-w-[280px] sm:min-w-[360px]">
+          <span class="relative flex h-2 w-2 shrink-0 mr-1">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
           </span>
-          <span>Por un Tambo <span id="typewriter-word" class="typewriter-span text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]"></span></span>
+          <span class="tracking-wide">Por un Tambo <span id="typewriter-word" class="typewriter-span text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]"></span></span>
         </div>
       </div>
 
-      <!-- Botones del Hero aún más transparentes -->
+      <!-- Botones del Hero transparentes -->
       <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2.5 sm:gap-4 mt-auto relative z-10 px-1">
         <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-600/0 hover:bg-red-600/20 backdrop-blur-[1px] text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-red-500/90 transition-all text-center tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
           <i class="fa-solid fa-file-contract mr-1 text-red-400"></i> Plan de Gobierno
@@ -926,7 +926,7 @@
     </div>
   </footer>
 
-  <!-- Script del Typewriter con palabras dinámicas y timing optimizado -->
+  <!-- Script del Typewriter -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
