@@ -43,7 +43,7 @@ body {
 
 
 /* ==========================================================================
-   ANIMACIÓN DE APARICIÓN HACIA ARRIBA (.reveal-up)
+   ANIMACIÓN DE APARICIÓN HACIA ARRIBA (.reveal-up) - SOLO 1 VEZ
    ========================================================================== */
 .reveal-up {
   will-change: transform, opacity;
@@ -58,8 +58,6 @@ body {
   min-height: calc(100vh - 80px);
 }
 
-/* En dispositivos móviles verticales (portrait), ajustamos la altura a la proporción
-   de la fotografía para que se vea completa de lado a lado sin recortes */
 @media (max-width: 767px) and (orientation: portrait) {
   .sec-hero.hero-responsive {
     min-height: 58vw;
@@ -74,7 +72,6 @@ body {
   }
 }
 
-/* En móviles horizontales (landscape) */
 @media (max-width: 900px) and (orientation: landscape) {
   .sec-hero.hero-responsive {
     min-height: 88vh;
@@ -127,18 +124,36 @@ body {
 
 
 /* ==========================================================================
-   SECCIÓN 3: SIMULADOR DE PAPELETA ELECTORAL (6 COLUMNAS EN TODOS LOS DISPOSITIVOS)
+   SECCIÓN 3: SIMULADOR DE PAPELETA ELECTORAL (TRAZO ROJO + LÍNEA NEGRA)
    ========================================================================== */
-.trazo-linea-azul {
+.trazo-linea-roja {
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
-  animation: dibujaDiagonalAzul 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: dibujaDiagonalRoja 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-@keyframes dibujaDiagonalAzul {
+@keyframes dibujaDiagonalRoja {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/* Línea horizontal divisoria simulada en el centro de la casilla al pulsar */
+#casillaVoto::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background-color: transparent;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease;
+  z-index: 1;
+}
+
+#casillaVoto.border-solid::before {
+  background-color: #000000;
 }
 
 
