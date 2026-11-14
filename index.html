@@ -120,16 +120,17 @@
 
   <main class="relative z-10 pt-16 sm:pt-20">
 
-    <!-- SECCIÓN 1: HERO (Visible inmediatamente al cargar la página, sin animación de aparición inicial) -->
-    <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-4 sm:px-6 overflow-hidden pt-6 sm:pt-8 pb-6 sm:pb-10 bg-slate-900">
+    <!-- SECCIÓN 1: HERO (Visible inmediatamente al cargar, botones translúcidos y compactos uno al lado del otro) -->
+    <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-6 sm:pt-8 pb-6 sm:pb-10 bg-slate-900">
       <img src="assets/img/miguel-consejales.jpg" alt="Miguel López y equipo El Tambo" class="hero-bg-img absolute inset-0 w-full h-full object-contain sm:object-cover object-center z-0">
-      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-900/35 to-slate-950/85 z-0"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/30 to-slate-950/80 z-0"></div>
       
       <div class="max-w-4xl mx-auto text-center space-y-2 sm:space-y-3 relative z-10">
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 border border-slate-300 text-[10px] sm:text-xs font-bold text-slate-800 shadow-sm">
+        <!-- Etiqueta superior translúcida -->
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 backdrop-blur-md border border-white/20 text-[9px] sm:text-xs font-bold text-white shadow-sm">
           <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
           </span>
           <span>Candidatura Oficial Alcaldía 2027 · El Tambo</span>
         </div>
@@ -138,12 +139,13 @@
         </h1>
       </div>
 
-      <div class="w-full max-w-md mx-auto flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 mt-auto relative z-10">
-        <a href="#roadmap" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-tambo-red text-white text-xs sm:text-sm font-bold shadow-lg shadow-tambo-red/30 hover:bg-red-700 transition-all text-center">
-          <i class="fa-solid fa-pen-nib mr-1.5"></i> Explorar Roadmap Táctil
+      <!-- Botones del Hero: Translúcidos, compactos y uno al lado del otro (flex-row) -->
+      <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2 sm:gap-3 mt-auto relative z-10 px-1">
+        <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-600/75 hover:bg-red-600 backdrop-blur-md text-white text-[11px] sm:text-sm font-extrabold shadow-lg shadow-black/20 border border-white/20 transition-all text-center tracking-wide">
+          <i class="fa-solid fa-file-contract mr-1"></i> Plan de Gobierno
         </a>
-        <a href="#quien-es" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/95 border border-slate-300 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-white transition-all text-center shadow-md">
-          Conoce la Visión
+        <a href="#novedades" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-slate-900/70 hover:bg-slate-900 backdrop-blur-md text-white text-[11px] sm:text-sm font-extrabold shadow-lg shadow-black/20 border border-white/20 transition-all text-center tracking-wide">
+          <i class="fa-solid fa-bolt mr-1 text-amber-400"></i> Ver Novedades
         </a>
       </div>
     </section>
@@ -207,7 +209,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: Simulación de Papeleta Oficial (CON FOTO DE FONDO OPCIONAL, FOTOS CUADRADAS Y CASILLA EXACTA) -->
+    <!-- SECCIÓN 3: Simulación de Papeleta Oficial -->
     <section id="simulacion-voto" class="py-12 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200 reveal-up">
       <div class="max-w-6xl mx-auto px-2 sm:px-6 text-center">
         <div class="max-w-2xl mx-auto mb-6 sm:mb-10 space-y-2 px-2">
@@ -223,7 +225,7 @@
           </p>
         </div>
 
-        <!-- CONTENEDOR DE LA PAPELETA (CON FONDO DESDE assets/img/) -->
+        <!-- CONTENEDOR DE LA PAPELETA -->
         <div id="papeletaContainer" class="w-full bg-white rounded-xl sm:rounded-2xl shadow-xl border-2 sm:border-4 border-slate-300 p-2 sm:p-6 relative text-left bg-cover bg-center" style="background-image: url('assets/img/papeleta-bg.jpg');">
           <div class="absolute inset-0 bg-white/92 backdrop-blur-[1px] rounded-xl sm:rounded-2xl pointer-events-none"></div>
 
@@ -347,7 +349,7 @@
                 </div>
               </div>
 
-              <!-- Lista 5 (MIGUEL LÓPEZ - CASILLA EXACTA EN TAMAÑO Y FORMA A LA COMPETENCIA) -->
+              <!-- Lista 5 (MIGUEL LÓPEZ) -->
               <div class="border-2 sm:border-3 border-tambo-red rounded-lg sm:rounded-xl p-1 sm:p-2.5 flex flex-col justify-between bg-red-50/80 shadow-lg relative ring-2 ring-red-400/60 transform scale-[1.05] sm:scale-[1.06] z-10">
                 <div class="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2 bg-tambo-red text-white text-[5.5px] sm:text-[9px] font-black px-1.5 sm:px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow whitespace-nowrap">
                   Tu Opción
