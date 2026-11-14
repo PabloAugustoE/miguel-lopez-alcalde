@@ -50,7 +50,7 @@
       display: inline-block;
       white-space: nowrap;
     }
-    /* Estilos para el efecto de tipeo letra por letra fluido */
+    /* Estilos para el efecto de tipeo letra por letra */
     .typing-letter {
       opacity: 0;
       display: inline-block;
@@ -159,7 +159,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-slate-950/30 via-transparent to-slate-950/60 pointer-events-none"></div>
       </div>
 
-      <!-- Botones integrados abajo sobre la imagen -->
+      <!-- Botones integrados abajo sobre la imagen (menos transparentes) -->
       <div class="w-full max-w-xl mx-auto flex flex-row items-center justify-center gap-2 sm:gap-4 relative z-20 my-1 sm:my-2 px-2">
         <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-950/80 hover:bg-red-900 backdrop-blur-md text-white text-[10px] sm:text-sm font-extrabold shadow-xl border-2 border-red-500 transition-all text-center tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
           <i class="fa-solid fa-file-contract mr-1 text-red-400"></i> Plan de Gobierno
@@ -203,11 +203,11 @@
             <!-- Botón de Play central interactivo con efecto de pulso / onda (*ping*) -->
             <div class="absolute inset-0 flex items-center justify-center z-20">
               <div class="relative flex items-center justify-center">
-                <!-- Anillo expansivo ondeante para invitar a la interacción -->
+                <!-- Anillo expansivo ondeante -->
                 <div class="absolute w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-tambo-red/60 animate-ping pointer-events-none"></div>
                 
                 <!-- Botón principal de Play -->
-                <button id="btnPlayOndeante" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/80" title="Interactuar con el video">
+                <button id="btnPlayOndeante" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/80" title="Reproducir video completo">
                   <i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>
                 </button>
               </div>
@@ -218,7 +218,7 @@
           <p class="text-[11px] sm:text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
         </div>
 
-        <!-- Párrafos con animación de tipeo letra por letra secuencial -->
+        <!-- Párrafos con animación de tipeo letra por letra -->
         <div class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed reveal-up">
           <p id="parrafo1" class="typing-paragraph" data-text="Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos."></p>
           <p id="parrafo2" class="typing-paragraph" data-text="Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar."></p>
@@ -1027,7 +1027,6 @@
         typeNext();
       }
 
-      // Observador de scroll para activar la animación justo cuando la sección es visible
       const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
