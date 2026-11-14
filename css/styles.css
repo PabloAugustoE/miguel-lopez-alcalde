@@ -124,7 +124,7 @@ body {
 
 
 /* ==========================================================================
-   SECCIÓN 3: SIMULADOR DE PAPELETA ELECTORAL (TRAZO ROJO + LÍNEA NEGRA)
+   SECCIÓN 3: SIMULADOR DE PAPELETA ELECTORAL (CASILLA EXACTA + LÍNEA NEGRA)
    ========================================================================== */
 .trazo-linea-roja {
   stroke-dasharray: 100;
@@ -138,7 +138,7 @@ body {
   }
 }
 
-/* Línea horizontal divisoria simulada en el centro de la casilla al pulsar */
+/* Línea horizontal divisoria negra exactamente en el centro de la casilla al pulsar */
 #casillaVoto::before {
   content: '';
   position: absolute;
