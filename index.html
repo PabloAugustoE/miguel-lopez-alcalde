@@ -28,7 +28,7 @@
           },
           colors: {
             tambo: {
-              red: '#b91c1c', // Rojo más profundo (Red 700)
+              red: '#dc2626', // Color rojo vibrante original de la campaña
               green: '#16a34a',
               dark: '#0f172a',
               light: '#f8fafc',
@@ -81,7 +81,7 @@
         <button 
           id="btnSumate" 
           type="button" 
-          class="bg-tambo-red hover:bg-red-800 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-3 sm:px-4 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer focus:outline-none"
+          class="bg-tambo-red hover:bg-red-700 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-3 sm:px-4 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer focus:outline-none"
           aria-expanded="false">
           <span>Súmate</span>
           <i id="iconSumateArrow" class="fa-solid fa-chevron-down text-[9px] transition-transform duration-300"></i>
@@ -120,32 +120,32 @@
 
   <main class="relative z-10 pt-16 sm:pt-20">
 
-    <!-- SECCIÓN 1: HERO (Botones muy translúcidos y texto dinámico en tono rosa/rojo claro) -->
+    <!-- SECCIÓN 1: HERO (Typewriter en rojo profundo/sobrio y botones con mayor transparencia en rojo/negro con bordes notorios) -->
     <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-6 sm:pt-8 pb-6 sm:pb-10 bg-slate-900">
       <img src="assets/img/miguel-consejales.jpg" alt="Miguel López y equipo El Tambo" class="hero-bg-img absolute inset-0 w-full h-full object-contain sm:object-cover object-center z-0">
-      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/30 to-slate-950/80 z-0"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/25 to-slate-950/75 z-0"></div>
       
       <div class="max-w-4xl mx-auto text-center space-y-2 sm:space-y-3 relative z-10">
         <!-- Etiqueta superior translúcida -->
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 backdrop-blur-md border border-white/20 text-[9px] sm:text-xs font-bold text-white shadow-sm">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/55 backdrop-blur-md border border-white/25 text-[9px] sm:text-xs font-bold text-white shadow-sm">
           <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
           </span>
           <span>Candidatura Oficial Alcaldía 2027 · El Tambo</span>
         </div>
         <h1 class="text-xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-tight text-white drop-shadow-md">
-          Por un Tambo <span id="typewriter-word" class="typewriter-span text-rose-300"></span>
+          Por un Tambo <span id="typewriter-word" class="typewriter-span text-[#8b0000] drop-shadow-[0_1px_1px_rgba(255,255,255,0.65)]"></span>
         </h1>
       </div>
 
-      <!-- Botones del Hero altamente translúcidos (dejando ver claramente el fondo) -->
-      <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2 sm:gap-3 mt-auto relative z-10 px-1">
-        <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-900/40 hover:bg-red-900/60 backdrop-blur-md text-white text-[11px] sm:text-sm font-extrabold shadow-lg shadow-black/30 border border-white/30 transition-all text-center tracking-wide">
-          <i class="fa-solid fa-file-contract mr-1 text-rose-300"></i> Plan de Gobierno
+      <!-- Botones del Hero: Alta transparencia (bg-red-600/20 y bg-black/25) + bordes notorios (border-2) -->
+      <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2.5 sm:gap-4 mt-auto relative z-10 px-1">
+        <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-600/20 hover:bg-red-600/45 backdrop-blur-sm text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-red-500 transition-all text-center tracking-wide drop-shadow">
+          <i class="fa-solid fa-file-contract mr-1 text-red-400"></i> Plan de Gobierno
         </a>
-        <a href="#novedades" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-slate-950/40 hover:bg-slate-950/60 backdrop-blur-md text-white text-[11px] sm:text-sm font-extrabold shadow-lg shadow-black/30 border border-white/30 transition-all text-center tracking-wide">
-          <i class="fa-solid fa-bolt mr-1 text-amber-300"></i> Ver Novedades
+        <a href="#novedades" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-black/25 hover:bg-black/50 backdrop-blur-sm text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-white/80 transition-all text-center tracking-wide drop-shadow">
+          <i class="fa-solid fa-bolt mr-1 text-amber-400"></i> Ver Novedades
         </a>
       </div>
     </section>
@@ -365,7 +365,7 @@
                   <button id="casillaVoto" type="button" class="w-7 h-7 sm:w-14 sm:h-14 bg-white border border-dashed sm:border-2 border-tambo-red rounded flex items-center justify-center cursor-pointer hover:bg-red-50 transition-all focus:outline-none shadow-inner relative group" title="Haz clic para rayar tu voto por Miguel López">
                     <span id="textoRayar" class="text-[5px] sm:text-[9px] font-black text-tambo-red uppercase leading-none text-center group-hover:scale-105 transition-transform">VOTA<br>AQUÍ</span>
                     <svg id="svgTrazo" class="absolute inset-0 w-full h-full p-1 sm:p-1.5 pointer-events-none hidden" viewBox="0 0 100 100">
-                      <path id="pathRayadoDiagonal" d="M 82 18 L 18 82" stroke="#b91c1c" stroke-width="11" stroke-linecap="round" class="trazo-linea-roja" />
+                      <path id="pathRayadoDiagonal" d="M 82 18 L 18 82" stroke="#dc2626" stroke-width="11" stroke-linecap="round" class="trazo-linea-roja" />
                     </svg>
                   </button>
                 </div>
