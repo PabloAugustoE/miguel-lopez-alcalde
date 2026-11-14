@@ -74,7 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 3. ANIMACIÓN SECUENCIAL LETRA POR LETRA (¿Quién es Miguel López?)
+  // 3. VIDEO LOOP Y CONTROL DE REPRODUCCIÓN (¿Quién es Miguel López?)
+  // ==========================================
+  const videoLoopFondo = document.getElementById('videoLoopFondo');
+  const btnPlayOndeante = document.getElementById('btnPlayOndeante');
+
+  if (videoLoopFondo && btnPlayOndeante) {
+    btnPlayOndeante.addEventListener('click', () => {
+      if (videoLoopFondo.paused) {
+        videoLoopFondo.play();
+        btnPlayOndeante.innerHTML = '<i class="fa-solid fa-pause text-xl sm:text-3xl"></i>';
+      } else {
+        videoLoopFondo.pause();
+        btnPlayOndeante.innerHTML = '<i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>';
+      }
+    });
+  }
+
+
+  // ==========================================
+  // 4. ANIMACIÓN SECUENCIAL LETRA POR LETRA (¿Quién es Miguel López?)
   // ==========================================
   const p1 = document.getElementById('parrafo1');
   const p2 = document.getElementById('parrafo2');
@@ -130,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 4. SIMULACIÓN DE VOTO EN PAPELETA
+  // 5. SIMULACIÓN DE VOTO EN PAPELETA
   // ==========================================
   const casillaVoto = document.getElementById('casillaVoto');
   const textoRayar = document.getElementById('textoRayar');
@@ -154,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 5. CARRUSEL DE NOVEDADES
+  // 6. CARRUSEL DE NOVEDADES
   // ==========================================
   const carruselTrack = document.getElementById('carruselTrack');
   const btnPrev = document.getElementById('btnPrev');
@@ -221,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 6. ROADMAP INTERACTIVO
+  // 7. ROADMAP INTERACTIVO
   // ==========================================
   const btnHitos = document.querySelectorAll('.btn-hito');
   const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
