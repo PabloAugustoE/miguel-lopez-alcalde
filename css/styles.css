@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
-   ANIMACIÓN LETRA A LETRA (¿Quién es Miguel López?)
+   ANIMACIÓN LETRA A LETRA CONTINUA (¿Quién es Miguel López?)
    ========================================== */
 .typing-letter {
   opacity: 0;
@@ -73,8 +73,28 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
-   TRAZO DE VOTO EN PAPELETA (Efecto de lápiz)
+   SIMULADOR DE PAPELETA Y TRAZO DE VOTO
    ========================================== */
+#casillaVoto {
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+#casillaVoto.bg-black {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(220, 38, 38, 0.35);
+}
+
+#lineaFijaNegra {
+  background-color: #000000;
+  height: 3px;
+  z-index: 10;
+}
+
+#svgTrazo {
+  z-index: 20;
+}
+
 @keyframes drawStroke {
   from {
     stroke-dashoffset: 100;
@@ -87,6 +107,43 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .trazo-linea-roja {
   stroke-dasharray: 100;
   stroke-dashoffset: 0;
+  animation: drawStroke 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ==========================================
+   CONTROLES DE VIDEO INTERACTIVO
+   ========================================== */
+#videoSeekBar {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  height: 6px;
+}
+
+#videoSeekBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #dc2626;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+#videoSeekBar::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+#videoSeekBar::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #dc2626;
+  border: 2px solid #ffffff;
+  cursor: pointer;
 }
 
 /* ==========================================
