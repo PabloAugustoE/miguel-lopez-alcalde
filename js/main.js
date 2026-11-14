@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     4. ANIMACIÓN DE APARICIÓN HACIA ARRIBA (SOLO LA PRIMERA VEZ QUE SE BAJA)
+     4. ANIMACIÓN DE APARICIÓN HACIA ARRIBA (GSAP & SCROLLTRIGGER)
      -------------------------------------------------------------------------- */
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 90%",
-            once: true // Asegura que ocurra una sola vez y no desaparezca al subir
+            start: "top 88%",
+            toggleActions: "play none none reverse"
           }
         }
       );
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     5. SIMULADOR DE PAPELETA ELECTORAL (CUADRO NEGRO + LÍNEA NEGRA + TRAZO ROJO)
+     5. SIMULADOR DE PAPELETA ELECTORAL (VOTO POR MIGUEL LÓPEZ)
      -------------------------------------------------------------------------- */
   const casillaVoto = document.getElementById('casillaVoto');
   const svgTrazo = document.getElementById('svgTrazo');
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         textoRayar.classList.add('hidden');
         svgTrazo.classList.remove('hidden');
         casillaVoto.classList.remove('border-dashed', 'border-tambo-red');
-        casillaVoto.classList.add('border-solid', 'border-black', 'bg-black/5');
+        casillaVoto.classList.add('border-solid', 'border-blue-600', 'bg-blue-50/50');
         
         if (mensajeVotoConfirmado) {
           mensajeVotoConfirmado.classList.remove('hidden');
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         svgTrazo.classList.add('hidden');
         textoRayar.classList.remove('hidden');
         casillaVoto.classList.add('border-dashed', 'border-tambo-red');
-        casillaVoto.classList.remove('border-solid', 'border-black', 'bg-black/5');
+        casillaVoto.classList.remove('border-solid', 'border-blue-600', 'bg-blue-50/50');
         
         if (mensajeVotoConfirmado) {
           mensajeVotoConfirmado.classList.add('hidden');
@@ -493,6 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const infosDesplegables = document.querySelectorAll('.info-desplegable');
   const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
 
+  // Cada parada se abre y cierra de forma independiente sin cerrar las demás
   btnsHito.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -513,6 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Botón maestro para abrir o cerrar todas las paradas simultáneamente
   if (btnToggleAllRoadmap && infosDesplegables.length > 0) {
     btnToggleAllRoadmap.addEventListener('click', () => {
       const anyHidden = Array.from(infosDesplegables).some(info => info.classList.contains('hidden'));
