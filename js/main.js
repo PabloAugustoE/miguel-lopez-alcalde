@@ -1,12 +1,8 @@
-/* ==========================================================================
-   SCRIPT PRINCIPAL UNIFICADO - MIGUEL LÓPEZ ALCALDE 2027
-   ========================================================================== */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* --------------------------------------------------------------------------
+  /* ==========================================================
      1. MENÚ DESPLEGABLE "SÚMATE" (HEADER)
-     -------------------------------------------------------------------------- */
+     ========================================================== */
   const btnSumate = document.getElementById('btnSumate');
   const menuSumate = document.getElementById('menuSumate');
   const iconSumateArrow = document.getElementById('iconSumateArrow');
@@ -15,510 +11,277 @@ document.addEventListener('DOMContentLoaded', () => {
     btnSumate.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = !menuSumate.classList.contains('hidden');
-
+      
       if (isOpen) {
         menuSumate.classList.add('hidden');
-        if (iconSumateArrow) iconSumateArrow.classList.remove('rotate-180');
+        btnSumate.setAttribute('aria-expanded', 'false');
+        if (iconSumateArrow) iconSumateArrow.style.transform = 'rotate(0deg)';
       } else {
         menuSumate.classList.remove('hidden');
-        if (iconSumateArrow) iconSumateArrow.classList.add('rotate-180');
+        btnSumate.setAttribute('aria-expanded', 'true');
+        if (iconSumateArrow) iconSumateArrow.style.transform = 'rotate(180deg)';
       }
     });
 
+    // Cerrar menú al hacer clic fuera
     document.addEventListener('click', (e) => {
-      if (!menuSumate.contains(e.target) && !btnSumate.contains(e.target)) {
+      if (!btnSumate.contains(e.target) && !menuSumate.contains(e.target)) {
         menuSumate.classList.add('hidden');
-        if (iconSumateArrow) iconSumateArrow.classList.remove('rotate-180');
+        btnSumate.setAttribute('aria-expanded', 'false');
+        if (iconSumateArrow) iconSumateArrow.style.transform = 'rotate(0deg)';
       }
     });
   }
 
 
-  /* --------------------------------------------------------------------------
-     2. EFECTO TYPEWRITER (ESCRITURA DINÁMICA EN EL HERO)
-     -------------------------------------------------------------------------- */
-  const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
-  const targetElement = document.getElementById('typewriter-word');
-
-  if (targetElement) {
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    const typeSpeed = 100;
-    const deleteSpeed = 60;
-    const holdTime = 3000;
-
-    function typeEffect() {
-      const currentWord = words[wordIndex];
-
-      if (isDeleting) {
-        targetElement.textContent = currentWord.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        targetElement.textContent = currentWord.substring(0, charIndex + 1);
-        charIndex++;
-      }
-
-      let currentSpeed = isDeleting ? deleteSpeed : typeSpeed;
-
-      if (!isDeleting && charIndex === currentWord.length) {
-        currentSpeed = holdTime;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        currentSpeed = 300;
-      }
-
-      setTimeout(typeEffect, currentSpeed);
-    }
-
-    typeEffect();
-  }
-
-
-  /* --------------------------------------------------------------------------
-     3. REPRODUCTOR DE VIDEO DE PRESENTACIÓN (¿QUIÉN ES MIGUEL LÓPEZ?)
-     -------------------------------------------------------------------------- */
-  const video = document.getElementById('videoMiguel');
-  const capaPortada = document.getElementById('capaPortada');
+  /* ==========================================================
+     2. REPRODUCTOR DE VIDEO ("¿QUIÉN ES MIGUEL LÓPEZ?")
+     ========================================================== */
+  const videoMiguel = document.getElementById('videoMiguel');
   const btnPlayInicial = document.getElementById('btnPlayInicial');
+  const capaPortada = document.getElementById('capaPortada');
   const pantallaFinal = document.getElementById('pantallaFinal');
   const btnReplay = document.getElementById('btnReplay');
 
-  if (video && capaPortada && btnPlayInicial) {
+  if (videoMiguel && btnPlayInicial && capaPortada) {
     btnPlayInicial.addEventListener('click', () => {
-      capaPortada.classList.add('opacity-0');
-      setTimeout(() => {
-        capaPortada.classList.add('hidden');
-        video.muted = false;
-        video.play();
-      }, 300);
+      capaPortada.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => capaPortada.classList.add('hidden'), 500);
+      videoMiguel.play();
     });
 
-    video.addEventListener('ended', () => {
+    videoMiguel.addEventListener('ended', () => {
       if (pantallaFinal) {
         pantallaFinal.classList.remove('hidden');
-        setTimeout(() => {
-          pantallaFinal.classList.add('opacity-100');
-        }, 10);
+        setTimeout(() => pantallaFinal.classList.remove('opacity-0'), 20);
       }
     });
 
     if (btnReplay && pantallaFinal) {
       btnReplay.addEventListener('click', () => {
-        pantallaFinal.classList.remove('opacity-100');
         pantallaFinal.classList.add('opacity-0');
-        
         setTimeout(() => {
           pantallaFinal.classList.add('hidden');
-          video.currentTime = 0;
-          video.muted = false;
-          video.play();
-        }, 300);
+          videoMiguel.currentTime = 0;
+          videoMiguel.play();
+        }, 500);
       });
     }
   }
 
 
-  /* --------------------------------------------------------------------------
-     4. ANIMACIÓN DE APARICIÓN HACIA ARRIBA (SOLO LA PRIMERA VEZ QUE SE BAJA)
-     -------------------------------------------------------------------------- */
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.utils.toArray('.reveal-up').forEach((element) => {
-      gsap.fromTo(element, 
-        { y: 45, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.85,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: element,
-            start: "top 90%",
-            once: true
-          }
-        }
-      );
-    });
-
-    const paragraphs = document.querySelectorAll("#quien-es .word-reveal-text");
-    paragraphs.forEach((p) => {
-      const rawWords = p.textContent.trim().split(/\s+/);
-      p.innerHTML = rawWords
-        .map((word) => `<span class="word-mask"><span class="word-inner">${word}</span></span>`)
-        .join("");
-    });
-  }
-
-
-  /* --------------------------------------------------------------------------
-     5. SIMULADOR DE PAPELETA ELECTORAL (CUADRO NEGRO + LÍNEA NEGRA + TRAZO ROJO)
-     -------------------------------------------------------------------------- */
+  /* ==========================================================
+     3. SIMULACIÓN DE PAPELETA OFICIAL 2027
+     ========================================================== */
   const casillaVoto = document.getElementById('casillaVoto');
   const svgTrazo = document.getElementById('svgTrazo');
   const textoRayar = document.getElementById('textoRayar');
   const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
 
-  let votado = false;
-  let audioCtx = null;
+  if (casillaVoto && svgTrazo && textoRayar && mensajeVotoConfirmado) {
+    casillaVoto.addEventListener('click', () => {
+      const estaRayado = !svgTrazo.classList.contains('hidden');
 
-  function reproducirSonidoLapizInmediato() {
-    try {
-      if (!audioCtx) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (AudioContextClass) audioCtx = new AudioContextClass();
-      }
-
-      if (audioCtx) {
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
-        const duration = 0.22;
-        const bufferSize = audioCtx.sampleRate * duration;
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = Math.random() * 2 - 1;
-        }
-
-        const noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
-
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.value = 1400;
-        filter.Q.value = 2.5;
-
-        const gain = audioCtx.createGain();
-        const now = audioCtx.currentTime;
-        
-        gain.gain.setValueAtTime(0.2, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        noise.start(now);
-      }
-    } catch (e) {
-      console.log('Audio de trazo no disponible:', e);
-    }
-  }
-
-  if (casillaVoto && svgTrazo && textoRayar) {
-    casillaVoto.addEventListener('click', (e) => {
-      e.preventDefault();
-      votado = !votado;
-
-      if (votado) {
-        reproducirSonidoLapizInmediato();
-
-        textoRayar.classList.add('hidden');
+      if (!estaRayado) {
+        // Marcar voto
         svgTrazo.classList.remove('hidden');
-        casillaVoto.classList.remove('border-dashed', 'border-tambo-red');
-        casillaVoto.classList.add('border-solid', 'border-black', 'bg-black/5');
+        textoRayar.classList.add('hidden');
+        casillaVoto.classList.add('bg-red-50');
+        mensajeVotoConfirmado.classList.remove('hidden');
         
-        if (mensajeVotoConfirmado) {
-          mensajeVotoConfirmado.classList.remove('hidden');
+        // Animación GSAP si está disponible
+        if (typeof gsap !== 'undefined') {
+          gsap.fromTo(svgTrazo, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" });
+          gsap.fromTo(mensajeVotoConfirmado, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
         }
       } else {
+        // Desmarcar voto (toggle)
         svgTrazo.classList.add('hidden');
         textoRayar.classList.remove('hidden');
-        casillaVoto.classList.add('border-dashed', 'border-tambo-red');
-        casillaVoto.classList.remove('border-solid', 'border-black', 'bg-black/5');
-        
-        if (mensajeVotoConfirmado) {
-          mensajeVotoConfirmado.classList.add('hidden');
-        }
+        casillaVoto.classList.remove('bg-red-50');
+        mensajeVotoConfirmado.classList.add('hidden');
       }
     });
   }
 
 
-  /* --------------------------------------------------------------------------
-     6. CARRUSEL DE NOVEDADES & ACTUALIZACIONES (ROTACIÓN AUTOMÁTICA)
-     -------------------------------------------------------------------------- */
-  const trackNoticias = document.getElementById('carruselTrack');
-  if (trackNoticias) {
-    const slides = trackNoticias.querySelectorAll('article.noticia-card');
-    const totalSlides = slides.length;
-    const btnPrev = document.getElementById('btnPrev');
-    const btnNext = document.getElementById('btnNext');
-    const currentIndexSpan = document.getElementById('currentIndex');
-    const totalIndexSpan = document.getElementById('totalIndex');
-    const dots = document.querySelectorAll('.dot-btn');
+  /* ==========================================================
+     4. CARRUSEL DE NOVEDADES
+     ========================================================== */
+  const carruselTrack = document.getElementById('carruselTrack');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const currentIndexEl = document.getElementById('currentIndex');
+  const totalIndexEl = document.getElementById('totalIndex');
+  const dotBtns = document.querySelectorAll('.dot-btn');
 
-    let currentIndex = 0;
-    let slideInterval;
-    const intervalTime = 3500;
+  if (carruselTrack && btnPrev && btnNext) {
+    const cards = carruselTrack.querySelectorAll('.noticia-card');
+    const totalCards = cards.length;
+    if (totalIndexEl) totalIndexEl.textContent = totalCards;
 
-    if (totalIndexSpan) totalIndexSpan.textContent = totalSlides;
+    let currentCardIdx = 0;
 
-    function updateCarousel() {
-      const isDesktop = window.innerWidth >= 768;
-      const visibleCount = isDesktop ? 2 : 1;
-      
-      if (currentIndex >= totalSlides) currentIndex = 0;
-      else if (currentIndex < 0) currentIndex = totalSlides - 1;
+    function updateCarrusel(index) {
+      if (index < 0) index = totalCards - 1;
+      if (index >= totalCards) index = 0;
+      currentCardIdx = index;
 
-      const slideWidthPercent = 100 / visibleCount;
-      trackNoticias.style.transform = `translateX(-${currentIndex * slideWidthPercent}%)`;
+      const cardWidth = cards[0].offsetWidth + 16; // ancho + gap (gap-4 = 16px)
+      carruselTrack.style.transform = `translateX(-${currentCardIdx * cardWidth}px)`;
 
-      if (currentIndexSpan) {
-        currentIndexSpan.textContent = `${currentIndex + 1}`;
-      }
+      if (currentIndexEl) currentIndexEl.textContent = currentCardIdx + 1;
 
-      dots.forEach((dot, idx) => {
-        if (idx === currentIndex) {
-          dot.classList.remove('bg-slate-300', 'w-1.5');
-          dot.classList.add('bg-tambo-red', 'w-5');
+      dotBtns.forEach((dot, idx) => {
+        if (idx === currentCardIdx) {
+          dot.classList.remove('w-1.5', 'bg-slate-300');
+          dot.classList.add('w-5', 'bg-tambo-red');
         } else {
-          dot.classList.remove('bg-tambo-red', 'w-5');
-          dot.classList.add('bg-slate-300', 'w-1.5');
+          dot.classList.remove('w-5', 'bg-tambo-red');
+          dot.classList.add('w-1.5', 'bg-slate-300');
         }
       });
     }
 
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      updateCarousel();
-    }
+    btnNext.addEventListener('click', () => updateCarrusel(currentCardIdx + 1));
+    btnPrev.addEventListener('click', () => updateCarrusel(currentCardIdx - 1));
 
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateCarousel();
-    }
+    dotBtns.forEach((dot, idx) => {
+      dot.addEventListener('click', () => updateCarrusel(idx));
+    });
 
-    function startTimer() {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, intervalTime);
-    }
-
-    slides.forEach((card) => {
+    // Efecto hover dinámico en tarjetas de noticias
+    cards.forEach(card => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
-
-      card.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
-        if (hoverImg) card.style.backgroundImage = `url('${hoverImg}')`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        startTimer();
-        if (defaultImg) card.style.backgroundImage = `url('${defaultImg}')`;
-      });
-    });
-
-    if (btnNext) btnNext.addEventListener('click', () => { nextSlide(); startTimer(); });
-    if (btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startTimer(); });
-
-    dots.forEach((dot) => {
-      dot.addEventListener('click', (e) => {
-        currentIndex = parseInt(e.target.getAttribute('data-index')) || 0;
-        updateCarousel();
-        startTimer();
-      });
-    });
-
-    window.addEventListener('resize', updateCarousel);
-    updateCarousel();
-    startTimer();
-  }
-
-
-  /* --------------------------------------------------------------------------
-     7. PILARES DE TRANSFORMACIÓN (ROTACIÓN AUTOMÁTICA EN MÓVIL + GRID EN PC)
-     -------------------------------------------------------------------------- */
-  const proposalTrack = document.getElementById('proposalTrack');
-  const proposalCards = document.querySelectorAll('.proposal-card');
-  const btnPrevProposal = document.getElementById('prevProposal');
-  const btnNextProposal = document.getElementById('nextProposal');
-  const currentProposalIdxSpan = document.getElementById('currentProposalIdx');
-
-  if (proposalTrack && proposalCards.length > 0) {
-    let activeProposalIndex = 0;
-    const totalProposals = proposalCards.length;
-    let proposalTimer;
-
-    function updateProposalSlider() {
-      if (window.innerWidth < 768) {
-        proposalTrack.style.display = 'flex';
-        proposalCards.forEach((card, idx) => {
-          card.style.display = idx === activeProposalIndex ? 'flex' : 'none';
+      if (hoverImg && defaultImg) {
+        card.addEventListener('mouseenter', () => {
+          card.style.backgroundImage = `url('${hoverImg}')`;
         });
-        if (currentProposalIdxSpan) {
-          currentProposalIdxSpan.textContent = activeProposalIndex + 1;
-        }
-      } else {
-        proposalTrack.style.display = '';
-        proposalCards.forEach((card) => {
-          card.style.display = '';
+        card.addEventListener('mouseleave', () => {
+          card.style.backgroundImage = `url('${defaultImg}')`;
         });
       }
-    }
+    });
 
-    function nextProposal() {
-      activeProposalIndex = (activeProposalIndex + 1) % totalProposals;
-      updateProposalSlider();
-    }
+    // Auto-avance cada 6 segundos
+    let carruselInterval = setInterval(() => {
+      updateCarrusel(currentCardIdx + 1);
+    }, 6000);
 
-    function prevProposal() {
-      activeProposalIndex = (activeProposalIndex - 1 + totalProposals) % totalProposals;
-      updateProposalSlider();
-    }
-
-    function startProposalTimer() {
-      clearInterval(proposalTimer);
-      proposalTimer = setInterval(nextProposal, 4000);
-    }
-
-    if (btnNextProposal) {
-      btnNextProposal.addEventListener('click', () => {
-        nextProposal();
-        startProposalTimer();
-      });
-    }
-
-    if (btnPrevProposal) {
-      btnPrevProposal.addEventListener('click', () => {
-        prevProposal();
-        startProposalTimer();
-      });
-    }
-
-    proposalTrack.addEventListener('mouseenter', () => clearInterval(proposalTimer));
-    proposalTrack.addEventListener('mouseleave', startProposalTimer);
-
-    window.addEventListener('resize', updateProposalSlider);
-    updateProposalSlider();
-    startProposalTimer();
+    carruselTrack.addEventListener('mouseenter', () => clearInterval(carruselInterval));
   }
 
 
-  /* --------------------------------------------------------------------------
-     8. RECURSOS Y MAQUINARIA (ROTACIÓN AUTOMÁTICA + CONTROLES)
-     -------------------------------------------------------------------------- */
+  /* ==========================================================
+     5. SLIDER DE RECURSOS Y MAQUINARIA (MÓVIL)
+     ========================================================== */
   const resourceSlides = document.querySelectorAll('.resource-slide');
-  const resourceDots = document.querySelectorAll('.res-dot');
-  const btnPrevResource = document.getElementById('prevResource');
-  const btnNextResource = document.getElementById('nextResource');
-  const resourcesSliderTrack = document.getElementById('resourcesSliderTrack');
+  const prevResource = document.getElementById('prevResource');
+  const nextResource = document.getElementById('nextResource');
+  const resDots = document.querySelectorAll('.res-dot');
 
-  if (resourceSlides.length > 0) {
-    let currentResIndex = 0;
-    let resourceTimer;
+  if (resourceSlides.length > 0 && prevResource && nextResource) {
+    let currentResIdx = 0;
+    const totalRes = resourceSlides.length;
 
     function showResourceSlide(index) {
-      if (index >= resourceSlides.length) currentResIndex = 0;
-      else if (index < 0) currentResIndex = resourceSlides.length - 1;
-      else currentResIndex = index;
+      if (index < 0) index = totalRes - 1;
+      if (index >= totalRes) index = 0;
+      currentResIdx = index;
 
       resourceSlides.forEach((slide, idx) => {
-        if (idx === currentResIndex) {
+        if (idx === currentResIdx) {
           slide.classList.remove('hidden');
-          slide.classList.add('block');
         } else {
           slide.classList.add('hidden');
-          slide.classList.remove('block');
         }
       });
 
-      resourceDots.forEach((dot, idx) => {
-        if (idx === currentResIndex) {
-          dot.classList.remove('bg-slate-300', 'w-1.5');
-          dot.classList.add('bg-tambo-red', 'w-5');
+      resDots.forEach((dot, idx) => {
+        if (idx === currentResIdx) {
+          dot.classList.remove('w-1.5', 'bg-slate-300');
+          dot.classList.add('w-5', 'bg-tambo-red');
         } else {
-          dot.classList.remove('bg-tambo-red', 'w-5');
-          dot.classList.add('bg-slate-300', 'w-1.5');
+          dot.classList.remove('w-5', 'bg-tambo-red');
+          dot.classList.add('w-1.5', 'bg-slate-300');
         }
       });
     }
 
-    function nextResource() {
-      showResourceSlide(currentResIndex + 1);
-    }
+    nextResource.addEventListener('click', () => showResourceSlide(currentResIdx + 1));
+    prevResource.addEventListener('click', () => showResourceSlide(currentResIdx - 1));
 
-    function prevResource() {
-      showResourceSlide(currentResIndex - 1);
-    }
-
-    function startResourceTimer() {
-      clearInterval(resourceTimer);
-      resourceTimer = setInterval(nextResource, 4200);
-    }
-
-    if (btnNextResource) {
-      btnNextResource.addEventListener('click', () => {
-        nextResource();
-        startResourceTimer();
-      });
-    }
-
-    if (btnPrevResource) {
-      btnPrevResource.addEventListener('click', () => {
-        prevResource();
-        startResourceTimer();
-      });
-    }
-
-    if (resourcesSliderTrack) {
-      resourcesSliderTrack.addEventListener('mouseenter', () => clearInterval(resourceTimer));
-      resourcesSliderTrack.addEventListener('mouseleave', startResourceTimer);
-    }
-
-    showResourceSlide(0);
-    startResourceTimer();
+    resDots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => showResourceSlide(idx));
+    });
   }
 
 
-  /* --------------------------------------------------------------------------
-     9. ROADMAP TÁCTIL (APERTURA INDEPENDIENTE MÚLTIPLE Y BOTÓN ABRIR TODAS)
-     -------------------------------------------------------------------------- */
-  const btnsHito = document.querySelectorAll('.btn-hito');
-  const infosDesplegables = document.querySelectorAll('.info-desplegable');
+  /* ==========================================================
+     6. ROADMAP INTERACTIVO (CRONOGRAMA DE MANDATO)
+     ========================================================== */
+  const btnHitos = document.querySelectorAll('.btn-hito');
   const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
 
-  btnsHito.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
+  btnHitos.forEach(btn => {
+    btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
-      const targetElement = document.getElementById(targetId);
-      const parentNode = btn.closest('.roadmap-node');
+      const infoBox = document.getElementById(targetId);
 
-      if (targetElement) {
-        const isHidden = targetElement.classList.toggle('hidden');
-        if (parentNode) {
-          if (!isHidden) {
-            parentNode.classList.add('active-stylus');
-          } else {
-            parentNode.classList.remove('active-stylus');
+      if (infoBox) {
+        const isHidden = infoBox.classList.contains('hidden');
+        if (isHidden) {
+          infoBox.classList.remove('hidden');
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(infoBox, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" });
           }
+        } else {
+          infoBox.classList.add('hidden');
         }
       }
     });
   });
 
-  if (btnToggleAllRoadmap && infosDesplegables.length > 0) {
+  if (btnToggleAllRoadmap) {
+    let allOpen = false;
     btnToggleAllRoadmap.addEventListener('click', () => {
-      const anyHidden = Array.from(infosDesplegables).some(info => info.classList.contains('hidden'));
+      const allInfoBoxes = document.querySelectorAll('.info-desplegable');
+      allOpen = !allOpen;
 
-      infosDesplegables.forEach(info => {
-        const parentNode = info.closest('.roadmap-node');
-        if (anyHidden) {
-          info.classList.remove('hidden');
-          if (parentNode) parentNode.classList.add('active-stylus');
+      allInfoBoxes.forEach(box => {
+        if (allOpen) {
+          box.classList.remove('hidden');
         } else {
-          info.classList.add('hidden');
-          if (parentNode) parentNode.classList.remove('active-stylus');
+          box.classList.add('hidden');
         }
       });
+    });
+  }
+
+
+  /* ==========================================================
+     7. ANIMACIONES DE ENTRADA CON GSAP Y SCROLLTRIGGER
+     ========================================================== */
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const revealElements = document.querySelectorAll('.reveal-up');
+    revealElements.forEach(el => {
+      gsap.fromTo(el, 
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
     });
   }
 
