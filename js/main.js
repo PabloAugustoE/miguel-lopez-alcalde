@@ -73,43 +73,129 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 3. VIDEO INTERACTIVO PRINCIPAL (quien-soy.mp4 con miguel-portada.jpg)
+  // 3. VIDEO INTERACTIVO PRINCIPAL (quien-soy.mp4) CON CONTROLES COMPLETOS
   // ==========================================
   const videoQuienSoy = document.getElementById('videoQuienSoy');
   const btnPlayQuienSoy = document.getElementById('btnPlayQuienSoy');
   const containerPlayBtn = document.getElementById('containerPlayBtn');
   const videoPosterOverlay = document.getElementById('videoPosterOverlay');
+  const btnTogglePlay = document.getElementById('btnTogglePlay');
+  const videoSeekBar = document.getElementById('videoSeekBar');
+  const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+  const durationDisplay = document.getElementById('durationDisplay');
+  const btnFullscreen = document.getElementById('btnFullscreen');
 
   if (videoQuienSoy && btnPlayQuienSoy && containerPlayBtn && videoPosterOverlay) {
-    const triggerPlay = () => {
-      if (videoQuienSoy.paused) {
-        videoPosterOverlay.style.opacity = '0';
-        setTimeout(() => {
-          videoPosterOverlay.classList.add('hidden');
-        }, 500);
-        containerPlayBtn.classList.add('hidden');
-        videoQuienSoy.play();
-      } else {
-        videoQuienSoy.pause();
-        containerPlayBtn.classList.remove('hidden');
+    
+    // Función auxiliar para formatear segundos a MM:SS
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    // Actualizar duración total cuando carguen los metadatos del video
+    videoQuienSoy.addEventListener('loadedmetadata', () => {
+      if (durationDisplay) {
+        durationDisplay.textContent = formatTime(videoQuienSoy.duration);
+      }
+    });
+
+    // Iniciar reproducción desde el botón central o clic en el póster
+    const startVideoPlayback = () => {
+      videoPosterOverlay.style.opacity = '0';
+      setTimeout(() => {
+        videoPosterOverlay.classList.add('hidden');
+      }, 500);
+      containerPlayBtn.classList.add('hidden');
+      videoQuienSoy.play();
+      if (btnTogglePlay) {
+        btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
       }
     };
 
     btnPlayQuienSoy.addEventListener('click', (e) => {
       e.stopPropagation();
-      triggerPlay();
+      startVideoPlayback();
     });
 
     containerPlayBtn.addEventListener('click', () => {
-      triggerPlay();
+      startVideoPlayback();
     });
 
+    videoQuienSoy.addEventListener('click', () => {
+      if (videoQuienSoy.paused) {
+        startVideoPlayback();
+      } else {
+        videoQuienSoy.pause();
+        if (btnTogglePlay) {
+          btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+        }
+        containerPlayBtn.classList.remove('hidden');
+      }
+    });
+
+    // Botón de Pausa / Reproducir en la barra inferior
+    if (btnTogglePlay) {
+      btnTogglePlay.addEventListener('click', () => {
+        if (videoQuienSoy.paused) {
+          videoPosterOverlay.style.opacity = '0';
+          videoPosterOverlay.classList.add('hidden');
+          containerPlayBtn.classList.add('hidden');
+          videoQuienSoy.play();
+          btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        } else {
+          videoQuienSoy.pause();
+          btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+          containerPlayBtn.classList.remove('hidden');
+        }
+      });
+    }
+
+    // Actualizar barra de progreso (SeekBar) y tiempo actual mientras se reproduce
+    videoQuienSoy.addEventListener('timeupdate', () => {
+      if (videoQuienSoy.duration) {
+        const percent = (videoQuienSoy.currentTime / videoQuienSoy.duration) * 100;
+        if (videoSeekBar) videoSeekBar.value = percent;
+        if (currentTimeDisplay) {
+          currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
+        }
+      }
+    });
+
+    // Adelantar / Retrasar al arrastrar o hacer clic en la barra de progreso
+    if (videoSeekBar) {
+      videoSeekBar.addEventListener('input', () => {
+        if (videoQuienSoy.duration) {
+          const seekTime = (videoSeekBar.value / 100) * videoQuienSoy.duration;
+          videoQuienSoy.currentTime = seekTime;
+        }
+      });
+    }
+
+    // Pantalla completa
+    if (btnFullscreen) {
+      btnFullscreen.addEventListener('click', () => {
+        if (videoQuienSoy.requestFullscreen) {
+          videoQuienSoy.requestFullscreen();
+        } else if (videoQuienSoy.webkitRequestFullscreen) {
+          videoQuienSoy.webkitRequestFullscreen();
+        } else if (videoQuienSoy.msRequestFullscreen) {
+          videoQuienSoy.msRequestFullscreen();
+        }
+      });
+    }
+
+    // Al finalizar el video, restaurar la imagen de portada y el botón de play
     videoQuienSoy.addEventListener('ended', () => {
       videoPosterOverlay.classList.remove('hidden');
       setTimeout(() => {
         videoPosterOverlay.style.opacity = '1';
       }, 50);
       containerPlayBtn.classList.remove('hidden');
+      if (btnTogglePlay) {
+        btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+      }
       videoQuienSoy.currentTime = 0;
     });
   }
