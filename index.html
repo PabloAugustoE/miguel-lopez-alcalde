@@ -50,17 +50,6 @@
       display: inline-block;
       white-space: nowrap;
     }
-    /* Estilos para el efecto de tipeo letra por letra */
-    .typing-letter {
-      opacity: 0;
-      display: inline-block;
-      transform: translateY(3px);
-      transition: opacity 0.1s ease, transform 0.1s ease;
-    }
-    .typing-letter.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -203,10 +192,7 @@
             <!-- Botón de Play central interactivo con efecto de pulso / onda (*ping*) -->
             <div class="absolute inset-0 flex items-center justify-center z-20">
               <div class="relative flex items-center justify-center">
-                <!-- Anillo expansivo ondeante -->
                 <div class="absolute w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-tambo-red/60 animate-ping pointer-events-none"></div>
-                
-                <!-- Botón principal de Play -->
                 <button id="btnPlayOndeante" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/80" title="Reproducir video completo">
                   <i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>
                 </button>
@@ -946,104 +932,7 @@
     </div>
   </footer>
 
-  <!-- Script del Typewriter Sincronizado y Animación Letra a Letra -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Typewriter Hero
-      const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
-      const targetElement = document.getElementById('typewriter-word');
-
-      if (targetElement) {
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        const typeSpeed = 100;
-        const deleteSpeed = 60;
-        const holdTime = 3000;
-
-        function typewriterLoop() {
-          const currentWord = words[wordIndex];
-
-          if (isDeleting) {
-            charIndex--;
-            targetElement.textContent = currentWord.substring(0, charIndex);
-
-            if (charIndex === 0) {
-              isDeleting = false;
-              wordIndex = (wordIndex + 1) % words.length;
-              setTimeout(typewriterLoop, 400);
-            } else {
-              setTimeout(typewriterLoop, deleteSpeed);
-            }
-          } else {
-            charIndex++;
-            targetElement.textContent = currentWord.substring(0, charIndex);
-
-            if (charIndex === currentWord.length) {
-              isDeleting = true;
-              setTimeout(typewriterLoop, holdTime);
-            } else {
-              setTimeout(typewriterLoop, typeSpeed);
-            }
-          }
-        }
-        typewriterLoop();
-      }
-
-      // 2. Animación secuencial letra por letra para los párrafos de ¿Quién es Miguel López?
-      const p1 = document.getElementById('parrafo1');
-      const p2 = document.getElementById('parrafo2');
-
-      function prepareText(element) {
-        if (!element) return;
-        const text = element.getAttribute('data-text');
-        element.innerHTML = '';
-        text.split('').forEach(char => {
-          const span = document.createElement('span');
-          span.className = 'typing-letter';
-          span.textContent = char === ' ' ? '\u00A0' : char;
-          element.appendChild(span);
-        });
-      }
-
-      prepareText(p1);
-      prepareText(p2);
-
-      function playTypingSequence(element, onComplete) {
-        if (!element) return;
-        const letters = element.querySelectorAll('.typing-letter');
-        let index = 0;
-        
-        function typeNext() {
-          if (index < letters.length) {
-            letters[index].classList.add('visible');
-            index++;
-            setTimeout(typeNext, 18);
-          } else if (onComplete) {
-            onComplete();
-          }
-        }
-        typeNext();
-      }
-
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            playTypingSequence(p1, () => {
-              playTypingSequence(p2);
-            });
-            obs.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-
-      const sectionQuienEs = document.getElementById('quien-es');
-      if (sectionQuienEs) {
-        observer.observe(sectionQuienEs);
-      }
-    });
-  </script>
+  <!-- Archivo JavaScript Externo -->
   <script src="js/main.js"></script>
 
 </body>
