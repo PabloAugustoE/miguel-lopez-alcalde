@@ -128,25 +128,23 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animación general de aparición hacia arriba para elementos con clase .reveal-up
     gsap.utils.toArray('.reveal-up').forEach((element) => {
       gsap.fromTo(element, 
-        { y: 50, opacity: 0 },
+        { y: 45, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.9,
+          duration: 0.85,
           ease: "power3.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 85%",
+            start: "top 88%",
             toggleActions: "play none none reverse"
           }
         }
       );
     });
 
-    // Revelado de palabras en párrafos institucionales
     const paragraphs = document.querySelectorAll("#quien-es .word-reveal-text");
     paragraphs.forEach((p) => {
       const rawWords = p.textContent.trim().split(/\s+/);
@@ -224,8 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         textoRayar.classList.add('hidden');
         svgTrazo.classList.remove('hidden');
-        casillaVoto.classList.remove('border-dashed', 'border-slate-400');
-        casillaVoto.classList.add('border-solid', 'border-blue-600', 'bg-blue-50/40');
+        casillaVoto.classList.remove('border-dashed', 'border-tambo-red');
+        casillaVoto.classList.add('border-solid', 'border-blue-600', 'bg-blue-50/50');
         
         if (mensajeVotoConfirmado) {
           mensajeVotoConfirmado.classList.remove('hidden');
@@ -233,8 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         svgTrazo.classList.add('hidden');
         textoRayar.classList.remove('hidden');
-        casillaVoto.classList.add('border-dashed', 'border-slate-400');
-        casillaVoto.classList.remove('border-solid', 'border-blue-600', 'bg-blue-50/40');
+        casillaVoto.classList.add('border-dashed', 'border-tambo-red');
+        casillaVoto.classList.remove('border-solid', 'border-blue-600', 'bg-blue-50/50');
         
         if (mensajeVotoConfirmado) {
           mensajeVotoConfirmado.classList.add('hidden');
@@ -245,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     6. CARRUSEL DE NOVEDADES & ACTUALIZACIONES
+     6. CARRUSEL DE NOVEDADES & ACTUALIZACIONES (ROTACIÓN AUTOMÁTICA)
      -------------------------------------------------------------------------- */
   const trackNoticias = document.getElementById('carruselTrack');
   if (trackNoticias) {
@@ -259,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentIndex = 0;
     let slideInterval;
-    const intervalTime = 3000;
+    const intervalTime = 3500;
 
     if (totalIndexSpan) totalIndexSpan.textContent = totalSlides;
 
@@ -267,31 +265,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const isDesktop = window.innerWidth >= 768;
       const visibleCount = isDesktop ? 2 : 1;
       
-      if (currentIndex >= totalSlides) {
-        currentIndex = 0;
-      } else if (currentIndex < 0) {
-        currentIndex = totalSlides - 1;
-      }
+      if (currentIndex >= totalSlides) currentIndex = 0;
+      else if (currentIndex < 0) currentIndex = totalSlides - 1;
 
       const slideWidthPercent = 100 / visibleCount;
       trackNoticias.style.transform = `translateX(-${currentIndex * slideWidthPercent}%)`;
 
       if (currentIndexSpan) {
-        if (isDesktop) {
-          const nextIdx = (currentIndex + 1) % totalSlides;
-          currentIndexSpan.textContent = `${currentIndex + 1} & ${nextIdx + 1}`;
-        } else {
-          currentIndexSpan.textContent = `${currentIndex + 1}`;
-        }
+        currentIndexSpan.textContent = `${currentIndex + 1}`;
       }
 
       dots.forEach((dot, idx) => {
         if (idx === currentIndex) {
-          dot.classList.remove('bg-slate-300', 'w-2');
-          dot.classList.add('bg-tambo-red', 'w-6');
+          dot.classList.remove('bg-slate-300', 'w-1.5');
+          dot.classList.add('bg-tambo-red', 'w-5');
         } else {
-          dot.classList.remove('bg-tambo-red', 'w-6');
-          dot.classList.add('bg-slate-300', 'w-2');
+          dot.classList.remove('bg-tambo-red', 'w-5');
+          dot.classList.add('bg-slate-300', 'w-1.5');
         }
       });
     }
@@ -311,10 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
       slideInterval = setInterval(nextSlide, intervalTime);
     }
 
-    function resetTimer() {
-      startTimer();
-    }
-
     slides.forEach((card) => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
@@ -330,66 +316,41 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    if (btnNext) {
-      btnNext.addEventListener('click', () => {
-        nextSlide();
-        resetTimer();
-      });
-    }
-
-    if (btnPrev) {
-      btnPrev.addEventListener('click', () => {
-        prevSlide();
-        resetTimer();
-      });
-    }
+    if (btnNext) btnNext.addEventListener('click', () => { nextSlide(); startTimer(); });
+    if (btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startTimer(); });
 
     dots.forEach((dot) => {
       dot.addEventListener('click', (e) => {
         currentIndex = parseInt(e.target.getAttribute('data-index')) || 0;
         updateCarousel();
-        resetTimer();
+        startTimer();
       });
     });
 
-    window.addEventListener('resize', () => updateCarousel());
+    window.addEventListener('resize', updateCarousel);
     updateCarousel();
     startTimer();
   }
 
 
   /* --------------------------------------------------------------------------
-     7. PILARES DE TRANSFORMACIÓN (HÍBRIDO: GRID PC / CARRUSEL MÓVIL)
+     7. PILARES DE TRANSFORMACIÓN (ROTACIÓN AUTOMÁTICA EN MÓVIL + GRID EN PC)
      -------------------------------------------------------------------------- */
-  const proposalCards = document.querySelectorAll('.proposal-card');
-  proposalCards.forEach((card) => {
-    const hoverImg = card.getAttribute('data-hover-img');
-    const defaultImg = card.getAttribute('data-default-img');
-
-    card.addEventListener('mouseenter', () => {
-      if (hoverImg) card.style.backgroundImage = `url('${hoverImg}')`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (defaultImg) card.style.backgroundImage = `url('${defaultImg}')`;
-    });
-  });
-
   const proposalTrack = document.getElementById('proposalTrack');
+  const proposalCards = document.querySelectorAll('.proposal-card');
   const btnPrevProposal = document.getElementById('prevProposal');
   const btnNextProposal = document.getElementById('nextProposal');
   const currentProposalIdxSpan = document.getElementById('currentProposalIdx');
 
-  if (proposalTrack && btnPrevProposal && btnNextProposal) {
+  if (proposalTrack && proposalCards.length > 0) {
     let activeProposalIndex = 0;
     const totalProposals = proposalCards.length;
+    let proposalTimer;
 
-    function updateProposalMobileSlider() {
+    function updateProposalSlider() {
       if (window.innerWidth < 768) {
         proposalTrack.style.display = 'flex';
-        proposalTrack.style.overflowX = 'hidden';
         proposalCards.forEach((card, idx) => {
-          card.style.minWidth = '100%';
           card.style.display = idx === activeProposalIndex ? 'flex' : 'none';
         });
         if (currentProposalIdxSpan) {
@@ -397,39 +358,62 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } else {
         proposalTrack.style.display = '';
-        proposalTrack.style.overflowX = '';
         proposalCards.forEach((card) => {
-          card.style.minWidth = '';
           card.style.display = '';
         });
       }
     }
 
-    btnNextProposal.addEventListener('click', () => {
+    function nextProposal() {
       activeProposalIndex = (activeProposalIndex + 1) % totalProposals;
-      updateProposalMobileSlider();
-    });
+      updateProposalSlider();
+    }
 
-    btnPrevProposal.addEventListener('click', () => {
+    function prevProposal() {
       activeProposalIndex = (activeProposalIndex - 1 + totalProposals) % totalProposals;
-      updateProposalMobileSlider();
-    });
+      updateProposalSlider();
+    }
 
-    window.addEventListener('resize', updateProposalMobileSlider);
-    updateProposalMobileSlider();
+    function startProposalTimer() {
+      clearInterval(proposalTimer);
+      proposalTimer = setInterval(nextProposal, 4000);
+    }
+
+    if (btnNextProposal) {
+      btnNextProposal.addEventListener('click', () => {
+        nextProposal();
+        startProposalTimer();
+      });
+    }
+
+    if (btnPrevProposal) {
+      btnPrevProposal.addEventListener('click', () => {
+        prevProposal();
+        startProposalTimer();
+      });
+    }
+
+    proposalTrack.addEventListener('mouseenter', () => clearInterval(proposalTimer));
+    proposalTrack.addEventListener('mouseleave', startProposalTimer);
+
+    window.addEventListener('resize', updateProposalSlider);
+    updateProposalSlider();
+    startProposalTimer();
   }
 
 
   /* --------------------------------------------------------------------------
-     8. CONTROL DE RECURSOS Y MAQUINARIA (SLIDER INTERACTIVO)
+     8. RECURSOS Y MAQUINARIA (ROTACIÓN AUTOMÁTICA + CONTROLES)
      -------------------------------------------------------------------------- */
   const resourceSlides = document.querySelectorAll('.resource-slide');
   const resourceDots = document.querySelectorAll('.res-dot');
   const btnPrevResource = document.getElementById('prevResource');
   const btnNextResource = document.getElementById('nextResource');
+  const resourcesSliderTrack = document.getElementById('resourcesSliderTrack');
 
   if (resourceSlides.length > 0) {
     let currentResIndex = 0;
+    let resourceTimer;
 
     function showResourceSlide(index) {
       if (index >= resourceSlides.length) currentResIndex = 0;
@@ -448,24 +432,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
       resourceDots.forEach((dot, idx) => {
         if (idx === currentResIndex) {
-          dot.classList.remove('bg-slate-300', 'w-2');
-          dot.classList.add('bg-tambo-red', 'w-6');
+          dot.classList.remove('bg-slate-300', 'w-1.5');
+          dot.classList.add('bg-tambo-red', 'w-5');
         } else {
-          dot.classList.remove('bg-tambo-red', 'w-6');
-          dot.classList.add('bg-slate-300', 'w-2');
+          dot.classList.remove('bg-tambo-red', 'w-5');
+          dot.classList.add('bg-slate-300', 'w-1.5');
         }
       });
     }
 
+    function nextResource() {
+      showResourceSlide(currentResIndex + 1);
+    }
+
+    function prevResource() {
+      showResourceSlide(currentResIndex - 1);
+    }
+
+    function startResourceTimer() {
+      clearInterval(resourceTimer);
+      resourceTimer = setInterval(nextResource, 4200);
+    }
+
     if (btnNextResource) {
       btnNextResource.addEventListener('click', () => {
-        showResourceSlide(currentResIndex + 1);
+        nextResource();
+        startResourceTimer();
       });
     }
 
     if (btnPrevResource) {
       btnPrevResource.addEventListener('click', () => {
-        showResourceSlide(currentResIndex - 1);
+        prevResource();
+        startResourceTimer();
       });
     }
 
@@ -473,58 +472,64 @@ document.addEventListener('DOMContentLoaded', () => {
       dot.addEventListener('click', (e) => {
         const idx = parseInt(e.target.getAttribute('data-res-idx')) || 0;
         showResourceSlide(idx);
+        startResourceTimer();
       });
     });
 
+    if (resourcesSliderTrack) {
+      resourcesSliderTrack.addEventListener('mouseenter', () => clearInterval(resourceTimer));
+      resourcesSliderTrack.addEventListener('mouseleave', startResourceTimer);
+    }
+
     showResourceSlide(0);
+    startResourceTimer();
   }
 
 
   /* --------------------------------------------------------------------------
-     9. ROADMAP TÁCTIL (OPTIMIZADO PARA MOUSE, TÁCTIL Y STYLUS)
+     9. ROADMAP TÁCTIL (APERTURA INDEPENDIENTE MÚLTIPLE Y BOTÓN ABRIR TODAS)
      -------------------------------------------------------------------------- */
-  const roadmapNodes = document.querySelectorAll('.roadmap-node');
-  roadmapNodes.forEach(node => {
-    node.addEventListener('pointerdown', () => {
-      const details = node.querySelector('.phase-details');
-      const indicator = node.querySelector('.stylus-indicator');
-      
-      const isActive = node.classList.toggle('active-stylus');
-      
-      if (details && indicator) {
-        if (isActive) {
-          details.classList.remove('hidden');
-          indicator.innerHTML = '<i class="fa-solid fa-check text-green-600 mr-1"></i> Seleccionado';
-          indicator.classList.add('bg-green-100', 'text-green-700', 'border-green-300');
-        } else {
-          details.classList.add('hidden');
-          indicator.innerHTML = '<i class="fa-solid fa-pen-pointer mr-1"></i> Toca / Usa Stylus';
-          indicator.classList.remove('bg-green-100', 'text-green-700', 'border-green-300');
-        }
-      }
-    });
-  });
-
   const btnsHito = document.querySelectorAll('.btn-hito');
   const infosDesplegables = document.querySelectorAll('.info-desplegable');
+  const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
 
+  // Cada parada se abre y cierra de forma independiente sin cerrar las demás
   btnsHito.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const targetId = btn.getAttribute('data-target');
       const targetElement = document.getElementById(targetId);
+      const parentNode = btn.closest('.roadmap-node');
 
       if (targetElement) {
-        if (!targetElement.classList.contains('hidden')) {
-          targetElement.classList.add('hidden');
-          return;
+        const isHidden = targetElement.classList.toggle('hidden');
+        if (parentNode) {
+          if (!isHidden) {
+            parentNode.classList.add('active-stylus');
+          } else {
+            parentNode.classList.remove('active-stylus');
+          }
         }
-
-        infosDesplegables.forEach(info => info.classList.add('hidden'));
-        targetElement.classList.remove('hidden');
       }
     });
   });
 
-  console.log("Script principal optimizado inicializado correctamente.");
+  // Botón maestro para abrir o cerrar todas las paradas simultáneamente
+  if (btnToggleAllRoadmap && infosDesplegables.length > 0) {
+    btnToggleAllRoadmap.addEventListener('click', () => {
+      const anyHidden = Array.from(infosDesplegables).some(info => info.classList.contains('hidden'));
+
+      infosDesplegables.forEach(info => {
+        const parentNode = info.closest('.roadmap-node');
+        if (anyHidden) {
+          info.classList.remove('hidden');
+          if (parentNode) parentNode.classList.add('active-stylus');
+        } else {
+          info.classList.add('hidden');
+          if (parentNode) parentNode.classList.remove('active-stylus');
+        }
+      });
+    });
+  }
+
 });
