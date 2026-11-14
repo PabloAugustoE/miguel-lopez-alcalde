@@ -50,6 +50,17 @@
       display: inline-block;
       white-space: nowrap;
     }
+    /* Estilos para el efecto de tipeo letra por letra fluido */
+    .typing-letter {
+      opacity: 0;
+      display: inline-block;
+      transform: translateY(3px);
+      transition: opacity 0.1s ease, transform 0.1s ease;
+    }
+    .typing-letter.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
@@ -132,7 +143,7 @@
 
   <main class="relative z-10 pt-16 sm:pt-20">
 
-    <!-- SECCIÓN 1: HERO (Estructura compacta original con botones menos transparentes) -->
+    <!-- SECCIÓN 1: HERO -->
     <section id="inicio" class="sec-hero relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-2 sm:pt-4 pb-2 sm:pb-3 bg-slate-900">
       
       <!-- Pastilla Typewriter superior compacta -->
@@ -148,7 +159,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-slate-950/30 via-transparent to-slate-950/60 pointer-events-none"></div>
       </div>
 
-      <!-- Botones integrados abajo sobre la imagen (menos transparentes y con mayor presencia) -->
+      <!-- Botones integrados abajo sobre la imagen -->
       <div class="w-full max-w-xl mx-auto flex flex-row items-center justify-center gap-2 sm:gap-4 relative z-20 my-1 sm:my-2 px-2">
         <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-950/80 hover:bg-red-900 backdrop-blur-md text-white text-[10px] sm:text-sm font-extrabold shadow-xl border-2 border-red-500 transition-all text-center tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
           <i class="fa-solid fa-file-contract mr-1 text-red-400"></i> Plan de Gobierno
@@ -180,26 +191,26 @@
             El Tambo 2027
           </div>
           
-          <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-4 shadow-md bg-slate-900 border border-slate-200">
-            <video id="videoMiguel" class="w-full h-full object-cover" controls preload="metadata">
-              <source src="assets/video/quien-soy.mp4" type="video/mp4">
+          <!-- Contenedor del video en bucle infinito -->
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-4 shadow-md bg-slate-900 border border-slate-200 group">
+            <video id="videoLoopFondo" class="w-full h-full object-cover opacity-80" autoplay muted loop playsinline preload="auto">
+              <source src="assets/video/miguel-presentacion-loop.mp4" type="video/mp4">
               Tu navegador no soporta la reproducción de video HTML5.
             </video>
 
-            <div id="capaPortada" class="absolute inset-0 bg-slate-950/80 flex flex-col items-center justify-center gap-3 z-30 transition-opacity duration-500">
-              <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-60">
-              <button id="btnPlayInicial" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/50" title="Reproducir video">
-                <i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>
-              </button>
-              <span class="relative z-10 text-white text-[10px] sm:text-xs font-bold tracking-widest uppercase drop-shadow-md bg-black/40 px-3 py-1 rounded-full">Ver video de presentación</span>
-            </div>
+            <div class="absolute inset-0 bg-slate-950/40 pointer-events-none"></div>
 
-            <div id="pantallaFinal" class="absolute inset-0 bg-slate-950/90 flex flex-col items-center justify-center gap-3 z-20 hidden opacity-0 transition-opacity duration-500">
-              <img src="assets/img/miguel-portada.jpg" alt="Portada Miguel López" class="absolute inset-0 w-full h-full object-cover opacity-30">
-              <button id="btnReplay" type="button" class="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/20 text-white flex items-center justify-center backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all transform hover:scale-110 shadow-xl cursor-pointer">
-                <i class="fa-solid fa-rotate-right text-lg sm:text-2xl"></i>
-              </button>
-              <span class="relative z-10 text-white text-[10px] sm:text-xs font-semibold tracking-wider uppercase">Volver a reproducir</span>
+            <!-- Botón de Play central interactivo con efecto de pulso / onda (*ping*) -->
+            <div class="absolute inset-0 flex items-center justify-center z-20">
+              <div class="relative flex items-center justify-center">
+                <!-- Anillo expansivo ondeante para invitar a la interacción -->
+                <div class="absolute w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-tambo-red/60 animate-ping pointer-events-none"></div>
+                
+                <!-- Botón principal de Play -->
+                <button id="btnPlayOndeante" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/80" title="Interactuar con el video">
+                  <i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -207,13 +218,10 @@
           <p class="text-[11px] sm:text-xs text-tambo-red font-semibold uppercase tracking-wide">Candidato a la Alcaldía</p>
         </div>
 
+        <!-- Párrafos con animación de tipeo letra por letra secuencial -->
         <div class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed reveal-up">
-          <p class="word-reveal-text">
-            Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos.
-          </p>
-          <p class="word-reveal-text">
-            Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar.
-          </p>
+          <p id="parrafo1" class="typing-paragraph" data-text="Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos."></p>
+          <p id="parrafo2" class="typing-paragraph" data-text="Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar."></p>
         </div>
       </div>
     </section>
@@ -938,9 +946,10 @@
     </div>
   </footer>
 
-  <!-- Script del Typewriter Sincronizado -->
+  <!-- Script del Typewriter Sincronizado y Animación Letra a Letra -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Typewriter Hero
       const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
       const targetElement = document.getElementById('typewriter-word');
 
@@ -951,7 +960,7 @@
 
         const typeSpeed = 100;
         const deleteSpeed = 60;
-        const holdTime = 3000; // 3 segundos exactos estático
+        const holdTime = 3000;
 
         function typewriterLoop() {
           const currentWord = words[wordIndex];
@@ -979,8 +988,60 @@
             }
           }
         }
-
         typewriterLoop();
+      }
+
+      // 2. Animación secuencial letra por letra para los párrafos de ¿Quién es Miguel López?
+      const p1 = document.getElementById('parrafo1');
+      const p2 = document.getElementById('parrafo2');
+
+      function prepareText(element) {
+        if (!element) return;
+        const text = element.getAttribute('data-text');
+        element.innerHTML = '';
+        text.split('').forEach(char => {
+          const span = document.createElement('span');
+          span.className = 'typing-letter';
+          span.textContent = char === ' ' ? '\u00A0' : char;
+          element.appendChild(span);
+        });
+      }
+
+      prepareText(p1);
+      prepareText(p2);
+
+      function playTypingSequence(element, onComplete) {
+        if (!element) return;
+        const letters = element.querySelectorAll('.typing-letter');
+        let index = 0;
+        
+        function typeNext() {
+          if (index < letters.length) {
+            letters[index].classList.add('visible');
+            index++;
+            setTimeout(typeNext, 18);
+          } else if (onComplete) {
+            onComplete();
+          }
+        }
+        typeNext();
+      }
+
+      // Observador de scroll para activar la animación justo cuando la sección es visible
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            playTypingSequence(p1, () => {
+              playTypingSequence(p2);
+            });
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+
+      const sectionQuienEs = document.getElementById('quien-es');
+      if (sectionQuienEs) {
+        observer.observe(sectionQuienEs);
       }
     });
   </script>
