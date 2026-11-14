@@ -132,20 +132,20 @@
 
   <main class="relative z-10 pt-16 sm:pt-20">
 
-    <!-- SECCIÓN 1: HERO (Sin punto parpadeante, sin doble barra y con botones más arriba) -->
-    <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-6 sm:pt-8 pb-12 sm:pb-16 bg-slate-900 min-h-[580px] sm:min-h-[660px]">
+    <!-- SECCIÓN 1: HERO (Altura reducida / más compacto, pastilla con texto más grande) -->
+    <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-4 sm:pt-6 pb-8 sm:pb-10 bg-slate-900 min-h-[480px] sm:min-h-[560px]">
       <img src="assets/img/miguel-consejales.jpg" alt="Miguel López y equipo El Tambo" class="hero-bg-img absolute inset-0 w-full h-full object-contain sm:object-cover object-center z-0">
       <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/20 to-slate-950/75 z-0"></div>
       
       <div class="max-w-4xl mx-auto text-center relative z-10">
-        <!-- Pastilla superior limpia sin punto parpadeante ni doble cursor -->
-        <div class="hero-badge-dynamic px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/25 text-xs sm:text-base font-display font-extrabold text-white shadow-lg mx-auto min-w-[190px] sm:min-w-[250px]">
-          <span class="tracking-wide">Por un Tambo&nbsp;<span id="typewriter-word" class="typewriter-span text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]"></span></span>
+        <!-- Pastilla superior con texto typewriter más grande -->
+        <div class="hero-badge-dynamic px-5 sm:px-7 py-2 sm:py-3 rounded-full bg-slate-900/85 backdrop-blur-md border border-white/30 text-sm sm:text-lg font-display font-extrabold text-white shadow-xl mx-auto min-w-[210px] sm:min-w-[300px]">
+          <span class="tracking-wide">Por un Tambo&nbsp;<span id="typewriter-word" class="typewriter-span text-red-500 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] text-base sm:text-xl font-black"></span></span>
         </div>
       </div>
 
       <!-- Botones del Hero transparentes recorridos más arriba -->
-      <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2.5 sm:gap-4 mt-auto mb-12 sm:mb-16 relative z-10 px-1">
+      <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2.5 sm:gap-4 mt-auto mb-6 sm:mb-8 relative z-10 px-1">
         <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-600/0 hover:bg-red-600/20 backdrop-blur-[1px] text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-red-500/90 transition-all text-center tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
           <i class="fa-solid fa-file-contract mr-1 text-red-400"></i> Plan de Gobierno
         </a>
@@ -934,7 +934,7 @@
     </div>
   </footer>
 
-  <!-- Script del Typewriter Sincronizado y sin retrasos -->
+  <!-- Script del Typewriter Sincronizado, limpio y sin retrasos -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
