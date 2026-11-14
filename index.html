@@ -148,7 +148,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-slate-950/30 via-transparent to-slate-950/60 pointer-events-none"></div>
       </div>
 
-      <!-- Botones integrados abajo sobre la imagen (menos transparentes) -->
+      <!-- Botones integrados abajo sobre la imagen -->
       <div class="w-full max-w-xl mx-auto flex flex-row items-center justify-center gap-2 sm:gap-4 relative z-20 my-1 sm:my-2 px-2">
         <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-950/80 hover:bg-red-900 backdrop-blur-md text-white text-[10px] sm:text-sm font-extrabold shadow-xl border-2 border-red-500 transition-all text-center tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
           <i class="fa-solid fa-file-contract mr-1 text-red-400"></i> Plan de Gobierno
@@ -175,35 +175,46 @@
           </p>
         </div>
 
-        <!-- Tarjeta principal con el video de fondo en bucle infinito -->
-        <div class="about-photo-box p-3.5 sm:p-6 rounded-2xl border border-slate-200 bg-slate-900 text-center relative shadow-xl reveal-up max-w-3xl mx-auto overflow-hidden">
+        <!-- Tarjeta principal con el video de fondo "portada fondo" (portada-fondo.mp4) y el video interactivo "quien-soy.mp4" -->
+        <div class="about-card-container p-3.5 sm:p-6 rounded-2xl border border-slate-200 text-center relative shadow-xl reveal-up max-w-3xl mx-auto overflow-hidden">
           
-          <!-- Etiqueta superior derecha: El Tambo 2027 -->
+          <!-- SEGUNDO VIDEO: Fondo automático y en bucle infinito ("portada fondo") -->
+          <video class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-90" autoplay muted loop playsinline preload="auto">
+            <source src="assets/video/portada-fondo.mp4" type="video/mp4">
+            Tu navegador no soporta video de fondo.
+          </video>
+          <div class="absolute inset-0 bg-slate-950/60 z-0 pointer-events-none"></div>
+
+          <!-- Etiqueta superior derecha en el borde: El Tambo 2027 -->
           <div class="absolute top-3 right-3 sm:top-5 sm:right-5 bg-tambo-green text-white text-[10px] sm:text-[11px] font-extrabold px-3.5 py-1 rounded-full shadow-lg z-30 uppercase tracking-wider">
             El Tambo 2027
           </div>
           
-          <!-- Contenedor del video en bucle y botón de play ondeante -->
-          <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-4 shadow-2xl bg-slate-950 border border-white/10 group">
-            <video id="videoLoopFondo" class="w-full h-full object-cover opacity-85" autoplay muted loop playsinline preload="auto">
-              <source src="assets/video/miguel-presentacion-loop.mp4" type="video/mp4">
+          <!-- PRIMER VIDEO: Video interactivo principal ("quien-soy.mp4") con capa de imagen estática (miguel-portada.jpg) -->
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-4 shadow-2xl bg-slate-950 border border-white/20 z-10 group">
+            <!-- Imagen de portada superpuesta (antes y después de reproducir) -->
+            <div id="videoPosterOverlay" class="absolute inset-0 z-30 bg-cover bg-center transition-opacity duration-500" style="background-image: url('assets/img/miguel-portada.jpg');">
+              <div class="absolute inset-0 bg-slate-950/40 pointer-events-none"></div>
+            </div>
+
+            <!-- Video interactivo quien-soy.mp4 -->
+            <video id="videoQuienSoy" class="w-full h-full object-cover relative z-10" preload="metadata">
+              <source src="assets/video/quien-soy.mp4" type="video/mp4">
               Tu navegador no soporta la reproducción de video HTML5.
             </video>
 
-            <div class="absolute inset-0 bg-slate-950/40 pointer-events-none"></div>
-
-            <!-- Botón de Play central interactivo con efecto de pulso / onda sin texto -->
-            <div class="absolute inset-0 flex items-center justify-center z-20">
+            <!-- Botón de Play central interactivo con efecto de pulso / onda -->
+            <div id="containerPlayBtn" class="absolute inset-0 flex items-center justify-center z-40 cursor-pointer">
               <div class="relative flex items-center justify-center">
                 <div class="absolute w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-tambo-red/60 animate-ping pointer-events-none"></div>
-                <button id="btnPlayOndeante" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/90" title="Reproducir video completo">
+                <button id="btnPlayQuienSoy" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/90" title="Reproducir video">
                   <i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- Textos inferiores de la tarjeta: Nombre y Candidato a la Alcaldía -->
+          <!-- Textos inferiores sobre el borde del fondo: Nombre y Candidato a la Alcaldía -->
           <div class="relative z-10 pt-1 space-y-0.5">
             <h3 class="font-display font-black text-lg sm:text-2xl text-white tracking-tight">Miguel López</h3>
             <p class="text-[11px] sm:text-xs text-red-400 font-extrabold uppercase tracking-widest">Candidato a la Alcaldía</p>
