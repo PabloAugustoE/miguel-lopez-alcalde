@@ -50,18 +50,6 @@
       display: inline-block;
       white-space: nowrap;
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    /* Cursor único integrado por CSS para evitar duplicidad o dobles barras */
-    .typewriter-span::after {
-      content: '|';
-      animation: blink 0.8s infinite;
-      color: #ef4444;
-      font-weight: bold;
-      margin-left: 1px;
-    }
   </style>
 </head>
 
@@ -144,18 +132,14 @@
 
   <main class="relative z-10 pt-16 sm:pt-20">
 
-    <!-- SECCIÓN 1: HERO (Botones reubicados más arriba y pastilla con typewriter limpio sin doble barra) -->
+    <!-- SECCIÓN 1: HERO (Sin punto parpadeante, sin doble barra y con botones más arriba) -->
     <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-6 sm:pt-8 pb-12 sm:pb-16 bg-slate-900 min-h-[580px] sm:min-h-[660px]">
       <img src="assets/img/miguel-consejales.jpg" alt="Miguel López y equipo El Tambo" class="hero-bg-img absolute inset-0 w-full h-full object-contain sm:object-cover object-center z-0">
       <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/20 to-slate-950/75 z-0"></div>
       
       <div class="max-w-4xl mx-auto text-center relative z-10">
-        <!-- Pastilla superior con ancho mínimo seguro y un solo cursor controlado -->
-        <div class="hero-badge-dynamic px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/25 text-xs sm:text-base font-display font-extrabold text-white shadow-lg mx-auto min-w-[210px] sm:min-w-[280px]">
-          <span class="relative flex h-2 w-2 shrink-0 mr-1.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-          </span>
+        <!-- Pastilla superior limpia sin punto parpadeante ni doble cursor -->
+        <div class="hero-badge-dynamic px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/25 text-xs sm:text-base font-display font-extrabold text-white shadow-lg mx-auto min-w-[190px] sm:min-w-[250px]">
           <span class="tracking-wide">Por un Tambo&nbsp;<span id="typewriter-word" class="typewriter-span text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]"></span></span>
         </div>
       </div>
@@ -950,7 +934,7 @@
     </div>
   </footer>
 
-  <!-- Script del Typewriter Sincronizado sin solapamientos ni duplicados -->
+  <!-- Script del Typewriter Sincronizado y sin retrasos -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
@@ -963,7 +947,7 @@
 
         const typeSpeed = 100;
         const deleteSpeed = 60;
-        const holdTime = 3000; // Exactamente 3 segundos estático
+        const holdTime = 3000; // 3 segundos exactos estático
 
         function typewriterLoop() {
           const currentWord = words[wordIndex];
@@ -975,7 +959,7 @@
             if (charIndex === 0) {
               isDeleting = false;
               wordIndex = (wordIndex + 1) % words.length;
-              setTimeout(typewriterLoop, 400); // Pausa breve antes de escribir la siguiente palabra
+              setTimeout(typewriterLoop, 400);
             } else {
               setTimeout(typewriterLoop, deleteSpeed);
             }
@@ -985,7 +969,7 @@
 
             if (charIndex === currentWord.length) {
               isDeleting = true;
-              setTimeout(typewriterLoop, holdTime); // Pausa estática exacta de 3 segundos
+              setTimeout(typewriterLoop, holdTime);
             } else {
               setTimeout(typewriterLoop, typeSpeed);
             }
