@@ -123,33 +123,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     4. ANIMACIÓN DE REVELADO DE TEXTO (GSAP & SCROLLTRIGGER)
+     4. ANIMACIÓN DE APARICIÓN HACIA ARRIBA (GSAP & SCROLLTRIGGER)
      -------------------------------------------------------------------------- */
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
+    // Animación general de aparición hacia arriba para elementos con clase .reveal-up
+    gsap.utils.toArray('.reveal-up').forEach((element) => {
+      gsap.fromTo(element, 
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    // Revelado de palabras en párrafos institucionales
     const paragraphs = document.querySelectorAll("#quien-es .word-reveal-text");
     paragraphs.forEach((p) => {
       const rawWords = p.textContent.trim().split(/\s+/);
       p.innerHTML = rawWords
         .map((word) => `<span class="word-mask"><span class="word-inner">${word}</span></span>`)
         .join("");
-    });
-
-    const aboutTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#quien-es",
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    aboutTl.from("#quien-es .reveal-block", {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power3.out"
     });
   }
 
@@ -418,7 +421,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     8. ROADMAP TÁCTIL (OPTIMIZADO PARA MOUSE, TACTIL Y STYLUS)
+     8. CONTROL DE RECURSOS Y MAQUINARIA (SLIDER INTERACTIVO)
+     -------------------------------------------------------------------------- */
+  const resourceSlides = document.querySelectorAll('.resource-slide');
+  const resourceDots = document.querySelectorAll('.res-dot');
+  const btnPrevResource = document.getElementById('prevResource');
+  const btnNextResource = document.getElementById('nextResource');
+
+  if (resourceSlides.length > 0) {
+    let currentResIndex = 0;
+
+    function showResourceSlide(index) {
+      if (index >= resourceSlides.length) currentResIndex = 0;
+      else if (index < 0) currentResIndex = resourceSlides.length - 1;
+      else currentResIndex = index;
+
+      resourceSlides.forEach((slide, idx) => {
+        if (idx === currentResIndex) {
+          slide.classList.remove('hidden');
+          slide.classList.add('block');
+        } else {
+          slide.classList.add('hidden');
+          slide.classList.remove('block');
+        }
+      });
+
+      resourceDots.forEach((dot, idx) => {
+        if (idx === currentResIndex) {
+          dot.classList.remove('bg-slate-300', 'w-2');
+          dot.classList.add('bg-tambo-red', 'w-6');
+        } else {
+          dot.classList.remove('bg-tambo-red', 'w-6');
+          dot.classList.add('bg-slate-300', 'w-2');
+        }
+      });
+    }
+
+    if (btnNextResource) {
+      btnNextResource.addEventListener('click', () => {
+        showResourceSlide(currentResIndex + 1);
+      });
+    }
+
+    if (btnPrevResource) {
+      btnPrevResource.addEventListener('click', () => {
+        showResourceSlide(currentResIndex - 1);
+      });
+    }
+
+    resourceDots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.getAttribute('data-res-idx')) || 0;
+        showResourceSlide(idx);
+      });
+    });
+
+    showResourceSlide(0);
+  }
+
+
+  /* --------------------------------------------------------------------------
+     9. ROADMAP TÁCTIL (OPTIMIZADO PARA MOUSE, TÁCTIL Y STYLUS)
      -------------------------------------------------------------------------- */
   const roadmapNodes = document.querySelectorAll('.roadmap-node');
   roadmapNodes.forEach(node => {
@@ -442,7 +505,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Control independiente de botones Hito (Roadmap Alternativo)
   const btnsHito = document.querySelectorAll('.btn-hito');
   const infosDesplegables = document.querySelectorAll('.info-desplegable');
 
@@ -464,5 +526,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  console.log("Script principal de Miguel López Alcalde inicializado correctamente.");
+  console.log("Script principal optimizado inicializado correctamente.");
 });
