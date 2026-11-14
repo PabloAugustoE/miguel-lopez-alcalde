@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
           scrollTrigger: {
             trigger: element,
             start: "top 90%",
-            once: true // Asegura que ocurra una sola vez y no desaparezca al subir
+            once: true
           }
         }
       );
@@ -467,14 +467,6 @@ document.addEventListener('DOMContentLoaded', () => {
         startResourceTimer();
       });
     }
-
-    resourceDots.forEach((dot) => {
-      dot.addEventListener('click', (e) => {
-        const idx = parseInt(e.target.getAttribute('data-res-idx')) || 0;
-        showResourceSlide(idx);
-        startResourceTimer();
-      });
-    });
 
     if (resourcesSliderTrack) {
       resourcesSliderTrack.addEventListener('mouseenter', () => clearInterval(resourceTimer));
