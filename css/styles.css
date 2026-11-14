@@ -2,7 +2,6 @@
    ESTILOS GENERALES Y CONFIGURACIÓN CSS
    ========================================== */
 
-/* Suavizar desplazamiento global */
 html {
   scroll-behavior: smooth;
 }
@@ -16,7 +15,6 @@ body {
   min-height: 100vh;
 }
 
-/* Tipografía de Títulos */
 h1, h2, h3, h4, h5, h6, .font-display {
   font-family: 'Outfit', sans-serif;
 }
@@ -69,7 +67,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
   animation: marqueeRight 35s linear infinite;
 }
 
-/* Pausar marquesinas al pasar el mouse */
 .marquee-track-left:hover,
 .marquee-track-right:hover {
   animation-play-state: paused;
