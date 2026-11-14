@@ -40,7 +40,6 @@
   </script>
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    /* Estilo limpio para el contenedor del typewriter */
     .hero-badge-dynamic {
       display: inline-flex;
       align-items: center;
@@ -140,8 +139,8 @@
 
   <main class="relative z-10 pt-16 sm:pt-20">
 
-    <!-- SECCIÓN 1: HERO -->
-    <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-6 sm:pt-8 pb-6 sm:pb-10 bg-slate-900">
+    <!-- SECCIÓN 1: HERO (Botones reubicados más arriba con mb-12 sm:mb-16) -->
+    <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-6 sm:pt-8 pb-12 sm:pb-16 bg-slate-900 min-h-[580px] sm:min-h-[660px]">
       <img src="assets/img/miguel-consejales.jpg" alt="Miguel López y equipo El Tambo" class="hero-bg-img absolute inset-0 w-full h-full object-contain sm:object-cover object-center z-0">
       <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/20 to-slate-950/75 z-0"></div>
       
@@ -156,8 +155,8 @@
         </div>
       </div>
 
-      <!-- Botones del Hero transparentes -->
-      <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2.5 sm:gap-4 mt-auto relative z-10 px-1">
+      <!-- Botones del Hero transparentes recorridos más arriba -->
+      <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2.5 sm:gap-4 mt-auto mb-12 sm:mb-16 relative z-10 px-1">
         <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-600/0 hover:bg-red-600/20 backdrop-blur-[1px] text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-red-500/90 transition-all text-center tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
           <i class="fa-solid fa-file-contract mr-1 text-red-400"></i> Plan de Gobierno
         </a>
@@ -946,7 +945,7 @@
     </div>
   </footer>
 
-  <!-- Script del Typewriter Corregido: Exactamente 3 segundos estático -->
+  <!-- Script del Typewriter Sincronizado sin duplicados y pausa exacta de 3 segundos -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
@@ -959,7 +958,7 @@
 
         const typeSpeed = 100;
         const deleteSpeed = 60;
-        const holdTime = 3000; // Exactamente 3 segundos estático
+        const holdTime = 3000; // 3 segundos exactos estático
 
         function typeEffect() {
           const currentWord = words[wordIndex];
@@ -974,12 +973,12 @@
 
           let currentSpeed = isDeleting ? deleteSpeed : typeSpeed;
 
-          // Cuando termina de escribir la palabra completa, se pausa 3 segundos exactos antes de borrar
+          // Al terminar de escribir la palabra completa, se mantiene estática exactamente 3 segundos
           if (!isDeleting && charIndex === currentWord.length) {
             currentSpeed = holdTime;
             isDeleting = true;
           } 
-          // Cuando termina de borrarse por completo, cambia a la siguiente palabra con una pausa corta
+          // Al terminar de borrarse por completo, avanza limpiamente a la siguiente palabra
           else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             wordIndex = (wordIndex + 1) % words.length;
