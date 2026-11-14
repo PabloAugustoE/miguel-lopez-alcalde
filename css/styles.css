@@ -51,10 +51,39 @@ body {
 
 
 /* ==========================================================================
-   SECCIÓN 1: HERO & EFECTO TYPEWRITER
+   SECCIÓN 1: HERO RESPONSIVE (VERTICAL & HORIZONTAL) + TYPEWRITER
    ========================================================================== */
-.sec-hero {
+.sec-hero.hero-responsive {
   position: relative;
+  min-height: calc(100vh - 80px);
+}
+
+/* En dispositivos móviles verticales (portrait), ajustamos la altura a la proporción
+   de la fotografía para que se vea completa de lado a lado sin recortes */
+@media (max-width: 767px) and (orientation: portrait) {
+  .sec-hero.hero-responsive {
+    min-height: 58vw;
+    aspect-ratio: 16 / 10;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero-bg-img {
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+}
+
+/* En móviles horizontales (landscape) */
+@media (max-width: 900px) and (orientation: landscape) {
+  .sec-hero.hero-responsive {
+    min-height: 88vh;
+  }
+
+  .hero-bg-img {
+    object-fit: cover !important;
+    object-position: center 20% !important;
+  }
 }
 
 .typewriter-span {
@@ -98,7 +127,7 @@ body {
 
 
 /* ==========================================================================
-   SECCIÓN 3: SIMULADOR DE PAPELETA ELECTORAL
+   SECCIÓN 3: SIMULADOR DE PAPELETA ELECTORAL (6 COLUMNAS EN TODOS LOS DISPOSITIVOS)
    ========================================================================== */
 .trazo-linea-azul {
   stroke-dasharray: 100;
@@ -119,14 +148,14 @@ body {
 .marquee-track-left {
   display: flex;
   width: max-content;
-  animation: scrollLeft 40s linear infinite;
+  animation: scrollLeft 38s linear infinite;
   will-change: transform;
 }
 
 .marquee-track-right {
   display: flex;
   width: max-content;
-  animation: scrollRight 40s linear infinite;
+  animation: scrollRight 38s linear infinite;
   will-change: transform;
 }
 
@@ -155,7 +184,7 @@ body {
 
 
 /* ==========================================================================
-   SECCIÓN 6: PILARES DE TRANSFORMACIÓN
+   SECCIÓN 6: PILARES DE TRANSFORMACIÓN (COMPACTOS)
    ========================================================================== */
 .sec-proposals {
   background: radial-gradient(circle at top right, rgba(22, 163, 74, 0.04) 0%, transparent 60%);
@@ -163,19 +192,19 @@ body {
 
 .proposal-card {
   border: 1px solid #e2e8f0;
-  border-top: 4px solid var(--tambo-green);
+  border-top: 3px solid var(--tambo-green);
   transition: all 0.3s ease;
 }
 
 .proposal-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.08);
   border-color: var(--tambo-red);
 }
 
 
 /* ==========================================================================
-   SECCIÓN 7: RECURSOS Y MAQUINARIA
+   SECCIÓN 7: RECURSOS Y MAQUINARIA (COMPACTOS)
    ========================================================================== */
 .sec-resources {
   background: #ffffff;
@@ -183,9 +212,24 @@ body {
   border-bottom: 1px solid #e2e8f0;
 }
 
+.resource-slide {
+  animation: fadeScaleIn 0.4s ease-out;
+}
+
+@keyframes fadeScaleIn {
+  from {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 
 /* ==========================================================================
-   SECCIÓN 8: ROADMAP TÁCTIL Y STYLUS
+   SECCIÓN 8: ROADMAP TÁCTIL Y STYLUS (APERTURA MÚLTIPLE)
    ========================================================================== */
 .sec-roadmap {
   position: relative;
@@ -198,21 +242,34 @@ body {
 .roadmap-node.active-stylus .btn-hito > span {
   border-color: var(--tambo-green) !important;
   background-color: #f0fdf4 !important;
+  color: #15803d !important;
 }
 
 .roadmap-node.active-stylus .info-desplegable {
   border-color: var(--tambo-green) !important;
-  box-shadow: 0 10px 30px rgba(22, 163, 74, 0.15) !important;
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.14) !important;
+  animation: slideDownFade 0.25s ease-out;
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 
 /* ==========================================================================
-   MEDIA QUERIES / OPTIMIZACIÓN MÓVIL
+   AJUSTES ADICIONALES PARA PANTALLAS PEQUEÑAS (< 768px)
    ========================================================================== */
 @media (max-width: 767px) {
   .marquee-track-left,
   .marquee-track-right {
-    animation-duration: 28s;
+    animation-duration: 26s;
   }
 
   .proposal-card:hover {
