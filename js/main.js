@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Cerrar al hacer clic fuera
     document.addEventListener('click', (e) => {
       if (!btnSumate.contains(e.target) && !menuSumate.contains(e.target)) {
         menuSumate.classList.add('hidden');
@@ -74,20 +73,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 3. VIDEO LOOP Y CONTROL DE REPRODUCCIÓN (¿Quién es Miguel López?)
+  // 3. VIDEO INTERACTIVO PRINCIPAL (quien-soy.mp4 con miguel-portada.jpg)
   // ==========================================
-  const videoLoopFondo = document.getElementById('videoLoopFondo');
-  const btnPlayOndeante = document.getElementById('btnPlayOndeante');
+  const videoQuienSoy = document.getElementById('videoQuienSoy');
+  const btnPlayQuienSoy = document.getElementById('btnPlayQuienSoy');
+  const containerPlayBtn = document.getElementById('containerPlayBtn');
+  const videoPosterOverlay = document.getElementById('videoPosterOverlay');
 
-  if (videoLoopFondo && btnPlayOndeante) {
-    btnPlayOndeante.addEventListener('click', () => {
-      if (videoLoopFondo.paused) {
-        videoLoopFondo.play();
-        btnPlayOndeante.innerHTML = '<i class="fa-solid fa-pause text-xl sm:text-3xl"></i>';
+  if (videoQuienSoy && btnPlayQuienSoy && containerPlayBtn && videoPosterOverlay) {
+    const triggerPlay = () => {
+      if (videoQuienSoy.paused) {
+        videoPosterOverlay.style.opacity = '0';
+        setTimeout(() => {
+          videoPosterOverlay.classList.add('hidden');
+        }, 500);
+        containerPlayBtn.classList.add('hidden');
+        videoQuienSoy.play();
       } else {
-        videoLoopFondo.pause();
-        btnPlayOndeante.innerHTML = '<i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>';
+        videoQuienSoy.pause();
+        containerPlayBtn.classList.remove('hidden');
       }
+    };
+
+    btnPlayQuienSoy.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerPlay();
+    });
+
+    containerPlayBtn.addEventListener('click', () => {
+      triggerPlay();
+    });
+
+    videoQuienSoy.addEventListener('ended', () => {
+      videoPosterOverlay.classList.remove('hidden');
+      setTimeout(() => {
+        videoPosterOverlay.style.opacity = '1';
+      }, 50);
+      containerPlayBtn.classList.remove('hidden');
+      videoQuienSoy.currentTime = 0;
     });
   }
 
@@ -123,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (index < letters.length) {
         letters[index].classList.add('visible');
         index++;
-        setTimeout(typeNext, 18); // Velocidad rápida y fluida
+        setTimeout(typeNext, 18);
       } else if (onComplete) {
         onComplete();
       }
@@ -187,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalNoticias = noticias.length;
 
     function updateCarrusel() {
-      const cardWidth = noticias[0].offsetWidth + 16; // ancho + gap (16px)
+      const cardWidth = noticias[0].offsetWidth + 16;
       carruselTrack.style.transform = `translateX(-${currentIdx * cardWidth}px)`;
       if (currentIndexEl) currentIndexEl.textContent = currentIdx + 1;
 
@@ -223,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Efecto hover para alternar imagen de fondo en tarjetas de noticias
     noticias.forEach(card => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
