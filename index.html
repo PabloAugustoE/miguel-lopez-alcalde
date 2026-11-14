@@ -120,32 +120,28 @@
 
   <main class="relative z-10 pt-16 sm:pt-20">
 
-    <!-- SECCIÓN 1: HERO (Typewriter dinámico en el lugar de la pastilla superior con color rojo original y el título principal fijo) -->
+    <!-- SECCIÓN 1: HERO -->
     <section id="inicio" class="sec-hero hero-responsive relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-6 sm:pt-8 pb-6 sm:pb-10 bg-slate-900">
       <img src="assets/img/miguel-consejales.jpg" alt="Miguel López y equipo El Tambo" class="hero-bg-img absolute inset-0 w-full h-full object-contain sm:object-cover object-center z-0">
       <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/20 to-slate-950/75 z-0"></div>
       
-      <div class="max-w-4xl mx-auto text-center space-y-2 sm:space-y-3 relative z-10">
-        <!-- Pastilla superior adaptable que contiene el Typewriter con color rojo original -->
-        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/75 backdrop-blur-md border border-white/25 text-[10px] sm:text-sm font-bold text-white shadow-md mx-auto">
-          <span class="relative flex h-2 w-2 shrink-0">
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <!-- Pastilla superior adaptable con texto fijo en blanco + typewriter dinámico en rojo -->
+        <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-900/75 backdrop-blur-md border border-white/25 text-xs sm:text-base font-display font-extrabold text-white shadow-md mx-auto">
+          <span class="relative flex h-2 w-2 shrink-0 mr-0.5">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
           </span>
-          <span id="typewriter-word" class="typewriter-span text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] tracking-wide"></span>
+          <span>Por un Tambo <span id="typewriter-word" class="typewriter-span text-red-500 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]"></span></span>
         </div>
-
-        <h1 class="text-xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-tight text-white drop-shadow-md">
-          Por un Tambo con Futuro y <span class="text-rose-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">Esperanza</span>
-        </h1>
       </div>
 
-      <!-- Botones del Hero con mayor transparencia y bordes notorios -->
+      <!-- Botones del Hero aún más transparentes -->
       <div class="w-full max-w-lg mx-auto flex flex-row items-center justify-center gap-2.5 sm:gap-4 mt-auto relative z-10 px-1">
-        <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-600/05 hover:bg-red-600/25 backdrop-blur-[2px] text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-red-500 transition-all text-center tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+        <a href="#propuestas" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-600/0 hover:bg-red-600/20 backdrop-blur-[1px] text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-red-500/90 transition-all text-center tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
           <i class="fa-solid fa-file-contract mr-1 text-red-400"></i> Plan de Gobierno
         </a>
-        <a href="#novedades" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-black/10 hover:bg-black/35 backdrop-blur-[2px] text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-white/85 transition-all text-center tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+        <a href="#novedades" class="flex-1 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-black/0 hover:bg-black/25 backdrop-blur-[1px] text-white text-[11px] sm:text-sm font-extrabold shadow-lg border-2 border-white/80 transition-all text-center tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
           <i class="fa-solid fa-bolt mr-1 text-amber-400"></i> Ver Novedades
         </a>
       </div>
@@ -930,15 +926,10 @@
     </div>
   </footer>
 
-  <!-- Script del Typewriter con las palabras principales dinámicas, color rojo original y timing optimizado -->
+  <!-- Script del Typewriter con palabras dinámicas y timing optimizado -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const words = [
-        'Candidatura Oficial Alcaldía 2027 · El Tambo',
-        'Liderazgo Justo y Transparente',
-        'Compromiso Firme con El Tambo',
-        'Desarrollo y Cambio Verdadero'
-      ];
+      const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
       const targetElement = document.getElementById('typewriter-word');
 
       if (targetElement) {
@@ -946,9 +937,9 @@
         let charIndex = 0;
         let isDeleting = false;
 
-        const typeSpeed = 90;
-        const deleteSpeed = 50;
-        const holdTime = 3000; // 3 segundos de pausa para lectura cómoda
+        const typeSpeed = 95;
+        const deleteSpeed = 55;
+        const holdTime = 3000;
 
         function typeEffect() {
           const currentWord = words[wordIndex];
