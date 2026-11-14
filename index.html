@@ -175,36 +175,30 @@
           </p>
         </div>
 
-        <!-- Tarjeta principal con el video de fondo "portada-fondo.mp4" y el video interactivo "quien-soy.mp4" -->
+        <!-- Tarjeta principal con video de fondo y video interactivo -->
         <div class="about-card-container p-3.5 sm:p-6 rounded-2xl border border-slate-200 text-center relative shadow-xl reveal-up max-w-3xl mx-auto overflow-hidden">
           
-          <!-- SEGUNDO VIDEO: Fondo automático y en bucle infinito ("portada fondo") -->
           <video class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-90" autoplay muted loop playsinline preload="auto">
             <source src="assets/video/portada-fondo.mp4" type="video/mp4">
             Tu navegador no soporta video de fondo.
           </video>
           <div class="absolute inset-0 bg-slate-950/60 z-0 pointer-events-none"></div>
 
-          <!-- Etiqueta superior derecha en el borde: El Tambo 2027 -->
           <div class="absolute top-3 right-3 sm:top-5 sm:right-5 bg-tambo-green text-white text-[10px] sm:text-[11px] font-extrabold px-3.5 py-1 rounded-full shadow-lg z-30 uppercase tracking-wider">
             El Tambo 2027
           </div>
           
-          <!-- PRIMER VIDEO: Video interactivo principal ("quien-soy.mp4") con capa de imagen estática (miguel-portada.jpg) -->
           <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 shadow-2xl bg-slate-950 border border-white/20 z-10 group">
             
-            <!-- Imagen de portada superpuesta (antes y después de reproducir) -->
             <div id="videoPosterOverlay" class="absolute inset-0 z-30 bg-cover bg-center transition-opacity duration-500" style="background-image: url('assets/img/miguel-portada.jpg');">
               <div class="absolute inset-0 bg-slate-950/40 pointer-events-none"></div>
             </div>
 
-            <!-- Video interactivo quien-soy.mp4 -->
             <video id="videoQuienSoy" class="w-full h-full object-cover relative z-10 cursor-pointer" preload="metadata">
               <source src="assets/video/quien-soy.mp4" type="video/mp4">
               Tu navegador no soporta la reproducción de video HTML5.
             </video>
 
-            <!-- Botón de Play central gigante inicial con pulso -->
             <div id="containerPlayBtn" class="absolute inset-0 flex items-center justify-center z-40 cursor-pointer">
               <div class="relative flex items-center justify-center">
                 <div class="absolute w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-tambo-red/60 animate-ping pointer-events-none"></div>
@@ -214,21 +208,18 @@
               </div>
             </div>
 
-            <!-- BARRA DE CONTROLES INFERIOR (Pausa, Progreso / Adelantar / Retrasar, Pantalla completa) -->
+            <!-- Controles de Video -->
             <div id="videoControlsBar" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950/95 via-slate-950/70 to-transparent p-2.5 sm:p-3 z-40 flex items-center gap-2 sm:gap-3 opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
-              <!-- Botón Pausa/Reproducir -->
               <button id="btnTogglePlay" type="button" class="text-white hover:text-tambo-red text-xs sm:text-sm w-7 h-7 flex items-center justify-center transition-colors cursor-pointer" title="Pausar / Reproducir">
                 <i class="fa-solid fa-pause"></i>
               </button>
 
-              <!-- Barra de Progreso / Adelantar / Retrasar -->
               <div class="flex-1 flex items-center gap-2">
                 <span id="currentTimeDisplay" class="text-[9px] sm:text-[10px] font-bold text-white/90">0:00</span>
                 <input id="videoSeekBar" type="range" min="0" max="100" value="0" step="0.1" class="w-full h-1.5 bg-white/30 rounded-lg appearance-none cursor-pointer accent-tambo-red">
                 <span id="durationDisplay" class="text-[9px] sm:text-[10px] font-bold text-white/90">0:00</span>
               </div>
 
-              <!-- Botón Pantalla Completa -->
               <button id="btnFullscreen" type="button" class="text-white hover:text-tambo-red text-xs sm:text-sm w-7 h-7 flex items-center justify-center transition-colors cursor-pointer" title="Pantalla completa">
                 <i class="fa-solid fa-expand"></i>
               </button>
@@ -236,14 +227,13 @@
 
           </div>
 
-          <!-- Textos inferiores sobre el borde del fondo: Nombre y Candidato a la Alcaldía -->
           <div class="relative z-10 pt-1 space-y-0.5">
             <h3 class="font-display font-black text-lg sm:text-2xl text-white tracking-tight">Miguel López</h3>
             <p class="text-[11px] sm:text-xs text-red-400 font-extrabold uppercase tracking-widest">Candidato a la Alcaldía</p>
           </div>
         </div>
 
-        <!-- Párrafos con animación de tipeo letra por letra -->
+        <!-- Párrafos con animación de tipeo letra por letra independiente del scroll -->
         <div class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed reveal-up">
           <p id="parrafo1" class="typing-paragraph" data-text="Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos."></p>
           <p id="parrafo2" class="typing-paragraph" data-text="Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar."></p>
@@ -251,209 +241,213 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: Simulación de Papeleta Oficial -->
+    <!-- SECCIÓN 3: Simulación de Papeleta Oficial (Actualizada y Mejorada) -->
     <section id="simulacion-voto" class="py-12 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200 reveal-up">
       <div class="max-w-6xl mx-auto px-2 sm:px-6 text-center">
         <div class="max-w-2xl mx-auto mb-6 sm:mb-10 space-y-2 px-2">
           <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full shadow-sm">
             <span class="w-2 h-2 rounded-full bg-tambo-red animate-pulse"></span>
-            <span class="text-[10px] sm:text-xs font-bold text-tambo-red uppercase tracking-widest">Simulador Papeleta Oficial 2027</span>
+            <span class="text-[11px] sm:text-sm font-bold text-tambo-red uppercase tracking-widest">Simulador Papeleta Oficial 2027</span>
           </div>
-          <h2 class="text-xl sm:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+          <h2 class="text-2xl sm:text-4xl font-display font-extrabold tracking-tight text-slate-900">
             Así votaremos por el Cambio en El Tambo
           </h2>
-          <p class="text-slate-600 text-xs sm:text-sm">
+          <p class="text-slate-600 text-sm sm:text-base">
             Toca el casillero de <strong class="text-slate-900">Miguel López (Lista 17)</strong> para simular tu voto.
           </p>
         </div>
 
-        <!-- CONTENEDOR DE LA PAPELETA -->
-        <div id="papeletaContainer" class="w-full bg-white rounded-xl sm:rounded-2xl shadow-xl border-2 sm:border-4 border-slate-300 p-2 sm:p-6 relative text-left bg-cover bg-center" style="background-image: url('assets/img/papeleta-bg.jpg');">
-          <div class="absolute inset-0 bg-white/92 backdrop-blur-[1px] rounded-xl sm:rounded-2xl pointer-events-none"></div>
+        <!-- CONTENEDOR DE LA PAPELETA (Estirado hacia abajo y mejorado) -->
+        <div id="papeletaContainer" class="w-full bg-white rounded-xl sm:rounded-2xl shadow-xl border-2 sm:border-4 border-slate-300 p-3 sm:p-8 relative text-left bg-cover bg-center" style="background-image: url('assets/img/papeleta-bg.jpg');">
+          <div class="absolute inset-0 bg-white/93 backdrop-blur-[1px] rounded-xl sm:rounded-2xl pointer-events-none"></div>
 
-          <div class="relative z-10">
-            <!-- Encabezado Papeleta Compacto -->
-            <div class="flex justify-between items-center border-b border-slate-300 pb-2 sm:pb-4 mb-2.5 sm:mb-5 gap-2">
-              <div class="flex items-center gap-1.5 sm:gap-3">
-                <img src="assets/img/escudo-ecuador.jpg" alt="Ecuador" class="w-6 h-6 sm:w-12 sm:h-12 object-contain" />
+          <div class="relative z-10 space-y-4 sm:space-y-6">
+            
+            <!-- Encabezado Papeleta con Escudo e Imagen CNE más grande -->
+            <div class="flex justify-between items-center border-b-2 border-slate-300 pb-3 sm:pb-5 gap-2">
+              <div class="flex items-center gap-2 sm:gap-4">
+                <img src="assets/img/escudo-ecuador.jpg" alt="Ecuador" class="w-10 h-10 sm:w-16 sm:h-16 object-contain" />
                 <div class="text-left leading-tight">
-                  <span class="text-[6px] sm:text-[9px] font-bold text-slate-500 uppercase block">República del Ecuador</span>
-                  <span class="text-[7px] sm:text-[10px] font-bold text-slate-700 block">Seccionales 2027</span>
+                  <span class="text-[8px] sm:text-xs font-bold text-slate-500 uppercase block">República del Ecuador</span>
+                  <span class="text-[9px] sm:text-sm font-extrabold text-slate-800 block">Seccionales 2027</span>
                 </div>
               </div>
               <div class="text-center leading-tight">
-                <h3 class="font-display font-black text-[10px] sm:text-xl text-slate-900 tracking-tight">ALCALDESA / ALCALDE</h3>
-                <h4 class="font-display font-extrabold text-[9px] sm:text-base text-tambo-red">EL TAMBO - CAÑAR</h4>
+                <h3 class="font-display font-black text-xs sm:text-2xl text-slate-900 tracking-tight">ALCALDESA / ALCALDE</h3>
+                <h4 class="font-display font-extrabold text-[11px] sm:text-lg text-tambo-red">EL TAMBO - CAÑAR</h4>
               </div>
-              <div class="flex items-center gap-1.5 sm:gap-3">
+              <div class="flex items-center gap-2 sm:gap-4">
                 <div class="text-right leading-tight hidden xs:block">
-                  <span class="text-[6px] sm:text-[9px] font-bold text-slate-500 uppercase block">CNE Ecuador</span>
-                  <span class="text-[7px] sm:text-[10px] font-bold text-tambo-red block">¡Democracia!</span>
+                  <span class="text-[8px] sm:text-xs font-bold text-slate-500 uppercase block">CNE Ecuador</span>
+                  <span class="text-[9px] sm:text-sm font-extrabold text-tambo-red block">¡Democracia!</span>
                 </div>
-                <img src="assets/img/logo-cne.jpg" alt="CNE" class="w-6 h-6 sm:w-12 sm:h-12 object-contain" />
+                <!-- Logo CNE más grande que el escudo -->
+                <img src="assets/img/logo-cne.jpg" alt="CNE" class="w-12 h-12 sm:w-20 sm:h-20 object-contain drop-shadow-sm" />
               </div>
             </div>
 
-            <div class="bg-slate-100 border border-slate-300 text-center py-1 sm:py-2 px-2 rounded mb-3 sm:mb-5">
-              <p class="text-[8px] sm:text-sm font-black text-slate-800 uppercase tracking-wide">
+            <div class="bg-slate-100 border-2 border-slate-300 text-center py-2 sm:py-3 px-3 rounded-lg shadow-inner">
+              <p class="text-[10px] sm:text-base font-black text-slate-800 uppercase tracking-wide">
                 SE ELIGE UNA (1) LISTA DE ALCALDESA / ALCALDE
               </p>
             </div>
 
-            <!-- TABLA ÚNICA DE 6 COLUMNAS -->
-            <div class="grid grid-cols-6 gap-1 sm:gap-3 items-stretch">
+            <!-- TABLA ÚNICA DE 6 COLUMNAS (Priorizando a Miguel López) -->
+            <div class="grid grid-cols-6 gap-2 sm:gap-4 items-stretch pb-2">
               
-              <!-- Lista 1 -->
-              <div class="border border-slate-300 sm:border-2 rounded-lg sm:rounded-xl p-1 sm:p-2.5 flex flex-col justify-between bg-slate-50/70">
-                <div class="text-center space-y-0.5 sm:space-y-1 pb-1 sm:pb-2 border-b border-slate-200">
-                  <span class="text-[6px] sm:text-[9px] font-bold text-slate-600 block uppercase leading-none h-4 sm:h-7 flex items-center justify-center">Unidad Popular</span>
-                  <span class="font-black text-xs sm:text-xl text-slate-900 block">2</span>
-                  <div class="h-5 sm:h-10 flex items-center justify-center">
-                    <img src="assets/img/logo-up.jpg" alt="UP" class="max-h-4 sm:max-h-8 max-w-full object-contain" />
+              <!-- Lista 1 (Más pequeña) -->
+              <div class="border border-slate-300 sm:border-2 rounded-xl p-1.5 sm:p-3 flex flex-col justify-between bg-slate-50/70">
+                <div class="text-center space-y-1 pb-2 border-b border-slate-200">
+                  <span class="text-[7px] sm:text-[10px] font-bold text-slate-600 block uppercase leading-tight h-5 sm:h-8 flex items-center justify-center">Unidad Popular</span>
+                  <span class="font-black text-sm sm:text-2xl text-slate-900 block">2</span>
+                  <div class="h-8 sm:h-14 flex items-center justify-center">
+                    <img src="assets/img/logo-up.jpg" alt="UP" class="max-h-7 sm:max-h-12 max-w-full object-contain" />
                   </div>
                 </div>
-                <div class="py-1.5 sm:py-3 flex justify-center">
-                  <div class="w-7 h-7 sm:w-14 sm:h-14 bg-white border border-dashed sm:border-2 border-slate-300 rounded flex items-center justify-center">
-                    <span class="text-[7px] sm:text-[10px] text-slate-400 font-bold">—</span>
+                <div class="py-2 sm:py-4 flex justify-center">
+                  <div class="w-9 h-9 sm:w-16 sm:h-16 bg-white border border-dashed sm:border-2 border-slate-300 rounded-lg flex items-center justify-center shadow-inner">
+                    <span class="text-[9px] sm:text-xs text-slate-400 font-bold">—</span>
                   </div>
                 </div>
-                <div class="text-center pt-1 sm:pt-2 border-t border-slate-200">
-                  <div class="w-full aspect-square bg-slate-200 rounded overflow-hidden mb-1">
-                    <img src="assets/img/candidato-pablo-vega.png" alt="Pablo Vega" class="w-full h-full object-cover" />
+                <div class="text-center pt-2 border-t border-slate-200">
+                  <div class="w-full aspect-square bg-slate-200 rounded-lg overflow-hidden mb-1.5 shadow-sm max-w-[70px] sm:max-w-[100px] mx-auto">
+                    <img src="assets/img/candidato-pablo-vega.jpg" alt="Pablo Vega" class="w-full h-full object-cover" />
                   </div>
-                  <h5 class="font-bold text-[6.5px] sm:text-[11px] text-slate-900 leading-tight">PABLO VEGA</h5>
+                  <h5 class="font-bold text-[7px] sm:text-xs text-slate-900 leading-tight">PABLO VEGA</h5>
                 </div>
               </div>
 
-              <!-- Lista 2 -->
-              <div class="border border-slate-300 sm:border-2 rounded-lg sm:rounded-xl p-1 sm:p-2.5 flex flex-col justify-between bg-slate-50/70">
-                <div class="text-center space-y-0.5 sm:space-y-1 pb-1 sm:pb-2 border-b border-slate-200">
-                  <span class="text-[6px] sm:text-[9px] font-bold text-slate-600 block uppercase leading-none h-4 sm:h-7 flex items-center justify-center">Alianza 4-18</span>
-                  <span class="font-black text-xs sm:text-xl text-slate-900 block">4-18</span>
-                  <div class="h-5 sm:h-10 flex items-center justify-center">
-                    <img src="assets/img/logo-alianza4-18.jpg" alt="4-18" class="max-h-4 sm:max-h-8 max-w-full object-contain" />
+              <!-- Lista 2 (Más pequeña) -->
+              <div class="border border-slate-300 sm:border-2 rounded-xl p-1.5 sm:p-3 flex flex-col justify-between bg-slate-50/70">
+                <div class="text-center space-y-1 pb-2 border-b border-slate-200">
+                  <span class="text-[7px] sm:text-[10px] font-bold text-slate-600 block uppercase leading-tight h-5 sm:h-8 flex items-center justify-center">Alianza 4-18</span>
+                  <span class="font-black text-sm sm:text-2xl text-slate-900 block">4-18</span>
+                  <div class="h-8 sm:h-14 flex items-center justify-center">
+                    <img src="assets/img/logo-alianza4-18.jpg" alt="4-18" class="max-h-7 sm:max-h-12 max-w-full object-contain" />
                   </div>
                 </div>
-                <div class="py-1.5 sm:py-3 flex justify-center">
-                  <div class="w-7 h-7 sm:w-14 sm:h-14 bg-white border border-dashed sm:border-2 border-slate-300 rounded flex items-center justify-center">
-                    <span class="text-[7px] sm:text-[10px] text-slate-400 font-bold">—</span>
+                <div class="py-2 sm:py-4 flex justify-center">
+                  <div class="w-9 h-9 sm:w-16 sm:h-16 bg-white border border-dashed sm:border-2 border-slate-300 rounded-lg flex items-center justify-center shadow-inner">
+                    <span class="text-[9px] sm:text-xs text-slate-400 font-bold">—</span>
                   </div>
                 </div>
-                <div class="text-center pt-1 sm:pt-2 border-t border-slate-200">
-                  <div class="w-full aspect-square bg-slate-200 rounded overflow-hidden mb-1">
-                    <img src="assets/img/candidato-manuel-balboa.png" alt="Manuel Balboa" class="w-full h-full object-cover" />
+                <div class="text-center pt-2 border-t border-slate-200">
+                  <div class="w-full aspect-square bg-slate-200 rounded-lg overflow-hidden mb-1.5 shadow-sm max-w-[70px] sm:max-w-[100px] mx-auto">
+                    <img src="assets/img/candidato-manuel-balboa.jpg" alt="Manuel Balboa" class="w-full h-full object-cover" />
                   </div>
-                  <h5 class="font-bold text-[6.5px] sm:text-[11px] text-slate-900 leading-tight">MANUEL BALBOA</h5>
+                  <h5 class="font-bold text-[7px] sm:text-xs text-slate-900 leading-tight">MANUEL BALBOA</h5>
                 </div>
               </div>
 
-              <!-- Lista 3 -->
-              <div class="border border-slate-300 sm:border-2 rounded-lg sm:rounded-xl p-1 sm:p-2.5 flex flex-col justify-between bg-slate-50/70">
-                <div class="text-center space-y-0.5 sm:space-y-1 pb-1 sm:pb-2 border-b border-slate-200">
-                  <span class="text-[6px] sm:text-[9px] font-bold text-slate-600 block uppercase leading-none h-4 sm:h-7 flex items-center justify-center">Alianza 6-3</span>
-                  <span class="font-black text-xs sm:text-xl text-slate-900 block">6-3</span>
-                  <div class="h-5 sm:h-10 flex items-center justify-center">
-                    <img src="assets/img/logo-alianza6-3.jpg" alt="6-3" class="max-h-4 sm:max-h-8 max-w-full object-contain" />
+              <!-- Lista 3 (Más pequeña) -->
+              <div class="border border-slate-300 sm:border-2 rounded-xl p-1.5 sm:p-3 flex flex-col justify-between bg-slate-50/70">
+                <div class="text-center space-y-1 pb-2 border-b border-slate-200">
+                  <span class="text-[7px] sm:text-[10px] font-bold text-slate-600 block uppercase leading-tight h-5 sm:h-8 flex items-center justify-center">Alianza 6-3</span>
+                  <span class="font-black text-sm sm:text-2xl text-slate-900 block">6-3</span>
+                  <div class="h-8 sm:h-14 flex items-center justify-center">
+                    <img src="assets/img/logo-alianza6-3.jpg" alt="6-3" class="max-h-7 sm:max-h-12 max-w-full object-contain" />
                   </div>
                 </div>
-                <div class="py-1.5 sm:py-3 flex justify-center">
-                  <div class="w-7 h-7 sm:w-14 sm:h-14 bg-white border border-dashed sm:border-2 border-slate-300 rounded flex items-center justify-center">
-                    <span class="text-[7px] sm:text-[10px] text-slate-400 font-bold">—</span>
+                <div class="py-2 sm:py-4 flex justify-center">
+                  <div class="w-9 h-9 sm:w-16 sm:h-16 bg-white border border-dashed sm:border-2 border-slate-300 rounded-lg flex items-center justify-center shadow-inner">
+                    <span class="text-[9px] sm:text-xs text-slate-400 font-bold">—</span>
                   </div>
                 </div>
-                <div class="text-center pt-1 sm:pt-2 border-t border-slate-200">
-                  <div class="w-full aspect-square bg-slate-200 rounded overflow-hidden mb-1">
-                    <img src="assets/img/candidato-carlos-bermeo.png" alt="Carlos Bermeo" class="w-full h-full object-cover" />
+                <div class="text-center pt-2 border-t border-slate-200">
+                  <div class="w-full aspect-square bg-slate-200 rounded-lg overflow-hidden mb-1.5 shadow-sm max-w-[70px] sm:max-w-[100px] mx-auto">
+                    <img src="assets/img/candidato-carlos-bermeo.jpg" alt="Carlos Bermeo" class="w-full h-full object-cover" />
                   </div>
-                  <h5 class="font-bold text-[6.5px] sm:text-[11px] text-slate-900 leading-tight">CARLOS BERMEO</h5>
+                  <h5 class="font-bold text-[7px] sm:text-xs text-slate-900 leading-tight">CARLOS BERMEO</h5>
                 </div>
               </div>
 
-              <!-- Lista 4 -->
-              <div class="border border-slate-300 sm:border-2 rounded-lg sm:rounded-xl p-1 sm:p-2.5 flex flex-col justify-between bg-slate-50/70">
-                <div class="text-center space-y-0.5 sm:space-y-1 pb-1 sm:pb-2 border-b border-slate-200">
-                  <span class="text-[6px] sm:text-[9px] font-bold text-slate-600 block uppercase leading-none h-4 sm:h-7 flex items-center justify-center">Mov. ADN</span>
-                  <span class="font-black text-xs sm:text-xl text-slate-900 block">7</span>
-                  <div class="h-5 sm:h-10 flex items-center justify-center">
-                    <img src="assets/img/logo-adn.jpg" alt="ADN" class="max-h-4 sm:max-h-8 max-w-full object-contain" />
+              <!-- Lista 4 (Más pequeña) -->
+              <div class="border border-slate-300 sm:border-2 rounded-xl p-1.5 sm:p-3 flex flex-col justify-between bg-slate-50/70">
+                <div class="text-center space-y-1 pb-2 border-b border-slate-200">
+                  <span class="text-[7px] sm:text-[10px] font-bold text-slate-600 block uppercase leading-tight h-5 sm:h-8 flex items-center justify-center">Mov. ADN</span>
+                  <span class="font-black text-sm sm:text-2xl text-slate-900 block">7</span>
+                  <div class="h-8 sm:h-14 flex items-center justify-center">
+                    <img src="assets/img/logo-adn.jpg" alt="ADN" class="max-h-7 sm:max-h-12 max-w-full object-contain" />
                   </div>
                 </div>
-                <div class="py-1.5 sm:py-3 flex justify-center">
-                  <div class="w-7 h-7 sm:w-14 sm:h-14 bg-white border border-dashed sm:border-2 border-slate-300 rounded flex items-center justify-center">
-                    <span class="text-[7px] sm:text-[10px] text-slate-400 font-bold">—</span>
+                <div class="py-2 sm:py-4 flex justify-center">
+                  <div class="w-9 h-9 sm:w-16 sm:h-16 bg-white border border-dashed sm:border-2 border-slate-300 rounded-lg flex items-center justify-center shadow-inner">
+                    <span class="text-[9px] sm:text-xs text-slate-400 font-bold">—</span>
                   </div>
                 </div>
-                <div class="text-center pt-1 sm:pt-2 border-t border-slate-200">
-                  <div class="w-full aspect-square bg-slate-200 rounded overflow-hidden mb-1">
-                    <img src="assets/img/candidato-joseline-tipanta.png" alt="Joseline Tipanta" class="w-full h-full object-cover" />
+                <div class="text-center pt-2 border-t border-slate-200">
+                  <div class="w-full aspect-square bg-slate-200 rounded-lg overflow-hidden mb-1.5 shadow-sm max-w-[70px] sm:max-w-[100px] mx-auto">
+                    <img src="assets/img/candidato-joseline-tipanta.jpg" alt="Joseline Tipanta" class="w-full h-full object-cover" />
                   </div>
-                  <h5 class="font-bold text-[6.5px] sm:text-[11px] text-slate-900 leading-tight">JOSELINE TIPANTA</h5>
+                  <h5 class="font-bold text-[7px] sm:text-xs text-slate-900 leading-tight">JOSELINE TIPANTA</h5>
                 </div>
               </div>
 
-              <!-- Lista 5 (MIGUEL LÓPEZ) -->
-              <div class="border-2 sm:border-3 border-tambo-red rounded-lg sm:rounded-xl p-1 sm:p-2.5 flex flex-col justify-between bg-red-50/80 shadow-lg relative ring-2 ring-red-400/60 transform scale-[1.05] sm:scale-[1.06] z-10">
-                <div class="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2 bg-tambo-red text-white text-[5.5px] sm:text-[9px] font-black px-1.5 sm:px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow whitespace-nowrap">
-                  Tu Opción
+              <!-- Lista 5 (MIGUEL LÓPEZ - DESTACADO, MÁS GRANDE Y NOTABLE) -->
+              <div class="border-3 sm:border-4 border-tambo-red rounded-2xl p-2 sm:p-4 flex flex-col justify-between bg-red-50 shadow-2xl relative ring-4 ring-red-500/50 transform scale-[1.07] sm:scale-[1.09] z-20">
+                <div class="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 bg-tambo-red text-white text-[7px] sm:text-[11px] font-black px-2 sm:px-4 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
+                  Tu Opción ⭐
                 </div>
-                <div class="text-center space-y-0.5 sm:space-y-1 pb-1 sm:pb-2 border-b border-red-200 pt-0.5 sm:pt-1">
-                  <span class="text-[6px] sm:text-[9px] font-bold text-tambo-red block uppercase leading-none h-4 sm:h-7 flex items-center justify-center">P. Socialista</span>
-                  <span class="font-black text-sm sm:text-2xl text-tambo-red block">17</span>
-                  <div class="h-5 sm:h-10 flex items-center justify-center px-0.5">
-                    <img src="assets/img/logo-pse.jpg" alt="PSE" class="max-h-5 sm:max-h-9 w-auto max-w-full object-contain" />
+                <div class="text-center space-y-1 pb-2 border-b-2 border-red-200 pt-1">
+                  <span class="text-[8px] sm:text-xs font-black text-tambo-red block uppercase leading-tight h-5 sm:h-8 flex items-center justify-center">P. Socialista</span>
+                  <span class="font-black text-lg sm:text-4xl text-tambo-red block drop-shadow-sm">17</span>
+                  <div class="h-9 sm:h-16 flex items-center justify-center px-1">
+                    <img src="assets/img/logo-pse.jpg" alt="PSE" class="max-h-8 sm:max-h-14 w-auto max-w-full object-contain drop-shadow" />
                   </div>
                 </div>
-                <div class="py-1.5 sm:py-3 flex justify-center">
-                  <button id="casillaVoto" type="button" class="w-7 h-7 sm:w-14 sm:h-14 bg-white border border-dashed sm:border-2 border-tambo-red rounded flex items-center justify-center cursor-pointer hover:bg-red-50 transition-all focus:outline-none shadow-inner relative group" title="Haz clic para rayar tu voto por Miguel López">
-                    <span id="textoRayar" class="text-[5px] sm:text-[9px] font-black text-tambo-red uppercase leading-none text-center group-hover:scale-105 transition-transform">VOTA<br>AQUÍ</span>
-                    <svg id="svgTrazo" class="absolute inset-0 w-full h-full p-1 sm:p-1.5 pointer-events-none hidden" viewBox="0 0 100 100">
-                      <path id="pathRayadoDiagonal" d="M 82 18 L 18 82" stroke="#dc2626" stroke-width="11" stroke-linecap="round" class="trazo-linea-roja" />
+                <div class="py-3 sm:py-5 flex justify-center">
+                  <!-- Casilla de votación grande y notable -->
+                  <button id="casillaVoto" type="button" class="w-11 h-11 sm:w-20 sm:h-20 bg-white border-2 sm:border-3 border-tambo-red rounded-xl flex items-center justify-center cursor-pointer hover:bg-red-100 transition-all focus:outline-none shadow-md relative group" title="Haz clic para rayar tu voto por Miguel López">
+                    <span id="textoRayar" class="text-[7px] sm:text-[11px] font-black text-tambo-red uppercase leading-tight text-center group-hover:scale-105 transition-transform">VOTA<br>AQUÍ</span>
+                    <!-- SVG de trazo rojo animado -->
+                    <svg id="svgTrazo" class="absolute inset-0 w-full h-full p-1.5 sm:p-2.5 pointer-events-none hidden" viewBox="0 0 100 100">
+                      <path id="pathRayadoDiagonal" d="M 82 18 L 18 82" stroke="#dc2626" stroke-width="12" stroke-linecap="round" class="trazo-linea-roja" />
                     </svg>
                   </button>
                 </div>
-                <div class="text-center pt-1 sm:pt-2 border-t border-red-200">
-                  <div class="w-full aspect-square bg-slate-200 rounded overflow-hidden mb-1 border border-tambo-red shadow-sm">
-                    <img src="assets/img/candidato-miguel-lopez.jpg" alt="Miguel López" class="w-full h-full object-cover" />
+                <div class="text-center pt-2 border-t-2 border-red-200">
+                  <div class="w-full aspect-square bg-slate-200 rounded-xl overflow-hidden mb-1.5 border-2 border-tambo-red shadow-md max-w-[85px] sm:max-w-[125px] mx-auto">
+                    <img src="assets/img/miguel-perfil.jpg" alt="Miguel López" class="w-full h-full object-cover" />
                   </div>
-                  <h5 class="font-black text-[7.5px] sm:text-[12px] text-slate-900 leading-tight">MIGUEL LÓPEZ</h5>
+                  <h5 class="font-black text-[9px] sm:text-sm text-slate-900 leading-tight">MIGUEL LÓPEZ</h5>
                 </div>
               </div>
 
-              <!-- Lista 6 -->
-              <div class="border border-slate-300 sm:border-2 rounded-lg sm:rounded-xl p-1 sm:p-2.5 flex flex-col justify-between bg-slate-50/70">
-                <div class="text-center space-y-0.5 sm:space-y-1 pb-1 sm:pb-2 border-b border-slate-200">
-                  <span class="text-[6px] sm:text-[9px] font-bold text-slate-600 block uppercase leading-none h-4 sm:h-7 flex items-center justify-center">Ñukanchik Minka</span>
-                  <span class="font-black text-[10px] sm:text-base text-slate-900 block leading-tight py-0.5 sm:py-1">23-21-8</span>
-                  <div class="h-5 sm:h-10 flex items-center justify-center">
-                    <img src="assets/img/logo-nukanchik.jpg" alt="Minka" class="max-h-4 sm:max-h-8 max-w-full object-contain" />
+              <!-- Lista 6 (Más pequeña) -->
+              <div class="border border-slate-300 sm:border-2 rounded-xl p-1.5 sm:p-3 flex flex-col justify-between bg-slate-50/70">
+                <div class="text-center space-y-1 pb-2 border-b border-slate-200">
+                  <span class="text-[7px] sm:text-[10px] font-bold text-slate-600 block uppercase leading-tight h-5 sm:h-8 flex items-center justify-center">Ñukanchik Minka</span>
+                  <span class="font-black text-[10px] sm:text-lg text-slate-900 block leading-tight py-1">23-21-8</span>
+                  <div class="h-8 sm:h-14 flex items-center justify-center">
+                    <img src="assets/img/logo-nukanchik.jpg" alt="Minka" class="max-h-7 sm:max-h-12 max-w-full object-contain" />
                   </div>
                 </div>
-                <div class="py-1.5 sm:py-3 flex justify-center">
-                  <div class="w-7 h-7 sm:w-14 sm:h-14 bg-white border border-dashed sm:border-2 border-slate-300 rounded flex items-center justify-center">
-                    <span class="text-[7px] sm:text-[10px] text-slate-400 font-bold">—</span>
+                <div class="py-2 sm:py-4 flex justify-center">
+                  <div class="w-9 h-9 sm:w-16 sm:h-16 bg-white border border-dashed sm:border-2 border-slate-300 rounded-lg flex items-center justify-center shadow-inner">
+                    <span class="text-[9px] sm:text-xs text-slate-400 font-bold">—</span>
                   </div>
                 </div>
-                <div class="text-center pt-1 sm:pt-2 border-t border-slate-200">
-                  <div class="w-full aspect-square bg-slate-200 rounded overflow-hidden mb-1">
-                    <img src="assets/img/candidato-anibal-urgilez.png" alt="Aníbal Urgilez" class="w-full h-full object-cover" />
+                <div class="text-center pt-2 border-t border-slate-200">
+                  <div class="w-full aspect-square bg-slate-200 rounded-lg overflow-hidden mb-1.5 shadow-sm max-w-[70px] sm:max-w-[100px] mx-auto">
+                    <img src="assets/img/candidato-anibal-urgilez.jpg" alt="Aníbal Urgilez" class="w-full h-full object-cover" />
                   </div>
-                  <h5 class="font-bold text-[6.5px] sm:text-[11px] text-slate-900 leading-tight">ANÍBAL URGILEZ</h5>
+                  <h5 class="font-bold text-[7px] sm:text-xs text-slate-900 leading-tight">ANÍBAL URGILEZ</h5>
                 </div>
               </div>
 
             </div>
 
-            <div class="mt-3 sm:mt-5 pt-2 sm:pt-3 border-t border-slate-200 flex justify-between items-center text-[7px] sm:text-[10px] font-bold text-slate-400 uppercase">
-              <span>IMP. CNE - 2026 - EL TAMBO</span>
-              <span class="text-tambo-red">#ElTamboSomosTodos</span>
+            <div class="mt-4 sm:mt-8 pt-3 sm:pt-4 border-t-2 border-slate-300 flex justify-between items-center text-[9px] sm:text-xs font-bold text-slate-500 uppercase">
+              <span>IMP. CNE - 2026 - EL TAMBO (DOCUMENTO OFICIAL SIMULADO)</span>
+              <span class="text-tambo-red font-black">#ElTamboSomosTodos</span>
             </div>
           </div>
 
         </div>
 
         <div id="mensajeVotoConfirmado" class="mt-4 sm:mt-6 hidden transition-all duration-300">
-          <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-[11px] sm:text-xs font-extrabold px-4 py-2 rounded-full border border-emerald-300 shadow-md">
-            <i class="fa-solid fa-circle-check text-sm text-emerald-600"></i>
+          <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs sm:text-sm font-extrabold px-5 py-2.5 rounded-full border border-emerald-300 shadow-md">
+            <i class="fa-solid fa-circle-check text-base text-emerald-600"></i>
             <span>¡Voto simulado con éxito por Miguel López (Lista 17 - PSE)!</span>
           </div>
         </div>
@@ -721,7 +715,6 @@
       <div class="relative overflow-hidden">
         <div id="proposalTrack" class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 transition-transform duration-500">
           
-          <!-- Ficha 1 -->
           <a href="vialidad.html" class="proposal-card w-full md:w-auto shrink-0 p-4 sm:p-5 rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-between min-h-[250px] sm:min-h-[280px] border border-slate-200 group text-left" style="background-image: url('assets/img/miguel-portada.jpg'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/65 to-white/10"></div>
             <div class="relative z-10">
@@ -734,7 +727,6 @@
             </div>
           </a>
 
-          <!-- Ficha 2 -->
           <a href="turismo.html" class="proposal-card w-full md:w-auto shrink-0 p-4 sm:p-5 rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-between min-h-[250px] sm:min-h-[280px] border border-slate-200 group text-left" style="background-image: url('assets/img/miguel-consejales.jpg'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/65 to-white/10"></div>
             <div class="relative z-10">
@@ -747,7 +739,6 @@
             </div>
           </a>
 
-          <!-- Ficha 3 -->
           <a href="agricultura.html" class="proposal-card w-full md:w-auto shrink-0 p-4 sm:p-5 rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-between min-h-[250px] sm:min-h-[280px] border border-slate-200 group text-left" style="background-image: url('assets/img/miguel-portada.jpg'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/65 to-white/10"></div>
             <div class="relative z-10">
@@ -760,7 +751,6 @@
             </div>
           </a>
 
-          <!-- Ficha 4 -->
           <a href="seguridad.html" class="proposal-card w-full md:w-auto shrink-0 p-4 sm:p-5 rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-between min-h-[250px] sm:min-h-[280px] border border-slate-200 group text-left" style="background-image: url('assets/img/miguel-consejales.jpg'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/65 to-white/10"></div>
             <div class="relative z-10">
@@ -775,7 +765,6 @@
 
         </div>
 
-        <!-- Controles Móviles -->
         <div class="flex md:hidden justify-between items-center mt-4 px-1">
           <button id="prevProposal" type="button" class="w-9 h-9 rounded-xl bg-white border border-slate-300 shadow text-slate-800 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-arrow-left text-xs"></i></button>
           <div class="text-[11px] font-bold text-slate-600 bg-white px-3 py-1 rounded-lg border border-slate-200">
@@ -796,7 +785,6 @@
       <div class="relative max-w-lg mx-auto">
         <div id="resourcesSliderTrack" class="w-full relative overflow-hidden">
           
-          <!-- Ficha 1 -->
           <a href="financiamiento.html" class="resource-slide w-full p-5 sm:p-6 rounded-2xl shadow-lg block group text-left border border-slate-200 bg-cover bg-center overflow-hidden relative transition-all duration-500" style="background-image: url('assets/img/miguel-portada.jpg');">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
             <div class="relative z-10 flex flex-col justify-between min-h-[220px] sm:min-h-[240px]">
@@ -812,7 +800,6 @@
             </div>
           </a>
 
-          <!-- Ficha 2 -->
           <a href="maquinaria.html" class="resource-slide hidden w-full p-5 sm:p-6 rounded-2xl shadow-lg block group text-left border border-slate-200 bg-cover bg-center overflow-hidden relative transition-all duration-500" style="background-image: url('assets/img/miguel-consejales.jpg');">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
             <div class="relative z-10 flex flex-col justify-between min-h-[220px] sm:min-h-[240px]">
@@ -828,7 +815,6 @@
             </div>
           </a>
 
-          <!-- Ficha 3 -->
           <a href="mano-de-obra.html" class="resource-slide hidden w-full p-5 sm:p-6 rounded-2xl shadow-lg block group text-left border border-slate-200 bg-cover bg-center overflow-hidden relative transition-all duration-500" style="background-image: url('assets/img/miguel-portada.jpg');">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
             <div class="relative z-10 flex flex-col justify-between min-h-[220px] sm:min-h-[240px]">
@@ -846,7 +832,6 @@
 
         </div>
 
-        <!-- Controles Slider Recursos -->
         <div class="flex items-center justify-between mt-4 px-1">
           <button id="prevResource" type="button" class="w-9 h-9 rounded-xl bg-white border border-slate-300 hover:border-tambo-red text-slate-800 flex items-center justify-center shadow-sm cursor-pointer">
             <i class="fa-solid fa-chevron-left text-xs"></i>
@@ -884,7 +869,6 @@
         </svg>
 
         <div class="relative z-10 flex flex-col gap-5 sm:gap-6">
-          <!-- Hito 1 -->
           <div class="hito-item flex flex-col items-center sm:items-end roadmap-node">
             <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-1">
               <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-red transition-colors">Parada 01: Diálogo Comunitario</span>
@@ -897,7 +881,6 @@
             </div>
           </div>
 
-          <!-- Hito 2 -->
           <div class="hito-item flex flex-col items-center sm:items-start sm:pl-16 roadmap-node">
             <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-2">
               <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-sm sm:text-base shadow-xl border-2 border-white shrink-0">2</div>
@@ -910,7 +893,6 @@
             </div>
           </div>
 
-          <!-- Hito 3 -->
           <div class="hito-item flex flex-col items-center roadmap-node">
             <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-3">
               <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-tambo-red transition-colors">Parada 03: Socialización</span>
@@ -923,7 +905,6 @@
             </div>
           </div>
 
-          <!-- Hito 4 -->
           <div class="hito-item flex flex-col items-center sm:items-start sm:pl-28 roadmap-node">
             <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-4">
               <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-tambo-green text-white flex items-center justify-center font-bold text-sm sm:text-base shadow-xl border-2 border-white shrink-0">4</div>
@@ -936,7 +917,6 @@
             </div>
           </div>
 
-          <!-- Hito 5 -->
           <div class="hito-item flex flex-col items-center sm:items-end roadmap-node">
             <button type="button" class="btn-hito group flex items-center gap-3 cursor-pointer focus:outline-none" data-target="info-5">
               <span class="font-display font-bold text-xs sm:text-sm text-slate-900 bg-white px-4 py-2 rounded-full border border-slate-300 shadow-md group-hover:border-slate-900 transition-colors">Elecciones 2027: Victoria</span>
