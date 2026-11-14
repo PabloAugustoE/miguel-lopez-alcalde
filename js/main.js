@@ -87,21 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (videoQuienSoy && btnPlayQuienSoy && containerPlayBtn && videoPosterOverlay) {
     
-    // Función auxiliar para formatear segundos a MM:SS
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
-    // Actualizar duración total cuando carguen los metadatos del video
     videoQuienSoy.addEventListener('loadedmetadata', () => {
       if (durationDisplay) {
         durationDisplay.textContent = formatTime(videoQuienSoy.duration);
       }
     });
 
-    // Iniciar reproducción desde el botón central o clic en el póster
     const startVideoPlayback = () => {
       videoPosterOverlay.style.opacity = '0';
       setTimeout(() => {
@@ -135,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Botón de Pausa / Reproducir en la barra inferior
     if (btnTogglePlay) {
       btnTogglePlay.addEventListener('click', () => {
         if (videoQuienSoy.paused) {
@@ -152,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Actualizar barra de progreso (SeekBar) y tiempo actual mientras se reproduce
     videoQuienSoy.addEventListener('timeupdate', () => {
       if (videoQuienSoy.duration) {
         const percent = (videoQuienSoy.currentTime / videoQuienSoy.duration) * 100;
@@ -163,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Adelantar / Retrasar al arrastrar o hacer clic en la barra de progreso
     if (videoSeekBar) {
       videoSeekBar.addEventListener('input', () => {
         if (videoQuienSoy.duration) {
@@ -173,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Pantalla completa
     if (btnFullscreen) {
       btnFullscreen.addEventListener('click', () => {
         if (videoQuienSoy.requestFullscreen) {
@@ -186,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Al finalizar el video, restaurar la imagen de portada y el botón de play
     videoQuienSoy.addEventListener('ended', () => {
       videoPosterOverlay.classList.remove('hidden');
       setTimeout(() => {
@@ -202,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 4. ANIMACIÓN SECUENCIAL LETRA POR LETRA (¿Quién es Miguel López?)
+  // 4. ANIMACIÓN SECUENCIAL CONTINUA (¿Quién es Miguel López?)
   // ==========================================
   const p1 = document.getElementById('parrafo1');
   const p2 = document.getElementById('parrafo2');
@@ -240,25 +232,30 @@ document.addEventListener('DOMContentLoaded', () => {
     typeNext();
   }
 
-  const observerQuienEs = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
+  // Activación segura y continua que no se detiene al manipular el scroll
+  let animationTriggered = false;
+  const sectionQuienEs = document.getElementById('quien-es');
+
+  if (sectionQuienEs) {
+    const checkScrollForTyping = () => {
+      if (animationTriggered) return;
+      const rect = sectionQuienEs.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.8) {
+        animationTriggered = true;
         playTypingSequence(p1, () => {
           playTypingSequence(p2);
         });
-        obs.disconnect();
+        window.removeEventListener('scroll', checkScrollForTyping);
       }
-    });
-  }, { threshold: 0.3 });
+    };
 
-  const sectionQuienEs = document.getElementById('quien-es');
-  if (sectionQuienEs) {
-    observerQuienEs.observe(sectionQuienEs);
+    window.addEventListener('scroll', checkScrollForTyping);
+    checkScrollForTyping(); // Comprobar por si ya está en vista al cargar
   }
 
 
   // ==========================================
-  // 5. SIMULACIÓN DE VOTO EN PAPELETA
+  // 5. SIMULACIÓN DE VOTO EN PAPELETA (Recuadro negro con línea fija y trazo rojo)
   // ==========================================
   const casillaVoto = document.getElementById('casillaVoto');
   const textoRayar = document.getElementById('textoRayar');
@@ -266,13 +263,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
 
   if (casillaVoto) {
+    // Creamos la línea horizontal fija negra dentro de la casilla
+    let lineaFijaNegra = document.createElement('div');
+    lineaFijaNegra.className = 'absolute inset-x-2 top-1/2 h-[3px] bg-black pointer-events-none hidden';
+    lineaFijaNegra.id = 'lineaFijaNegra';
+    casillaVoto.appendChild(lineaFijaNegra);
+
     casillaVoto.addEventListener('click', () => {
       const isHidden = svgTrazo.classList.contains('hidden');
       if (isHidden) {
+        casillaVoto.classList.remove('bg-white', 'hover:bg-red-100');
+        casillaVoto.classList.add('bg-black');
+        lineaFijaNegra.classList.remove('hidden');
         svgTrazo.classList.remove('hidden');
         if (textoRayar) textoRayar.style.opacity = '0';
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.remove('hidden');
       } else {
+        casillaVoto.classList.remove('bg-black');
+        casillaVoto.classList.add('bg-white', 'hover:bg-red-100');
+        lineaFijaNegra.classList.add('hidden');
         svgTrazo.classList.add('hidden');
         if (textoRayar) textoRayar.style.opacity = '1';
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.add('hidden');
