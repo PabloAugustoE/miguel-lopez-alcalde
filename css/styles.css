@@ -18,24 +18,9 @@ body {
   width: 100%;
 }
 
-/* Tipografía Juvenil y Minimalista */
+/* Tipografía */
 .font-jakarta {
   font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-/* Navbar Glass */
-.nav-glass {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-}
-
-/* Gradiente Cívico */
-.text-gradient-flag {
-  background: linear-gradient(135deg, var(--tambo-red) 0%, var(--tambo-green) 50%, var(--tambo-dark) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 /* Scrollbar Personalizado */
@@ -58,20 +43,18 @@ body {
 
 
 /* ==========================================================================
+   ANIMACIÓN DE APARICIÓN HACIA ARRIBA (.reveal-up)
+   ========================================================================== */
+.reveal-up {
+  will-change: transform, opacity;
+}
+
+
+/* ==========================================================================
    SECCIÓN 1: HERO & EFECTO TYPEWRITER
    ========================================================================== */
 .sec-hero {
   position: relative;
-}
-
-.hero-card {
-  background: #ffffff;
-  border-top: 4px solid var(--tambo-red);
-  transition: transform 0.3s ease;
-}
-
-.hero-card:hover {
-  transform: translateY(-4px);
 }
 
 .typewriter-span {
@@ -93,23 +76,13 @@ body {
 
 
 /* ==========================================================================
-   SECCIÓN 2: LIDERAZGO Y ANIMACIÓN DE PALABRAS (GSAP)
+   SECCIÓN 2: LIDERAZGO Y MÁSCARA DE TEXTO
    ========================================================================== */
-.sec-about {
-  position: relative;
-}
-
-.about-container {
-  background: #ffffff;
-  border-left: 6px solid var(--tambo-red);
-}
-
 .about-photo-box {
   background: var(--tambo-light);
   border: 1px solid #e2e8f0;
 }
 
-/* Máscara para revelado palabra por palabra de abajo hacia arriba */
 .word-mask {
   display: inline-block;
   overflow: hidden;
@@ -146,18 +119,17 @@ body {
 .marquee-track-left {
   display: flex;
   width: max-content;
-  animation: scrollLeft 45s linear infinite;
+  animation: scrollLeft 40s linear infinite;
   will-change: transform;
 }
 
 .marquee-track-right {
   display: flex;
   width: max-content;
-  animation: scrollRight 45s linear infinite;
+  animation: scrollRight 40s linear infinite;
   will-change: transform;
 }
 
-/* Pausa suave al interactuar para examinar las fotografías */
 .marquee-track-left:hover,
 .marquee-track-right:hover {
   animation-play-state: paused;
@@ -183,7 +155,7 @@ body {
 
 
 /* ==========================================================================
-   SECCIÓN 6: PROPUESTAS / PILARES DE TRANSFORMACIÓN
+   SECCIÓN 6: PILARES DE TRANSFORMACIÓN
    ========================================================================== */
 .sec-proposals {
   background: radial-gradient(circle at top right, rgba(22, 163, 74, 0.04) 0%, transparent 60%);
@@ -211,27 +183,12 @@ body {
   border-bottom: 1px solid #e2e8f0;
 }
 
-.resource-box {
-  border: 1px solid #e2e8f0;
-  border-left: 4px solid var(--tambo-dark);
-  transition: transform 0.3s ease;
-}
-
-.resource-box:hover {
-  transform: translateY(-4px);
-  border-left-color: var(--tambo-green);
-}
-
 
 /* ==========================================================================
    SECCIÓN 8: ROADMAP TÁCTIL Y STYLUS
    ========================================================================== */
 .sec-roadmap {
   position: relative;
-}
-
-.roadmap-wrapper {
-  border-left: 4px solid var(--tambo-red);
 }
 
 .roadmap-node {
@@ -250,23 +207,15 @@ body {
 
 
 /* ==========================================================================
-   OPTIMIZACIÓN Y AJUSTES PARA DISPOSITIVOS MÓVILES (< 768px)
+   MEDIA QUERIES / OPTIMIZACIÓN MÓVIL
    ========================================================================== */
 @media (max-width: 767px) {
-  /* Ajuste de velocidad de galería en pantallas táctiles pequeñas */
   .marquee-track-left,
   .marquee-track-right {
-    animation-duration: 30s;
+    animation-duration: 28s;
   }
 
-  /* Evitar que el hover pegajoso en pantallas táctiles bloquee tarjetas */
   .proposal-card:hover {
     transform: none;
-  }
-
-  /* Ajuste de espaciado y alineación en tarjetas desplegables del Roadmap */
-  .info-desplegable {
-    margin-left: auto;
-    margin-right: auto;
   }
 }
