@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ==========================================================
-     1. MENÚ DESPLEGABLE "SÚMATE" (HEADER)
-     ========================================================== */
+  // ==========================================
+  // 1. MENÚ DESPLEGABLE "SÚMATE"
+  // ==========================================
   const btnSumate = document.getElementById('btnSumate');
   const menuSumate = document.getElementById('menuSumate');
   const iconSumateArrow = document.getElementById('iconSumateArrow');
@@ -10,20 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnSumate && menuSumate) {
     btnSumate.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = !menuSumate.classList.contains('hidden');
-      
-      if (isOpen) {
-        menuSumate.classList.add('hidden');
-        btnSumate.setAttribute('aria-expanded', 'false');
-        if (iconSumateArrow) iconSumateArrow.style.transform = 'rotate(0deg)';
-      } else {
-        menuSumate.classList.remove('hidden');
-        btnSumate.setAttribute('aria-expanded', 'true');
-        if (iconSumateArrow) iconSumateArrow.style.transform = 'rotate(180deg)';
+      const isHidden = menuSumate.classList.toggle('hidden');
+      btnSumate.setAttribute('aria-expanded', !isHidden);
+      if (iconSumateArrow) {
+        iconSumateArrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
       }
     });
 
-    // Cerrar menú al hacer clic fuera
+    // Cerrar al hacer clic fuera
     document.addEventListener('click', (e) => {
       if (!btnSumate.contains(e.target) && !menuSumate.contains(e.target)) {
         menuSumate.classList.add('hidden');
@@ -34,106 +28,152 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ==========================================================
-     2. REPRODUCTOR DE VIDEO ("¿QUIÉN ES MIGUEL LÓPEZ?")
-     ========================================================== */
-  const videoMiguel = document.getElementById('videoMiguel');
-  const btnPlayInicial = document.getElementById('btnPlayInicial');
-  const capaPortada = document.getElementById('capaPortada');
-  const pantallaFinal = document.getElementById('pantallaFinal');
-  const btnReplay = document.getElementById('btnReplay');
+  // ==========================================
+  // 2. EFECTO TYPEWRITER (HERO)
+  // ==========================================
+  const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
+  const targetElement = document.getElementById('typewriter-word');
 
-  if (videoMiguel && btnPlayInicial && capaPortada) {
-    btnPlayInicial.addEventListener('click', () => {
-      capaPortada.classList.add('opacity-0', 'pointer-events-none');
-      setTimeout(() => capaPortada.classList.add('hidden'), 500);
-      videoMiguel.play();
-    });
+  if (targetElement) {
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
 
-    videoMiguel.addEventListener('ended', () => {
-      if (pantallaFinal) {
-        pantallaFinal.classList.remove('hidden');
-        setTimeout(() => pantallaFinal.classList.remove('opacity-0'), 20);
-      }
-    });
+    const typeSpeed = 100;
+    const deleteSpeed = 60;
+    const holdTime = 3000;
 
-    if (btnReplay && pantallaFinal) {
-      btnReplay.addEventListener('click', () => {
-        pantallaFinal.classList.add('opacity-0');
-        setTimeout(() => {
-          pantallaFinal.classList.add('hidden');
-          videoMiguel.currentTime = 0;
-          videoMiguel.play();
-        }, 500);
-      });
-    }
-  }
+    function typewriterLoop() {
+      const currentWord = words[wordIndex];
 
+      if (isDeleting) {
+        charIndex--;
+        targetElement.textContent = currentWord.substring(0, charIndex);
 
-  /* ==========================================================
-     3. SIMULACIÓN DE PAPELETA OFICIAL 2027
-     ========================================================== */
-  const casillaVoto = document.getElementById('casillaVoto');
-  const svgTrazo = document.getElementById('svgTrazo');
-  const textoRayar = document.getElementById('textoRayar');
-  const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
-
-  if (casillaVoto && svgTrazo && textoRayar && mensajeVotoConfirmado) {
-    casillaVoto.addEventListener('click', () => {
-      const estaRayado = !svgTrazo.classList.contains('hidden');
-
-      if (!estaRayado) {
-        // Marcar voto
-        svgTrazo.classList.remove('hidden');
-        textoRayar.classList.add('hidden');
-        casillaVoto.classList.add('bg-red-50');
-        mensajeVotoConfirmado.classList.remove('hidden');
-        
-        // Animación GSAP si está disponible
-        if (typeof gsap !== 'undefined') {
-          gsap.fromTo(svgTrazo, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" });
-          gsap.fromTo(mensajeVotoConfirmado, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
+        if (charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(typewriterLoop, 400);
+        } else {
+          setTimeout(typewriterLoop, deleteSpeed);
         }
       } else {
-        // Desmarcar voto (toggle)
+        charIndex++;
+        targetElement.textContent = currentWord.substring(0, charIndex);
+
+        if (charIndex === currentWord.length) {
+          isDeleting = true;
+          setTimeout(typewriterLoop, holdTime);
+        } else {
+          setTimeout(typewriterLoop, typeSpeed);
+        }
+      }
+    }
+    typewriterLoop();
+  }
+
+
+  // ==========================================
+  // 3. ANIMACIÓN SECUENCIAL LETRA POR LETRA (¿Quién es Miguel López?)
+  // ==========================================
+  const p1 = document.getElementById('parrafo1');
+  const p2 = document.getElementById('parrafo2');
+
+  function prepareText(element) {
+    if (!element) return;
+    const text = element.getAttribute('data-text');
+    if (!text) return;
+    element.innerHTML = '';
+    text.split('').forEach(char => {
+      const span = document.createElement('span');
+      span.className = 'typing-letter';
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      element.appendChild(span);
+    });
+  }
+
+  prepareText(p1);
+  prepareText(p2);
+
+  function playTypingSequence(element, onComplete) {
+    if (!element) return;
+    const letters = element.querySelectorAll('.typing-letter');
+    let index = 0;
+    
+    function typeNext() {
+      if (index < letters.length) {
+        letters[index].classList.add('visible');
+        index++;
+        setTimeout(typeNext, 18); // Velocidad rápida y fluida
+      } else if (onComplete) {
+        onComplete();
+      }
+    }
+    typeNext();
+  }
+
+  const observerQuienEs = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        playTypingSequence(p1, () => {
+          playTypingSequence(p2);
+        });
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const sectionQuienEs = document.getElementById('quien-es');
+  if (sectionQuienEs) {
+    observerQuienEs.observe(sectionQuienEs);
+  }
+
+
+  // ==========================================
+  // 4. SIMULACIÓN DE VOTO EN PAPELETA
+  // ==========================================
+  const casillaVoto = document.getElementById('casillaVoto');
+  const textoRayar = document.getElementById('textoRayar');
+  const svgTrazo = document.getElementById('svgTrazo');
+  const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
+
+  if (casillaVoto) {
+    casillaVoto.addEventListener('click', () => {
+      const isHidden = svgTrazo.classList.contains('hidden');
+      if (isHidden) {
+        svgTrazo.classList.remove('hidden');
+        if (textoRayar) textoRayar.style.opacity = '0';
+        if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.remove('hidden');
+      } else {
         svgTrazo.classList.add('hidden');
-        textoRayar.classList.remove('hidden');
-        casillaVoto.classList.remove('bg-red-50');
-        mensajeVotoConfirmado.classList.add('hidden');
+        if (textoRayar) textoRayar.style.opacity = '1';
+        if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.add('hidden');
       }
     });
   }
 
 
-  /* ==========================================================
-     4. CARRUSEL DE NOVEDADES
-     ========================================================== */
+  // ==========================================
+  // 5. CARRUSEL DE NOVEDADES
+  // ==========================================
   const carruselTrack = document.getElementById('carruselTrack');
   const btnPrev = document.getElementById('btnPrev');
   const btnNext = document.getElementById('btnNext');
   const currentIndexEl = document.getElementById('currentIndex');
-  const totalIndexEl = document.getElementById('totalIndex');
-  const dotBtns = document.querySelectorAll('.dot-btn');
+  const dots = document.querySelectorAll('.dot-btn');
+  const noticias = document.querySelectorAll('.noticia-card');
 
-  if (carruselTrack && btnPrev && btnNext) {
-    const cards = carruselTrack.querySelectorAll('.noticia-card');
-    const totalCards = cards.length;
-    if (totalIndexEl) totalIndexEl.textContent = totalCards;
+  if (carruselTrack && noticias.length > 0) {
+    let currentIdx = 0;
+    const totalNoticias = noticias.length;
 
-    let currentCardIdx = 0;
+    function updateCarrusel() {
+      const cardWidth = noticias[0].offsetWidth + 16; // ancho + gap (16px)
+      carruselTrack.style.transform = `translateX(-${currentIdx * cardWidth}px)`;
+      if (currentIndexEl) currentIndexEl.textContent = currentIdx + 1;
 
-    function updateCarrusel(index) {
-      if (index < 0) index = totalCards - 1;
-      if (index >= totalCards) index = 0;
-      currentCardIdx = index;
-
-      const cardWidth = cards[0].offsetWidth + 16; // ancho + gap (gap-4 = 16px)
-      carruselTrack.style.transform = `translateX(-${currentCardIdx * cardWidth}px)`;
-
-      if (currentIndexEl) currentIndexEl.textContent = currentCardIdx + 1;
-
-      dotBtns.forEach((dot, idx) => {
-        if (idx === currentCardIdx) {
+      dots.forEach((dot, idx) => {
+        if (idx === currentIdx) {
           dot.classList.remove('w-1.5', 'bg-slate-300');
           dot.classList.add('w-5', 'bg-tambo-red');
         } else {
@@ -143,15 +183,29 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    btnNext.addEventListener('click', () => updateCarrusel(currentCardIdx + 1));
-    btnPrev.addEventListener('click', () => updateCarrusel(currentCardIdx - 1));
+    if (btnNext) {
+      btnNext.addEventListener('click', () => {
+        currentIdx = (currentIdx + 1) % totalNoticias;
+        updateCarrusel();
+      });
+    }
 
-    dotBtns.forEach((dot, idx) => {
-      dot.addEventListener('click', () => updateCarrusel(idx));
+    if (btnPrev) {
+      btnPrev.addEventListener('click', () => {
+        currentIdx = (currentIdx - 1 + totalNoticias) % totalNoticias;
+        updateCarrusel();
+      });
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        currentIdx = idx;
+        updateCarrusel();
+      });
     });
 
-    // Efecto hover dinámico en tarjetas de noticias
-    cards.forEach(card => {
+    // Efecto hover para alternar imagen de fondo en tarjetas de noticias
+    noticias.forEach(card => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
       if (hoverImg && defaultImg) {
@@ -163,64 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
-
-    // Auto-avance cada 6 segundos
-    let carruselInterval = setInterval(() => {
-      updateCarrusel(currentCardIdx + 1);
-    }, 6000);
-
-    carruselTrack.addEventListener('mouseenter', () => clearInterval(carruselInterval));
   }
 
 
-  /* ==========================================================
-     5. SLIDER DE RECURSOS Y MAQUINARIA (MÓVIL)
-     ========================================================== */
-  const resourceSlides = document.querySelectorAll('.resource-slide');
-  const prevResource = document.getElementById('prevResource');
-  const nextResource = document.getElementById('nextResource');
-  const resDots = document.querySelectorAll('.res-dot');
-
-  if (resourceSlides.length > 0 && prevResource && nextResource) {
-    let currentResIdx = 0;
-    const totalRes = resourceSlides.length;
-
-    function showResourceSlide(index) {
-      if (index < 0) index = totalRes - 1;
-      if (index >= totalRes) index = 0;
-      currentResIdx = index;
-
-      resourceSlides.forEach((slide, idx) => {
-        if (idx === currentResIdx) {
-          slide.classList.remove('hidden');
-        } else {
-          slide.classList.add('hidden');
-        }
-      });
-
-      resDots.forEach((dot, idx) => {
-        if (idx === currentResIdx) {
-          dot.classList.remove('w-1.5', 'bg-slate-300');
-          dot.classList.add('w-5', 'bg-tambo-red');
-        } else {
-          dot.classList.remove('w-5', 'bg-tambo-red');
-          dot.classList.add('w-1.5', 'bg-slate-300');
-        }
-      });
-    }
-
-    nextResource.addEventListener('click', () => showResourceSlide(currentResIdx + 1));
-    prevResource.addEventListener('click', () => showResourceSlide(currentResIdx - 1));
-
-    resDots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => showResourceSlide(idx));
-    });
-  }
-
-
-  /* ==========================================================
-     6. ROADMAP INTERACTIVO (CRONOGRAMA DE MANDATO)
-     ========================================================== */
+  // ==========================================
+  // 6. ROADMAP INTERACTIVO
+  // ==========================================
   const btnHitos = document.querySelectorAll('.btn-hito');
   const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
 
@@ -228,17 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
       const infoBox = document.getElementById(targetId);
-
       if (infoBox) {
-        const isHidden = infoBox.classList.contains('hidden');
-        if (isHidden) {
-          infoBox.classList.remove('hidden');
-          if (typeof gsap !== 'undefined') {
-            gsap.fromTo(infoBox, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" });
-          }
-        } else {
-          infoBox.classList.add('hidden');
-        }
+        infoBox.classList.toggle('hidden');
       }
     });
   });
@@ -246,42 +239,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnToggleAllRoadmap) {
     let allOpen = false;
     btnToggleAllRoadmap.addEventListener('click', () => {
-      const allInfoBoxes = document.querySelectorAll('.info-desplegable');
       allOpen = !allOpen;
-
-      allInfoBoxes.forEach(box => {
+      document.querySelectorAll('.info-desplegable').forEach(box => {
         if (allOpen) {
           box.classList.remove('hidden');
         } else {
           box.classList.add('hidden');
         }
       });
-    });
-  }
-
-
-  /* ==========================================================
-     7. ANIMACIONES DE ENTRADA CON GSAP Y SCROLLTRIGGER
-     ========================================================== */
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const revealElements = document.querySelectorAll('.reveal-up');
-    revealElements.forEach(el => {
-      gsap.fromTo(el, 
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
     });
   }
 
