@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let typeSpeed = isDeleting ? 75 : 120;
 
     if (!isDeleting && charIndex === currentWord.length) {
-      typeSpeed = 2000; // Pausa al completar la palabra
+      typeSpeed = 2000;
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
@@ -240,13 +240,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     carruselWrapper.addEventListener("scroll", () => {
-      const cardWidth = 350 + 24; // ancho aproximado + gap
+      const cardWidth = 350 + 24;
       const index = Math.round(carruselWrapper.scrollLeft / cardWidth) + 1;
       const clampedIndex = Math.max(1, Math.min(index, tarjetasNoticia.length));
       if (currentIndexNovedades) currentIndexNovedades.textContent = clampedIndex;
     });
 
-    // Efecto hover imagen secundaria en noticias
     tarjetasNoticia.forEach(card => {
       const hoverImg = card.getAttribute("data-hover-img");
       const defaultImg = card.getAttribute("data-default-img");
@@ -273,12 +272,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeIndex = 0;
   const totalCards = cards.length;
 
-  // Crear indicadores (dots)
   if (coverflowDots && totalCards > 0) {
     for (let i = 0; i < totalCards; i++) {
       const dot = document.createElement("button");
       dot.type = "button";
-      dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === 0 ? 'bg-tango-red bg-red-600 w-6' : 'bg-slate-300'}`;
+      dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === 0 ? 'bg-red-600 w-6' : 'bg-slate-300'}`;
       dot.setAttribute("aria-label", `Ir a propuesta ${i + 1}`);
       dot.addEventListener("click", () => {
         activeIndex = i;
@@ -292,11 +290,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cards.length === 0) return;
 
     cards.forEach((card, index) => {
-      card.className = "coverflow-card group"; // limpiar clases de posición
+      card.className = "coverflow-card group";
 
       let offset = index - activeIndex;
 
-      // Ajustar loop circular
       if (offset > Math.floor(totalCards / 2)) offset -= totalCards;
       if (offset < -Math.floor(totalCards / 2)) offset += totalCards;
 
@@ -315,7 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Actualizar dots
     if (coverflowDots) {
       const dots = coverflowDots.querySelectorAll("button");
       dots.forEach((dot, idx) => {
@@ -342,37 +338,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Inicializar coverflow
   updateCoverflow();
-
-
-  /* ==========================================
-     8. ROADMAP INTERACTIVO
-     ========================================== */
-  const btnHitos = document.querySelectorAll(".btn-hito");
-  const btnToggleAllRoadmap = document.getElementById("btnToggleAllRoadmap");
-
-  btnHitos.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const targetId = btn.getAttribute("data-target");
-      const targetDiv = document.getElementById(targetId);
-      if (targetDiv) {
-        targetDiv.classList.toggle("hidden");
-      }
-    });
-  });
-
-  if (btnToggleAllRoadmap) {
-    let allOpen = false;
-    btnToggleAllRoadmap.addEventListener("click", () => {
-      allOpen = !allOpen;
-      const despegables = document.querySelectorAll(".info-desplegable");
-      despegables.forEach(div => {
-        if (allOpen) div.classList.remove("hidden");
-        else div.classList.add("hidden");
-      });
-      btnToggleAllRoadmap.textContent = allOpen ? "Cerrar Todas las Paradas" : "Abrir Todas las Paradas";
-    });
-  }
 
 });
