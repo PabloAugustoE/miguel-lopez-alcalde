@@ -1059,17 +1059,37 @@
 
   </main>
   
-  <footer class="sec-footer border-t border-slate-200 mt-12 py-8 px-4 bg-white relative z-10">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center md:text-left">
+  <!-- SECCIÓN FOOTER CON VIDEO DE FONDO Y REDES SOCIALES A COLOR -->
+  <footer class="sec-footer relative overflow-hidden mt-12 py-12 px-4 text-white z-10">
+    <!-- Video de fondo -->
+    <video class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none" autoplay muted loop playsinline preload="auto">
+      <source src="assets/video/footer.mp4" type="video/mp4">
+    </video>
+    <!-- Capa oscura semitransparente para legibilidad -->
+    <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px] z-10 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-20 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-300 text-center md:text-left">
       <div class="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3">
-        <span class="font-display text-slate-900 font-bold text-sm">Miguel López Alcalde</span>
-        <span>© 2026. El Tambo, Cañar, Ecuador.</span>
+        <span class="font-display text-white font-black text-sm sm:text-base tracking-wide">Miguel López Alcalde</span>
+        <span class="text-slate-400">© 2026. El Tambo, Cañar, Ecuador.</span>
       </div>
-      <div class="flex items-center gap-6">
-        <a href="https://www.facebook.com/share/1DwUsgrKMW/" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors text-lg"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.tiktok.com/@miguel_l78?_r=1&_t=ZS-9AfvGUDpd6C" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 transition-colors text-lg"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/miguel.lopez1912?srtk=OHRwZGl0ZHAxa2Nw" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors text-lg"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://chat.whatsapp.com/CqIVBBFbPhqBV8ubm4bNtJ?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer" class="hover:text-green-600 transition-colors text-lg"><i class="fa-brands fa-whatsapp"></i></a>
+      <div class="flex items-center gap-5">
+        <!-- Facebook (Color Azul Original) -->
+        <a href="https://www.facebook.com/share/1DwUsgrKMW/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all shadow-md group" title="Facebook">
+          <i class="fa-brands fa-facebook text-[#1877F2] text-xl group-hover:scale-110 transition-transform"></i>
+        </a>
+        <!-- TikTok (Color Negro/Blanco Original con acento) -->
+        <a href="https://www.tiktok.com/@miguel_l78?_r=1&_t=ZS-9AfvGUDpd6C" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all shadow-md group" title="TikTok">
+          <i class="fa-brands fa-tiktok text-white text-lg group-hover:scale-110 transition-transform"></i>
+        </a>
+        <!-- Instagram (Degradado Rosado/Morado Original) -->
+        <a href="https://www.instagram.com/miguel.lopez1912?srtk=OHRwZGl0ZHAxa2Nw" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all shadow-md group" title="Instagram">
+          <i class="fa-brands fa-instagram text-[#E4405F] text-xl group-hover:scale-110 transition-transform"></i>
+        </a>
+        <!-- WhatsApp (Color Verde Original) -->
+        <a href="https://chat.whatsapp.com/CqIVBBFbPhqBV8ubm4bNtJ?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all shadow-md group" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp text-[#25D366] text-xl group-hover:scale-110 transition-transform"></i>
+        </a>
       </div>
     </div>
   </footer>
