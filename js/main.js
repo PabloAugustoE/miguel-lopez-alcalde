@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 3. VIDEO INTERACTIVO PRINCIPAL (quien-soy.mp4) CON CONTROLES COMPLETOS
+  // 3. VIDEO INTERACTIVO PRINCIPAL
   // ==========================================
   const videoQuienSoy = document.getElementById('videoQuienSoy');
   const btnPlayQuienSoy = document.getElementById('btnPlayQuienSoy');
@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const durationDisplay = document.getElementById('durationDisplay');
   const btnFullscreen = document.getElementById('btnFullscreen');
   if (videoQuienSoy && btnPlayQuienSoy && containerPlayBtn && videoPosterOverlay) {
-    
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
@@ -87,30 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const startVideoPlayback = () => {
       videoPosterOverlay.style.opacity = '0';
-      setTimeout(() => {
-        videoPosterOverlay.classList.add('hidden');
-      }, 500);
+      setTimeout(() => { videoPosterOverlay.classList.add('hidden'); }, 500);
       containerPlayBtn.classList.add('hidden');
       videoQuienSoy.play();
-      if (btnTogglePlay) {
-        btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      }
+      if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
     };
-    btnPlayQuienSoy.addEventListener('click', (e) => {
-      e.stopPropagation();
-      startVideoPlayback();
-    });
-    containerPlayBtn.addEventListener('click', () => {
-      startVideoPlayback();
-    });
+    btnPlayQuienSoy.addEventListener('click', (e) => { e.stopPropagation(); startVideoPlayback(); });
+    containerPlayBtn.addEventListener('click', startVideoPlayback);
     videoQuienSoy.addEventListener('click', () => {
       if (videoQuienSoy.paused) {
         startVideoPlayback();
       } else {
         videoQuienSoy.pause();
-        if (btnTogglePlay) {
-          btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
-        }
+        if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
         containerPlayBtn.classList.remove('hidden');
       }
     });
@@ -133,45 +121,32 @@ document.addEventListener('DOMContentLoaded', () => {
       if (videoQuienSoy.duration) {
         const percent = (videoQuienSoy.currentTime / videoQuienSoy.duration) * 100;
         if (videoSeekBar) videoSeekBar.value = percent;
-        if (currentTimeDisplay) {
-          currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
-        }
+        if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
       }
     });
     if (videoSeekBar) {
       videoSeekBar.addEventListener('input', () => {
         if (videoQuienSoy.duration) {
-          const seekTime = (videoSeekBar.value / 100) * videoQuienSoy.duration;
-          videoQuienSoy.currentTime = seekTime;
+          videoQuienSoy.currentTime = (videoSeekBar.value / 100) * videoQuienSoy.duration;
         }
       });
     }
     if (btnFullscreen) {
       btnFullscreen.addEventListener('click', () => {
-        if (videoQuienSoy.requestFullscreen) {
-          videoQuienSoy.requestFullscreen();
-        } else if (videoQuienSoy.webkitRequestFullscreen) {
-          videoQuienSoy.webkitRequestFullscreen();
-        } else if (videoQuienSoy.msRequestFullscreen) {
-          videoQuienSoy.msRequestFullscreen();
-        }
+        if (videoQuienSoy.requestFullscreen) videoQuienSoy.requestFullscreen();
       });
     }
     videoQuienSoy.addEventListener('ended', () => {
       videoPosterOverlay.classList.remove('hidden');
-      setTimeout(() => {
-        videoPosterOverlay.style.opacity = '1';
-      }, 50);
+      setTimeout(() => { videoPosterOverlay.style.opacity = '1'; }, 50);
       containerPlayBtn.classList.remove('hidden');
-      if (btnTogglePlay) {
-        btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
-      }
+      if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
       videoQuienSoy.currentTime = 0;
     });
   }
 
   // ==========================================
-  // 4. ANIMACIÓN SECUENCIAL CONTINUA (¿Quién es Miguel López?)
+  // 4. ANIMACIÓN SECUENCIAL (¿Quién es Miguel López?)
   // ==========================================
   const p1 = document.getElementById('parrafo1');
   const p2 = document.getElementById('parrafo2');
@@ -193,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!element) return;
     const letters = element.querySelectorAll('.typing-letter');
     let index = 0;
-    
     function typeNext() {
       if (index < letters.length) {
         letters[index].classList.add('visible');
@@ -213,9 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = sectionQuienEs.getBoundingClientRect();
       if (rect.top <= window.innerHeight * 0.8) {
         animationTriggered = true;
-        playTypingSequence(p1, () => {
-          playTypingSequence(p2);
-        });
+        playTypingSequence(p1, () => { playTypingSequence(p2); });
         window.removeEventListener('scroll', checkScrollForTyping);
       }
     };
@@ -224,27 +196,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 5. SIMULACIÓN DE VOTO EN PAPELETA (Fondo blanco, bordes negros y trazo rojo)
+  // 5. SIMULACIÓN DE VOTO EN PAPELETA
   // ==========================================
   const casillaVoto = document.getElementById('casillaVoto');
   const textoRayar = document.getElementById('textoRayar');
   const svgTrazo = document.getElementById('svgTrazo');
   const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
   if (casillaVoto) {
-    let lineaFijaNegra = document.createElement('div');
-    lineaFijaNegra.className = 'absolute inset-x-2 top-1/2 h-[3px] bg-black pointer-events-none hidden';
-    lineaFijaNegra.id = 'lineaFijaNegra';
-    casillaVoto.appendChild(lineaFijaNegra);
-    
     casillaVoto.addEventListener('click', () => {
       const isHidden = svgTrazo.classList.contains('hidden');
       if (isHidden) {
-        lineaFijaNegra.classList.remove('hidden');
         svgTrazo.classList.remove('hidden');
         if (textoRayar) textoRayar.style.opacity = '0';
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.remove('hidden');
       } else {
-        lineaFijaNegra.classList.add('hidden');
         svgTrazo.classList.add('hidden');
         if (textoRayar) textoRayar.style.opacity = '1';
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.add('hidden');
@@ -253,88 +218,78 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 6. CARRUSEL DE NOVEDADES
+  // 6. CARRUSEL AUTOMÁTICO E INTERACTIVO DE NOVEDADES (6 Tarjetas)
   // ==========================================
-  const carruselTrack = document.getElementById('carruselTrack');
-  const btnPrev = document.getElementById('btnPrev');
-  const btnNext = document.getElementById('btnNext');
-  const currentIndexEl = document.getElementById('currentIndex');
-  const dots = document.querySelectorAll('.dot-btn');
-  const noticias = document.querySelectorAll('.noticia-card');
-  if (carruselTrack && noticias.length > 0) {
-    let currentIdx = 0;
-    const totalNoticias = noticias.length;
-    function updateCarrusel() {
-      const cardWidth = noticias[0].offsetWidth + 16;
-      carruselTrack.style.transform = `translateX(-${currentIdx * cardWidth}px)`;
-      if (currentIndexEl) currentIndexEl.textContent = currentIdx + 1;
-      dots.forEach((dot, idx) => {
-        if (idx === currentIdx) {
-          dot.classList.remove('w-1.5', 'bg-slate-300');
-          dot.classList.add('w-5', 'bg-tambo-red');
-        } else {
-          dot.classList.remove('w-5', 'bg-tambo-red');
-          dot.classList.add('w-1.5', 'bg-slate-300');
+  const wrapper = document.getElementById('carruselNovedadesWrapper');
+  const track = document.getElementById('carruselTrackNovedades');
+  const btnPrevNovedades = document.getElementById('btnPrevNovedades');
+  const btnNextNovedades = document.getElementById('btnNextNovedades');
+  const currentIndexNovedades = document.getElementById('currentIndexNovedades');
+  
+  if (wrapper && track) {
+    let autoScrollTimer = null;
+    let isUserInteracting = false;
+    const scrollSpeed = 1; // Velocidad de desplazamiento automático
+    const scrollInterval = 30; // Milisegundos por fotograma automático
+
+    // Función de desplazamiento automático continuo en bucle
+    function startAutoScroll() {
+      if (autoScrollTimer) clearInterval(autoScrollTimer);
+      autoScrollTimer = setInterval(() => {
+        if (!isUserInteracting) {
+          wrapper.scrollLeft += scrollSpeed;
+          // Si llega al final, regresa suavemente al inicio para crear el bucle infinito
+          if (wrapper.scrollLeft >= (track.scrollWidth - wrapper.clientWidth - 5)) {
+            wrapper.scrollTo({ left: 0, behavior: 'smooth' });
+          }
         }
-      });
+      }, scrollInterval);
     }
-    if (btnNext) {
-      btnNext.addEventListener('click', () => {
-        currentIdx = (currentIdx + 1) % totalNoticias;
-        updateCarrusel();
-      });
-    }
-    if (btnPrev) {
-      btnPrev.addEventListener('click', () => {
-        currentIdx = (currentIdx - 1 + totalNoticias) % totalNoticias;
-        updateCarrusel();
-      });
-    }
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        currentIdx = idx;
-        updateCarrusel();
+
+    startAutoScroll();
+
+    // Pausar automatismo al interactuar (tocar con el dedo o arrastrar con el mouse)
+    ['mousedown', 'touchstart', 'wheel'].forEach(evt => {
+      wrapper.addEventListener(evt, () => {
+        isUserInteracting = true;
+      }, { passive: true });
+    });
+
+    // Reanudar automatismo al soltar la interacción
+    ['mouseup', 'mouseleave', 'touchend'].forEach(evt => {
+      wrapper.addEventListener(evt, () => {
+        setTimeout(() => {
+          isUserInteracting = false;
+        }, 1500); // Espera 1.5s antes de retomar
       });
     });
+
+    // Botones manuales laterales opcionales
+    const cardWidthEstimate = 320;
+    if (btnNextNovedades) {
+      btnNextNovedades.addEventListener('click', () => {
+        isUserInteracting = true;
+        wrapper.scrollBy({ left: cardWidthEstimate, behavior: 'smooth' });
+        setTimeout(() => { isUserInteracting = false; }, 2000);
+      });
+    }
+    if (btnPrevNovedades) {
+      btnPrevNovedades.addEventListener('click', () => {
+        isUserInteracting = true;
+        wrapper.scrollBy({ left: -cardWidthEstimate, behavior: 'smooth' });
+        setTimeout(() => { isUserInteracting = false; }, 2000);
+      });
+    }
+
+    // Efecto hover de imágenes en las tarjetas de novedades
+    const noticias = track.querySelectorAll('.noticia-card');
     noticias.forEach(card => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
       if (hoverImg && defaultImg) {
-        card.addEventListener('mouseenter', () => {
-          card.style.backgroundImage = `url('${hoverImg}')`;
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.backgroundImage = `url('${defaultImg}')`;
-        });
+        card.addEventListener('mouseenter', () => { card.style.backgroundImage = `url('${hoverImg}')`; });
+        card.addEventListener('mouseleave', () => { card.style.backgroundImage = `url('${defaultImg}')`; });
       }
-    });
-  }
-
-  // ==========================================
-  // 7. ROADMAP INTERACTIVO
-  // ==========================================
-  const btnHitos = document.querySelectorAll('.btn-hito');
-  const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
-  btnHitos.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-target');
-      const infoBox = document.getElementById(targetId);
-      if (infoBox) {
-        infoBox.classList.toggle('hidden');
-      }
-    });
-  });
-  if (btnToggleAllRoadmap) {
-    let allOpen = false;
-    btnToggleAllRoadmap.addEventListener('click', () => {
-      allOpen = !allOpen;
-      document.querySelectorAll('.info-desplegable').forEach(box => {
-        if (allOpen) {
-          box.classList.remove('hidden');
-        } else {
-          box.classList.add('hidden');
-        }
-      });
     });
   }
 });
