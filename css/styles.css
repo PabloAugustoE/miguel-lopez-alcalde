@@ -57,75 +57,111 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
-   EFECTO COVERFLOW 3D EN CASCADA (Propuestas de Gobierno)
+   CARRUSEL 3D EN ABANICO / COVERFLOW (Propuestas de Gobierno)
    ========================================== */
+.coverflow-viewport {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
 .coverflow-card {
   position: absolute;
-  width: 270px;
-  height: 400px;
-  sm-width: 320px;
-  sm-height: 450px;
-  border-radius: 32px;
+  width: 240px;
+  height: 380px;
+  border-radius: 26px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.75rem;
+  padding: 1.35rem;
   background-size: cover;
   background-position: center;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 22px 45px rgba(15, 23, 42, 0.35);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.65s ease,
+              box-shadow 0.65s ease;
+  will-change: transform, opacity;
   cursor: pointer;
+  user-select: none;
 }
 
 @media (min-width: 640px) {
   .coverflow-card {
-    width: 320px;
-    height: 460px;
+    width: 300px;
+    height: 465px;
+    padding: 1.65rem;
   }
 }
 
-/* Estado Activo (En frente, grande y centrado) */
-.coverflow-card.is-active {
-  transform: translateX(0) scale(1) translateZ(0);
-  z-index: 30;
+.coverflow-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.96) 0%, rgba(2, 6, 23, 0.58) 55%, rgba(2, 6, 23, 0.18) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 1. Ficha Principal al Frente (Centro) */
+.coverflow-card.cf-center {
+  transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
+  z-index: 40;
   opacity: 1;
-  filter: blur(0px);
-  pointer-events: auto;
+  filter: brightness(1);
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.45);
 }
 
-/* Estado Izquierda (Detrás, desplazado a la izquierda, menor escala) */
-.coverflow-card.is-left-1 {
-  transform: translateX(-160px) scale(0.82) translateZ(-100px);
-  z-index: 20;
-  opacity: 0.75;
+/* 2. Ficha Inmediata Izquierda (Semioculta detrás) */
+.coverflow-card.cf-left-1 {
+  transform: translate3d(-115px, 0, -90px) scale(0.86) rotateY(14deg);
+  z-index: 30;
+  opacity: 0.92;
   filter: brightness(0.85);
 }
 
-@media (min-width: 640px) {
-  .coverflow-card.is-left-1 {
-    transform: translateX(-210px) scale(0.85) translateZ(-100px);
-  }
-}
-
-/* Estado Derecha (Detrás, desplazado a la derecha, menor escala) */
-.coverflow-card.is-right-1 {
-  transform: translateX(160px) scale(0.82) translateZ(-100px);
-  z-index: 20;
-  opacity: 0.75;
+/* 3. Ficha Inmediata Derecha (Semioculta detrás) */
+.coverflow-card.cf-right-1 {
+  transform: translate3d(115px, 0, -90px) scale(0.86) rotateY(-14deg);
+  z-index: 30;
+  opacity: 0.92;
   filter: brightness(0.85);
 }
 
+/* 4. Segunda Ficha Izquierda (Fondo) */
+.coverflow-card.cf-left-2 {
+  transform: translate3d(-200px, 0, -180px) scale(0.73) rotateY(22deg);
+  z-index: 20;
+  opacity: 0.72;
+  filter: brightness(0.72);
+}
+
+/* 5. Segunda Ficha Derecha (Fondo) */
+.coverflow-card.cf-right-2 {
+  transform: translate3d(200px, 0, -180px) scale(0.73) rotateY(-22deg);
+  z-index: 20;
+  opacity: 0.72;
+  filter: brightness(0.72);
+}
+
 @media (min-width: 640px) {
-  .coverflow-card.is-right-1 {
-    transform: translateX(210px) scale(0.85) translateZ(-100px);
+  .coverflow-card.cf-left-1 {
+    transform: translate3d(-195px, 0, -90px) scale(0.87) rotateY(14deg);
+  }
+  .coverflow-card.cf-right-1 {
+    transform: translate3d(195px, 0, -90px) scale(0.87) rotateY(-14deg);
+  }
+  .coverflow-card.cf-left-2 {
+    transform: translate3d(-345px, 0, -180px) scale(0.74) rotateY(22deg);
+  }
+  .coverflow-card.cf-right-2 {
+    transform: translate3d(345px, 0, -180px) scale(0.74) rotateY(-22deg);
   }
 }
 
-/* Ocultas / Demás tarjetas */
-.coverflow-card.is-hidden {
-  transform: translateX(0) scale(0.6) translateZ(-300px);
+/* Ocultas si hubiera más de 5 tarjetas */
+.coverflow-card.cf-hidden {
+  transform: translate3d(0, 0, -260px) scale(0.5);
   z-index: 10;
   opacity: 0;
   pointer-events: none;
