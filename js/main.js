@@ -218,72 +218,114 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 6. CARRUSEL AUTOMÁTICO E INTERACTIVO DE NOVEDADES (6 Tarjetas)
+  // 6. CARRUSEL DE NOVEDADES (Ficha por ficha, retención de 3s y bucle infinito)
   // ==========================================
   const wrapper = document.getElementById('carruselNovedadesWrapper');
   const track = document.getElementById('carruselTrackNovedades');
   const btnPrevNovedades = document.getElementById('btnPrevNovedades');
   const btnNextNovedades = document.getElementById('btnNextNovedades');
   const currentIndexNovedades = document.getElementById('currentIndexNovedades');
-  
-  if (wrapper && track) {
-    let autoScrollTimer = null;
-    let isUserInteracting = false;
-    const scrollSpeed = 1; // Velocidad de desplazamiento automático
-    const scrollInterval = 30; // Milisegundos por fotograma automático
 
-    // Función de desplazamiento automático continuo en bucle
-    function startAutoScroll() {
-      if (autoScrollTimer) clearInterval(autoScrollTimer);
-      autoScrollTimer = setInterval(() => {
-        if (!isUserInteracting) {
-          wrapper.scrollLeft += scrollSpeed;
-          // Si llega al final, regresa suavemente al inicio para crear el bucle infinito
-          if (wrapper.scrollLeft >= (track.scrollWidth - wrapper.clientWidth - 5)) {
-            wrapper.scrollTo({ left: 0, behavior: 'smooth' });
-          }
-        }
-      }, scrollInterval);
+  if (wrapper && track) {
+    const cards = track.querySelectorAll('.noticia-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    let autoSlideTimer = null;
+    let isInteracting = false;
+
+    function getCardWidth() {
+      if (cards.length > 0) {
+        const style = window.getComputedStyle(cards[0]);
+        const marginRight = parseInt(style.marginRight) || 24; // gap estimado o real
+        return cards[0].offsetWidth + marginRight;
+      }
+      return 350;
     }
 
-    startAutoScroll();
+    function updateCounter() {
+      if (currentIndexNovedades) {
+        currentIndexNovedades.textContent = (currentIndex % totalCards) + 1;
+      }
+    }
 
-    // Pausar automatismo al interactuar (tocar con el dedo o arrastrar con el mouse)
-    ['mousedown', 'touchstart', 'wheel'].forEach(evt => {
-      wrapper.addEventListener(evt, () => {
-        isUserInteracting = true;
-      }, { passive: true });
-    });
-
-    // Reanudar automatismo al soltar la interacción
-    ['mouseup', 'mouseleave', 'touchend'].forEach(evt => {
-      wrapper.addEventListener(evt, () => {
-        setTimeout(() => {
-          isUserInteracting = false;
-        }, 1500); // Espera 1.5s antes de retomar
+    function scrollToCard(index, smooth = true) {
+      const cardWidth = getCardWidth();
+      wrapper.scrollTo({
+        left: index * cardWidth,
+        behavior: smooth ? 'smooth' : 'auto'
       });
-    });
+      currentIndex = index;
+      updateCounter();
+    }
 
-    // Botones manuales laterales opcionales
-    const cardWidthEstimate = 320;
+    function nextCard() {
+      if (isInteracting) return;
+      currentIndex++;
+      // Si llega al final, hace un loop fluido al inicio
+      if (currentIndex >= totalCards) {
+        currentIndex = 0;
+        scrollToCard(currentIndex, false); // Salto instantáneo imperceptible para el bucle
+        setTimeout(() => {
+          currentIndex = 1;
+          scrollToCard(currentIndex, true);
+        }, 50);
+      } else {
+        scrollToCard(currentIndex, true);
+      }
+    }
+
+    function prevCardFunc() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = totalCards - 1;
+      }
+      scrollToCard(currentIndex, true);
+    }
+
+    function startAutoSlide() {
+      if (autoSlideTimer) clearInterval(autoSlideTimer);
+      autoSlideTimer = setInterval(() => {
+        if (!isInteracting) {
+          nextCard();
+        }
+      }, 3000); // 3 segundos de retención
+    }
+
+    startAutoSlide();
+
+    // Controles manuales
     if (btnNextNovedades) {
       btnNextNovedades.addEventListener('click', () => {
-        isUserInteracting = true;
-        wrapper.scrollBy({ left: cardWidthEstimate, behavior: 'smooth' });
-        setTimeout(() => { isUserInteracting = false; }, 2000);
+        isInteracting = true;
+        nextCard();
+        setTimeout(() => { isInteracting = false; }, 2000);
       });
     }
     if (btnPrevNovedades) {
       btnPrevNovedades.addEventListener('click', () => {
-        isUserInteracting = true;
-        wrapper.scrollBy({ left: -cardWidthEstimate, behavior: 'smooth' });
-        setTimeout(() => { isUserInteracting = false; }, 2000);
+        isInteracting = true;
+        prevCardFunc();
+        setTimeout(() => { isInteracting = false; }, 2000);
       });
     }
 
-    // Efecto hover de imágenes en las tarjetas de novedades
-    const noticias = track.querySelectorAll('.noticia-card');
-    noticias.forEach(card => {
+    // Pausar automatismo al tocar o arrastrar manualmente
+    ['mousedown', 'touchstart', 'wheel'].forEach(evt => {
+      wrapper.addEventListener(evt, () => {
+        isInteracting = true;
+      }, { passive: true });
+    });
+
+    ['mouseup', 'mouseleave', 'touchend'].forEach(evt => {
+      wrapper.addEventListener(evt, () => {
+        setTimeout(() => {
+          isInteracting = false;
+        }, 2000);
+      });
+    });
+
+    // Hover de imágenes en las tarjetas
+    cards.forEach(card => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
       if (hoverImg && defaultImg) {
