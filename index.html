@@ -911,7 +911,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 8: Roadmap Renovado con Camino Luminoso Intermitente -->
+    <!-- SECCIÓN 8: Roadmap Acordeón con Camino Luminoso Intermitente -->
     <section id="roadmap" class="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto relative reveal-up">
       <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
         <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full shadow-sm">
@@ -922,7 +922,7 @@
           Roadmap
         </h2>
         <p class="text-sm sm:text-base text-slate-600 font-medium">
-          El camino estratégico hacia la transformación integral de nuestro cantón.
+          Haz clic en cualquier número para desplegar su fase correspondiente.
         </p>
       </div>
 
@@ -931,75 +931,125 @@
         <!-- Camino vertical iluminado con pulso intermitente -->
         <div class="absolute left-[23px] sm:left-[31px] top-6 bottom-6 w-1 bg-gradient-to-b from-tambo-red via-emerald-500 to-slate-900 animate-pulse opacity-90 shadow-[0_0_12px_rgba(220,38,38,0.7)]"></div>
 
-        <div class="space-y-8 sm:space-y-12">
+        <div class="space-y-6 sm:space-y-8">
           
           <!-- Hito 1 -->
-          <div class="relative flex items-start gap-4 sm:gap-6 group">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-tambo-red text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-              1
-            </div>
-            <div class="flex-1 bg-white p-5 sm:p-6 rounded-3xl shadow-lg border border-slate-200/80 hover:border-tambo-red/50 transition-all">
-              <span class="text-[10px] font-extrabold text-tambo-red uppercase tracking-widest block mb-1">Fase Inicial · Mes 1 al 3</span>
-              <h3 class="font-display font-black text-slate-900 text-lg sm:text-xl">Diagnóstico Territorial y Cabildo Abierto</h3>
-              <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Asambleas participativas en barrios urbanos y las 13 comunidades para catastrar prioridades urgentes en agua potable, vialidad y riego.
-              </p>
+          <div class="roadmap-item relative flex flex-col items-start gap-3 group">
+            <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-1">
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-tambo-red text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
+                1
+              </div>
+              <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
+                <div>
+                  <span class="text-[9px] font-extrabold text-tambo-red uppercase tracking-widest block">Mes 1 al 3</span>
+                  <h3 class="font-display font-bold text-slate-900 text-sm sm:text-base">Diagnóstico Territorial y Cabildo Abierto</h3>
+                </div>
+                <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 roadmap-arrow"></i>
+              </div>
+            </button>
+            <div id="roadmap-content-1" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
+              <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-tambo-red/20 text-slate-700 space-y-2">
+                <span class="text-[10px] font-extrabold text-tambo-red uppercase tracking-widest block">Fase Inicial</span>
+                <p class="text-xs sm:text-sm leading-relaxed">
+                  Asambleas participativas en barrios urbanos y las 13 comunidades para catastrar prioridades urgentes en agua potable, vialidad y riego.
+                </p>
+              </div>
             </div>
           </div>
 
           <!-- Hito 2 -->
-          <div class="relative flex items-start gap-4 sm:gap-6 group">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-tambo-green text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-              2
-            </div>
-            <div class="flex-1 bg-white p-5 sm:p-6 rounded-3xl shadow-lg border border-slate-200/80 hover:border-tambo-green/50 transition-all">
-              <span class="text-[10px] font-extrabold text-tambo-green uppercase tracking-widest block mb-1">Fase Financiera · Mes 4 al 6</span>
-              <h3 class="font-display font-black text-slate-900 text-lg sm:text-xl">Gestión de Fondos y Alianzas BDE</h3>
-              <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Estructuración de presupuestos participativos, asignación de líneas de crédito preferenciales y optimización de recursos fiscales propios.
-              </p>
+          <div class="roadmap-item relative flex flex-col items-start gap-3 group">
+            <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-2">
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-tambo-green text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
+                2
+              </div>
+              <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
+                <div>
+                  <span class="text-[9px] font-extrabold text-tambo-green uppercase tracking-widest block">Mes 4 al 6</span>
+                  <h3 class="font-display font-bold text-slate-900 text-sm sm:text-base">Gestión de Fondos y Alianzas BDE</h3>
+                </div>
+                <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 roadmap-arrow"></i>
+              </div>
+            </button>
+            <div id="roadmap-content-2" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
+              <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-tambo-green/20 text-slate-700 space-y-2">
+                <span class="text-[10px] font-extrabold text-tambo-green uppercase tracking-widest block">Fase Financiera</span>
+                <p class="text-xs sm:text-sm leading-relaxed">
+                  Estructuración de presupuestos participativos, asignación de líneas de crédito preferenciales y optimización de recursos fiscales propios.
+                </p>
+              </div>
             </div>
           </div>
 
           <!-- Hito 3 -->
-          <div class="relative flex items-start gap-4 sm:gap-6 group">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-amber-600 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-              3
-            </div>
-            <div class="flex-1 bg-white p-5 sm:p-6 rounded-3xl shadow-lg border border-slate-200/80 hover:border-amber-500/50 transition-all">
-              <span class="text-[10px] font-extrabold text-amber-600 uppercase tracking-widest block mb-1">Fase Operativa · Año 1 al 2</span>
-              <h3 class="font-display font-black text-slate-900 text-lg sm:text-xl">Despliegue de Maquinaria y Obra Pública</h3>
-              <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Puesta en marcha del equipo caminero propio para el lastrado vial continuo y arranque de la renovación de redes sanitarias en el centro.
-              </p>
+          <div class="roadmap-item relative flex flex-col items-start gap-3 group">
+            <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-3">
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-amber-600 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
+                3
+              </div>
+              <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
+                <div>
+                  <span class="text-[9px] font-extrabold text-amber-600 uppercase tracking-widest block">Año 1 al 2</span>
+                  <h3 class="font-display font-bold text-slate-900 text-sm sm:text-base">Despliegue de Maquinaria y Obra Pública</h3>
+                </div>
+                <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 roadmap-arrow"></i>
+              </div>
+            </button>
+            <div id="roadmap-content-3" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
+              <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-amber-500/20 text-slate-700 space-y-2">
+                <span class="text-[10px] font-extrabold text-amber-600 uppercase tracking-widest block">Fase Operativa</span>
+                <p class="text-xs sm:text-sm leading-relaxed">
+                  Puesta en marcha del equipo caminero propio para el lastrado vial continuo y arranque de la renovación de redes sanitarias en el centro.
+                </p>
+              </div>
             </div>
           </div>
 
           <!-- Hito 4 -->
-          <div class="relative flex items-start gap-4 sm:gap-6 group">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-purple-600 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-              4
-            </div>
-            <div class="flex-1 bg-white p-5 sm:p-6 rounded-3xl shadow-lg border border-slate-200/80 hover:border-purple-500/50 transition-all">
-              <span class="text-[10px] font-extrabold text-purple-600 uppercase tracking-widest block mb-1">Fase Social · Año 2 al 3</span>
-              <h3 class="font-display font-black text-slate-900 text-lg sm:text-xl">Impulso Productivo y Turístico</h3>
-              <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Activación del circuito turístico Coyoctor-Estación del Tren, ferias agroecológicas directas y entrega de capital semilla para jóvenes emprendedores.
-              </p>
+          <div class="roadmap-item relative flex flex-col items-start gap-3 group">
+            <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-4">
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-purple-600 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
+                4
+              </div>
+              <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
+                <div>
+                  <span class="text-[9px] font-extrabold text-purple-600 uppercase tracking-widest block">Año 2 al 3</span>
+                  <h3 class="font-display font-bold text-slate-900 text-sm sm:text-base">Impulso Productivo y Turístico</h3>
+                </div>
+                <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 roadmap-arrow"></i>
+              </div>
+            </button>
+            <div id="roadmap-content-4" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
+              <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-purple-500/20 text-slate-700 space-y-2">
+                <span class="text-[10px] font-extrabold text-purple-600 uppercase tracking-widest block">Fase Social</span>
+                <p class="text-xs sm:text-sm leading-relaxed">
+                  Activación del circuito turístico Coyoctor-Estación del Tren, ferias agroecológicas directas y entrega de capital semilla para jóvenes emprendedores.
+                </p>
+              </div>
             </div>
           </div>
 
           <!-- Hito 5 -->
-          <div class="relative flex items-start gap-4 sm:gap-6 group">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-slate-900 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-              5
-            </div>
-            <div class="flex-1 bg-white p-5 sm:p-6 rounded-3xl shadow-lg border border-slate-200/80 hover:border-slate-900/50 transition-all">
-              <span class="text-[10px] font-extrabold text-slate-900 uppercase tracking-widest block mb-1">Fase Consolidación · Año 4 (2031)</span>
-              <h3 class="font-display font-black text-slate-900 text-lg sm:text-xl">El Tambo Modelo y Transparente</h3>
-              <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Evaluación cantonal con cabildo abierto de rendición de cuentas, consolidando un modelo municipal eficiente, honesto y de puertas abiertas.
-              </p>
+          <div class="roadmap-item relative flex flex-col items-start gap-3 group">
+            <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-5">
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-slate-900 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
+                5
+              </div>
+              <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
+                <div>
+                  <span class="text-[9px] font-extrabold text-slate-900 uppercase tracking-widest block">Año 4 (2031)</span>
+                  <h3 class="font-display font-bold text-slate-900 text-sm sm:text-base">El Tambo Modelo y Transparente</h3>
+                </div>
+                <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 roadmap-arrow"></i>
+              </div>
+            </button>
+            <div id="roadmap-content-5" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
+              <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-slate-900/20 text-slate-700 space-y-2">
+                <span class="text-[10px] font-extrabold text-slate-900 uppercase tracking-widest block">Fase Consolidación</span>
+                <p class="text-xs sm:text-sm leading-relaxed">
+                  Evaluación cantonal con cabildo abierto de rendición de cuentas, consolidando un modelo municipal eficiente, honesto y de puertas abiertas.
+                </p>
+              </div>
             </div>
           </div>
 
