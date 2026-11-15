@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ==========================================
-     1. MENÚ DESPLEGABLE "SÚMATE"
+     1. MENÚ DESPLEGABLE "SÚMATE" (Con ocultamiento automático al hacer scroll)
      ========================================== */
   const btnSumate = document.getElementById("btnSumate");
   const menuSumate = document.getElementById("menuSumate");
@@ -24,6 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("click", (e) => {
       if (!btnSumate.contains(e.target) && !menuSumate.contains(e.target)) {
+        menuSumate.classList.add("hidden");
+        btnSumate.setAttribute("aria-expanded", "false");
+        if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
+      }
+    });
+
+    // Ocultar menú automáticamente al hacer scroll
+    window.addEventListener("scroll", () => {
+      if (!menuSumate.classList.contains("hidden")) {
         menuSumate.classList.add("hidden");
         btnSumate.setAttribute("aria-expanded", "false");
         if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
@@ -186,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================
-     5. SIMULADOR DE PAPELETA OFICIAL Y TRAZO DE VOTO
+     5. SIMULADOR DE PAPELETA OFICIAL (Línea Horizontal Negra)
      ========================================== */
   const casillaVoto = document.getElementById("casillaVoto");
   const svgTrazo = document.getElementById("svgTrazo");
@@ -199,7 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
     casillaVoto.addEventListener("click", () => {
       votoRealizado = !votoRealizado;
       if (votoRealizado) {
-        casillaVoto.classList.add("bg-black");
         if (textoRayar) textoRayar.style.display = "none";
         if (svgTrazo) svgTrazo.classList.remove("hidden");
         if (mensajeVotoConfirmado) {
@@ -207,7 +215,6 @@ document.addEventListener("DOMContentLoaded", () => {
           mensajeVotoConfirmado.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       } else {
-        casillaVoto.classList.remove("bg-black");
         if (textoRayar) textoRayar.style.display = "block";
         if (svgTrazo) svgTrazo.classList.add("hidden");
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.add("hidden");
