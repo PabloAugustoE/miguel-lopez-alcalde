@@ -31,23 +31,15 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
-   ANIMACIONES DE MARQUESINA (Galería & Propuestas)
+   ANIMACIONES DE MARQUESINA (Galería)
    ========================================== */
 @keyframes marqueeLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 @keyframes marqueeRight {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 .marquee-track-left {
   display: flex;
@@ -65,31 +57,78 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
-   CARRUSEL INFINITO AUTOMÁTICO (Propuestas de Gestión de Gobierno)
+   EFECTO COVERFLOW 3D EN CASCADA (Propuestas de Gobierno)
    ========================================== */
-@keyframes infiniteScrollProposals {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50% - 1rem));
-  }
-}
-
-#infiniteProposalTrack {
+.coverflow-card {
+  position: absolute;
+  width: 270px;
+  height: 400px;
+  sm-width: 320px;
+  sm-height: 450px;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   display: flex;
-  width: max-content;
-  animation: infiniteScrollProposals 30s linear infinite;
-  will-change: transform;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.75rem;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer;
 }
 
-#infiniteProposalTrack:hover {
-  animation-play-state: paused;
+@media (min-width: 640px) {
+  .coverflow-card {
+    width: 320px;
+    height: 460px;
+  }
 }
 
-.proposal-card {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* Estado Activo (En frente, grande y centrado) */
+.coverflow-card.is-active {
+  transform: translateX(0) scale(1) translateZ(0);
+  z-index: 30;
+  opacity: 1;
+  filter: blur(0px);
+  pointer-events: auto;
+}
+
+/* Estado Izquierda (Detrás, desplazado a la izquierda, menor escala) */
+.coverflow-card.is-left-1 {
+  transform: translateX(-160px) scale(0.82) translateZ(-100px);
+  z-index: 20;
+  opacity: 0.75;
+  filter: brightness(0.85);
+}
+
+@media (min-width: 640px) {
+  .coverflow-card.is-left-1 {
+    transform: translateX(-210px) scale(0.85) translateZ(-100px);
+  }
+}
+
+/* Estado Derecha (Detrás, desplazado a la derecha, menor escala) */
+.coverflow-card.is-right-1 {
+  transform: translateX(160px) scale(0.82) translateZ(-100px);
+  z-index: 20;
+  opacity: 0.75;
+  filter: brightness(0.85);
+}
+
+@media (min-width: 640px) {
+  .coverflow-card.is-right-1 {
+    transform: translateX(210px) scale(0.85) translateZ(-100px);
+  }
+}
+
+/* Ocultas / Demás tarjetas */
+.coverflow-card.is-hidden {
+  transform: translateX(0) scale(0.6) translateZ(-300px);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ==========================================
@@ -112,12 +151,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
   z-index: 20;
 }
 @keyframes drawStroke {
-  from {
-    stroke-dashoffset: 100;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
 }
 .trazo-linea-roja {
   stroke-dasharray: 100;
