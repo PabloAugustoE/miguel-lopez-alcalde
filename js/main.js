@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 3. VIDEO INTERACTIVO PRINCIPAL
+  // 3. VIDEO INTERACTIVO PRINCIPAL (quien-soy.mp4) CON CONTROLES COMPLETOS
   // ==========================================
   const videoQuienSoy = document.getElementById('videoQuienSoy');
   const btnPlayQuienSoy = document.getElementById('btnPlayQuienSoy');
@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const durationDisplay = document.getElementById('durationDisplay');
   const btnFullscreen = document.getElementById('btnFullscreen');
   if (videoQuienSoy && btnPlayQuienSoy && containerPlayBtn && videoPosterOverlay) {
+    
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
@@ -86,19 +87,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const startVideoPlayback = () => {
       videoPosterOverlay.style.opacity = '0';
-      setTimeout(() => { videoPosterOverlay.classList.add('hidden'); }, 500);
+      setTimeout(() => {
+        videoPosterOverlay.classList.add('hidden');
+      }, 500);
       containerPlayBtn.classList.add('hidden');
       videoQuienSoy.play();
-      if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      if (btnTogglePlay) {
+        btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      }
     };
-    btnPlayQuienSoy.addEventListener('click', (e) => { e.stopPropagation(); startVideoPlayback(); });
-    containerPlayBtn.addEventListener('click', startVideoPlayback);
+    btnPlayQuienSoy.addEventListener('click', (e) => {
+      e.stopPropagation();
+      startVideoPlayback();
+    });
+    containerPlayBtn.addEventListener('click', () => {
+      startVideoPlayback();
+    });
     videoQuienSoy.addEventListener('click', () => {
       if (videoQuienSoy.paused) {
         startVideoPlayback();
       } else {
         videoQuienSoy.pause();
-        if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+        if (btnTogglePlay) {
+          btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+        }
         containerPlayBtn.classList.remove('hidden');
       }
     });
@@ -121,32 +133,45 @@ document.addEventListener('DOMContentLoaded', () => {
       if (videoQuienSoy.duration) {
         const percent = (videoQuienSoy.currentTime / videoQuienSoy.duration) * 100;
         if (videoSeekBar) videoSeekBar.value = percent;
-        if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
+        if (currentTimeDisplay) {
+          currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
+        }
       }
     });
     if (videoSeekBar) {
       videoSeekBar.addEventListener('input', () => {
         if (videoQuienSoy.duration) {
-          videoQuienSoy.currentTime = (videoSeekBar.value / 100) * videoQuienSoy.duration;
+          const seekTime = (videoSeekBar.value / 100) * videoQuienSoy.duration;
+          videoQuienSoy.currentTime = seekTime;
         }
       });
     }
     if (btnFullscreen) {
       btnFullscreen.addEventListener('click', () => {
-        if (videoQuienSoy.requestFullscreen) videoQuienSoy.requestFullscreen();
+        if (videoQuienSoy.requestFullscreen) {
+          videoQuienSoy.requestFullscreen();
+        } else if (videoQuienSoy.webkitRequestFullscreen) {
+          videoQuienSoy.webkitRequestFullscreen();
+        } else if (videoQuienSoy.msRequestFullscreen) {
+          videoQuienSoy.msRequestFullscreen();
+        }
       });
     }
     videoQuienSoy.addEventListener('ended', () => {
       videoPosterOverlay.classList.remove('hidden');
-      setTimeout(() => { videoPosterOverlay.style.opacity = '1'; }, 50);
+      setTimeout(() => {
+        videoPosterOverlay.style.opacity = '1';
+      }, 50);
       containerPlayBtn.classList.remove('hidden');
-      if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+      if (btnTogglePlay) {
+        btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+      }
       videoQuienSoy.currentTime = 0;
     });
   }
 
   // ==========================================
-  // 4. ANIMACIÓN SECUENCIAL (¿Quién es Miguel López?)
+  // 4. ANIMACIÓN SECUENCIAL CONTINUA (¿Quién es Miguel López?)
   // ==========================================
   const p1 = document.getElementById('parrafo1');
   const p2 = document.getElementById('parrafo2');
@@ -187,7 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = sectionQuienEs.getBoundingClientRect();
       if (rect.top <= window.innerHeight * 0.8) {
         animationTriggered = true;
-        playTypingSequence(p1, () => { playTypingSequence(p2); });
+        playTypingSequence(p1, () => {
+          playTypingSequence(p2);
+        });
         window.removeEventListener('scroll', checkScrollForTyping);
       }
     };
@@ -203,13 +230,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const svgTrazo = document.getElementById('svgTrazo');
   const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
   if (casillaVoto) {
+    let lineaFijaNegra = document.createElement('div');
+    lineaFijaNegra.className = 'absolute inset-x-2 top-1/2 h-[3px] bg-black pointer-events-none hidden';
+    lineaFijaNegra.id = 'lineaFijaNegra';
+    casillaVoto.appendChild(lineaFijaNegra);
     casillaVoto.addEventListener('click', () => {
       const isHidden = svgTrazo.classList.contains('hidden');
       if (isHidden) {
+        casillaVoto.classList.remove('bg-white', 'hover:bg-red-100');
+        casillaVoto.classList.add('bg-black');
+        lineaFijaNegra.classList.remove('hidden');
         svgTrazo.classList.remove('hidden');
         if (textoRayar) textoRayar.style.opacity = '0';
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.remove('hidden');
       } else {
+        casillaVoto.classList.remove('bg-black');
+        casillaVoto.classList.add('bg-white', 'hover:bg-red-100');
+        lineaFijaNegra.classList.add('hidden');
         svgTrazo.classList.add('hidden');
         if (textoRayar) textoRayar.style.opacity = '1';
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.add('hidden');
@@ -218,140 +255,160 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 6. CARRUSEL DE NOVEDADES (Ficha por ficha, reacción manual/táctil y retención de 3s)
+  // 6. CARRUSEL DE NOVEDADES
   // ==========================================
-  const wrapper = document.getElementById('carruselNovedadesWrapper');
-  const track = document.getElementById('carruselTrackNovedades');
+  const carruselTrackNovedades = document.getElementById('carruselTrackNovedades');
   const btnPrevNovedades = document.getElementById('btnPrevNovedades');
   const btnNextNovedades = document.getElementById('btnNextNovedades');
   const currentIndexNovedades = document.getElementById('currentIndexNovedades');
-
-  if (wrapper && track) {
-    const cards = track.querySelectorAll('.noticia-card');
-    const totalCards = cards.length;
-    let currentIndex = 0;
-    let autoSlideTimer = null;
-    let isInteracting = false;
-
-    function getCardWidth() {
-      if (cards.length > 0) {
-        const style = window.getComputedStyle(cards[0]);
-        const marginRight = parseInt(style.marginRight) || 16;
-        return cards[0].offsetWidth + marginRight;
-      }
-      return 320;
+  const totalIndexNovedades = document.getElementById('totalIndexNovedades');
+  const noticias = document.querySelectorAll('.noticia-card');
+  if (carruselTrackNovedades && noticias.length > 0) {
+    let currentNovIdx = 0;
+    const totalNov = noticias.length;
+    if (totalIndexNovedades) totalIndexNovedades.textContent = totalNov;
+    
+    function updateNovedadesCarrusel() {
+      const cardWidth = noticias[0].offsetWidth + 16;
+      carruselTrackNovedades.style.transform = `translateX(-${currentNovIdx * cardWidth}px)`;
+      if (currentIndexNovedades) currentIndexNovedades.textContent = currentNovIdx + 1;
     }
-
-    function updateCounterAndActive(index) {
-      currentIndex = index;
-      if (currentIndexNovedades) {
-        currentIndexNovedades.textContent = (currentIndex % totalCards) + 1;
-      }
-    }
-
-    function scrollToCard(index, smooth = true) {
-      const cardWidth = getCardWidth();
-      wrapper.scrollTo({
-        left: index * cardWidth,
-        behavior: smooth ? 'smooth' : 'auto'
-      });
-      updateCounterAndActive(index);
-    }
-
-    function nextCard() {
-      if (isInteracting) return;
-      currentIndex++;
-      if (currentIndex >= totalCards) {
-        currentIndex = 0;
-        scrollToCard(currentIndex, false);
-        setTimeout(() => {
-          currentIndex = 1;
-          scrollToCard(currentIndex, true);
-        }, 50);
-      } else {
-        scrollToCard(currentIndex, true);
-      }
-    }
-
-    function prevCardFunc() {
-      currentIndex--;
-      if (currentIndex < 0) {
-        currentIndex = totalCards - 1;
-      }
-      scrollToCard(currentIndex, true);
-    }
-
-    function startAutoSlide() {
-      if (autoSlideTimer) clearInterval(autoSlideTimer);
-      autoSlideTimer = setInterval(() => {
-        if (!isInteracting) {
-          nextCard();
-        }
-      }, 3000); // Retención de 3 segundos
-    }
-
-    startAutoSlide();
-
-    // Sincronización en tiempo real al deslizar con el dedo o mouse (scroll manual)
-    let scrollTimeout;
-    wrapper.addEventListener('scroll', () => {
-      isInteracting = true;
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        const cardWidth = getCardWidth();
-        const computedIndex = Math.round(wrapper.scrollLeft / cardWidth);
-        if (!isNaN(computedIndex) && computedIndex >= 0 && computedIndex < totalCards) {
-          updateCounterAndActive(computedIndex);
-        }
-        isInteracting = false;
-      }, 150);
-    }, { passive: true });
-
-    // Controles manuales de flechas
     if (btnNextNovedades) {
       btnNextNovedades.addEventListener('click', () => {
-        isInteracting = true;
-        nextCard();
-        setTimeout(() => { isInteracting = false; }, 2000);
+        currentNovIdx = (currentNovIdx + 1) % totalNov;
+        updateNovedadesCarrusel();
       });
     }
     if (btnPrevNovedades) {
       btnPrevNovedades.addEventListener('click', () => {
-        isInteracting = true;
-        prevCardFunc();
-        setTimeout(() => { isInteracting = false; }, 2000);
+        currentNovIdx = (currentNovIdx - 1 + totalNov) % totalNov;
+        updateNovedadesCarrusel();
       });
     }
-
-    // Interacción por touch y mouse para pausar automatismo temporalmente
-    ['mousedown', 'touchstart', 'wheel'].forEach(evt => {
-      wrapper.addEventListener(evt, () => {
-        isInteracting = true;
-      }, { passive: true });
-    });
-
-    ['mouseup', 'mouseleave', 'touchend'].forEach(evt => {
-      wrapper.addEventListener(evt, () => {
-        setTimeout(() => {
-          isInteracting = false;
-        }, 2000);
-      });
-    });
-
-    // Reacción táctil y de hover de imágenes en las tarjetas
-    cards.forEach(card => {
+    noticias.forEach(card => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
       if (hoverImg && defaultImg) {
-        card.addEventListener('mouseenter', () => { card.style.backgroundImage = `url('${hoverImg}')`; });
-        card.addEventListener('mouseleave', () => { card.style.backgroundImage = `url('${defaultImg}')`; });
-        card.addEventListener('touchstart', () => {
+        card.addEventListener('mouseenter', () => {
           card.style.backgroundImage = `url('${hoverImg}')`;
-        }, { passive: true });
-        card.addEventListener('touchend', () => {
-          setTimeout(() => { card.style.backgroundImage = `url('${defaultImg}')`; }, 500);
-        }, { passive: true });
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.backgroundImage = `url('${defaultImg}')`;
+        });
       }
+    });
+  }
+
+  // ==========================================
+  // 7. CARRUSEL DE PROPUESTAS DE GESTIÓN DE GOBIERNO (NUEVO)
+  // ==========================================
+  const proposalTrack = document.getElementById('proposalTrack');
+  const btnPrevProposal = document.getElementById('btnPrevProposal');
+  const btnNextProposal = document.getElementById('btnNextProposal');
+  const currentProposalIdx = document.getElementById('currentProposalIdx');
+  const totalProposalIdx = document.getElementById('totalProposalIdx');
+  const proposalCards = proposalTrack ? proposalTrack.querySelectorAll('.proposal-card') : [];
+  
+  if (proposalTrack && proposalCards.length > 0) {
+    let currentPropIdx = 0;
+    const totalProps = proposalCards.length;
+    if (totalProposalIdx) totalProposalIdx.textContent = totalProps;
+
+    function updateProposalCarrusel() {
+      const cardWidth = proposalCards[0].offsetWidth + 24; // ancho + gap
+      proposalTrack.style.transform = `translateX(-${currentPropIdx * cardWidth}px)`;
+      proposalTrack.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+      if (currentProposalIdx) currentProposalIdx.textContent = currentPropIdx + 1;
+    }
+
+    if (btnNextProposal) {
+      btnNextProposal.addEventListener('click', () => {
+        currentPropIdx = (currentPropIdx + 1) % totalProps;
+        updateProposalCarrusel();
+      });
+    }
+
+    if (btnPrevProposal) {
+      btnPrevProposal.addEventListener('click', () => {
+        currentPropIdx = (currentPropIdx - 1 + totalProps) % totalProps;
+        updateProposalCarrusel();
+      });
+    }
+  }
+
+  // ==========================================
+  // 8. RECURSOS Y MAQUINARIA SLIDER
+  // ==========================================
+  const resourceSlides = document.querySelectorAll('.resource-slide');
+  const resDots = document.querySelectorAll('.res-dot');
+  const prevResource = document.getElementById('prevResource');
+  const nextResource = document.getElementById('nextResource');
+  if (resourceSlides.length > 0) {
+    let currentResIdx = 0;
+    const totalRes = resourceSlides.length;
+    function showResource(idx) {
+      resourceSlides.forEach((slide, i) => {
+        if (i === idx) {
+          slide.classList.remove('hidden');
+        } else {
+          slide.classList.add('hidden');
+        }
+      });
+      resDots.forEach((dot, i) => {
+        if (i === idx) {
+          dot.classList.remove('w-1.5', 'bg-slate-300');
+          dot.classList.add('w-5', 'bg-tambo-red');
+        } else {
+          dot.classList.remove('w-5', 'bg-tambo-red');
+          dot.classList.add('w-1.5', 'bg-slate-300');
+        }
+      });
+    }
+    if (nextResource) {
+      nextResource.addEventListener('click', () => {
+        currentResIdx = (currentResIdx + 1) % totalRes;
+        showResource(currentResIdx);
+      });
+    }
+    if (prevResource) {
+      prevResource.addEventListener('click', () => {
+        currentResIdx = (currentResIdx - 1 + totalRes) % totalRes;
+        showResource(currentResIdx);
+      });
+    }
+    resDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        currentResIdx = i;
+        showResource(currentResIdx);
+      });
+    });
+  }
+
+  // ==========================================
+  // 9. ROADMAP INTERACTIVO
+  // ==========================================
+  const btnHitos = document.querySelectorAll('.btn-hito');
+  const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
+  btnHitos.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const infoBox = document.getElementById(targetId);
+      if (infoBox) {
+        infoBox.classList.toggle('hidden');
+      }
+    });
+  });
+  if (btnToggleAllRoadmap) {
+    let allOpen = false;
+    btnToggleAllRoadmap.addEventListener('click', () => {
+      allOpen = !allOpen;
+      document.querySelectorAll('.info-desplegable').forEach(box => {
+        if (allOpen) {
+          box.classList.remove('hidden');
+        } else {
+          box.classList.add('hidden');
+        }
+      });
     });
   }
 });
