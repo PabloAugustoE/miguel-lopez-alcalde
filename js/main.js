@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ==========================================
-     1. MENÚ DESPLEGABLE "SÚMATE" (Con ocultamiento automático al hacer scroll)
+     1. MENÚ DESPLEGABLE "SÚMATE" (Ocultamiento automático al hacer scroll)
      ========================================== */
   const btnSumate = document.getElementById("btnSumate");
   const menuSumate = document.getElementById("menuSumate");
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Ocultar menú automáticamente al hacer scroll
     window.addEventListener("scroll", () => {
       if (!menuSumate.classList.contains("hidden")) {
         menuSumate.classList.add("hidden");
@@ -195,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================
-     5. SIMULADOR DE PAPELETA OFICIAL (Línea Horizontal Negra)
+     5. SIMULADOR DE PAPELETA OFICIAL (Línea Diagonal Roja Animada)
      ========================================== */
   const casillaVoto = document.getElementById("casillaVoto");
   const svgTrazo = document.getElementById("svgTrazo");
@@ -224,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================
-     6. CARRUSEL DE NOVEDADES
+     6. CARRUSEL DE NOVEDADES (Con Auto-desplazamiento e Interactividad Fluida)
      ========================================== */
   const carruselWrapper = document.getElementById("carruselNovedadesWrapper");
   const btnPrevNovedades = document.getElementById("btnPrevNovedades");
@@ -236,14 +235,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (totalIndexNovedades) totalIndexNovedades.textContent = tarjetasNoticia.length;
 
   if (carruselWrapper && btnPrevNovedades && btnNextNovedades) {
-    const scrollAmount = 360;
+    const scrollAmount = 374; // Ancho de tarjeta + espacio exacto
 
     btnNextNovedades.addEventListener("click", () => {
       carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      resetAutoScrollNovedades();
     });
 
     btnPrevNovedades.addEventListener("click", () => {
       carruselWrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      resetAutoScrollNovedades();
     });
 
     carruselWrapper.addEventListener("scroll", () => {
@@ -265,11 +266,38 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     });
+
+    // Auto-desplazamiento suave para Novedades
+    let autoScrollIntervalNovedades = setInterval(() => {
+      if (!carruselWrapper) return;
+      const maxScrollLeft = carruselWrapper.scrollWidth - carruselWrapper.clientWidth;
+      if (carruselWrapper.scrollLeft >= maxScrollLeft - 10) {
+        carruselWrapper.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    }, 4500);
+
+    function resetAutoScrollNovedades() {
+      clearInterval(autoScrollIntervalNovedades);
+      autoScrollIntervalNovedades = setInterval(() => {
+        if (!carruselWrapper) return;
+        const maxScrollLeft = carruselWrapper.scrollWidth - carruselWrapper.clientWidth;
+        if (carruselWrapper.scrollLeft >= maxScrollLeft - 10) {
+          carruselWrapper.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        }
+      }, 4500);
+    }
+
+    carruselWrapper.addEventListener("mouseenter", () => clearInterval(autoScrollIntervalNovedades));
+    carruselWrapper.addEventListener("mouseleave", resetAutoScrollNovedades);
   }
 
 
   /* ==========================================
-     7. CARRUSEL 3D EN ABANICO / COVERFLOW (Propuestas)
+     7. CARRUSEL 3D EN ABANICO / COVERFLOW (Propuestas con Auto-rotación y Controles Robustos)
      ========================================== */
   const cards = document.querySelectorAll(".coverflow-card");
   const prevCoverflow = document.getElementById("prevCoverflow");
@@ -278,6 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let activeIndex = 0;
   const totalCards = cards.length;
+  let coverflowInterval;
 
   if (coverflowDots && totalCards > 0) {
     for (let i = 0; i < totalCards; i++) {
@@ -288,6 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
       dot.addEventListener("click", () => {
         activeIndex = i;
         updateCoverflow();
+        resetCoverflowTimer();
       });
       coverflowDots.appendChild(dot);
     }
@@ -335,6 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nextCoverflow.addEventListener("click", () => {
       activeIndex = (activeIndex + 1) % totalCards;
       updateCoverflow();
+      resetCoverflowTimer();
     });
   }
 
@@ -342,10 +373,43 @@ document.addEventListener("DOMContentLoaded", () => {
     prevCoverflow.addEventListener("click", () => {
       activeIndex = (activeIndex - 1 + totalCards) % totalCards;
       updateCoverflow();
+      resetCoverflowTimer();
     });
   }
 
+  // Permitir clic en las tarjetas laterales del Coverflow para traerlas al frente
+  cards.forEach((card, idx) => {
+    card.addEventListener("click", (e) => {
+      if (idx !== activeIndex) {
+        e.preventDefault();
+        activeIndex = idx;
+        updateCoverflow();
+        resetCoverflowTimer();
+      }
+    });
+  });
+
+  // Auto-rotación para el Plan de Gobierno
+  function startCoverflowTimer() {
+    coverflowInterval = setInterval(() => {
+      activeIndex = (activeIndex + 1) % totalCards;
+      updateCoverflow();
+    }, 5000);
+  }
+
+  function resetCoverflowTimer() {
+    clearInterval(coverflowInterval);
+    startCoverflowTimer();
+  }
+
+  const coverflowStage = document.getElementById("coverflowStage");
+  if (coverflowStage) {
+    coverflowStage.addEventListener("mouseenter", () => clearInterval(coverflowInterval));
+    coverflowStage.addEventListener("mouseleave", startCoverflowTimer);
+  }
+
   updateCoverflow();
+  startCoverflowTimer();
 
 
   /* ==========================================
@@ -361,7 +425,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const isCurrentlyOpen = !targetContent.classList.contains("hidden");
 
-      // Cerrar todos los contenidos y restablecer flechas
       document.querySelectorAll(".roadmap-content").forEach(content => {
         content.classList.add("hidden");
       });
@@ -369,7 +432,6 @@ document.addEventListener("DOMContentLoaded", () => {
         arrow.style.transform = "rotate(0deg)";
       });
 
-      // Si el que se hizo clic estaba cerrado, se abre
       if (!isCurrentlyOpen) {
         targetContent.classList.remove("hidden");
         if (targetArrow) targetArrow.style.transform = "rotate(180deg)";
