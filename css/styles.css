@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
-   ANIMACIÓN LETRA A LETRA CONTINUA (¿Quién es Miguel López?)
+   ANIMACIÓN LETRA A LETRA CONTINUA (Liderazgo)
    ========================================== */
 .typing-letter {
   opacity: 0;
@@ -159,7 +159,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
   }
 }
 
-/* Ocultas si hubiera más de 5 tarjetas */
 .coverflow-card.cf-hidden {
   transform: translate3d(0, 0, -260px) scale(0.5);
   z-index: 10;
@@ -230,7 +229,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
-   UTILIDADES PERSONALIZADAS Y SCROLLBAR
+   UTILIDADES Y SCROLLBAR
    ========================================== */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
