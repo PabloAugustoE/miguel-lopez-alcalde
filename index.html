@@ -217,7 +217,7 @@
       </div>
     </section>
     
-    <!-- SECCIÓN 3: Simulación de Papeleta Oficial (Alineación perfecta y Casilla con borde negro) -->
+    <!-- SECCIÓN 3: Simulación de Papeleta Oficial (Alineación perfecta y Casilla con borde negro y línea horizontal) -->
     <section id="simulacion-voto" class="py-10 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200 reveal-up">
       <div class="max-w-6xl mx-auto px-2 sm:px-6 text-center">
         <div class="max-w-2xl mx-auto mb-6 sm:mb-10 space-y-2 px-2">
@@ -357,7 +357,7 @@
                 </div>
               </div>
               
-              <!-- Lista 5 (MIGUEL LÓPEZ - Casilla con borde negro y fondo blanco) -->
+              <!-- Lista 5 (MIGUEL LÓPEZ - Casilla con fondo blanco, borde negro y línea horizontal negra fija) -->
               <div class="border-3 sm:border-4 border-tambo-red rounded-xl sm:rounded-2xl p-1.5 sm:p-4 flex flex-col justify-between items-center text-center bg-red-50/90 shadow-2xl relative ring-3 sm:ring-4 ring-red-500/40 transform scale-[1.06] sm:scale-[1.09] z-20">
                 <div class="absolute -top-2.5 sm:-top-4 left-1/2 transform -translate-x-1/2 bg-tambo-red text-white text-[6px] sm:text-[11px] font-black px-1.5 sm:px-4 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
                   Tu Opción ⭐
@@ -371,10 +371,14 @@
                 </div>
                 
                 <div class="w-full py-2 sm:py-5 flex justify-center">
-                  <!-- Casilla Cuadrada y Ancha (Fondo blanco, borde negro) -->
-                  <button id="casillaVoto" type="button" class="casilla-cuadrada-ancha w-10 h-10 sm:w-20 sm:h-20 bg-white border-2 sm:border-3 border-black rounded-xl flex items-center justify-center cursor-pointer hover:bg-slate-50 transition-all focus:outline-none shadow-md relative group shrink-0" title="Haz clic para rayar tu voto por Miguel López">
-                    <span id="textoRayar" class="text-[6px] sm:text-[11px] font-black text-slate-800 uppercase leading-tight text-center group-hover:scale-105 transition-transform">VOTA<br>AQUÍ</span>
-                    <svg id="svgTrazo" class="absolute inset-0 w-full h-full p-1 sm:p-2.5 pointer-events-none hidden" viewBox="0 0 100 100">
+                  <!-- Casilla con Fondo Blanco, Borde Negro y Línea Horizontal Negra -->
+                  <button id="casillaVoto" type="button" class="casilla-cuadrada-ancha w-10 h-10 sm:w-20 sm:h-20 bg-white border-2 sm:border-3 border-black rounded-xl flex items-center justify-center cursor-pointer hover:bg-slate-50 transition-all focus:outline-none shadow-md relative group shrink-0 overflow-hidden" title="Haz clic para rayar tu voto por Miguel López">
+                    <!-- Línea horizontal negra fija en el centro -->
+                    <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] sm:h-[3px] bg-black pointer-events-none z-10"></div>
+                    
+                    <span id="textoRayar" class="text-[6px] sm:text-[10px] font-black text-slate-800 uppercase leading-tight text-center group-hover:scale-105 transition-transform relative z-20 bg-white px-1">VOTA<br>AQUÍ</span>
+                    
+                    <svg id="svgTrazo" class="absolute inset-0 w-full h-full p-1 sm:p-2.5 pointer-events-none hidden z-30" viewBox="0 0 100 100">
                       <path id="pathRayadoDiagonal" d="M 82 18 L 18 82" stroke="#dc2626" stroke-width="12" stroke-linecap="round" class="trazo-linea-roja" />
                     </svg>
                   </button>
