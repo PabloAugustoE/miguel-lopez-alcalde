@@ -300,44 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 7. CARRUSEL DE PROPUESTAS DE GESTIÓN DE GOBIERNO (NUEVO)
-  // ==========================================
-  const proposalTrack = document.getElementById('proposalTrack');
-  const btnPrevProposal = document.getElementById('btnPrevProposal');
-  const btnNextProposal = document.getElementById('btnNextProposal');
-  const currentProposalIdx = document.getElementById('currentProposalIdx');
-  const totalProposalIdx = document.getElementById('totalProposalIdx');
-  const proposalCards = proposalTrack ? proposalTrack.querySelectorAll('.proposal-card') : [];
-  
-  if (proposalTrack && proposalCards.length > 0) {
-    let currentPropIdx = 0;
-    const totalProps = proposalCards.length;
-    if (totalProposalIdx) totalProposalIdx.textContent = totalProps;
-
-    function updateProposalCarrusel() {
-      const cardWidth = proposalCards[0].offsetWidth + 24; // ancho + gap
-      proposalTrack.style.transform = `translateX(-${currentPropIdx * cardWidth}px)`;
-      proposalTrack.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
-      if (currentProposalIdx) currentProposalIdx.textContent = currentPropIdx + 1;
-    }
-
-    if (btnNextProposal) {
-      btnNextProposal.addEventListener('click', () => {
-        currentPropIdx = (currentPropIdx + 1) % totalProps;
-        updateProposalCarrusel();
-      });
-    }
-
-    if (btnPrevProposal) {
-      btnPrevProposal.addEventListener('click', () => {
-        currentPropIdx = (currentPropIdx - 1 + totalProps) % totalProps;
-        updateProposalCarrusel();
-      });
-    }
-  }
-
-  // ==========================================
-  // 8. RECURSOS Y MAQUINARIA SLIDER
+  // 7. RECURSOS Y MAQUINARIA SLIDER
   // ==========================================
   const resourceSlides = document.querySelectorAll('.resource-slide');
   const resDots = document.querySelectorAll('.res-dot');
@@ -385,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 9. ROADMAP INTERACTIVO
+  // 8. ROADMAP INTERACTIVO
   // ==========================================
   const btnHitos = document.querySelectorAll('.btn-hito');
   const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
