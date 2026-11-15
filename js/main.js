@@ -340,4 +340,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateCoverflow();
 
+
+  /* ==========================================
+     8. ROADMAP ACORDEÓN EXCLUSIVO
+     ========================================== */
+  const roadmapTriggers = document.querySelectorAll(".roadmap-trigger");
+
+  roadmapTriggers.forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      const targetId = trigger.getAttribute("data-target");
+      const targetContent = document.getElementById(targetId);
+      const targetArrow = trigger.querySelector(".roadmap-arrow");
+
+      const isCurrentlyOpen = !targetContent.classList.contains("hidden");
+
+      // Cerrar todos los contenidos y restablecer flechas
+      document.querySelectorAll(".roadmap-content").forEach(content => {
+        content.classList.add("hidden");
+      });
+      document.querySelectorAll(".roadmap-arrow").forEach(arrow => {
+        arrow.style.transform = "rotate(0deg)";
+      });
+
+      // Si el que se hizo clic estaba cerrado, se abre
+      if (!isCurrentlyOpen) {
+        targetContent.classList.remove("hidden");
+        if (targetArrow) targetArrow.style.transform = "rotate(180deg)";
+      }
+    });
+  });
+
 });
