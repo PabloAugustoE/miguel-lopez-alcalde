@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-
   // ==========================================
   // 1. MENÚ DESPLEGABLE "SÚMATE"
   // ==========================================
   const btnSumate = document.getElementById('btnSumate');
   const menuSumate = document.getElementById('menuSumate');
   const iconSumateArrow = document.getElementById('iconSumateArrow');
-
   if (btnSumate && menuSumate) {
     btnSumate.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -16,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         iconSumateArrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
       }
     });
-
     document.addEventListener('click', (e) => {
       if (!btnSumate.contains(e.target) && !menuSumate.contains(e.target)) {
         menuSumate.classList.add('hidden');
@@ -26,29 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   // ==========================================
   // 2. EFECTO TYPEWRITER (HERO)
   // ==========================================
   const words = ['Justo', 'Innovador', 'Seguro', 'Transparente', 'Unido', 'Próspero'];
   const targetElement = document.getElementById('typewriter-word');
-
   if (targetElement) {
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-
     const typeSpeed = 100;
     const deleteSpeed = 60;
     const holdTime = 3000;
-
     function typewriterLoop() {
       const currentWord = words[wordIndex];
-
       if (isDeleting) {
         charIndex--;
         targetElement.textContent = currentWord.substring(0, charIndex);
-
         if (charIndex === 0) {
           isDeleting = false;
           wordIndex = (wordIndex + 1) % words.length;
@@ -59,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         charIndex++;
         targetElement.textContent = currentWord.substring(0, charIndex);
-
         if (charIndex === currentWord.length) {
           isDeleting = true;
           setTimeout(typewriterLoop, holdTime);
@@ -70,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     typewriterLoop();
   }
-
 
   // ==========================================
   // 3. VIDEO INTERACTIVO PRINCIPAL (quien-soy.mp4) CON CONTROLES COMPLETOS
@@ -84,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentTimeDisplay = document.getElementById('currentTimeDisplay');
   const durationDisplay = document.getElementById('durationDisplay');
   const btnFullscreen = document.getElementById('btnFullscreen');
-
   if (videoQuienSoy && btnPlayQuienSoy && containerPlayBtn && videoPosterOverlay) {
     
     function formatTime(seconds) {
@@ -92,13 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const secs = Math.floor(seconds % 60);
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
     }
-
     videoQuienSoy.addEventListener('loadedmetadata', () => {
       if (durationDisplay) {
         durationDisplay.textContent = formatTime(videoQuienSoy.duration);
       }
     });
-
     const startVideoPlayback = () => {
       videoPosterOverlay.style.opacity = '0';
       setTimeout(() => {
@@ -110,16 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
         btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
       }
     };
-
     btnPlayQuienSoy.addEventListener('click', (e) => {
       e.stopPropagation();
       startVideoPlayback();
     });
-
     containerPlayBtn.addEventListener('click', () => {
       startVideoPlayback();
     });
-
     videoQuienSoy.addEventListener('click', () => {
       if (videoQuienSoy.paused) {
         startVideoPlayback();
@@ -131,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         containerPlayBtn.classList.remove('hidden');
       }
     });
-
     if (btnTogglePlay) {
       btnTogglePlay.addEventListener('click', () => {
         if (videoQuienSoy.paused) {
@@ -147,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-
     videoQuienSoy.addEventListener('timeupdate', () => {
       if (videoQuienSoy.duration) {
         const percent = (videoQuienSoy.currentTime / videoQuienSoy.duration) * 100;
@@ -157,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
-
     if (videoSeekBar) {
       videoSeekBar.addEventListener('input', () => {
         if (videoQuienSoy.duration) {
@@ -166,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-
     if (btnFullscreen) {
       btnFullscreen.addEventListener('click', () => {
         if (videoQuienSoy.requestFullscreen) {
@@ -178,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-
     videoQuienSoy.addEventListener('ended', () => {
       videoPosterOverlay.classList.remove('hidden');
       setTimeout(() => {
@@ -192,13 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   // ==========================================
   // 4. ANIMACIÓN SECUENCIAL CONTINUA (¿Quién es Miguel López?)
   // ==========================================
   const p1 = document.getElementById('parrafo1');
   const p2 = document.getElementById('parrafo2');
-
   function prepareText(element) {
     if (!element) return;
     const text = element.getAttribute('data-text');
@@ -211,10 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
       element.appendChild(span);
     });
   }
-
   prepareText(p1);
   prepareText(p2);
-
   function playTypingSequence(element, onComplete) {
     if (!element) return;
     const letters = element.querySelectorAll('.typing-letter');
@@ -231,11 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     typeNext();
   }
-
-  // Activación segura y continua que no se detiene al manipular el scroll
   let animationTriggered = false;
   const sectionQuienEs = document.getElementById('quien-es');
-
   if (sectionQuienEs) {
     const checkScrollForTyping = () => {
       if (animationTriggered) return;
@@ -248,39 +219,31 @@ document.addEventListener('DOMContentLoaded', () => {
         window.removeEventListener('scroll', checkScrollForTyping);
       }
     };
-
     window.addEventListener('scroll', checkScrollForTyping);
-    checkScrollForTyping(); // Comprobar por si ya está en vista al cargar
+    checkScrollForTyping();
   }
 
-
   // ==========================================
-  // 5. SIMULACIÓN DE VOTO EN PAPELETA (Recuadro negro con línea fija y trazo rojo)
+  // 5. SIMULACIÓN DE VOTO EN PAPELETA (Fondo blanco, bordes negros y trazo rojo)
   // ==========================================
   const casillaVoto = document.getElementById('casillaVoto');
   const textoRayar = document.getElementById('textoRayar');
   const svgTrazo = document.getElementById('svgTrazo');
   const mensajeVotoConfirmado = document.getElementById('mensajeVotoConfirmado');
-
   if (casillaVoto) {
-    // Creamos la línea horizontal fija negra dentro de la casilla
     let lineaFijaNegra = document.createElement('div');
     lineaFijaNegra.className = 'absolute inset-x-2 top-1/2 h-[3px] bg-black pointer-events-none hidden';
     lineaFijaNegra.id = 'lineaFijaNegra';
     casillaVoto.appendChild(lineaFijaNegra);
-
+    
     casillaVoto.addEventListener('click', () => {
       const isHidden = svgTrazo.classList.contains('hidden');
       if (isHidden) {
-        casillaVoto.classList.remove('bg-white', 'hover:bg-red-100');
-        casillaVoto.classList.add('bg-black');
         lineaFijaNegra.classList.remove('hidden');
         svgTrazo.classList.remove('hidden');
         if (textoRayar) textoRayar.style.opacity = '0';
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.remove('hidden');
       } else {
-        casillaVoto.classList.remove('bg-black');
-        casillaVoto.classList.add('bg-white', 'hover:bg-red-100');
         lineaFijaNegra.classList.add('hidden');
         svgTrazo.classList.add('hidden');
         if (textoRayar) textoRayar.style.opacity = '1';
@@ -288,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
 
   // ==========================================
   // 6. CARRUSEL DE NOVEDADES
@@ -299,16 +261,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentIndexEl = document.getElementById('currentIndex');
   const dots = document.querySelectorAll('.dot-btn');
   const noticias = document.querySelectorAll('.noticia-card');
-
   if (carruselTrack && noticias.length > 0) {
     let currentIdx = 0;
     const totalNoticias = noticias.length;
-
     function updateCarrusel() {
       const cardWidth = noticias[0].offsetWidth + 16;
       carruselTrack.style.transform = `translateX(-${currentIdx * cardWidth}px)`;
       if (currentIndexEl) currentIndexEl.textContent = currentIdx + 1;
-
       dots.forEach((dot, idx) => {
         if (idx === currentIdx) {
           dot.classList.remove('w-1.5', 'bg-slate-300');
@@ -319,28 +278,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-
     if (btnNext) {
       btnNext.addEventListener('click', () => {
         currentIdx = (currentIdx + 1) % totalNoticias;
         updateCarrusel();
       });
     }
-
     if (btnPrev) {
       btnPrev.addEventListener('click', () => {
         currentIdx = (currentIdx - 1 + totalNoticias) % totalNoticias;
         updateCarrusel();
       });
     }
-
     dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
         currentIdx = idx;
         updateCarrusel();
       });
     });
-
     noticias.forEach(card => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
@@ -355,13 +310,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   // ==========================================
   // 7. ROADMAP INTERACTIVO
   // ==========================================
   const btnHitos = document.querySelectorAll('.btn-hito');
   const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
-
   btnHitos.forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
@@ -371,7 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
   if (btnToggleAllRoadmap) {
     let allOpen = false;
     btnToggleAllRoadmap.addEventListener('click', () => {
@@ -385,5 +337,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
 });
