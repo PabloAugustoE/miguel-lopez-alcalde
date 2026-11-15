@@ -1,11 +1,9 @@
 /* ==========================================
    ESTILOS GENERALES Y CONFIGURACIÓN CSS
    ========================================== */
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: #f8fafc;
@@ -14,13 +12,21 @@ body {
   position: relative;
   min-height: 100vh;
 }
-
 h1, h2, h3, h4, h5, h6, .font-display {
   font-family: 'Outfit', sans-serif;
 }
 
+/* Ocultar barra de desplazamiento en carruseles táctiles */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* ==========================================
-   ANIMACIÓN LETRA A LETRA CONTINUA (¿Quién es Miguel López?)
+   ANIMACIÓN LETRA A LETRA CONTINUA
    ========================================== */
 .typing-letter {
   opacity: 0;
@@ -28,80 +34,63 @@ h1, h2, h3, h4, h5, h6, .font-display {
   transform: translateY(3px);
   transition: opacity 0.1s ease, transform 0.1s ease;
 }
-
 .typing-letter.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* ==========================================
-   ANIMACIONES DE MARQUESINA (Galería en Movimiento)
+   ANIMACIONES DE MARQUESINA (Galería)
    ========================================== */
 @keyframes marqueeLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-
 @keyframes marqueeRight {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
-
 .marquee-track-left {
   display: flex;
   width: max-content;
   animation: marqueeLeft 35s linear infinite;
 }
-
 .marquee-track-right {
   display: flex;
   width: max-content;
   animation: marqueeRight 35s linear infinite;
 }
-
 .marquee-track-left:hover,
 .marquee-track-right:hover {
   animation-play-state: paused;
 }
 
 /* ==========================================
-   SIMULADOR DE PAPELETA Y TRAZO DE VOTO
+   SIMULADOR DE PAPELETA
    ========================================== */
+.casilla-cuadrada-ancha {
+  aspect-ratio: 1 / 1 !important;
+  width: 44px !important;
+  height: 44px !important;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .casilla-cuadrada-ancha {
+    width: 84px !important;
+    height: 84px !important;
+  }
+}
+
 #casillaVoto {
-  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
-}
-
-#casillaVoto.bg-black {
-  background-color: #000000 !important;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  background-color: #ffffff !important;
   border-color: #000000 !important;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(220, 38, 38, 0.35);
-}
-
-#lineaFijaNegra {
-  background-color: #000000;
-  height: 3px;
-  z-index: 10;
-}
-
-#svgTrazo {
-  z-index: 20;
 }
 
 @keyframes drawStroke {
-  from {
-    stroke-dashoffset: 100;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
 }
 
 .trazo-linea-roja {
@@ -120,7 +109,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
   border-radius: 9999px;
   height: 6px;
 }
-
 #videoSeekBar::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -130,39 +118,22 @@ h1, h2, h3, h4, h5, h6, .font-display {
   background: #dc2626;
   border: 2px solid #ffffff;
   cursor: pointer;
-  transition: transform 0.15s ease;
-}
-
-#videoSeekBar::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-#videoSeekBar::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #dc2626;
-  border: 2px solid #ffffff;
-  cursor: pointer;
 }
 
 /* ==========================================
-   UTILIDADES PERSONALIZADAS Y SCROLLBAR
+   SCROLLBAR GENERAL
    ========================================== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
