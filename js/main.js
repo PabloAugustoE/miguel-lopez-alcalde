@@ -300,7 +300,84 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 7. RECURSOS Y MAQUINARIA SLIDER
+  // 7. COVERFLOW 3D ROTATIVO (Propuestas de Gobierno)
+  // ==========================================
+  const coverflowCards = document.querySelectorAll('.coverflow-card');
+  const btnPrevCoverflow = document.getElementById('prevCoverflow');
+  const btnNextCoverflow = document.getElementById('nextCoverflow');
+  const coverflowContainer = document.querySelector('.coverflow-container');
+
+  if (coverflowCards.length > 0) {
+    let activeIndex = 0;
+    const totalCards = coverflowCards.length;
+
+    function updateCoverflow() {
+      coverflowCards.forEach((card, i) => {
+        // Calcular la distancia relativa respecto al activo en bucle circular
+        let offset = (i - activeIndex + totalCards) % totalCards;
+        if (offset > totalCards / 2) {
+          offset -= totalCards;
+        }
+
+        card.classList.remove('is-active', 'is-left-1', 'is-right-1', 'is-hidden');
+
+        if (offset === 0) {
+          card.classList.add('is-active');
+        } else if (offset === -1 || offset === totalCards - 1) {
+          card.classList.add('is-left-1');
+        } else if (offset === 1 || offset === -(totalCards - 1)) {
+          card.classList.add('is-right-1');
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+    }
+
+    function nextCoverflowSlide() {
+      activeIndex = (activeIndex + 1) % totalCards;
+      updateCoverflow();
+    }
+
+    function prevCoverflowSlide() {
+      activeIndex = (activeIndex - 1 + totalCards) % totalCards;
+      updateCoverflow();
+    }
+
+    if (btnNextCoverflow) {
+      btnNextCoverflow.addEventListener('click', nextCoverflowSlide);
+    }
+    if (btnPrevCoverflow) {
+      btnPrevCoverflow.addEventListener('click', prevCoverflowSlide);
+    }
+
+    // Clic en tarjetas laterales para seleccionarlas directamente
+    coverflowCards.forEach((card, i) => {
+      card.addEventListener('click', (e) => {
+        if (!card.classList.contains('is-active')) {
+          e.preventDefault();
+          activeIndex = i;
+          updateCoverflow();
+        }
+      });
+    });
+
+    // Reproducción automática e indefinida (rotación cada 4 segundos)
+    let autoPlayInterval = setInterval(nextCoverflowSlide, 4000);
+
+    if (coverflowContainer) {
+      coverflowContainer.addEventListener('mouseenter', () => {
+        clearInterval(autoPlayInterval);
+      });
+      coverflowContainer.addEventListener('mouseleave', () => {
+        autoPlayInterval = setInterval(nextCoverflowSlide, 4000);
+      });
+    }
+
+    updateCoverflow();
+  }
+
+  // ==========================================
+  // 8. RECURSOS Y MAQUINARIA SLIDER
   // ==========================================
   const resourceSlides = document.querySelectorAll('.resource-slide');
   const resDots = document.querySelectorAll('.res-dot');
@@ -348,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 8. ROADMAP INTERACTIVO
+  // 9. ROADMAP INTERACTIVO
   // ==========================================
   const btnHitos = document.querySelectorAll('.btn-hito');
   const btnToggleAllRoadmap = document.getElementById('btnToggleAllRoadmap');
