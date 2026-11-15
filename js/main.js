@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 3. VIDEO INTERACTIVO PRINCIPAL (quien-soy.mp4) CON CONTROLES COMPLETOS
+  // 3. VIDEO INTERACTIVO PRINCIPAL (quien-soy.mp4)
   // ==========================================
   const videoQuienSoy = document.getElementById('videoQuienSoy');
   const btnPlayQuienSoy = document.getElementById('btnPlayQuienSoy');
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 4. ANIMACIÓN SECUENCIAL CONTINUA (¿Quién es Miguel López?)
+  // 4. ANIMACIÓN SECUENCIAL CONTINUA (Liderazgo)
   // ==========================================
   const p1 = document.getElementById('parrafo1');
   const p2 = document.getElementById('parrafo2');
@@ -309,11 +309,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const coverflowDots = document.getElementById('coverflowDots');
 
   if (coverflowCards.length > 0) {
-    let activeIndex = 2; // Inicia destacando el Pilar 03 al centro con 2 tarjetas a cada lado
+    let activeIndex = 2; // Inicia centrado en el Pilar 03
     const totalCards = coverflowCards.length;
     let autoPlayTimer = null;
 
-    // Generar indicadores inferiores
     if (coverflowDots) {
       coverflowCards.forEach((_, idx) => {
         const dot = document.createElement('button');
@@ -333,12 +332,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const dots = document.querySelectorAll('.cf-dot');
 
       coverflowCards.forEach((card, i) => {
-        // Calcular distancia circular exacta (-2, -1, 0, +1, +2)
         let diff = (i - activeIndex) % totalCards;
         if (diff < -Math.floor(totalCards / 2)) diff += totalCards;
         if (diff > Math.floor(totalCards / 2)) diff -= totalCards;
 
-        // Limpiar clases previas
         card.classList.remove('cf-center', 'cf-left-1', 'cf-right-1', 'cf-left-2', 'cf-right-2', 'cf-hidden');
 
         if (diff === 0) {
@@ -407,7 +404,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Permitir hacer clic en las fichas laterales para traerlas al frente
     coverflowCards.forEach((card, i) => {
       card.addEventListener('click', (e) => {
         if (!card.classList.contains('cf-center')) {
@@ -419,7 +415,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Soporte táctil (swipe) para móviles
     let touchStartX = 0;
     if (coverflowStage) {
       coverflowStage.addEventListener('touchstart', (e) => {
@@ -442,13 +437,12 @@ document.addEventListener('DOMContentLoaded', () => {
       coverflowStage.addEventListener('mouseleave', startAutoPlay);
     }
 
-    // Renderizar inmediatamente desde el inicio
     renderCoverflow();
     startAutoPlay();
   }
 
   // ==========================================
-  // 8. RECURSOS Y MAQUINARIA SLIDER
+  // 8. RECURSOS Y SUSTENTO OPERATIVO (SLIDER)
   // ==========================================
   const resourceSlides = document.querySelectorAll('.resource-slide');
   const resDots = document.querySelectorAll('.res-dot');
@@ -467,11 +461,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       resDots.forEach((dot, i) => {
         if (i === idx) {
-          dot.classList.remove('w-1.5', 'bg-slate-300');
-          dot.classList.add('w-5', 'bg-tambo-red');
+          dot.classList.remove('w-2', 'bg-slate-300');
+          dot.classList.add('w-6', 'bg-tambo-red');
         } else {
-          dot.classList.remove('w-5', 'bg-tambo-red');
-          dot.classList.add('w-1.5', 'bg-slate-300');
+          dot.classList.remove('w-6', 'bg-tambo-red');
+          dot.classList.add('w-2', 'bg-slate-300');
         }
       });
     }
