@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 6. CARRUSEL DE NOVEDADES (Ficha por ficha, retención de 3s y bucle infinito)
+  // 6. CARRUSEL DE NOVEDADES (Ficha por ficha, reacción manual/táctil y retención de 3s)
   // ==========================================
   const wrapper = document.getElementById('carruselNovedadesWrapper');
   const track = document.getElementById('carruselTrackNovedades');
@@ -236,13 +236,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function getCardWidth() {
       if (cards.length > 0) {
         const style = window.getComputedStyle(cards[0]);
-        const marginRight = parseInt(style.marginRight) || 24; // gap estimado o real
+        const marginRight = parseInt(style.marginRight) || 16;
         return cards[0].offsetWidth + marginRight;
       }
-      return 350;
+      return 320;
     }
 
-    function updateCounter() {
+    function updateCounterAndActive(index) {
+      currentIndex = index;
       if (currentIndexNovedades) {
         currentIndexNovedades.textContent = (currentIndex % totalCards) + 1;
       }
@@ -254,17 +255,15 @@ document.addEventListener('DOMContentLoaded', () => {
         left: index * cardWidth,
         behavior: smooth ? 'smooth' : 'auto'
       });
-      currentIndex = index;
-      updateCounter();
+      updateCounterAndActive(index);
     }
 
     function nextCard() {
       if (isInteracting) return;
       currentIndex++;
-      // Si llega al final, hace un loop fluido al inicio
       if (currentIndex >= totalCards) {
         currentIndex = 0;
-        scrollToCard(currentIndex, false); // Salto instantáneo imperceptible para el bucle
+        scrollToCard(currentIndex, false);
         setTimeout(() => {
           currentIndex = 1;
           scrollToCard(currentIndex, true);
@@ -288,12 +287,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isInteracting) {
           nextCard();
         }
-      }, 3000); // 3 segundos de retención
+      }, 3000); // Retención de 3 segundos
     }
 
     startAutoSlide();
 
-    // Controles manuales
+    // Sincronización en tiempo real al deslizar con el dedo o mouse (scroll manual)
+    let scrollTimeout;
+    wrapper.addEventListener('scroll', () => {
+      isInteracting = true;
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const cardWidth = getCardWidth();
+        const computedIndex = Math.round(wrapper.scrollLeft / cardWidth);
+        if (!isNaN(computedIndex) && computedIndex >= 0 && computedIndex < totalCards) {
+          updateCounterAndActive(computedIndex);
+        }
+        isInteracting = false;
+      }, 150);
+    }, { passive: true });
+
+    // Controles manuales de flechas
     if (btnNextNovedades) {
       btnNextNovedades.addEventListener('click', () => {
         isInteracting = true;
@@ -309,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Pausar automatismo al tocar o arrastrar manualmente
+    // Interacción por touch y mouse para pausar automatismo temporalmente
     ['mousedown', 'touchstart', 'wheel'].forEach(evt => {
       wrapper.addEventListener(evt, () => {
         isInteracting = true;
@@ -324,13 +338,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Hover de imágenes en las tarjetas
+    // Reacción táctil y de hover de imágenes en las tarjetas
     cards.forEach(card => {
       const hoverImg = card.getAttribute('data-hover-img');
       const defaultImg = card.getAttribute('data-default-img');
       if (hoverImg && defaultImg) {
         card.addEventListener('mouseenter', () => { card.style.backgroundImage = `url('${hoverImg}')`; });
         card.addEventListener('mouseleave', () => { card.style.backgroundImage = `url('${defaultImg}')`; });
+        card.addEventListener('touchstart', () => {
+          card.style.backgroundImage = `url('${hoverImg}')`;
+        }, { passive: true });
+        card.addEventListener('touchend', () => {
+          setTimeout(() => { card.style.backgroundImage = `url('${defaultImg}')`; }, 500);
+        }, { passive: true });
       }
     });
   }
