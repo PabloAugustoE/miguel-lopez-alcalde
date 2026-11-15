@@ -465,7 +465,7 @@
           <div id="carruselTrackNovedades" class="flex gap-3 sm:gap-6 w-max">
             
             <!-- Tarjeta 1 -->
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-tambo-red" style="background-image: url('assets/img/novedad1.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad1.2.jpg" data-default-img="assets/img/novedad1.jpg">
+            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-tambo-red" style="background-image: url('assets/img/novedad1.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad1.2.jpg" data-default-img="assets/img/miguel-portada.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-tambo-red text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">Territorio</span>
@@ -686,46 +686,37 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 6: Propuestas de Gestión de Gobierno (Estilo Carrusel Interactivo en Cascada) -->
-    <section id="propuestas" class="sec-proposals py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto reveal-up">
+    <!-- SECCIÓN 6: Propuestas de Gestión de Gobierno (Estilo Carrusel Infinito en Cascada) -->
+    <section id="propuestas" class="sec-proposals py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto reveal-up overflow-hidden">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
-        <div class="space-y-2 max-w-2xl">
+        <div class="space-y-2 max-w-3xl">
           <span class="text-[10px] sm:text-xs font-bold tracking-widest text-tambo-green uppercase bg-green-50 px-3 py-1 rounded-full border border-green-200">Plan de Gobierno Técnico</span>
-          <h2 class="text-2xl sm:text-5xl font-display font-black text-slate-900 tracking-tight">Propuestas de Gestión de Gobierno</h2>
-          <p class="text-xs sm:text-base text-slate-600 font-medium">Revisa las propuestas de su gestión de gobierno. Desliza o utiliza los controles para explorar las fichas técnicas.</p>
-        </div>
-        <!-- Controles de Navegación del Carrusel de Propuestas -->
-        <div class="flex items-center gap-3 self-start md:self-end">
-          <button id="btnPrevProposal" type="button" class="w-11 h-11 rounded-2xl bg-white border border-slate-300 hover:border-tambo-green text-slate-800 flex items-center justify-center transition-all shadow-md cursor-pointer hover:scale-105">
-            <i class="fa-solid fa-chevron-left text-sm"></i>
-          </button>
-          <div class="px-4 py-2 rounded-2xl bg-white border border-slate-300 text-xs font-extrabold text-slate-700 flex items-center gap-2 shadow-md">
-            <span class="w-2 h-2 rounded-full bg-tambo-green animate-pulse"></span>
-            <span>FICHA <span id="currentProposalIdx" class="text-tambo-green font-black">1</span> / <span id="totalProposalIdx">4</span></span>
-          </div>
-          <button id="btnNextProposal" type="button" class="w-11 h-11 rounded-2xl bg-white border border-slate-300 hover:border-tambo-green text-slate-800 flex items-center justify-center transition-all shadow-md cursor-pointer hover:scale-105">
-            <i class="fa-solid fa-chevron-right text-sm"></i>
-          </button>
+          <h2 class="text-2xl sm:text-5xl font-display font-black text-slate-900 tracking-tight">Propuesta de Gestión de Gobierno</h2>
+          <p class="text-xs sm:text-base text-slate-600 font-medium">Te invitamos a revisar las propuestas detalladas de nuestra gestión para transformar El Tambo.</p>
         </div>
       </div>
 
-      <!-- Contenedor Carrusel en Cascada Estilo Redes Sociales -->
-      <div id="proposalWrapper" class="overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing pb-6 pt-2">
-        <div id="proposalTrack" class="flex gap-4 sm:gap-6 w-max">
+      <!-- Contenedor Carrusel Infinito Automático en Cascada -->
+      <div class="relative w-full overflow-hidden py-4">
+        <div class="absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-tambo-light to-transparent z-20 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-tambo-light to-transparent z-20 pointer-events-none"></div>
+        
+        <div id="infiniteProposalTrack" class="flex gap-5 sm:gap-8 w-max items-center">
           
           <!-- Ficha 1: Agua y Saneamiento -->
-          <a href="vialidad.html" class="proposal-card w-[75vw] sm:w-[320px] lg:w-[350px] shrink-0 h-[380px] sm:h-[450px] rounded-3xl shadow-2xl relative overflow-hidden flex flex-col justify-between p-5 sm:p-7 border-2 border-slate-200 group text-left transition-all duration-500 hover:border-blue-600 hover:-translate-y-2 bg-cover bg-center" style="background-image: url('assets/img/miguel-portada.jpg');">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
-            <!-- Badge Superior -->
-            <div class="relative z-10 flex justify-between items-center">
-              <div class="w-10 h-10 rounded-xl bg-white/95 text-blue-600 flex items-center justify-center text-lg shadow-lg">
-                <i class="fa-solid fa-droplet"></i>
+          <a href="vialidad.html" class="proposal-card w-[280px] sm:w-[320px] lg:w-[360px] shrink-0 h-[420px] sm:h-[480px] rounded-[32px] shadow-2xl relative overflow-hidden flex flex-col justify-between p-6 sm:p-8 border-2 border-white/80 group text-left transition-all duration-500 hover:scale-[1.03] bg-cover bg-center" style="background-image: url('assets/img/miguel-portada.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20"></div>
+            <!-- Header Simulado Estilo Historia -->
+            <div class="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shadow"><i class="fa-solid fa-droplet"></i></div>
+                <span class="text-xs font-extrabold text-white tracking-tight">Pilar 01</span>
               </div>
-              <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-blue-600 text-white px-3 py-1 rounded-full shadow">Pilar 01</span>
+              <span class="text-[9px] font-bold text-white/80 uppercase tracking-widest">Tambo 2027</span>
             </div>
             <!-- Contenido Inferior -->
-            <div class="relative z-10 space-y-2 sm:space-y-3 mt-auto">
-              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Agua y Saneamiento Ambiental</h3>
+            <div class="relative z-10 space-y-3 mt-auto">
+              <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Agua y Saneamiento Ambiental</h3>
               <p class="text-xs sm:text-sm text-slate-200 line-clamp-3 leading-relaxed">Renovación de redes de agua potable, ampliación de alcantarillado y manejo técnico de desechos sólidos.</p>
               <div class="pt-3 border-t border-white/20 flex items-center justify-between">
                 <span class="text-xs font-bold text-blue-300">Documento Oficial</span>
@@ -735,18 +726,19 @@
           </a>
 
           <!-- Ficha 2: Conectividad Vial -->
-          <a href="turismo.html" class="proposal-card w-[75vw] sm:w-[320px] lg:w-[350px] shrink-0 h-[380px] sm:h-[450px] rounded-3xl shadow-2xl relative overflow-hidden flex flex-col justify-between p-5 sm:p-7 border-2 border-slate-200 group text-left transition-all duration-500 hover:border-amber-500 hover:-translate-y-2 bg-cover bg-center" style="background-image: url('assets/img/miguel-consejales.jpg');">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
-            <!-- Badge Superior -->
-            <div class="relative z-10 flex justify-between items-center">
-              <div class="w-10 h-10 rounded-xl bg-white/95 text-amber-600 flex items-center justify-center text-lg shadow-lg">
-                <i class="fa-solid fa-route"></i>
+          <a href="turismo.html" class="proposal-card w-[280px] sm:w-[320px] lg:w-[360px] shrink-0 h-[420px] sm:h-[480px] rounded-[32px] shadow-2xl relative overflow-hidden flex flex-col justify-between p-6 sm:p-8 border-2 border-white/80 group text-left transition-all duration-500 hover:scale-[1.03] bg-cover bg-center" style="background-image: url('assets/img/miguel-consejales.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20"></div>
+            <!-- Header Simulado Estilo Historia -->
+            <div class="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-amber-600 text-white flex items-center justify-center text-xs font-bold shadow"><i class="fa-solid fa-route"></i></div>
+                <span class="text-xs font-extrabold text-white tracking-tight">Pilar 02</span>
               </div>
-              <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-amber-600 text-white px-3 py-1 rounded-full shadow">Pilar 02</span>
+              <span class="text-[9px] font-bold text-white/80 uppercase tracking-widest">Tambo 2027</span>
             </div>
             <!-- Contenido Inferior -->
-            <div class="relative z-10 space-y-2 sm:space-y-3 mt-auto">
-              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Conectividad Vial y Comunal</h3>
+            <div class="relative z-10 space-y-3 mt-auto">
+              <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Conectividad Vial y Comunal</h3>
               <p class="text-xs sm:text-sm text-slate-200 line-clamp-3 leading-relaxed">Mejoramiento y lastrado de vías vecinales para conectar comunidades con el centro cantonal.</p>
               <div class="pt-3 border-t border-white/20 flex items-center justify-between">
                 <span class="text-xs font-bold text-amber-300">Documento Oficial</span>
@@ -756,18 +748,19 @@
           </a>
 
           <!-- Ficha 3: Fomento Productivo -->
-          <a href="agricultura.html" class="proposal-card w-[75vw] sm:w-[320px] lg:w-[350px] shrink-0 h-[380px] sm:h-[450px] rounded-3xl shadow-2xl relative overflow-hidden flex flex-col justify-between p-5 sm:p-7 border-2 border-slate-200 group text-left transition-all duration-500 hover:border-emerald-500 hover:-translate-y-2 bg-cover bg-center" style="background-image: url('assets/img/miguel-portada.jpg');">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
-            <!-- Badge Superior -->
-            <div class="relative z-10 flex justify-between items-center">
-              <div class="w-10 h-10 rounded-xl bg-white/95 text-emerald-600 flex items-center justify-center text-lg shadow-lg">
-                <i class="fa-solid fa-cow"></i>
+          <a href="agricultura.html" class="proposal-card w-[280px] sm:w-[320px] lg:w-[360px] shrink-0 h-[420px] sm:h-[480px] rounded-[32px] shadow-2xl relative overflow-hidden flex flex-col justify-between p-6 sm:p-8 border-2 border-white/80 group text-left transition-all duration-500 hover:scale-[1.03] bg-cover bg-center" style="background-image: url('assets/img/miguel-portada.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20"></div>
+            <!-- Header Simulado Estilo Historia -->
+            <div class="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shadow"><i class="fa-solid fa-cow"></i></div>
+                <span class="text-xs font-extrabold text-white tracking-tight">Pilar 03</span>
               </div>
-              <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-emerald-600 text-white px-3 py-1 rounded-full shadow">Pilar 03</span>
+              <span class="text-[9px] font-bold text-white/80 uppercase tracking-widest">Tambo 2027</span>
             </div>
             <!-- Contenido Inferior -->
-            <div class="relative z-10 space-y-2 sm:space-y-3 mt-auto">
-              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Fomento Productivo y Ganadería</h3>
+            <div class="relative z-10 space-y-3 mt-auto">
+              <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Fomento Productivo y Ganadería</h3>
               <p class="text-xs sm:text-sm text-slate-200 line-clamp-3 leading-relaxed">Asistencia veterinaria gratuita, kits de insumos para productores de leche y ferias directas.</p>
               <div class="pt-3 border-t border-white/20 flex items-center justify-between">
                 <span class="text-xs font-bold text-emerald-300">Documento Oficial</span>
@@ -777,22 +770,62 @@
           </a>
 
           <!-- Ficha 4: Turismo, Cultura y Juventud -->
-          <a href="seguridad.html" class="proposal-card w-[75vw] sm:w-[320px] lg:w-[350px] shrink-0 h-[380px] sm:h-[450px] rounded-3xl shadow-2xl relative overflow-hidden flex flex-col justify-between p-5 sm:p-7 border-2 border-slate-200 group text-left transition-all duration-500 hover:border-purple-600 hover:-translate-y-2 bg-cover bg-center" style="background-image: url('assets/img/miguel-consejales.jpg');">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
-            <!-- Badge Superior -->
-            <div class="relative z-10 flex justify-between items-center">
-              <div class="w-10 h-10 rounded-xl bg-white/95 text-purple-600 flex items-center justify-center text-lg shadow-lg">
-                <i class="fa-solid fa-landmark"></i>
+          <a href="seguridad.html" class="proposal-card w-[280px] sm:w-[320px] lg:w-[360px] shrink-0 h-[420px] sm:h-[480px] rounded-[32px] shadow-2xl relative overflow-hidden flex flex-col justify-between p-6 sm:p-8 border-2 border-white/80 group text-left transition-all duration-500 hover:scale-[1.03] bg-cover bg-center" style="background-image: url('assets/img/miguel-consejales.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20"></div>
+            <!-- Header Simulado Estilo Historia -->
+            <div class="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-bold shadow"><i class="fa-solid fa-landmark"></i></div>
+                <span class="text-xs font-extrabold text-white tracking-tight">Pilar 04</span>
               </div>
-              <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-purple-600 text-white px-3 py-1 rounded-full shadow">Pilar 04</span>
+              <span class="text-[9px] font-bold text-white/80 uppercase tracking-widest">Tambo 2027</span>
             </div>
             <!-- Contenido Inferior -->
-            <div class="relative z-10 space-y-2 sm:space-y-3 mt-auto">
-              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Turismo, Cultura y Juventud</h3>
+            <div class="relative z-10 space-y-3 mt-auto">
+              <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Turismo, Cultura y Juventud</h3>
               <p class="text-xs sm:text-sm text-slate-200 line-clamp-3 leading-relaxed">Reactivación turística de la Estación del Tren y Coyoctor, capital semilla y seguridad comunitaria.</p>
               <div class="pt-3 border-t border-white/20 flex items-center justify-between">
                 <span class="text-xs font-bold text-purple-300">Documento Oficial</span>
                 <span class="text-xs font-extrabold text-white group-hover:text-purple-300 transition-colors flex items-center gap-1.5">Ver ficha <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- DUPLICADO PARA BUCLE INFINITO FLUIDO -->
+          <a href="vialidad.html" class="proposal-card w-[280px] sm:w-[320px] lg:w-[360px] shrink-0 h-[420px] sm:h-[480px] rounded-[32px] shadow-2xl relative overflow-hidden flex flex-col justify-between p-6 sm:p-8 border-2 border-white/80 group text-left transition-all duration-500 hover:scale-[1.03] bg-cover bg-center" style="background-image: url('assets/img/miguel-portada.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20"></div>
+            <div class="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shadow"><i class="fa-solid fa-droplet"></i></div>
+                <span class="text-xs font-extrabold text-white tracking-tight">Pilar 01</span>
+              </div>
+              <span class="text-[9px] font-bold text-white/80 uppercase tracking-widest">Tambo 2027</span>
+            </div>
+            <div class="relative z-10 space-y-3 mt-auto">
+              <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Agua y Saneamiento Ambiental</h3>
+              <p class="text-xs sm:text-sm text-slate-200 line-clamp-3 leading-relaxed">Renovación de redes de agua potable, ampliación de alcantarillado y manejo técnico de desechos sólidos.</p>
+              <div class="pt-3 border-t border-white/20 flex items-center justify-between">
+                <span class="text-xs font-bold text-blue-300">Documento Oficial</span>
+                <span class="text-xs font-extrabold text-white group-hover:text-blue-300 transition-colors flex items-center gap-1.5">Ver ficha <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+              </div>
+            </div>
+          </a>
+
+          <a href="turismo.html" class="proposal-card w-[280px] sm:w-[320px] lg:w-[360px] shrink-0 h-[420px] sm:h-[480px] rounded-[32px] shadow-2xl relative overflow-hidden flex flex-col justify-between p-6 sm:p-8 border-2 border-white/80 group text-left transition-all duration-500 hover:scale-[1.03] bg-cover bg-center" style="background-image: url('assets/img/miguel-consejales.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20"></div>
+            <div class="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/20">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-amber-600 text-white flex items-center justify-center text-xs font-bold shadow"><i class="fa-solid fa-route"></i></div>
+                <span class="text-xs font-extrabold text-white tracking-tight">Pilar 02</span>
+              </div>
+              <span class="text-[9px] font-bold text-white/80 uppercase tracking-widest">Tambo 2027</span>
+            </div>
+            <div class="relative z-10 space-y-3 mt-auto">
+              <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-snug drop-shadow-md">Conectividad Vial y Comunal</h3>
+              <p class="text-xs sm:text-sm text-slate-200 line-clamp-3 leading-relaxed">Mejoramiento y lastrado de vías vecinales para conectar comunidades con el centro cantonal.</p>
+              <div class="pt-3 border-t border-white/20 flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-300">Documento Oficial</span>
+                <span class="text-xs font-extrabold text-white group-hover:text-amber-300 transition-colors flex items-center gap-1.5">Ver ficha <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
               </div>
             </div>
           </a>
@@ -894,7 +927,7 @@
             <div id="info-1" class="info-desplegable hidden w-full max-w-sm mt-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-xl text-left transition-all phase-details">
               <span class="text-[10px] font-bold text-tambo-red uppercase tracking-wider block">Parada 01</span>
               <h3 class="font-display font-bold text-sm sm:text-base text-slate-900 mt-0.5">Diálogo Comunitario Inicial</h3>
-              <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Reuniones base en sectores clave para catastrar necesidades urgentes de vialidad y agua potable.</p>
+              <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Reuniones base in sectores clave para catastrar necesidades urgentes de vialidad y agua potable.</p>
             </div>
           </div>
           <div class="hito-item flex flex-col items-center sm:items-start sm:pl-16 roadmap-node">
