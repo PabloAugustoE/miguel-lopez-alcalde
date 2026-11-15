@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   box-shadow: 0 28px 60px rgba(15, 23, 42, 0.45);
 }
 
-/* 2. Ficha Inmediata Izquierda (Semioculta detrás) */
+/* 2. Ficha Inmediata Izquierda */
 .coverflow-card.cf-left-1 {
   transform: translate3d(-115px, 0, -90px) scale(0.86) rotateY(14deg);
   z-index: 30;
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   filter: brightness(0.85);
 }
 
-/* 3. Ficha Inmediata Derecha (Semioculta detrás) */
+/* 3. Ficha Inmediata Derecha */
 .coverflow-card.cf-right-1 {
   transform: translate3d(115px, 0, -90px) scale(0.86) rotateY(-14deg);
   z-index: 30;
@@ -128,7 +128,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   filter: brightness(0.85);
 }
 
-/* 4. Segunda Ficha Izquierda (Fondo) */
+/* 4. Segunda Ficha Izquierda */
 .coverflow-card.cf-left-2 {
   transform: translate3d(-200px, 0, -180px) scale(0.73) rotateY(22deg);
   z-index: 20;
@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   filter: brightness(0.72);
 }
 
-/* 5. Segunda Ficha Derecha (Fondo) */
+/* 5. Segunda Ficha Derecha */
 .coverflow-card.cf-right-2 {
   transform: translate3d(200px, 0, -180px) scale(0.73) rotateY(-22deg);
   z-index: 20;
@@ -176,14 +176,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
   background-color: #000000 !important;
   border-color: #000000 !important;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(220, 38, 38, 0.35);
-}
-#lineaFijaNegra {
-  background-color: #000000;
-  height: 3px;
-  z-index: 10;
-}
-#svgTrazo {
-  z-index: 20;
 }
 @keyframes drawStroke {
   from { stroke-dashoffset: 100; }
