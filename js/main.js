@@ -300,80 +300,151 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 7. COVERFLOW 3D ROTATIVO (Propuestas de Gobierno)
+  // 7. CARRUSEL 3D EN ABANICO / COVERFLOW (Propuestas de Gobierno)
   // ==========================================
-  const coverflowCards = document.querySelectorAll('.coverflow-card');
+  const coverflowCards = Array.from(document.querySelectorAll('.coverflow-card'));
   const btnPrevCoverflow = document.getElementById('prevCoverflow');
   const btnNextCoverflow = document.getElementById('nextCoverflow');
-  const coverflowContainer = document.querySelector('.coverflow-container');
+  const coverflowStage = document.getElementById('coverflowStage');
+  const coverflowDots = document.getElementById('coverflowDots');
 
   if (coverflowCards.length > 0) {
-    let activeIndex = 0;
+    let activeIndex = 2; // Inicia destacando el Pilar 03 al centro con 2 tarjetas a cada lado
     const totalCards = coverflowCards.length;
+    let autoPlayTimer = null;
 
-    function updateCoverflow() {
+    // Generar indicadores inferiores
+    if (coverflowDots) {
+      coverflowCards.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Ver propuesta ${idx + 1}`);
+        dot.className = 'cf-dot h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-300 w-2';
+        dot.addEventListener('click', () => {
+          activeIndex = idx;
+          renderCoverflow();
+          resetAutoPlay();
+        });
+        coverflowDots.appendChild(dot);
+      });
+    }
+
+    function renderCoverflow() {
+      const dots = document.querySelectorAll('.cf-dot');
+
       coverflowCards.forEach((card, i) => {
-        // Calcular la distancia relativa respecto al activo en bucle circular
-        let offset = (i - activeIndex + totalCards) % totalCards;
-        if (offset > totalCards / 2) {
-          offset -= totalCards;
-        }
+        // Calcular distancia circular exacta (-2, -1, 0, +1, +2)
+        let diff = (i - activeIndex) % totalCards;
+        if (diff < -Math.floor(totalCards / 2)) diff += totalCards;
+        if (diff > Math.floor(totalCards / 2)) diff -= totalCards;
 
-        card.classList.remove('is-active', 'is-left-1', 'is-right-1', 'is-hidden');
+        // Limpiar clases previas
+        card.classList.remove('cf-center', 'cf-left-1', 'cf-right-1', 'cf-left-2', 'cf-right-2', 'cf-hidden');
 
-        if (offset === 0) {
-          card.classList.add('is-active');
-        } else if (offset === -1 || offset === totalCards - 1) {
-          card.classList.add('is-left-1');
-        } else if (offset === 1 || offset === -(totalCards - 1)) {
-          card.classList.add('is-right-1');
+        if (diff === 0) {
+          card.classList.add('cf-center');
+        } else if (diff === -1) {
+          card.classList.add('cf-left-1');
+        } else if (diff === 1) {
+          card.classList.add('cf-right-1');
+        } else if (diff === -2) {
+          card.classList.add('cf-left-2');
+        } else if (diff === 2) {
+          card.classList.add('cf-right-2');
         } else {
-          card.classList.add('is-hidden');
+          card.classList.add('cf-hidden');
+        }
+      });
+
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.classList.remove('w-2', 'bg-slate-300');
+          dot.classList.add('w-7', 'bg-tambo-red');
+        } else {
+          dot.classList.remove('w-7', 'bg-tambo-red');
+          dot.classList.add('w-2', 'bg-slate-300');
         }
       });
     }
 
-    function nextCoverflowSlide() {
+    function goNext() {
       activeIndex = (activeIndex + 1) % totalCards;
-      updateCoverflow();
+      renderCoverflow();
     }
 
-    function prevCoverflowSlide() {
+    function goPrev() {
       activeIndex = (activeIndex - 1 + totalCards) % totalCards;
-      updateCoverflow();
+      renderCoverflow();
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(goNext, 3800);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    function resetAutoPlay() {
+      startAutoPlay();
     }
 
     if (btnNextCoverflow) {
-      btnNextCoverflow.addEventListener('click', nextCoverflowSlide);
-    }
-    if (btnPrevCoverflow) {
-      btnPrevCoverflow.addEventListener('click', prevCoverflowSlide);
+      btnNextCoverflow.addEventListener('click', () => {
+        goNext();
+        resetAutoPlay();
+      });
     }
 
-    // Clic en tarjetas laterales para seleccionarlas directamente
+    if (btnPrevCoverflow) {
+      btnPrevCoverflow.addEventListener('click', () => {
+        goPrev();
+        resetAutoPlay();
+      });
+    }
+
+    // Permitir hacer clic en las fichas laterales para traerlas al frente
     coverflowCards.forEach((card, i) => {
       card.addEventListener('click', (e) => {
-        if (!card.classList.contains('is-active')) {
+        if (!card.classList.contains('cf-center')) {
           e.preventDefault();
           activeIndex = i;
-          updateCoverflow();
+          renderCoverflow();
+          resetAutoPlay();
         }
       });
     });
 
-    // Reproducción automática e indefinida (rotación cada 4 segundos)
-    let autoPlayInterval = setInterval(nextCoverflowSlide, 4000);
+    // Soporte táctil (swipe) para móviles
+    let touchStartX = 0;
+    if (coverflowStage) {
+      coverflowStage.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+      }, { passive: true });
 
-    if (coverflowContainer) {
-      coverflowContainer.addEventListener('mouseenter', () => {
-        clearInterval(autoPlayInterval);
-      });
-      coverflowContainer.addEventListener('mouseleave', () => {
-        autoPlayInterval = setInterval(nextCoverflowSlide, 4000);
-      });
+      coverflowStage.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const deltaX = touchEndX - touchStartX;
+        if (deltaX < -40) {
+          goNext();
+        } else if (deltaX > 40) {
+          goPrev();
+        }
+        startAutoPlay();
+      }, { passive: true });
+
+      coverflowStage.addEventListener('mouseenter', stopAutoPlay);
+      coverflowStage.addEventListener('mouseleave', startAutoPlay);
     }
 
-    updateCoverflow();
+    // Renderizar inmediatamente desde el inicio
+    renderCoverflow();
+    startAutoPlay();
   }
 
   // ==========================================
