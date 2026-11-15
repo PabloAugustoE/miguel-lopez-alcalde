@@ -167,19 +167,19 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
-   SIMULADOR DE PAPELETA Y TRAZO DE VOTO (Línea Horizontal Negra)
+   SIMULADOR DE PAPELETA Y TRAZO DE VOTO (Línea Diagonal Roja Animada)
    ========================================== */
 #casillaVoto {
   transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
-@keyframes drawHorizontalStroke {
-  from { stroke-dashoffset: 100; }
+@keyframes drawDiagonalStroke {
+  from { stroke-dashoffset: 120; }
   to { stroke-dashoffset: 0; }
 }
-.trazo-linea-negra {
-  stroke-dasharray: 100;
+.trazo-linea-roja {
+  stroke-dasharray: 120;
   stroke-dashoffset: 0;
-  animation: drawHorizontalStroke 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: drawDiagonalStroke 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* ==========================================
