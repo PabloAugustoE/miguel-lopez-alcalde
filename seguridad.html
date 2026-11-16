@@ -3,57 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cantón Seguro | Miguel López Alcalde</title>
+  <title>Pilar 04: Seguridad Ciudadana y Deporte | Miguel López 2027</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    /* Estilo CSS exclusivo para la ficha de Seguridad */
-    :root { --accent-sec: #2563eb; --bg-sec: #eff6ff; }
-    .sec-header { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); border-bottom: 4px solid var(--accent-sec); }
-    .sec-card { background: #ffffff; border-left: 5px solid var(--accent-sec); box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08); }
-    .badge-sec { background: var(--bg-sec); color: var(--accent-sec); border: 1px solid #bfdbfe; }
-  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], display: ['"Outfit"', 'sans-serif'] },
+          colors: { tambo: { red: '#dc2626', green: '#16a34a', dark: '#0f172a', light: '#f8fafc' } }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/ficha-interna.css">
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
-  
-  <header class="sec-header py-5 px-6 text-white">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-      <a href="index.html" class="text-xs font-bold text-slate-300 hover:text-white flex items-center gap-2 transition-colors"><i class="fa-solid fa-arrow-left"></i> Volver a la Propuesta General</a>
-      <span class="badge-sec text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Eje 4: Seguridad Cantonal</span>
+<body class="bg-tambo-light text-tambo-dark font-sans antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-3 shadow-sm">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="index.html#propuestas" class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-slate-700 hover:text-tambo-red transition-colors">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Gobierno
+      </a>
+      <span class="bg-purple-100 text-purple-800 text-[10px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Pilar 04 · Uso Interno</span>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto py-12 px-4 space-y-8">
-    <div class="sec-card p-8 sm:p-12 rounded-3xl space-y-6">
-      <div class="flex items-center gap-4">
-        <div class="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl shrink-0">
-          <i class="fa-solid fa-shield-halved"></i>
-        </div>
-        <div>
-          <h1 class="text-2xl sm:text-4xl font-display font-extrabold text-slate-900">Plan Integral Cantón Seguro</h1>
-          <p class="text-xs text-slate-500 mt-1">Cantón El Tambo · Provincia del Cañar</p>
-        </div>
+  <section class="ficha-hero-bg py-12 sm:py-16 px-4 text-white" style="background-image: url('assets/img/miguel-consejales.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/90 to-purple-950/80"></div>
+    <div class="max-w-5xl mx-auto relative z-10 space-y-4">
+      <div class="inline-flex items-center gap-2 bg-purple-600/30 border border-purple-400/40 px-3 py-1 rounded-full text-xs font-bold text-purple-200">
+        <i class="fa-solid fa-shield-halved"></i> Competencia COOTAD y Cohesión Social
       </div>
-
-      <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-        La paz ciudadana es el pilar indispensable para el comercio y la vida familiar. Implementaremos un modelo tecnológico preventivo que articule la videovigilancia municipal con la participación activa de los barrios y la Policía Nacional.
+      <h1 class="text-3xl sm:text-5xl font-display font-black tracking-tight leading-tight">
+        Seguridad Ciudadana y Deporte
+      </h1>
+      <p class="text-sm sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
+        Recuperar la paz en calles, campos y hogares con tecnología preventiva y prevención social mediante infraestructura deportiva de alto nivel.
       </p>
+    </div>
+  </section>
 
-      <div class="space-y-4 pt-4 border-t border-slate-100">
-        <h3 class="font-display font-bold text-lg text-slate-900">Estrategias de Protección Ciudadana:</h3>
-        <div class="grid gap-3 text-xs sm:text-sm text-slate-700">
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <strong>1. Central Municipal de Monitoreo:</strong> Instalación de cámaras de alta definición y reconocimiento de placas vehiculares estratégicamente ubicadas en accesos y zonas comerciales.
-          </div>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <strong>2. Red de Alarmas Comunitarias Inteligentes:</strong> Sistemas de alerta temprana activados mediante aplicación móvil vecinal conectada directamente con el retén policial.
-          </div>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <strong>3. Patrullaje Mixto Preventivo:</strong> Operativos constantes con camionetas municipales y brigadas barriales debidamente capacitadas y equipadas.
-          </div>
+  <main class="max-w-5xl mx-auto px-4 py-10 space-y-10">
+
+    <!-- Bloque Doble: Seguridad + Deporte -->
+    <div class="grid md:grid-cols-2 gap-6">
+      
+      <!-- Sub-eje Seguridad -->
+      <div class="bg-white rounded-2xl p-6 shadow-lg border-t-4 border-t-tambo-red space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-100 text-tambo-red flex items-center justify-center text-lg"><i class="fa-solid fa-video"></i></div>
+          <h3 class="font-display font-black text-xl text-slate-900">Plan Cantonal de Seguridad</h3>
         </div>
+        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+          <li><strong>• Consejo de Seguridad Ciudadana:</strong> Activación inmediata amparada en la última reforma del COOTAD.</li>
+          <li><strong>• Videovigilancia y Alerta:</strong> Cámaras de última tecnología, sirenas, bocinas y botones de pánico conectados a entes de respuesta.</li>
+          <li><strong>• Brigadas Barriales:</strong> Capacitación comunitaria, rutas seguras y protocolos de reacción ante emergencias delictivas.</li>
+        </ul>
       </div>
 
-      <div class="bg
+      <!-- Sub-eje Deporte -->
+      <div class="bg-white rounded-2xl p-6 shadow-lg border-t-4 border-t-purple-600 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg"><i class="fa-solid fa-medal"></i></div>
+          <h3 class="font-display font-black text-xl text-slate-900">Política Deportiva y Estadio</h3>
+        </div>
+        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+          <li><strong>• Nuevo Estadio Básico:</strong> Construcción de infraestructura deportiva con pista atlética reglamentaria para fútbol y atletismo.</li>
+          <li><strong>• Diversificación Deportiva:</strong> Apoyo a deportistas de élite en múltiples disciplinas más allá del fútbol.</li>
+          <li><strong>• Capital del Deporte:</strong> Fortalecimiento de escuelas formativas y organización de campeonatos y topes nacionales.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Sustento Financiero -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-4">
+      <div class="flex items-center gap-2 text-tambo-green font-extrabold text-xs uppercase tracking-widest">
+        <i class="fa-solid fa-sack-dollar"></i> Fuentes de Financiamiento y Gestión
+      </div>
+      <h3 class="text-xl font-display font-black text-slate-900">¿De dónde saldrán los recursos?</h3>
+      <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <li class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
+          <span><strong>Asignación Competencia COOTAD + Tasas de Seguridad:</strong> Recursos específicos para equipamiento tecnológico articulado con el ECU-911 y Policía Nacional.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
+          <span><strong>Convenios Ministerio del Deporte y Empresa Privada:</strong> Cofinanciamiento para la pista atlética y patrocinios para topes nacionales que dinamicen el turismo y comercio local.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flex justify-between items-center pt-4 border-t border-slate-200">
+      <a href="agricultura.html" class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-extrabold flex items-center gap-2">
+        <i class="fa-solid fa-arrow-left"></i> Anterior: Pilar 03
+      </a>
+      <a href="financiamiento.html" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-tambo-red text-white text-xs font-extrabold flex items-center gap-2 transition-colors">
+        Siguiente: Pilar 05 Presupuesto y Gobierno Digital <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </main>
+
+  <script src="js/ficha-interna.js"></script>
+</body>
+</html>
