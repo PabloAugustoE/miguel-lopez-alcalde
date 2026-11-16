@@ -165,32 +165,37 @@
             Una vida de trabajo, raíces profundas y compromiso firme con El Tambo.
           </p>
         </div>
-        
+        <!-- Tarjeta principal con video de fondo y video interactivo -->
         <div class="about-card-container p-3.5 sm:p-6 rounded-2xl border border-slate-200 text-center relative shadow-xl reveal-up max-w-3xl mx-auto overflow-hidden">
+          
           <video class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none" autoplay muted loop playsinline preload="auto">
             <source src="assets/video/portada-fondo.mp4" type="video/mp4">
+            Tu navegador no soporta video de fondo.
           </video>
           <div class="absolute top-3 right-3 sm:top-5 sm:right-5 bg-tambo-green text-white text-[10px] sm:text-[11px] font-extrabold px-3.5 py-1 rounded-full shadow-lg z-30 uppercase tracking-wider">
             El Tambo 2027
           </div>
           
           <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 shadow-2xl bg-slate-950 border border-white/20 z-10 group">
+            
             <div id="videoPosterOverlay" class="absolute inset-0 z-30 bg-cover bg-center transition-opacity duration-500" style="background-image: url('assets/img/miguel-portada.jpg');">
               <div class="absolute inset-0 bg-slate-950/40 pointer-events-none"></div>
             </div>
             <video id="videoQuienSoy" class="w-full h-full object-cover relative z-10 cursor-pointer" preload="metadata">
               <source src="assets/video/quien-soy.mp4" type="video/mp4">
+              Tu navegador no soporta la reproducción de video HTML5.
             </video>
             <div id="containerPlayBtn" class="absolute inset-0 flex items-center justify-center z-40 cursor-pointer">
               <div class="relative flex items-center justify-center">
                 <div class="absolute w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-tambo-red/60 animate-ping pointer-events-none"></div>
-                <button id="btnPlayQuienSoy" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/90">
+                <button id="btnPlayQuienSoy" type="button" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-tambo-red text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer border-2 border-white/90" title="Reproducir video">
                   <i class="fa-solid fa-play text-xl sm:text-3xl ml-0.5"></i>
                 </button>
               </div>
             </div>
+            <!-- Controles de Video -->
             <div id="videoControlsBar" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950/95 via-slate-950/70 to-transparent p-2.5 sm:p-3 z-40 flex items-center gap-2 sm:gap-3 opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
-              <button id="btnTogglePlay" type="button" class="text-white hover:text-tambo-red text-xs sm:text-sm w-7 h-7 flex items-center justify-center transition-colors cursor-pointer">
+              <button id="btnTogglePlay" type="button" class="text-white hover:text-tambo-red text-xs sm:text-sm w-7 h-7 flex items-center justify-center transition-colors cursor-pointer" title="Pausar / Reproducir">
                 <i class="fa-solid fa-pause"></i>
               </button>
               <div class="flex-1 flex items-center gap-2">
@@ -198,7 +203,7 @@
                 <input id="videoSeekBar" type="range" min="0" max="100" value="0" step="0.1" class="w-full h-1.5 bg-white/30 rounded-lg appearance-none cursor-pointer accent-tambo-red">
                 <span id="durationDisplay" class="text-[9px] sm:text-[10px] font-bold text-white/90">0:00</span>
               </div>
-              <button id="btnFullscreen" type="button" class="text-white hover:text-tambo-red text-xs sm:text-sm w-7 h-7 flex items-center justify-center transition-colors cursor-pointer">
+              <button id="btnFullscreen" type="button" class="text-white hover:text-tambo-red text-xs sm:text-sm w-7 h-7 flex items-center justify-center transition-colors cursor-pointer" title="Pantalla completa">
                 <i class="fa-solid fa-expand"></i>
               </button>
             </div>
@@ -208,10 +213,10 @@
             <p class="text-[11px] sm:text-xs text-red-300 font-extrabold uppercase tracking-widest drop-shadow">Candidato a la Alcaldía</p>
           </div>
         </div>
-
+        <!-- Párrafos con animación secuencial limpia por bloque -->
         <div class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed reveal-up">
-          <p id="parrafo1" class="typing-paragraph" data-text="Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos."></p>
-          <p id="parrafo2" class="typing-paragraph" data-text="Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar."></p>
+          <p class="typing-paragraph opacity-0 transition-opacity duration-700">Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos.</p>
+          <p class="typing-paragraph opacity-0 transition-opacity duration-700">Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar.</p>
         </div>
       </div>
     </section>
