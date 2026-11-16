@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ==========================================
-     1. MENÚ DESPLEGABLE "SÚMATE"
+     1. MENÚ DESPLEGABLE "SÚMATE" (Con cierre automático al hacer scroll)
      ========================================== */
   const btnSumate = document.getElementById("btnSumate");
   const menuSumate = document.getElementById("menuSumate");
   const iconSumateArrow = document.getElementById("iconSumateArrow");
+
   if (btnSumate && menuSumate) {
     btnSumate.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -19,8 +20,19 @@ document.addEventListener("DOMContentLoaded", () => {
         if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
       }
     });
+
+    // Ocultar si se hace clic fuera del menú
     document.addEventListener("click", (e) => {
       if (!btnSumate.contains(e.target) && !menuSumate.contains(e.target)) {
+        menuSumate.classList.add("hidden");
+        btnSumate.setAttribute("aria-expanded", "false");
+        if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
+      }
+    });
+
+    // Ocultar automáticamente al hacer scroll por la página
+    window.addEventListener("scroll", () => {
+      if (!menuSumate.classList.contains("hidden")) {
         menuSumate.classList.add("hidden");
         btnSumate.setAttribute("aria-expanded", "false");
         if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
@@ -36,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let charIndex = 0;
   let isDeleting = false;
   const typewriterSpan = document.getElementById("typewriter-word");
+  
   function typeEffect() {
     if (!typewriterSpan) return;
     const currentWord = words[wordIndex];
@@ -74,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       p.appendChild(span);
     });
   });
+
   const paragraphObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -87,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, { threshold: 0.15 });
+
   typingParagraphs.forEach(p => paragraphObserver.observe(p));
 
   /* ==========================================
@@ -101,11 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentTimeDisplay = document.getElementById("currentTimeDisplay");
   const durationDisplay = document.getElementById("durationDisplay");
   const btnFullscreen = document.getElementById("btnFullscreen");
+
   function formatTime(seconds) {
     let mins = Math.floor(seconds / 60);
     let secs = Math.floor(seconds % 60);
     return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
   }
+
   if (videoQuienSoy) {
     const startPlayingVideo = () => {
       if (videoPosterOverlay) videoPosterOverlay.style.opacity = "0";
@@ -116,8 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
       videoQuienSoy.play();
       if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
     };
+
     if (btnPlayQuienSoy) btnPlayQuienSoy.addEventListener("click", startPlayingVideo);
     if (containerPlayBtn) containerPlayBtn.addEventListener("click", startPlayingVideo);
+    
     videoQuienSoy.addEventListener("click", () => {
       if (videoQuienSoy.paused) {
         startPlayingVideo();
@@ -127,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (containerPlayBtn) containerPlayBtn.style.display = "flex";
       }
     });
+
     if (btnTogglePlay) {
       btnTogglePlay.addEventListener("click", () => {
         if (videoQuienSoy.paused) {
@@ -143,9 +163,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
+
     videoQuienSoy.addEventListener("loadedmetadata", () => {
       if (durationDisplay) durationDisplay.textContent = formatTime(videoQuienSoy.duration);
     });
+
     videoQuienSoy.addEventListener("timeupdate", () => {
       if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
       if (videoSeekBar && videoQuienSoy.duration) {
@@ -153,6 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
         videoSeekBar.value = percent;
       }
     });
+
     if (videoSeekBar) {
       videoSeekBar.addEventListener("input", () => {
         if (videoQuienSoy.duration) {
@@ -161,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
+
     if (btnFullscreen) {
       btnFullscreen.addEventListener("click", () => {
         if (videoQuienSoy.requestFullscreen) {
@@ -182,6 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const textoRayar = document.getElementById("textoRayar");
   const mensajeVotoConfirmado = document.getElementById("mensajeVotoConfirmado");
   let votoRealizado = false;
+
   if (casillaVoto) {
     casillaVoto.addEventListener("click", () => {
       votoRealizado = !votoRealizado;
@@ -209,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentIndexNovedades = document.getElementById("currentIndexNovedades");
   const totalIndexNovedades = document.getElementById("totalIndexNovedades");
   const tarjetasNoticia = document.querySelectorAll(".noticia-card");
+  
   if (totalIndexNovedades) totalIndexNovedades.textContent = tarjetasNoticia.length;
   
   if (carruselWrapper && btnPrevNovedades && btnNextNovedades) {
@@ -221,12 +247,14 @@ document.addEventListener("DOMContentLoaded", () => {
       carruselWrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
       resetAutoScrollNovedades();
     });
+
     carruselWrapper.addEventListener("scroll", () => {
       const cardWidth = 350 + 24;
       const index = Math.round(carruselWrapper.scrollLeft / cardWidth) + 1;
       const clampedIndex = Math.max(1, Math.min(index, tarjetasNoticia.length));
       if (currentIndexNovedades) currentIndexNovedades.textContent = clampedIndex;
     });
+
     tarjetasNoticia.forEach(card => {
       const hoverImg = card.getAttribute("data-hover-img");
       const defaultImg = card.getAttribute("data-default-img");
@@ -235,6 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener("mouseleave", () => card.style.backgroundImage = `url('${defaultImg}')`);
       }
     });
+
     let autoScrollIntervalNovedades = setInterval(() => {
       if (!carruselWrapper) return;
       const maxScrollLeft = carruselWrapper.scrollWidth - carruselWrapper.clientWidth;
@@ -244,6 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
         carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
       }
     }, 4500);
+
     function resetAutoScrollNovedades() {
       clearInterval(autoScrollIntervalNovedades);
       autoScrollIntervalNovedades = setInterval(() => {
@@ -256,6 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }, 4500);
     }
+
     carruselWrapper.addEventListener("mouseenter", () => clearInterval(autoScrollIntervalNovedades));
     carruselWrapper.addEventListener("mouseleave", resetAutoScrollNovedades);
   }
@@ -270,6 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeIndex = 0;
   const totalCards = cards.length;
   let coverflowInterval;
+
   if (coverflowDots && totalCards > 0) {
     for (let i = 0; i < totalCards; i++) {
       const dot = document.createElement("button");
@@ -284,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
       coverflowDots.appendChild(dot);
     }
   }
+
   function updateCoverflow() {
     if (cards.length === 0) return;
     cards.forEach((card, index) => {
@@ -305,6 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+
   if (nextCoverflow) {
     nextCoverflow.addEventListener("click", () => {
       activeIndex = (activeIndex + 1) % totalCards;
@@ -312,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
       resetCoverflowTimer();
     });
   }
+
   if (prevCoverflow) {
     prevCoverflow.addEventListener("click", () => {
       activeIndex = (activeIndex - 1 + totalCards) % totalCards;
@@ -319,6 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
       resetCoverflowTimer();
     });
   }
+
   cards.forEach((card, idx) => {
     card.addEventListener("click", (e) => {
       if (idx !== activeIndex) {
@@ -329,21 +365,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
   function startCoverflowTimer() {
     coverflowInterval = setInterval(() => {
       activeIndex = (activeIndex + 1) % totalCards;
       updateCoverflow();
     }, 5000);
   }
+
   function resetCoverflowTimer() {
     clearInterval(coverflowInterval);
     startCoverflowTimer();
   }
+
   const coverflowStage = document.getElementById("coverflowStage");
   if (coverflowStage) {
     coverflowStage.addEventListener("mouseenter", () => clearInterval(coverflowInterval));
     coverflowStage.addEventListener("mouseleave", startCoverflowTimer);
   }
+
   updateCoverflow();
   startCoverflowTimer();
 
