@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   /* ==========================================
      1. MENÚ DESPLEGABLE "SÚMATE"
      ========================================== */
@@ -30,54 +31,86 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
   /* ==========================================
-     2. EFECTO TYPEWRITER EN HERO
+     2. EFECTO MÁQUINA DE ESCRIBIR (HERO)
      ========================================== */
-  const words = ["Próspero", "Seguro", "Productivo", "Solidario", "Moderno"];
-  let i = 0;
-  let timer;
+  const words = ["Próspero", "Solidario", "Seguro", "Productivo", "Transformado"];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
   const typewriterSpan = document.getElementById("typewriter-word");
 
-  function typingEffect() {
+  function typeEffect() {
     if (!typewriterSpan) return;
-    let word = words[i].split("");
-    let loopTyping = function () {
-      if (word.length > 0) {
-        typewriterSpan.innerHTML += word.shift();
-      } else {
-        setTimeout(deletingEffect, 2000);
-        return;
-      }
-      timer = setTimeout(loopTyping, 120);
-    };
-    loopTyping();
-  }
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+      typewriterSpan.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typewriterSpan.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+    }
 
-  function deletingEffect() {
-    if (!typewriterSpan) return;
-    let word = words[i].split("");
-    let loopDeleting = function () {
-      if (word.length > 0) {
-        word.pop();
-        typewriterSpan.innerHTML = word.join("");
-      } else {
-        i = (i + 1) % words.length;
-        setTimeout(typingEffect, 500);
-        return;
-      }
-      timer = setTimeout(loopDeleting, 60);
-    };
-    loopDeleting();
+    let typeSpeed = isDeleting ? 75 : 120;
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      typeSpeed = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      typeSpeed = 400;
+    }
+
+    setTimeout(typeEffect, typeSpeed);
   }
-  typingEffect();
+  typeEffect();
+
 
   /* ==========================================
-     3. VIDEO INTERACTIVO "¿QUIÉN ES?"
+     3. EFECTO LETRA A LETRA (LIDERAZGO / BIOGRAFÍA)
      ========================================== */
-  const videoQuienSoy = document.getElementById("videoQuienSoy");
-  const btnPlayQuienSoy = document.getElementById("btnPlayQuienSoy");
+  const typingParagraphs = document.querySelectorAll(".typing-paragraph");
+  typingParagraphs.forEach(p => {
+    const text = p.getAttribute("data-text");
+    if (!text) return;
+    p.innerHTML = "";
+    text.split("").forEach(char => {
+      const span = document.createElement("span");
+      span.className = "typing-letter";
+      span.textContent = char === " " ? "\u00A0" : char;
+      p.appendChild(span);
+    });
+  });
+
+  const observerOptions = { threshold: 0.2 };
+  const paragraphObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const letters = entry.target.querySelectorAll(".typing-letter");
+        letters.forEach((letter, idx) => {
+          setTimeout(() => {
+            letter.classList.add("visible");
+          }, idx * 12);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  typingParagraphs.forEach(p => paragraphObserver.observe(p));
+
+
+  /* ==========================================
+     4. REPRODUCTOR DE VIDEO INTERACTIVO (Biografía)
+     ========================================== */
+  const video = document.getElementById("videoQuienSoy");
+  const posterOverlay = document.getElementById("videoPosterOverlay");
   const containerPlayBtn = document.getElementById("containerPlayBtn");
-  const videoPosterOverlay = document.getElementById("videoPosterOverlay");
+  const btnPlayQuienSoy = document.getElementById("btnPlayQuienSoy");
+  const videoControlsBar = document.getElementById("videoControlsBar");
   const btnTogglePlay = document.getElementById("btnTogglePlay");
   const videoSeekBar = document.getElementById("videoSeekBar");
   const currentTimeDisplay = document.getElementById("currentTimeDisplay");
@@ -85,319 +118,256 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnFullscreen = document.getElementById("btnFullscreen");
 
   function formatTime(seconds) {
-    let mins = Math.floor(seconds / 60);
-    let secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   }
 
-  if (videoQuienSoy) {
-    const startPlayingVideo = () => {
-      if (videoPosterOverlay) videoPosterOverlay.style.opacity = "0";
-      if (containerPlayBtn) containerPlayBtn.style.display = "none";
-      setTimeout(() => {
-        if (videoPosterOverlay) videoPosterOverlay.style.display = "none";
-      }, 500);
-      videoQuienSoy.play();
+  if (video) {
+    const startPlaying = () => {
+      if (posterOverlay) posterOverlay.style.opacity = '0';
+      if (containerPlayBtn) containerPlayBtn.style.display = 'none';
+      if (videoControlsBar) {
+        videoControlsBar.style.opacity = '1';
+        videoControlsBar.style.pointerEvents = 'auto';
+      }
+      video.play().catch(err => console.log("Play error:", err));
       if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
     };
 
-    if (btnPlayQuienSoy) btnPlayQuienSoy.addEventListener("click", startPlayingVideo);
-    if (containerPlayBtn) containerPlayBtn.addEventListener("click", startPlayingVideo);
-    videoQuienSoy.addEventListener("click", () => {
-      if (videoQuienSoy.paused) {
-        startPlayingVideo();
-      } else {
-        videoQuienSoy.pause();
+    if (btnPlayQuienSoy) btnPlayQuienSoy.addEventListener("click", startPlaying);
+    if (containerPlayBtn) containerPlayBtn.addEventListener("click", startPlaying);
+    video.addEventListener("click", () => {
+      if (video.paused) startPlaying();
+      else {
+        video.pause();
         if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
-        if (containerPlayBtn) containerPlayBtn.style.display = "flex";
       }
     });
 
     if (btnTogglePlay) {
       btnTogglePlay.addEventListener("click", () => {
-        if (videoQuienSoy.paused) {
-          videoQuienSoy.play();
+        if (video.paused) {
+          video.play();
           btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
-          if (containerPlayBtn) containerPlayBtn.style.display = "none";
-          if (videoPosterOverlay) {
-            videoPosterOverlay.style.opacity = "0";
-            setTimeout(() => (videoPosterOverlay.style.display = "none"), 500);
-          }
         } else {
-          videoQuienSoy.pause();
+          video.pause();
           btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
       });
     }
 
-    videoQuienSoy.addEventListener("loadedmetadata", () => {
-      if (durationDisplay) durationDisplay.textContent = formatTime(videoQuienSoy.duration);
+    video.addEventListener("loadedmetadata", () => {
+      if (durationDisplay) durationDisplay.textContent = formatTime(video.duration);
     });
 
-    videoQuienSoy.addEventListener("timeupdate", () => {
-      if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
-      if (videoSeekBar && videoQuienSoy.duration) {
-        let percent = (videoQuienSoy.currentTime / videoQuienSoy.duration) * 100;
-        videoSeekBar.value = percent;
+    video.addEventListener("timeupdate", () => {
+      if (video.duration) {
+        const percent = (video.currentTime / video.duration) * 100;
+        if (videoSeekBar) videoSeekBar.value = percent;
+        if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(video.currentTime);
       }
     });
 
     if (videoSeekBar) {
       videoSeekBar.addEventListener("input", () => {
-        if (videoQuienSoy.duration) {
-          let time = (videoSeekBar.value / 100) * videoQuienSoy.duration;
-          videoQuienSoy.currentTime = time;
-        }
+        const time = (videoSeekBar.value / 100) * video.duration;
+        video.currentTime = time;
       });
     }
 
     if (btnFullscreen) {
       btnFullscreen.addEventListener("click", () => {
-        if (videoQuienSoy.requestFullscreen) {
-          videoQuienSoy.requestFullscreen();
-        } else if (videoQuienSoy.webkitRequestFullscreen) {
-          videoQuienSoy.webkitRequestFullscreen();
-        } else if (videoQuienSoy.msRequestFullscreen) {
-          videoQuienSoy.msRequestFullscreen();
-        }
+        if (video.requestFullscreen) video.requestFullscreen();
+        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
       });
     }
   }
 
-  /* ==========================================
-     4. APARICIÓN SECUENCIAL DE PÁRRAFOS
-     ========================================== */
-  const typingParagraphs = document.querySelectorAll(".typing-paragraph");
-
-  const observerParagraphs = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        typingParagraphs.forEach((p, idx) => {
-          setTimeout(() => {
-            p.classList.remove("opacity-0");
-            p.classList.add("opacity-100");
-          }, idx * 400); // Retardo escalonado de 400ms por párrafo
-        });
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.2 });
-
-  if (typingParagraphs.length > 0) {
-    observerParagraphs.observe(typingParagraphs[0].parentElement);
-  }
 
   /* ==========================================
-     5. SIMULADOR DE PAPELETA OFICIAL
+     5. SIMULADOR DE PAPELETA OFICIAL Y TRAZO DE VOTO
      ========================================== */
   const casillaVoto = document.getElementById("casillaVoto");
   const svgTrazo = document.getElementById("svgTrazo");
   const textoRayar = document.getElementById("textoRayar");
   const mensajeVotoConfirmado = document.getElementById("mensajeVotoConfirmado");
-  let votoRegistrado = false;
+
+  let votoRealizado = false;
 
   if (casillaVoto) {
     casillaVoto.addEventListener("click", () => {
-      votoRegistrado = !votoRegistrado;
-      if (votoRegistrado) {
+      votoRealizado = !votoRealizado;
+      if (votoRealizado) {
+        casillaVoto.classList.add("bg-black");
+        if (textoRayar) textoRayar.style.display = "none";
         if (svgTrazo) svgTrazo.classList.remove("hidden");
-        if (textoRayar) textoRayar.style.opacity = "0.2";
-        casillaVoto.classList.add("ring-4", "ring-red-500", "bg-red-50");
         if (mensajeVotoConfirmado) {
           mensajeVotoConfirmado.classList.remove("hidden");
-          mensajeVotoConfirmado.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          mensajeVotoConfirmado.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       } else {
+        casillaVoto.classList.remove("bg-black");
+        if (textoRayar) textoRayar.style.display = "block";
         if (svgTrazo) svgTrazo.classList.add("hidden");
-        if (textoRayar) textoRayar.style.opacity = "1";
-        casillaVoto.classList.remove("ring-4", "ring-red-500", "bg-red-50");
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.add("hidden");
       }
     });
   }
 
+
   /* ==========================================
-     6. CARRUSEL DE NOVEDADES (CON AUTOPLAY)
+     6. CARRUSEL DE NOVEDADES
      ========================================== */
-  const carruselTrackNovedades = document.getElementById("carruselTrackNovedades");
+  const carruselWrapper = document.getElementById("carruselNovedadesWrapper");
   const btnPrevNovedades = document.getElementById("btnPrevNovedades");
   const btnNextNovedades = document.getElementById("btnNextNovedades");
   const currentIndexNovedades = document.getElementById("currentIndexNovedades");
   const totalIndexNovedades = document.getElementById("totalIndexNovedades");
-  const noticiaCards = document.querySelectorAll(".noticia-card");
-  let novAutoplayTimer = null;
+  const tarjetasNoticia = document.querySelectorAll(".noticia-card");
 
-  if (carruselTrackNovedades && noticiaCards.length > 0) {
-    if (totalIndexNovedades) totalIndexNovedades.textContent = noticiaCards.length;
-    let cardWidth = noticiaCards[0].offsetWidth + 16;
+  if (totalIndexNovedades) totalIndexNovedades.textContent = tarjetasNoticia.length;
 
-    const scrollNextNov = () => {
-      if (carruselTrackNovedades.scrollLeft + carruselTrackNovedades.clientWidth >= carruselTrackNovedades.scrollWidth - 10) {
-        carruselTrackNovedades.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        carruselTrackNovedades.scrollBy({ left: cardWidth, behavior: "smooth" });
-      }
-    };
+  if (carruselWrapper && btnPrevNovedades && btnNextNovedades) {
+    const scrollAmount = 360;
 
-    const startNovAutoplay = () => {
-      novAutoplayTimer = setInterval(scrollNextNov, 3500);
-    };
-
-    const stopNovAutoplay = () => {
-      clearInterval(novAutoplayTimer);
-    };
-
-    startNovAutoplay();
-    carruselTrackNovedades.addEventListener("mouseenter", stopNovAutoplay);
-    carruselTrackNovedades.addEventListener("mouseleave", startNovAutoplay);
-
-    if (btnNextNovedades) {
-      btnNextNovedades.addEventListener("click", () => {
-        carruselTrackNovedades.scrollBy({ left: cardWidth, behavior: "smooth" });
-      });
-    }
-
-    if (btnPrevNovedades) {
-      btnPrevNovedades.addEventListener("click", () => {
-        carruselTrackNovedades.scrollBy({ left: -cardWidth, behavior: "smooth" });
-      });
-    }
-
-    carruselTrackNovedades.addEventListener("scroll", () => {
-      let scrollLeft = carruselTrackNovedades.scrollLeft;
-      let index = Math.round(scrollLeft / cardWidth) + 1;
-      if (index < 1) index = 1;
-      if (index > noticiaCards.length) index = noticiaCards.length;
-      if (currentIndexNovedades) currentIndexNovedades.textContent = index;
+    btnNextNovedades.addEventListener("click", () => {
+      carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
     });
 
-    noticiaCards.forEach((card) => {
-      let hoverImg = card.getAttribute("data-hover-img");
-      let defaultImg = card.getAttribute("data-default-img");
+    btnPrevNovedades.addEventListener("click", () => {
+      carruselWrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
 
-      card.addEventListener("mouseenter", () => {
-        if (hoverImg) card.style.backgroundImage = `url('${hoverImg}')`;
-      });
-      card.addEventListener("mouseleave", () => {
-        if (defaultImg) card.style.backgroundImage = `url('${defaultImg}')`;
-      });
+    carruselWrapper.addEventListener("scroll", () => {
+      const cardWidth = 350 + 24;
+      const index = Math.round(carruselWrapper.scrollLeft / cardWidth) + 1;
+      const clampedIndex = Math.max(1, Math.min(index, tarjetasNoticia.length));
+      if (currentIndexNovedades) currentIndexNovedades.textContent = clampedIndex;
+    });
+
+    tarjetasNoticia.forEach(card => {
+      const hoverImg = card.getAttribute("data-hover-img");
+      const defaultImg = card.getAttribute("data-default-img");
+      if (hoverImg && defaultImg) {
+        card.addEventListener("mouseenter", () => {
+          card.style.backgroundImage = `url('${hoverImg}')`;
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.backgroundImage = `url('${defaultImg}')`;
+        });
+      }
     });
   }
 
+
   /* ==========================================
-     7. COVERFLOW 3D DE PROPUESTAS (CON AUTOPLAY)
+     7. CARRUSEL 3D EN ABANICO / COVERFLOW (Propuestas)
      ========================================== */
-  const coverflowCards = document.querySelectorAll(".coverflow-card");
+  const cards = document.querySelectorAll(".coverflow-card");
   const prevCoverflow = document.getElementById("prevCoverflow");
   const nextCoverflow = document.getElementById("nextCoverflow");
-  let activeCoverflowIndex = 0;
-  let coverflowAutoplayTimer = null;
+  const coverflowDots = document.getElementById("coverflowDots");
+
+  let activeIndex = 0;
+  const totalCards = cards.length;
+
+  if (coverflowDots && totalCards > 0) {
+    for (let i = 0; i < totalCards; i++) {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === 0 ? 'bg-red-600 w-6' : 'bg-slate-300'}`;
+      dot.setAttribute("aria-label", `Ir a propuesta ${i + 1}`);
+      dot.addEventListener("click", () => {
+        activeIndex = i;
+        updateCoverflow();
+      });
+      coverflowDots.appendChild(dot);
+    }
+  }
 
   function updateCoverflow() {
-    if (coverflowCards.length === 0) return;
-    coverflowCards.forEach((card, index) => {
-      let offset = index - activeCoverflowIndex;
-      if (offset < -2) offset += coverflowCards.length;
-      if (offset > 2) offset -= coverflowCards.length;
+    if (cards.length === 0) return;
 
-      card.classList.remove("active", "prev", "next", "hidden-card");
+    cards.forEach((card, index) => {
+      card.className = "coverflow-card group";
+
+      let offset = index - activeIndex;
+
+      if (offset > Math.floor(totalCards / 2)) offset -= totalCards;
+      if (offset < -Math.floor(totalCards / 2)) offset += totalCards;
 
       if (offset === 0) {
-        card.classList.add("active");
-        card.style.transform = "translateX(0px) translateZ(0px) rotateY(0deg) scale(1)";
-        card.style.zIndex = "30";
-        card.style.opacity = "1";
-        card.style.pointerEvents = "auto";
-      } else if (offset === -1 || (activeCoverflowIndex === 0 && index === coverflowCards.length - 1)) {
-        card.classList.add("prev");
-        card.style.transform = "translateX(-180px) translateZ(-150px) rotateY(25deg) scale(0.85)";
-        card.style.zIndex = "20";
-        card.style.opacity = "0.7";
-        card.style.pointerEvents = "auto";
-      } else if (offset === 1 || (activeCoverflowIndex === coverflowCards.length - 1 && index === 0)) {
-        card.classList.add("next");
-        card.style.transform = "translateX(180px) translateZ(-150px) rotateY(-25deg) scale(0.85)";
-        card.style.zIndex = "20";
-        card.style.opacity = "0.7";
-        card.style.pointerEvents = "auto";
+        card.classList.add("cf-center");
+      } else if (offset === -1) {
+        card.classList.add("cf-left-1");
+      } else if (offset === 1) {
+        card.classList.add("cf-right-1");
+      } else if (offset <= -2) {
+        card.classList.add("cf-left-2");
+      } else if (offset >= 2) {
+        card.classList.add("cf-right-2");
       } else {
-        card.classList.add("hidden-card");
-        card.style.transform = "translateX(0px) translateZ(-300px) scale(0.6)";
-        card.style.zIndex = "10";
-        card.style.opacity = "0";
-        card.style.pointerEvents = "none";
+        card.classList.add("cf-hidden");
       }
     });
-  }
 
-  if (coverflowCards.length > 0) {
-    updateCoverflow();
-
-    const nextCoverflowSlide = () => {
-      activeCoverflowIndex = (activeCoverflowIndex + 1) % coverflowCards.length;
-      updateCoverflow();
-    };
-
-    const startCoverflowAutoplay = () => {
-      coverflowAutoplayTimer = setInterval(nextCoverflowSlide, 4000);
-    };
-
-    const stopCoverflowAutoplay = () => {
-      clearInterval(coverflowAutoplayTimer);
-    };
-
-    startCoverflowAutoplay();
-    const coverflowContainerElem = document.querySelector(".coverflow-container");
-    if (coverflowContainerElem) {
-      coverflowContainerElem.addEventListener("mouseenter", stopCoverflowAutoplay);
-      coverflowContainerElem.addEventListener("mouseleave", startCoverflowAutoplay);
-    }
-
-    if (nextCoverflow) {
-      nextCoverflow.addEventListener("click", () => {
-        activeCoverflowIndex = (activeCoverflowIndex + 1) % coverflowCards.length;
-        updateCoverflow();
-      });
-    }
-
-    if (prevCoverflow) {
-      prevCoverflow.addEventListener("click", () => {
-        activeCoverflowIndex = (activeCoverflowIndex - 1 + coverflowCards.length) % coverflowCards.length;
-        updateCoverflow();
-      });
-    }
-
-    coverflowCards.forEach((card, idx) => {
-      card.addEventListener("click", (e) => {
-        if (activeCoverflowIndex !== idx) {
-          e.preventDefault();
-          activeCoverflowIndex = idx;
-          updateCoverflow();
+    if (coverflowDots) {
+      const dots = coverflowDots.querySelectorAll("button");
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.className = "w-6 h-2.5 rounded-full bg-red-600 transition-all cursor-pointer";
+        } else {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer";
         }
       });
+    }
+  }
+
+  if (nextCoverflow) {
+    nextCoverflow.addEventListener("click", () => {
+      activeIndex = (activeIndex + 1) % totalCards;
+      updateCoverflow();
     });
   }
 
-  /* ==========================================
-     8. ROADMAP ACORDEÓN INTERACTIVO
-     ========================================== */
-  const hitoButtons = document.querySelectorAll(".btn-hito");
+  if (prevCoverflow) {
+    prevCoverflow.addEventListener("click", () => {
+      activeIndex = (activeIndex - 1 + totalCards) % totalCards;
+      updateCoverflow();
+    });
+  }
 
-  hitoButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      let targetId = btn.getAttribute("data-target");
-      let detailsDiv = document.getElementById(targetId);
-      if (detailsDiv) {
-        detailsDiv.classList.toggle("hidden");
-        let chevron = btn.querySelector(".fa-chevron-down");
-        if (!chevron) {
-          let parentCard = btn.closest(".bg-white");
-          if (parentCard) chevron = parentCard.querySelector(".fa-chevron-down");
-        }
-        if (chevron) {
-          chevron.style.transform = detailsDiv.classList.contains("hidden") ? "rotate(0deg)" : "rotate(180deg)";
-        }
+  updateCoverflow();
+
+
+  /* ==========================================
+     8. ROADMAP ACORDEÓN EXCLUSIVO
+     ========================================== */
+  const roadmapTriggers = document.querySelectorAll(".roadmap-trigger");
+
+  roadmapTriggers.forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      const targetId = trigger.getAttribute("data-target");
+      const targetContent = document.getElementById(targetId);
+      const targetArrow = trigger.querySelector(".roadmap-arrow");
+
+      const isCurrentlyOpen = !targetContent.classList.contains("hidden");
+
+      // Cerrar todos los contenidos y restablecer flechas
+      document.querySelectorAll(".roadmap-content").forEach(content => {
+        content.classList.add("hidden");
+      });
+      document.querySelectorAll(".roadmap-arrow").forEach(arrow => {
+        arrow.style.transform = "rotate(0deg)";
+      });
+
+      // Si el que se hizo clic estaba cerrado, se abre
+      if (!isCurrentlyOpen) {
+        targetContent.classList.remove("hidden");
+        if (targetArrow) targetArrow.style.transform = "rotate(180deg)";
       }
     });
   });
+
 });
