@@ -36,51 +36,56 @@
   </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-tambo-red selection:text-white overflow-x-hidden relative min-h-screen">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-tambo-red selection:text-white overflow-x-hidden">
 
-  <!-- ========================================== -->
-  <!-- HERO INTERNO (Con altura fija/padding sin desbordar) -->
-  <!-- ========================================== -->
-  <header class="relative w-full bg-slate-950 flex flex-col justify-between overflow-hidden px-4 sm:px-8 pt-6 pb-10 border-b border-slate-800">
-    <!-- Imagen de fondo estricta para el header -->
+  <!-- ==========================================
+       HEADER / BANNER SUPERIOR (FLUJO NATURAL)
+       ========================================== -->
+  <header class="relative w-full bg-slate-950 px-4 sm:px-8 pt-6 pb-10 sm:pb-14 border-b border-slate-800 overflow-hidden">
+    <!-- Imagen de fondo estricta (absolute pero contenida en el header) -->
     <div class="absolute inset-0 bg-cover bg-center opacity-25 pointer-events-none" style="background-image: url('assets/img/miguel-portada.jpg');"></div>
     
-    <!-- Gradiente oscurecedor limitado estrictamente al header -->
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent pointer-events-none"></div>
+    <!-- Gradiente oscurecedor limitado únicamente al header -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pointer-events-none"></div>
 
-    <!-- Navegación superior interna -->
-    <div class="max-w-6xl mx-auto w-full relative z-20 flex justify-between items-center mb-4">
-      <a href="index.html" class="text-xs sm:text-sm font-bold text-white hover:text-red-400 transition-colors flex items-center gap-2 bg-slate-900/80 px-3.5 py-2 rounded-xl border border-slate-700 shadow-md">
-        <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Gobierno
-      </a>
-      <span class="text-[10px] sm:text-xs font-extrabold bg-blue-500/20 text-blue-300 border border-blue-400/30 px-3.5 py-1.5 rounded-full backdrop-blur-md">
-        PILAR 01 · USO INTERNO
-      </span>
-    </div>
-
-    <!-- Contenido del Banner -->
-    <div class="max-w-6xl mx-auto w-full relative z-20 space-y-2 mt-2">
-      <div class="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 px-3 py-1 rounded-full backdrop-blur-md">
-        <i class="fa-solid fa-droplet text-blue-400 text-xs"></i>
-        <span class="text-[11px] sm:text-xs font-bold text-blue-200 uppercase tracking-wider">Salud Pública y Saneamiento Ambiental</span>
+    <!-- Contenido del Header en capas relativas seguras -->
+    <div class="max-w-4xl mx-auto w-full relative z-10 space-y-6">
+      
+      <!-- Barra superior de navegación -->
+      <div class="flex justify-between items-center">
+        <a href="index.html" class="text-xs sm:text-sm font-bold text-white hover:text-red-400 transition-colors flex items-center gap-2 bg-slate-900/90 px-3.5 py-2 rounded-xl border border-slate-700 shadow-md">
+          <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Gobierno
+        </a>
+        <span class="text-[10px] sm:text-xs font-extrabold bg-blue-500/20 text-blue-300 border border-blue-400/30 px-3.5 py-1.5 rounded-full backdrop-blur-md">
+          PILAR 01 · USO INTERNO
+        </span>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-display font-black text-white tracking-tight drop-shadow-md">
-        El Tambo Crece Sano
-      </h1>
-      <p class="text-xs sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-        Intervención estructural en agua potable, tratamiento de aguas servidas y atención preventiva para erradicar la desnutrición crónica infantil en El Tambo.
-      </p>
+
+      <!-- Títulos y descripción del Banner -->
+      <div class="space-y-3 pt-2">
+        <div class="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 px-3 py-1 rounded-full backdrop-blur-md">
+          <i class="fa-solid fa-droplet text-blue-400 text-xs"></i>
+          <span class="text-[11px] sm:text-xs font-bold text-blue-200 uppercase tracking-wider">Salud Pública y Saneamiento Ambiental</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-display font-black text-white tracking-tight drop-shadow-md">
+          El Tambo Crece Sano
+        </h1>
+        <p class="text-xs sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+          Intervención estructural en agua potable, tratamiento de aguas servidas y atención preventiva para erradicar la desnutrición crónica infantil en El Tambo.
+        </p>
+      </div>
+
     </div>
   </header>
 
-  <!-- ========================================== -->
-  <!-- CONTENIDO PRINCIPAL (Con z-index alto para flotar sobre el header si fuera necesario) -->
-  <!-- ========================================== -->
-  <main class="relative z-20 bg-slate-50 py-10 px-4 sm:px-6">
-    <div class="max-w-6xl mx-auto space-y-10">
+  <!-- ==========================================
+       CONTENIDO PRINCIPAL (DIAGNÓSTICO Y TARJETAS)
+       ========================================== -->
+  <main class="relative z-20 bg-slate-50 py-8 sm:py-12 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto space-y-8 sm:space-y-10">
       
-      <!-- Diagnóstico Situacional (Limpio y legible) -->
-      <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200 relative">
+      <!-- Diagnóstico Situacional (Totalmente visible y limpio) -->
+      <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200">
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div class="space-y-3 flex-1">
             <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-md">Diagnóstico Situacional</span>
@@ -89,6 +94,7 @@
               Supera por más del doble al promedio nacional debido al consumo de agua de calidad cuestionada, falta de controles prenatales y riego de cultivos con aguas servidas del río Cushcurrún.
             </p>
           </div>
+          <!-- Tarjeta de indicador lateral -->
           <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-6 text-center shrink-0 w-full md:w-auto shadow-inner">
             <span class="text-3xl sm:text-4xl font-display font-black text-tambo-red block">+200%</span>
             <span class="text-[10px] font-extrabold text-red-900 uppercase tracking-wider block mt-1">Sobre media nacional</span>
@@ -99,15 +105,49 @@
       <!-- Líneas de Acción Estratégica -->
       <div class="space-y-6">
         <h2 class="text-xl sm:text-3xl font-display font-black text-slate-900">Líneas de Acción Estratégica</h2>
-        <!-- Tus tarjetas aquí con clases estándar -->
+        
+        <div class="grid gap-6">
+          <!-- Tarjeta 1 -->
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-water"></i>
+            </div>
+            <h3 class="font-display font-bold text-slate-900 text-lg">1. Plan Maestro de Alcantarillado</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Ejecución por etapas iniciando con los <strong>colectores marginales</strong> para eliminar las descargas directas al río Cushcurrún.
+            </p>
+          </div>
+
+          <!-- Tarjeta 2 -->
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-flask"></i>
+            </div>
+            <h3 class="font-display font-bold text-slate-900 text-lg">2. Agua 100% Segura Urbana</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Repotenciación integral de la planta de tratamiento de agua potable y automatización de filtros para garantizar pureza total.
+            </p>
+          </div>
+
+          <!-- Tarjeta 3 -->
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-house-chimney-medical"></i>
+            </div>
+            <h3 class="font-display font-bold text-slate-900 text-lg">3. Cobertura Rural y Juntas</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Dotación de agua segura al 100% de la población rural y fortalecimiento técnico-financiero de las Juntas de Agua.
+            </p>
+          </div>
+        </div>
       </div>
 
     </div>
   </main>
 
-  <!-- FOOTER INTERNO -->
+  <!-- FOOTER -->
   <footer class="bg-slate-900 text-white py-8 px-4 border-t border-slate-800 relative z-20">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
       <span>Miguel López Alcalde · Plan de Gobierno 2027</span>
       <a href="index.html" class="hover:text-white transition-colors"><i class="fa-solid fa-house mr-1"></i> Volver al inicio</a>
     </div>
