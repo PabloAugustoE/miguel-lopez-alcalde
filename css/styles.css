@@ -1,11 +1,228 @@
 /* ==========================================
-   ESTILOS GENERALES Y UTILIDADES
+   ESTILOS GENERALES Y CONFIGURACIÓN CSS
    ========================================== */
 html {
   scroll-behavior: smooth;
 }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Outfit', sans-serif;
+}
 
-/* Ocultar barra de desplazamiento manteniendo funcionalidad */
+/* ==========================================
+   ANIMACIÓN LETRA A LETRA CONTINUA (Liderazgo)
+   ========================================== */
+.typing-letter {
+  opacity: 0;
+  display: inline-block;
+  transform: translateY(3px);
+  transition: opacity 0.1s ease, transform 0.1s ease;
+}
+.typing-letter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   ANIMACIONES DE MARQUESINA (Galería)
+   ========================================== */
+@keyframes marqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.marquee-track-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 35s linear infinite;
+}
+.marquee-track-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 35s linear infinite;
+}
+.marquee-track-left:hover,
+.marquee-track-right:hover {
+  animation-play-state: paused;
+}
+
+/* ==========================================
+   CARRUSEL 3D EN ABANICO / COVERFLOW (Propuestas de Gobierno)
+   ========================================== */
+.coverflow-viewport {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.coverflow-card {
+  position: absolute;
+  width: 240px;
+  height: 380px;
+  border-radius: 26px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.35rem;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 22px 45px rgba(15, 23, 42, 0.35);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.65s ease,
+              box-shadow 0.65s ease;
+  will-change: transform, opacity;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .coverflow-card {
+    width: 300px;
+    height: 465px;
+    padding: 1.65rem;
+  }
+}
+
+.coverflow-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.96) 0%, rgba(2, 6, 23, 0.58) 55%, rgba(2, 6, 23, 0.18) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 1. Ficha Principal al Frente (Centro) */
+.coverflow-card.cf-center {
+  transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
+  z-index: 40;
+  opacity: 1;
+  filter: brightness(1);
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.45);
+}
+
+/* 2. Ficha Inmediata Izquierda */
+.coverflow-card.cf-left-1 {
+  transform: translate3d(-115px, 0, -90px) scale(0.86) rotateY(14deg);
+  z-index: 30;
+  opacity: 0.92;
+  filter: brightness(0.85);
+}
+
+/* 3. Ficha Inmediata Derecha */
+.coverflow-card.cf-right-1 {
+  transform: translate3d(115px, 0, -90px) scale(0.86) rotateY(-14deg);
+  z-index: 30;
+  opacity: 0.92;
+  filter: brightness(0.85);
+}
+
+/* 4. Segunda Ficha Izquierda */
+.coverflow-card.cf-left-2 {
+  transform: translate3d(-200px, 0, -180px) scale(0.73) rotateY(22deg);
+  z-index: 20;
+  opacity: 0.72;
+  filter: brightness(0.72);
+}
+
+/* 5. Segunda Ficha Derecha */
+.coverflow-card.cf-right-2 {
+  transform: translate3d(200px, 0, -180px) scale(0.73) rotateY(-22deg);
+  z-index: 20;
+  opacity: 0.72;
+  filter: brightness(0.72);
+}
+
+@media (min-width: 640px) {
+  .coverflow-card.cf-left-1 {
+    transform: translate3d(-195px, 0, -90px) scale(0.87) rotateY(14deg);
+  }
+  .coverflow-card.cf-right-1 {
+    transform: translate3d(195px, 0, -90px) scale(0.87) rotateY(-14deg);
+  }
+  .coverflow-card.cf-left-2 {
+    transform: translate3d(-345px, 0, -180px) scale(0.74) rotateY(22deg);
+  }
+  .coverflow-card.cf-right-2 {
+    transform: translate3d(345px, 0, -180px) scale(0.74) rotateY(-22deg);
+  }
+}
+
+.coverflow-card.cf-hidden {
+  transform: translate3d(0, 0, -260px) scale(0.5);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==========================================
+   SIMULADOR DE PAPELETA Y TRAZO DE VOTO
+   ========================================== */
+#casillaVoto {
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+#casillaVoto.bg-black {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(220, 38, 38, 0.35);
+}
+@keyframes drawStroke {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+.trazo-linea-roja {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  animation: drawStroke 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ==========================================
+   CONTROLES DE VIDEO INTERACTIVO
+   ========================================== */
+#videoSeekBar {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  height: 6px;
+}
+#videoSeekBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #dc2626;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+#videoSeekBar::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+#videoSeekBar::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #dc2626;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+}
+
+/* ==========================================
+   UTILIDADES Y SCROLLBAR
+   ========================================== */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -14,99 +231,17 @@ html {
   scrollbar-width: none;
 }
 
-/* ==========================================
-   ANIMACIONES MARQUEE (GALERÍA INFINITA)
-   ========================================== */
-@keyframes marqueeLeft {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-
-@keyframes marqueeRight {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
 }
-
-.marquee-track-left {
-  display: flex;
-  width: max-content;
-  animation: marqueeLeft 35s linear infinite;
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
 }
-
-.marquee-track-right {
-  display: flex;
-  width: max-content;
-  animation: marqueeRight 35s linear infinite;
-}
-
-.marquee-track-left:hover,
-.marquee-track-right:hover {
-  animation-play-state: paused;
-}
-
-/* ==========================================
-   COVERFLOW 3D DE PROPUESTAS DE GOBIERNO
-   ========================================== */
-.coverflow-container {
-  perspective: 1200px;
-  transform-style: preserve-3d;
-}
-
-.coverflow-card {
-  position: absolute;
-  width: 280px;
-  height: 380px;
-  border-radius: 1.5rem;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  cursor: pointer;
-  overflow: hidden;
-  text-decoration: none;
-  background-size: cover;
-  background-position: center;
-}
-
-@media (min-width: 640px) {
-  .coverflow-card {
-    width: 340px;
-    height: 440px;
-  }
-}
-
-.coverflow-card.active {
-  filter: brightness(1);
-}
-
-.coverflow-card:not(.active) {
-  filter: brightness(0.7);
-}
-
-/* ==========================================
-   SIMULADOR DE PAPELETA / TRAZO DE VOTO
-   ========================================== */
-@keyframes strokeAnimation {
-  from {
-    stroke-dashoffset: 100;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.trazo-linea-roja {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 0;
-  animation: strokeAnimation 0.3s ease-in-out forwards;
-}
-
-/* ==========================================
-   ROADMAP Y TRANSICIONES TÁCTILES
-   ========================================== */
-.info-desplegable {
-  transition: all 0.3s ease-in-out;
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
