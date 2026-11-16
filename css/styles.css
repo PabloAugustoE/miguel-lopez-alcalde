@@ -1,125 +1,112 @@
 /* ==========================================
    ESTILOS GENERALES Y UTILIDADES
    ========================================== */
-   html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Ocultar barra de desplazamiento manteniendo funcionalidad */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  /* ==========================================
-     ANIMACIONES MARQUEE (GALERÍA INFINITA)
-     ========================================== */
-  @keyframes marqueeLeft {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-  }
-  
-  @keyframes marqueeRight {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0%); }
-  }
-  
-  .marquee-track-left {
-    display: flex;
-    width: max-content;
-    animation: marqueeLeft 35s linear infinite;
-  }
-  
-  .marquee-track-right {
-    display: flex;
-    width: max-content;
-    animation: marqueeRight 35s linear infinite;
-  }
-  
-  .marquee-track-left:hover,
-  .marquee-track-right:hover {
-    animation-play-state: paused;
-  }
-  
-  /* ==========================================
-     COVERFLOW 3D DE PROPUESTAS DE GOBIERNO
-     ========================================== */
-  .coverflow-container {
-    perspective: 1200px;
-    transform-style: preserve-3d;
-  }
-  
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ocultar barra de desplazamiento manteniendo funcionalidad */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================
+   ANIMACIONES MARQUEE (GALERÍA INFINITA)
+   ========================================== */
+@keyframes marqueeLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.marquee-track-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 35s linear infinite;
+}
+
+.marquee-track-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 35s linear infinite;
+}
+
+.marquee-track-left:hover,
+.marquee-track-right:hover {
+  animation-play-state: paused;
+}
+
+/* ==========================================
+   COVERFLOW 3D DE PROPUESTAS DE GOBIERNO
+   ========================================== */
+.coverflow-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.coverflow-card {
+  position: absolute;
+  width: 280px;
+  height: 380px;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  overflow: hidden;
+  text-decoration: none;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 640px) {
   .coverflow-card {
-    position: absolute;
-    width: 280px;
-    height: 380px;
-    sm:width: 320px;
-    sm:height: 420px;
-    border-radius: 1.5rem;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    cursor: pointer;
-    overflow: hidden;
-    text-decoration: none;
-    background-size: cover;
-    background-position: center;
+    width: 340px;
+    height: 440px;
   }
-  
-  @media (min-width: 640px) {
-    .coverflow-card {
-      width: 340px;
-      height: 440px;
-    }
+}
+
+.coverflow-card.active {
+  filter: brightness(1);
+}
+
+.coverflow-card:not(.active) {
+  filter: brightness(0.7);
+}
+
+/* ==========================================
+   SIMULADOR DE PAPELETA / TRAZO DE VOTO
+   ========================================== */
+@keyframes strokeAnimation {
+  from {
+    stroke-dashoffset: 100;
   }
-  
-  .coverflow-card.active {
-    filter: brightness(1);
-  }
-  
-  .coverflow-card:not(.active) {
-    filter: brightness(0.7);
-  }
-  
-  /* ==========================================
-     SIMULADOR DE PAPELETA / TRAZO DE VOTO
-     ========================================== */
-  @keyframes strokeAnimation {
-    from {
-      stroke-dashoffset: 100;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  
-  .trazo-linea-roja {
-    stroke-dasharray: 100;
+  to {
     stroke-dashoffset: 0;
-    animation: strokeAnimation 0.3s ease-in-out forwards;
   }
-  
-  /* ==========================================
-     ROADMAP Y TRANSICIONES TÁCTILES
-     ========================================== */
-  .phase-details {
-    animation: fadeInSlide 0.3s ease-in-out forwards;
-  }
-  
-  @keyframes fadeInSlide {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+}
+
+.trazo-linea-roja {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  animation: strokeAnimation 0.3s ease-in-out forwards;
+}
+
+/* ==========================================
+   ROADMAP Y TRANSICIONES TÁCTILES
+   ========================================== */
+.info-desplegable {
+  transition: all 0.3s ease-in-out;
+}
