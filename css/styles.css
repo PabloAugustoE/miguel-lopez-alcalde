@@ -201,3 +201,13 @@ section {
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Asegurar que en las páginas internas el contenido fluya limpio bajo el header */
+body.bg-slate-50 header.relative {
+  position: relative;
+  z-index: 10;
+}
+body.bg-slate-50 main {
+  position: relative;
+  z-index: 20;
+}
