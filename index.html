@@ -165,9 +165,9 @@
             Una vida de trabajo, raíces profundas y compromiso firme con El Tambo.
           </p>
         </div>
+
         <!-- Tarjeta principal con video de fondo y video interactivo -->
         <div class="about-card-container p-3.5 sm:p-6 rounded-2xl border border-slate-200 text-center relative shadow-xl reveal-up max-w-3xl mx-auto overflow-hidden">
-          
           <video class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none" autoplay muted loop playsinline preload="auto">
             <source src="assets/video/portada-fondo.mp4" type="video/mp4">
             Tu navegador no soporta video de fondo.
@@ -177,7 +177,6 @@
           </div>
           
           <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 shadow-2xl bg-slate-950 border border-white/20 z-10 group">
-            
             <div id="videoPosterOverlay" class="absolute inset-0 z-30 bg-cover bg-center transition-opacity duration-500" style="background-image: url('assets/img/miguel-portada.jpg');">
               <div class="absolute inset-0 bg-slate-950/40 pointer-events-none"></div>
             </div>
@@ -213,14 +212,20 @@
             <p class="text-[11px] sm:text-xs text-red-300 font-extrabold uppercase tracking-widest drop-shadow">Candidato a la Alcaldía</p>
           </div>
         </div>
-        <!-- Párrafos con animación secuencial limpia por bloque -->
-        <div class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed reveal-up">
-          <p class="typing-paragraph opacity-0 transition-opacity duration-700">Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos.</p>
-          <p class="typing-paragraph opacity-0 transition-opacity duration-700">Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar.</p>
+
+        <!-- Párrafos con reserva de espacio fija para evitar saltos mientras se escriben uno tras otro -->
+        <div id="contenedorTextoQuienSoy" class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed">
+          <div class="relative">
+            <p class="invisible pointer-events-none select-none" aria-hidden="true">Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos.</p>
+            <p class="typing-paragraph absolute inset-0 m-0" data-text="Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos."></p>
+          </div>
+          <div class="relative">
+            <p class="invisible pointer-events-none select-none" aria-hidden="true">Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar.</p>
+            <p class="typing-paragraph absolute inset-0 m-0" data-text="Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar."></p>
+          </div>
         </div>
       </div>
-    </section>
-    
+    </section>    
     <!-- SECCIÓN 3: Simulación de Papeleta Oficial (Con Línea Diagonal Roja Animada) -->
     <section id="simulacion-voto" class="py-10 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200 reveal-up">
       <div class="max-w-6xl mx-auto px-2 sm:px-6 text-center">
