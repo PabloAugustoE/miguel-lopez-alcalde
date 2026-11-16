@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /* ==========================================
-     1. MENÚ DESPLEGABLE "SÚMATE" (Ocultamiento automático al hacer scroll)
+     1. MENÚ DESPLEGABLE "SÚMATE"
      ========================================== */
   const btnSumate = document.getElementById("btnSumate");
   const menuSumate = document.getElementById("menuSumate");
@@ -29,16 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
       }
     });
-
-    window.addEventListener("scroll", () => {
-      if (!menuSumate.classList.contains("hidden")) {
-        menuSumate.classList.add("hidden");
-        btnSumate.setAttribute("aria-expanded", "false");
-        if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
-      }
-    });
   }
-
 
   /* ==========================================
      2. EFECTO MÁQUINA DE ESCRIBIR (HERO)
