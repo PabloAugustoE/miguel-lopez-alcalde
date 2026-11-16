@@ -17,6 +17,14 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ==========================================
+   CORRECCIÓN DE CAPAS Y SOLAPAMIENTOS (Z-INDEX)
+   ========================================== */
+section {
+  position: relative;
+  z-index: 10;
+}
+
+/* ==========================================
    ANIMACIÓN LETRA A LETRA (Liderazgo)
    ========================================== */
 .typing-letter {
