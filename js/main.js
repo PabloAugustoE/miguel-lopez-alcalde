@@ -383,3 +383,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Animación de barras de progreso e indicadores presupuestarios
+  const bars = document.querySelectorAll('[data-width]');
+  setTimeout(() => {
+    bars.forEach(bar => {
+      bar.style.width = bar.getAttribute('data-width');
+    });
+  }, 300);
+
+  // 2. Acordeón de ejes técnicos de la ficha
+  const triggers = document.querySelectorAll('.eje-trigger');
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const targetId = trigger.getAttribute('data-target');
+      const content = document.getElementById(targetId);
+      const icon = trigger.querySelector('.eje-icon');
+      
+      content.classList.toggle('hidden');
+      if (icon) {
+        icon.classList.toggle('rotate-180');
+      }
+    });
+  });
+
+  // 3. Botón de compartir ficha por WhatsApp
+  const btnShare = document.getElementById('btnCompartirFicha');
+  if (btnShare) {
+    btnShare.addEventListener('click', () => {
+      const titulo = document.title;
+      const url = window.location.href;
+      const texto = encodeURIComponent(`Conoce la propuesta oficial de Miguel López para El Tambo: ${titulo} - ${url}`);
+      window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
+    });
+  }
+});
