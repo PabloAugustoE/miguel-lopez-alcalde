@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /* ==========================================
-     1. MENÚ DESPLEGABLE "SÚMATE" (Ocultamiento automático al hacer scroll)
+     1. MENÚ DESPLEGABLE "SÚMATE"
      ========================================== */
   const btnSumate = document.getElementById("btnSumate");
   const menuSumate = document.getElementById("menuSumate");
@@ -29,96 +28,56 @@ document.addEventListener("DOMContentLoaded", () => {
         if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
       }
     });
-
-    window.addEventListener("scroll", () => {
-      if (!menuSumate.classList.contains("hidden")) {
-        menuSumate.classList.add("hidden");
-        btnSumate.setAttribute("aria-expanded", "false");
-        if (iconSumateArrow) iconSumateArrow.style.transform = "rotate(0deg)";
-      }
-    });
   }
 
-
   /* ==========================================
-     2. EFECTO MÁQUINA DE ESCRIBIR (HERO)
+     2. EFECTO TYPEWRITER EN HERO
      ========================================== */
-  const words = ["Próspero", "Solidario", "Seguro", "Productivo", "Transformado"];
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+  const words = ["Próspero", "Seguro", "Productivo", "Solidario", "Moderno"];
+  let i = 0;
+  let timer;
   const typewriterSpan = document.getElementById("typewriter-word");
 
-  function typeEffect() {
+  function typingEffect() {
     if (!typewriterSpan) return;
-    const currentWord = words[wordIndex];
-    
-    if (isDeleting) {
-      typewriterSpan.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      typewriterSpan.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    let typeSpeed = isDeleting ? 75 : 120;
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      typeSpeed = 2000;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      typeSpeed = 400;
-    }
-
-    setTimeout(typeEffect, typeSpeed);
-  }
-  typeEffect();
-
-
-  /* ==========================================
-     3. EFECTO LETRA A LETRA (LIDERAZGO / BIOGRAFÍA)
-     ========================================== */
-  const typingParagraphs = document.querySelectorAll(".typing-paragraph");
-  typingParagraphs.forEach(p => {
-    const text = p.getAttribute("data-text");
-    if (!text) return;
-    p.innerHTML = "";
-    text.split("").forEach(char => {
-      const span = document.createElement("span");
-      span.className = "typing-letter";
-      span.textContent = char === " " ? "\u00A0" : char;
-      p.appendChild(span);
-    });
-  });
-
-  const observerOptions = { threshold: 0.2 };
-  const paragraphObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const letters = entry.target.querySelectorAll(".typing-letter");
-        letters.forEach((letter, idx) => {
-          setTimeout(() => {
-            letter.classList.add("visible");
-          }, idx * 12);
-        });
-        observer.unobserve(entry.target);
+    let word = words[i].split("");
+    let loopTyping = function () {
+      if (word.length > 0) {
+        typewriterSpan.innerHTML += word.shift();
+      } else {
+        setTimeout(deletingEffect, 2000);
+        return;
       }
-    });
-  }, observerOptions);
+      timer = setTimeout(loopTyping, 120);
+    };
+    loopTyping();
+  }
 
-  typingParagraphs.forEach(p => paragraphObserver.observe(p));
-
+  function deletingEffect() {
+    if (!typewriterSpan) return;
+    let word = words[i].split("");
+    let loopDeleting = function () {
+      if (word.length > 0) {
+        word.pop();
+        typewriterSpan.innerHTML = word.join("");
+      } else {
+        i = (i + 1) % words.length;
+        setTimeout(typingEffect, 500);
+        return;
+      }
+      timer = setTimeout(loopDeleting, 60);
+    };
+    loopDeleting();
+  }
+  typingEffect();
 
   /* ==========================================
-     4. REPRODUCTOR DE VIDEO INTERACTIVO (Biografía)
+     3. VIDEO INTERACTIVO "¿QUIÉN ES?"
      ========================================== */
-  const video = document.getElementById("videoQuienSoy");
-  const posterOverlay = document.getElementById("videoPosterOverlay");
-  const containerPlayBtn = document.getElementById("containerPlayBtn");
+  const videoQuienSoy = document.getElementById("videoQuienSoy");
   const btnPlayQuienSoy = document.getElementById("btnPlayQuienSoy");
-  const videoControlsBar = document.getElementById("videoControlsBar");
+  const containerPlayBtn = document.getElementById("containerPlayBtn");
+  const videoPosterOverlay = document.getElementById("videoPosterOverlay");
   const btnTogglePlay = document.getElementById("btnTogglePlay");
   const videoSeekBar = document.getElementById("videoSeekBar");
   const currentTimeDisplay = document.getElementById("currentTimeDisplay");
@@ -126,317 +85,354 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnFullscreen = document.getElementById("btnFullscreen");
 
   function formatTime(seconds) {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    let mins = Math.floor(seconds / 60);
+    let secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
   }
 
-  if (video) {
-    const startPlaying = () => {
-      if (posterOverlay) posterOverlay.style.opacity = '0';
-      if (containerPlayBtn) containerPlayBtn.style.display = 'none';
-      if (videoControlsBar) {
-        videoControlsBar.style.opacity = '1';
-        videoControlsBar.style.pointerEvents = 'auto';
-      }
-      video.play().catch(err => console.log("Play error:", err));
+  if (videoQuienSoy) {
+    const startPlayingVideo = () => {
+      if (videoPosterOverlay) videoPosterOverlay.style.opacity = "0";
+      if (containerPlayBtn) containerPlayBtn.style.display = "none";
+      setTimeout(() => {
+        if (videoPosterOverlay) videoPosterOverlay.style.display = "none";
+      }, 500);
+      videoQuienSoy.play();
       if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
     };
 
-    if (btnPlayQuienSoy) btnPlayQuienSoy.addEventListener("click", startPlaying);
-    if (containerPlayBtn) containerPlayBtn.addEventListener("click", startPlaying);
-    video.addEventListener("click", () => {
-      if (video.paused) startPlaying();
-      else {
-        video.pause();
+    if (btnPlayQuienSoy) btnPlayQuienSoy.addEventListener("click", startPlayingVideo);
+    if (containerPlayBtn) containerPlayBtn.addEventListener("click", startPlayingVideo);
+    videoQuienSoy.addEventListener("click", () => {
+      if (videoQuienSoy.paused) {
+        startPlayingVideo();
+      } else {
+        videoQuienSoy.pause();
         if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+        if (containerPlayBtn) containerPlayBtn.style.display = "flex";
       }
     });
 
     if (btnTogglePlay) {
       btnTogglePlay.addEventListener("click", () => {
-        if (video.paused) {
-          video.play();
+        if (videoQuienSoy.paused) {
+          videoQuienSoy.play();
           btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
+          if (containerPlayBtn) containerPlayBtn.style.display = "none";
+          if (videoPosterOverlay) {
+            videoPosterOverlay.style.opacity = "0";
+            setTimeout(() => (videoPosterOverlay.style.display = "none"), 500);
+          }
         } else {
-          video.pause();
+          videoQuienSoy.pause();
           btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
       });
     }
 
-    video.addEventListener("loadedmetadata", () => {
-      if (durationDisplay) durationDisplay.textContent = formatTime(video.duration);
+    videoQuienSoy.addEventListener("loadedmetadata", () => {
+      if (durationDisplay) durationDisplay.textContent = formatTime(videoQuienSoy.duration);
     });
 
-    video.addEventListener("timeupdate", () => {
-      if (video.duration) {
-        const percent = (video.currentTime / video.duration) * 100;
-        if (videoSeekBar) videoSeekBar.value = percent;
-        if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(video.currentTime);
+    videoQuienSoy.addEventListener("timeupdate", () => {
+      if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
+      if (videoSeekBar && videoQuienSoy.duration) {
+        let percent = (videoQuienSoy.currentTime / videoQuienSoy.duration) * 100;
+        videoSeekBar.value = percent;
       }
     });
 
     if (videoSeekBar) {
       videoSeekBar.addEventListener("input", () => {
-        const time = (videoSeekBar.value / 100) * video.duration;
-        video.currentTime = time;
+        if (videoQuienSoy.duration) {
+          let time = (videoSeekBar.value / 100) * videoQuienSoy.duration;
+          videoQuienSoy.currentTime = time;
+        }
       });
     }
 
     if (btnFullscreen) {
       btnFullscreen.addEventListener("click", () => {
-        if (video.requestFullscreen) video.requestFullscreen();
-        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+        if (videoQuienSoy.requestFullscreen) {
+          videoQuienSoy.requestFullscreen();
+        } else if (videoQuienSoy.webkitRequestFullscreen) {
+          videoQuienSoy.webkitRequestFullscreen();
+        } else if (videoQuienSoy.msRequestFullscreen) {
+          videoQuienSoy.msRequestFullscreen();
+        }
       });
     }
   }
 
+  /* ==========================================
+     4. TIPEO INDEPENDIENTE DE PÁRRAFOS
+     ========================================== */
+  const typingParagraphs = document.querySelectorAll(".typing-paragraph");
+  let animatedParagraphs = new Set();
+
+  function typeParagraph(element) {
+    if (!element || animatedParagraphs.has(element)) return;
+    animatedParagraphs.add(element);
+
+    let text = element.getAttribute("data-text");
+    if (!text) return;
+    element.textContent = "";
+    let idx = 0;
+
+    function addChar() {
+      if (idx < text.length) {
+        element.textContent += text.charAt(idx);
+        idx++;
+        setTimeout(addChar, 18);
+      }
+    }
+    addChar();
+  }
+
+  const observerParagraphs = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        typeParagraph(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  typingParagraphs.forEach((p) => observerParagraphs.observe(p));
 
   /* ==========================================
-     5. SIMULADOR DE PAPELETA OFICIAL (Línea Diagonal Roja Animada)
+     5. SIMULADOR DE PAPELETA OFICIAL
      ========================================== */
   const casillaVoto = document.getElementById("casillaVoto");
   const svgTrazo = document.getElementById("svgTrazo");
   const textoRayar = document.getElementById("textoRayar");
   const mensajeVotoConfirmado = document.getElementById("mensajeVotoConfirmado");
-
-  let votoRealizado = false;
+  let votoRegistrado = false;
 
   if (casillaVoto) {
     casillaVoto.addEventListener("click", () => {
-      votoRealizado = !votoRealizado;
-      if (votoRealizado) {
-        if (textoRayar) textoRayar.style.display = "none";
+      votoRegistrado = !votoRegistrado;
+      if (votoRegistrado) {
         if (svgTrazo) svgTrazo.classList.remove("hidden");
+        if (textoRayar) textoRayar.style.opacity = "0.2";
+        casillaVoto.classList.add("ring-4", "ring-red-500", "bg-red-50");
         if (mensajeVotoConfirmado) {
           mensajeVotoConfirmado.classList.remove("hidden");
-          mensajeVotoConfirmado.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          mensajeVotoConfirmado.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
       } else {
-        if (textoRayar) textoRayar.style.display = "block";
         if (svgTrazo) svgTrazo.classList.add("hidden");
+        if (textoRayar) textoRayar.style.opacity = "1";
+        casillaVoto.classList.remove("ring-4", "ring-red-500", "bg-red-50");
         if (mensajeVotoConfirmado) mensajeVotoConfirmado.classList.add("hidden");
       }
     });
   }
 
-
   /* ==========================================
-     6. CARRUSEL DE NOVEDADES (Con Auto-desplazamiento e Interactividad Fluida)
+     6. CARRUSEL DE NOVEDADES Y CAMBIO DE FONDO
      ========================================== */
-  const carruselWrapper = document.getElementById("carruselNovedadesWrapper");
+  const carruselTrackNovedades = document.getElementById("carruselTrackNovedades");
   const btnPrevNovedades = document.getElementById("btnPrevNovedades");
   const btnNextNovedades = document.getElementById("btnNextNovedades");
   const currentIndexNovedades = document.getElementById("currentIndexNovedades");
   const totalIndexNovedades = document.getElementById("totalIndexNovedades");
-  const tarjetasNoticia = document.querySelectorAll(".noticia-card");
+  const noticiaCards = document.querySelectorAll(".noticia-card");
 
-  if (totalIndexNovedades) totalIndexNovedades.textContent = tarjetasNoticia.length;
+  if (carruselTrackNovedades && noticiaCards.length > 0) {
+    if (totalIndexNovedades) totalIndexNovedades.textContent = noticiaCards.length;
+    let cardWidth = noticiaCards[0].offsetWidth + 16; // ancho + gap
 
-  if (carruselWrapper && btnPrevNovedades && btnNextNovedades) {
-    const scrollAmount = 374; // Ancho de tarjeta + espacio exacto
-
-    btnNextNovedades.addEventListener("click", () => {
-      carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      resetAutoScrollNovedades();
-    });
-
-    btnPrevNovedades.addEventListener("click", () => {
-      carruselWrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      resetAutoScrollNovedades();
-    });
-
-    carruselWrapper.addEventListener("scroll", () => {
-      const cardWidth = 350 + 24;
-      const index = Math.round(carruselWrapper.scrollLeft / cardWidth) + 1;
-      const clampedIndex = Math.max(1, Math.min(index, tarjetasNoticia.length));
-      if (currentIndexNovedades) currentIndexNovedades.textContent = clampedIndex;
-    });
-
-    tarjetasNoticia.forEach(card => {
-      const hoverImg = card.getAttribute("data-hover-img");
-      const defaultImg = card.getAttribute("data-default-img");
-      if (hoverImg && defaultImg) {
-        card.addEventListener("mouseenter", () => {
-          card.style.backgroundImage = `url('${hoverImg}')`;
-        });
-        card.addEventListener("mouseleave", () => {
-          card.style.backgroundImage = `url('${defaultImg}')`;
-        });
-      }
-    });
-
-    // Auto-desplazamiento suave para Novedades
-    let autoScrollIntervalNovedades = setInterval(() => {
-      if (!carruselWrapper) return;
-      const maxScrollLeft = carruselWrapper.scrollWidth - carruselWrapper.clientWidth;
-      if (carruselWrapper.scrollLeft >= maxScrollLeft - 10) {
-        carruselWrapper.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      }
-    }, 4500);
-
-    function resetAutoScrollNovedades() {
-      clearInterval(autoScrollIntervalNovedades);
-      autoScrollIntervalNovedades = setInterval(() => {
-        if (!carruselWrapper) return;
-        const maxScrollLeft = carruselWrapper.scrollWidth - carruselWrapper.clientWidth;
-        if (carruselWrapper.scrollLeft >= maxScrollLeft - 10) {
-          carruselWrapper.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
-        }
-      }, 4500);
+    if (btnNextNovedades) {
+      btnNextNovedades.addEventListener("click", () => {
+        carruselTrackNovedades.scrollBy({ left: cardWidth, behavior: "smooth" });
+      });
     }
 
-    carruselWrapper.addEventListener("mouseenter", () => clearInterval(autoScrollIntervalNovedades));
-    carruselWrapper.addEventListener("mouseleave", resetAutoScrollNovedades);
+    if (btnPrevNovedades) {
+      btnPrevNovedades.addEventListener("click", () => {
+        carruselTrackNovedades.scrollBy({ left: -cardWidth, behavior: "smooth" });
+      });
+    }
+
+    carruselTrackNovedades.addEventListener("scroll", () => {
+      let scrollLeft = carruselTrackNovedades.scrollLeft;
+      let index = Math.round(scrollLeft / cardWidth) + 1;
+      if (index < 1) index = 1;
+      if (index > noticiaCards.length) index = noticiaCards.length;
+      if (currentIndexNovedades) currentIndexNovedades.textContent = index;
+    });
+
+    // Cambio dinámico de fondo de tarjeta al hacer hover
+    noticiaCards.forEach((card) => {
+      let hoverImg = card.getAttribute("data-hover-img");
+      let defaultImg = card.getAttribute("data-default-img");
+
+      card.addEventListener("mouseenter", () => {
+        if (hoverImg) card.style.backgroundImage = `url('${hoverImg}')`;
+      });
+      card.addEventListener("mouseleave", () => {
+        if (defaultImg) card.style.backgroundImage = `url('${defaultImg}')`;
+      });
+    });
   }
 
-
   /* ==========================================
-     7. CARRUSEL 3D EN ABANICO / COVERFLOW (Propuestas con Auto-rotación y Controles Robustos)
+     7. COVERFLOW 3D DE PROPUESTAS
      ========================================== */
-  const cards = document.querySelectorAll(".coverflow-card");
+  const coverflowCards = document.querySelectorAll(".coverflow-card");
   const prevCoverflow = document.getElementById("prevCoverflow");
   const nextCoverflow = document.getElementById("nextCoverflow");
-  const coverflowDots = document.getElementById("coverflowDots");
-
-  let activeIndex = 0;
-  const totalCards = cards.length;
-  let coverflowInterval;
-
-  if (coverflowDots && totalCards > 0) {
-    for (let i = 0; i < totalCards; i++) {
-      const dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === 0 ? 'bg-red-600 w-6' : 'bg-slate-300'}`;
-      dot.setAttribute("aria-label", `Ir a propuesta ${i + 1}`);
-      dot.addEventListener("click", () => {
-        activeIndex = i;
-        updateCoverflow();
-        resetCoverflowTimer();
-      });
-      coverflowDots.appendChild(dot);
-    }
-  }
+  let activeCoverflowIndex = 0;
 
   function updateCoverflow() {
-    if (cards.length === 0) return;
+    if (coverflowCards.length === 0) return;
+    coverflowCards.forEach((card, index) => {
+      let offset = index - activeCoverflowIndex;
+      // Ajuste circular si se desea
+      if (offset < -2) offset += coverflowCards.length;
+      if (offset > 2) offset -= coverflowCards.length;
 
-    cards.forEach((card, index) => {
-      card.className = "coverflow-card group";
-
-      let offset = index - activeIndex;
-
-      if (offset > Math.floor(totalCards / 2)) offset -= totalCards;
-      if (offset < -Math.floor(totalCards / 2)) offset += totalCards;
+      card.classList.remove("active", "prev", "next", "hidden-card");
 
       if (offset === 0) {
-        card.classList.add("cf-center");
-      } else if (offset === -1) {
-        card.classList.add("cf-left-1");
-      } else if (offset === 1) {
-        card.classList.add("cf-right-1");
-      } else if (offset <= -2) {
-        card.classList.add("cf-left-2");
-      } else if (offset >= 2) {
-        card.classList.add("cf-right-2");
+        card.classList.add("active");
+        card.style.transform = "translateX(0px) translateZ(0px) rotateY(0deg) scale(1)";
+        card.style.zIndex = "30";
+        card.style.opacity = "1";
+        card.style.pointerEvents = "auto";
+      } else if (offset === -1 || (activeCoverflowIndex === 0 && index === coverflowCards.length - 1)) {
+        card.classList.add("prev");
+        card.style.transform = "translateX(-180px) translateZ(-150px) rotateY(25deg) scale(0.85)";
+        card.style.zIndex = "20";
+        card.style.opacity = "0.7";
+        card.style.pointerEvents = "auto";
+      } else if (offset === 1 || (activeCoverflowIndex === coverflowCards.length - 1 && index === 0)) {
+        card.classList.add("next");
+        card.style.transform = "translateX(180px) translateZ(-150px) rotateY(-25deg) scale(0.85)";
+        card.style.zIndex = "20";
+        card.style.opacity = "0.7";
+        card.style.pointerEvents = "auto";
       } else {
-        card.classList.add("cf-hidden");
+        card.classList.add("hidden-card");
+        card.style.transform = "translateX(0px) translateZ(-300px) scale(0.6)";
+        card.style.zIndex = "10";
+        card.style.opacity = "0";
+        card.style.pointerEvents = "none";
       }
     });
+  }
 
-    if (coverflowDots) {
-      const dots = coverflowDots.querySelectorAll("button");
-      dots.forEach((dot, idx) => {
-        if (idx === activeIndex) {
-          dot.className = "w-6 h-2.5 rounded-full bg-red-600 transition-all cursor-pointer";
-        } else {
-          dot.className = "w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer";
-        }
+  if (coverflowCards.length > 0) {
+    updateCoverflow();
+
+    if (nextCoverflow) {
+      nextCoverflow.addEventListener("click", () => {
+        activeCoverflowIndex = (activeCoverflowIndex + 1) % coverflowCards.length;
+        updateCoverflow();
       });
     }
-  }
 
-  if (nextCoverflow) {
-    nextCoverflow.addEventListener("click", () => {
-      activeIndex = (activeIndex + 1) % totalCards;
-      updateCoverflow();
-      resetCoverflowTimer();
-    });
-  }
-
-  if (prevCoverflow) {
-    prevCoverflow.addEventListener("click", () => {
-      activeIndex = (activeIndex - 1 + totalCards) % totalCards;
-      updateCoverflow();
-      resetCoverflowTimer();
-    });
-  }
-
-  // Permitir clic en las tarjetas laterales del Coverflow para traerlas al frente
-  cards.forEach((card, idx) => {
-    card.addEventListener("click", (e) => {
-      if (idx !== activeIndex) {
-        e.preventDefault();
-        activeIndex = idx;
+    if (prevCoverflow) {
+      prevCoverflow.addEventListener("click", () => {
+        activeCoverflowIndex = (activeCoverflowIndex - 1 + coverflowCards.length) % coverflowCards.length;
         updateCoverflow();
-        resetCoverflowTimer();
-      }
+      });
+    }
+
+    coverflowCards.forEach((card, idx) => {
+      card.addEventListener("click", (e) => {
+        if (activeCoverflowIndex !== idx) {
+          e.preventDefault();
+          activeCoverflowIndex = idx;
+          updateCoverflow();
+        }
+      });
     });
-  });
-
-  // Auto-rotación para el Plan de Gobierno
-  function startCoverflowTimer() {
-    coverflowInterval = setInterval(() => {
-      activeIndex = (activeIndex + 1) % totalCards;
-      updateCoverflow();
-    }, 5000);
   }
-
-  function resetCoverflowTimer() {
-    clearInterval(coverflowInterval);
-    startCoverflowTimer();
-  }
-
-  const coverflowStage = document.getElementById("coverflowStage");
-  if (coverflowStage) {
-    coverflowStage.addEventListener("mouseenter", () => clearInterval(coverflowInterval));
-    coverflowStage.addEventListener("mouseleave", startCoverflowTimer);
-  }
-
-  updateCoverflow();
-  startCoverflowTimer();
-
 
   /* ==========================================
-     8. ROADMAP ACORDEÓN EXCLUSIVO
+     8. SLIDER DE RECURSOS Y MAQUINARIA
      ========================================== */
-  const roadmapTriggers = document.querySelectorAll(".roadmap-trigger");
+  const resourceSlides = document.querySelectorAll(".resource-slide");
+  const prevResource = document.getElementById("prevResource");
+  const nextResource = document.getElementById("nextResource");
+  const resDots = document.querySelectorAll(".res-dot");
+  let currentResIndex = 0;
 
-  roadmapTriggers.forEach(trigger => {
-    trigger.addEventListener("click", () => {
-      const targetId = trigger.getAttribute("data-target");
-      const targetContent = document.getElementById(targetId);
-      const targetArrow = trigger.querySelector(".roadmap-arrow");
+  function showResourceSlide(index) {
+    if (resourceSlides.length === 0) return;
+    resourceSlides.forEach((slide, idx) => {
+      if (idx === index) {
+        slide.classList.remove("hidden");
+      } else {
+        slide.classList.add("hidden");
+      }
+    });
 
-      const isCurrentlyOpen = !targetContent.classList.contains("hidden");
+    resDots.forEach((dot, idx) => {
+      if (idx === index) {
+        dot.classList.remove("bg-slate-300", "w-1.5");
+        dot.classList.add("bg-tambo-red", "w-5");
+      } else {
+        dot.classList.remove("bg-tambo-red", "w-5");
+        dot.classList.add("bg-slate-300", "w-1.5");
+      }
+    });
+    currentResIndex = index;
+  }
 
-      document.querySelectorAll(".roadmap-content").forEach(content => {
-        content.classList.add("hidden");
+  if (resourceSlides.length > 0) {
+    if (nextResource) {
+      nextResource.addEventListener("click", () => {
+        let nextIdx = (currentResIndex + 1) % resourceSlides.length;
+        showResourceSlide(nextIdx);
       });
-      document.querySelectorAll(".roadmap-arrow").forEach(arrow => {
-        arrow.style.transform = "rotate(0deg)";
-      });
+    }
 
-      if (!isCurrentlyOpen) {
-        targetContent.classList.remove("hidden");
-        if (targetArrow) targetArrow.style.transform = "rotate(180deg)";
+    if (prevResource) {
+      prevResource.addEventListener("click", () => {
+        let prevIdx = (currentResIndex - 1 + resourceSlides.length) % resourceSlides.length;
+        showResourceSlide(prevIdx);
+      });
+    }
+
+    resDots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        let idx = parseInt(dot.getAttribute("data-res-idx"));
+        showResourceSlide(idx);
+      });
+    });
+  }
+
+  /* ==========================================
+     9. ROADMAP TÁCTIL INTERACTIVO
+     ========================================== */
+  const hitoButtons = document.querySelectorAll(".btn-hito");
+  const btnToggleAllRoadmap = document.getElementById("btnToggleAllRoadmap");
+  let allRoadmapOpen = false;
+
+  hitoButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let targetId = btn.getAttribute("data-target");
+      let detailsDiv = document.getElementById(targetId);
+      if (detailsDiv) {
+        detailsDiv.classList.toggle("hidden");
       }
     });
   });
 
+  if (btnToggleAllRoadmap) {
+    btnToggleAllRoadmap.addEventListener("click", () => {
+      allRoadmapOpen = !allRoadmapOpen;
+      const allDetails = document.querySelectorAll(".info-desplegable");
+      allDetails.forEach((div) => {
+        if (allRoadmapOpen) {
+          div.classList.remove("hidden");
+        } else {
+          div.classList.add("hidden");
+        }
+      });
+    });
+  }
 });
