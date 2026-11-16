@@ -221,7 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   /* ==========================================
      6. CARRUSEL DE NOVEDADES (Con Auto-desplazamiento e Interactividad Fluida)
      ========================================== */
