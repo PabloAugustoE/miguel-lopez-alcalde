@@ -195,6 +195,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
+     4. ESCRITURA SECUENCIAL PÁRRAFO POR PÁRRAFO
+     ========================================== */
+  const contenedorTexto = document.getElementById("contenedorTextoQuienSoy");
+  const typingParagraphs = document.querySelectorAll("#contenedorTextoQuienSoy .typing-paragraph");
+  let escrituraIniciada = false;
+
+  function escribirSecuencial(index = 0) {
+    if (index >= typingParagraphs.length) return;
+    const p = typingParagraphs[index];
+    const texto = p.getAttribute("data-text") || "";
+    let charIdx = 0;
+    p.textContent = "";
+
+    function tipear() {
+      if (charIdx < texto.length) {
+        p.textContent += texto.charAt(charIdx);
+        charIdx++;
+        setTimeout(tipear, 16);
+      } else {
+        setTimeout(() => escribirSecuencial(index + 1), 250);
+      }
+    }
+    tipear();
+  }
+
+  if (contenedorTexto && typingParagraphs.length > 0) {
+    const observerTexto = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !escrituraIniciada) {
+          escrituraIniciada = true;
+          escribirSecuencial(0);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    observerTexto.observe(contenedorTexto);
+  }
+  /* ==========================================
      4. APARICIÓN SECUENCIAL DE PÁRRAFOS
      ========================================== */
   const typingParagraphs = document.querySelectorAll(".typing-paragraph");
