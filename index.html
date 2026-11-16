@@ -403,7 +403,8 @@
         </div>
       </div>
     </section>
-    <!-- SECCIÓN 4: Novedades & Actualizaciones -->
+
+    <!-- SECCIÓN 4: Novedades & Actualizaciones (Con enlaces a páginas secundarias) -->
     <section id="novedades" class="py-14 sm:py-16 bg-slate-50 text-slate-900 relative overflow-hidden border-t border-slate-200 z-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
@@ -431,7 +432,9 @@
         </div>
         <div id="carruselNovedadesWrapper" class="overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing pb-4">
           <div id="carruselTrackNovedades" class="flex gap-3 sm:gap-6 w-max">
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-tambo-red" style="background-image: url('assets/img/novedad1.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad1.2.jpg" data-default-img="assets/img/novedad1.jpg">
+            
+            <!-- Noticia 1 -->
+            <a href="novedad-construyamos-futuro.html" class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-tambo-red block text-left" style="background-image: url('assets/img/novedad1.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad1.2.jpg" data-default-img="assets/img/novedad1.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-tambo-red text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">Territorio</span>
@@ -442,11 +445,13 @@
                 <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Hoy es momento de unir fuerzas, escuchar a nuestra gente y trabajar por nuestra tierra.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-emerald-300">El Tambo Somos Todos</span>
-                  <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-red-300">Ver video <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
+                  <span class="text-[9px] sm:text-[11px] font-bold text-white group-hover:text-red-300 flex items-center gap-1">Ver video <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
                 </div>
               </div>
-            </article>
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-emerald-600" style="background-image: url('assets/img/novedad2.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad2.2.jpg" data-default-img="assets/img/novedad2.jpg">
+            </a>
+
+            <!-- Noticia 2 -->
+            <a href="novedad-pillcopata-romerillo.html" class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-emerald-600 block text-left" style="background-image: url('assets/img/novedad2.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad2.2.jpg" data-default-img="assets/img/novedad2.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-tambo-green text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">Recorrido</span>
@@ -457,11 +462,13 @@
                 <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Dos comunidades que se unen a este camino de unidad, compromiso y esperanza.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-emerald-300">Unidos</span>
-                  <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-emerald-300">Ver reporte <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
+                  <span class="text-[9px] sm:text-[11px] font-bold text-white group-hover:text-emerald-300 flex items-center gap-1">Ver reporte <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
                 </div>
               </div>
-            </article>
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-amber-500" style="background-image: url('assets/img/novedad3.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad3.2.jpg" data-default-img="assets/img/novedad3.jpg">
+            </a>
+
+            <!-- Noticia 3 -->
+            <a href="novedad-campana-marcha.html" class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-amber-500 block text-left" style="background-image: url('assets/img/novedad3.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad3.2.jpg" data-default-img="assets/img/novedad3.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-amber-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">En Vivo</span>
@@ -472,11 +479,13 @@
                 <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Poniendo a punto los detalles para salir a las calles junto a ustedes.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-amber-300">En Desarrollo</span>
-                  <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-amber-300">Ver directo <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
+                  <span class="text-[9px] sm:text-[11px] font-bold text-white group-hover:text-amber-300 flex items-center gap-1">Ver directo <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
                 </div>
               </div>
-            </article>
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-blue-600" style="background-image: url('assets/img/novedad4.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad4.2.jpg" data-default-img="assets/img/novedad4.jpg">
+            </a>
+
+            <!-- Noticia 4 -->
+            <a href="novedad-adentro-campo.html" class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-blue-600 block text-left" style="background-image: url('assets/img/novedad4.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad4.2.jpg" data-default-img="assets/img/novedad4.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-blue-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">Territorio</span>
@@ -487,11 +496,13 @@
                 <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Conociendo de cerca el pulso y las necesidades de nuestras comunidades.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-blue-300">Gestión Abierta</span>
-                  <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-blue-300">Ver reporte <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
+                  <span class="text-[9px] sm:text-[11px] font-bold text-white group-hover:text-blue-300 flex items-center gap-1">Ver reporte <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
                 </div>
               </div>
-            </article>
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-purple-600" style="background-image: url('assets/img/novedad5.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad5.2.jpg" data-default-img="assets/img/novedad5.jpg">
+            </a>
+
+            <!-- Noticia 5 -->
+            <a href="novedad-vestimos-rojo.html" class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-purple-600 block text-left" style="background-image: url('assets/img/novedad5.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad5.2.jpg" data-default-img="assets/img/novedad5.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-purple-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">Identidad</span>
@@ -502,11 +513,13 @@
                 <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Las primeras pancartas ya están llegando a los hogares de nuestro cantón.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-purple-300">Identidad 17</span>
-                  <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-purple-300">Ver reporte <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
+                  <span class="text-[9px] sm:text-[11px] font-bold text-white group-hover:text-purple-300 flex items-center gap-1">Ver reporte <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
                 </div>
               </div>
-            </article>
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-emerald-500" style="background-image: url('assets/img/novedad6.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad6.2.jpg" data-default-img="assets/img/novedad6.jpg">
+            </a>
+
+            <!-- Noticia 6 -->
+            <a href="novedad-voces-detras.html" class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-emerald-500 block text-left" style="background-image: url('assets/img/novedad6.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad6.2.jpg" data-default-img="assets/img/novedad6.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-emerald-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">En Vivo</span>
@@ -517,14 +530,16 @@
                 <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Un espacio cercano para conocer la historia, ideas y la visión de quienes damos la cara por nuestra gente.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-emerald-300">Protagonistas</span>
-                  <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-emerald-300">Ver directo <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
+                  <span class="text-[9px] sm:text-[11px] font-bold text-white group-hover:text-emerald-300 flex items-center gap-1">Ver directo <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
                 </div>
               </div>
-            </article>
+            </a>
+
           </div>
         </div>
       </div>
     </section>
+
     <!-- SECCIÓN 5: Galería en Movimiento -->
     <section id="galeria" class="py-14 sm:py-18 relative overflow-hidden border-t border-b border-slate-200 bg-cover bg-center z-20" style="background-image: url('assets/img/fondo-galeria.png');">
       <div class="max-w-7xl mx-auto px-4 mb-8 sm:mb-10 text-center space-y-1.5 relative z-10">
@@ -595,7 +610,8 @@
         </div>
       </div>
     </section>
-    <!-- SECCIÓN 6: Propuestas de Gestión de Gobierno (Coverflow 3D con Redirección a Páginas Secundarias) -->
+
+    <!-- SECCIÓN 6: Propuestas de Gestión de Gobierno -->
     <section id="propuestas" class="sec-proposals py-16 sm:py-24 px-2 sm:px-6 max-w-7xl mx-auto overflow-hidden relative z-20">
       <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-3 px-2">
         <span class="text-[10px] sm:text-xs font-bold tracking-widest text-tambo-green uppercase bg-green-50 px-3.5 py-1.5 rounded-full border border-green-200">Plan de Gobierno Técnico</span>
@@ -720,6 +736,7 @@
       </div>
       <div id="coverflowDots" class="flex items-center justify-center gap-2 mt-4"></div>
     </section>
+
     <!-- SECCIÓN 7: Inversores, Maquinaria y Materiales -->
     <section id="recursos" class="sec-resources py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto overflow-hidden relative z-20">
       <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-2.5">
@@ -843,6 +860,7 @@
         </div>
       </div>
     </section>
+
     <!-- SECCIÓN 8: Roadmap Acordeón -->
     <section id="roadmap" class="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto relative z-20">
       <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
@@ -959,6 +977,7 @@
       </div>
     </section>
   </main>
+
   <!-- SECCIÓN FOOTER -->
   <footer class="sec-footer relative overflow-hidden mt-12 py-10 px-4 bg-slate-900 text-white z-20 border-t border-slate-800 shadow-inner">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-300 text-center md:text-left">
