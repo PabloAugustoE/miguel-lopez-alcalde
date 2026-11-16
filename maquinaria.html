@@ -3,80 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Financiamiento y BDE | Miguel López Alcalde</title>
+  <title>Pilar 02: Vialidad y Conectividad | Miguel López 2027</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], display: ['"Outfit"', 'sans-serif'] },
+          colors: { tambo: { red: '#dc2626', green: '#16a34a', dark: '#0f172a', light: '#f8fafc' } }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/ficha-interna.css">
 </head>
-<body class="bg-slate-100 text-slate-900 font-sans">
+<body class="bg-tambo-light text-tambo-dark font-sans antialiased">
 
-  <!-- Header Superior Oscuro Cívico -->
-  <header class="py-4 px-6 bg-[#0f172a] text-white border-b-4 border-tambo-red shadow-md">
-    <div class="max-w-5xl mx-auto flex justify-between items-center">
-      <a href="index.html" class="text-xs font-bold text-white hover:text-red-400 flex items-center gap-2 transition-colors">
-        <i class="fa-solid fa-arrow-left"></i> Volver a la Propuesta General
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-3 shadow-sm">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="index.html#propuestas" class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-slate-700 hover:text-tambo-red transition-colors">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Gobierno
       </a>
-      <span class="text-xs font-bold uppercase tracking-wider text-red-600 bg-white px-3 py-1 rounded-full border border-red-200 shadow-sm">
-        SUSTENTO OPERATIVO: FINANCIAMIENTO
-      </span>
+      <span class="bg-amber-100 text-amber-800 text-[10px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Pilar 02 · Uso Interno</span>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto py-12 px-4 space-y-8">
-    
-    <!-- Tarjeta Principal con Borde Rojo a la Izquierda -->
-    <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-lg border-l-8 border-l-tambo-red border-y border-r border-slate-200 space-y-6">
-      
-      <div class="flex items-center gap-4">
-        <div class="w-14 h-14 rounded-2xl bg-red-100 text-tambo-red flex items-center justify-center text-2xl shrink-0">
-          <i class="fa-solid fa-coins"></i>
-        </div>
-        <div>
-          <h1 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 leading-tight">
-            Sustento Financiero, BDE y Cooperación
-          </h1>
-          <p class="text-xs font-semibold text-slate-400 mt-1">Cantón El Tambo · Provincia del Cañar</p>
-        </div>
+  <section class="ficha-hero-bg py-12 sm:py-16 px-4 text-white" style="background-image: url('assets/img/miguel-consejales.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/90 to-amber-950/80"></div>
+    <div class="max-w-5xl mx-auto relative z-10 space-y-4">
+      <div class="inline-flex items-center gap-2 bg-amber-600/30 border border-amber-400/40 px-3 py-1 rounded-full text-xs font-bold text-amber-200">
+        <i class="fa-solid fa-road"></i> Infraestructura Vial y Movilidad
       </div>
-
-      <p class="text-slate-600 text-sm leading-relaxed">
-        Una gestión municipal seria no depende exclusivamente de promesas, sino de una ingeniería presupuestaria transparente. Maximizaremos la recaudación local y atraeremos capital externo sin endeudar irresponsablemente al cantón.
+      <h1 class="text-3xl sm:text-5xl font-display font-black tracking-tight leading-tight">
+        Vialidad, Conectividad y Movilidad
+      </h1>
+      <p class="text-sm sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
+        Intervención integral en caminos rurales para sacar la producción agrícola y ordenamiento del tránsito urbano con semaforización moderna.
       </p>
+    </div>
+  </section>
 
-      <div class="space-y-4 pt-4 border-t border-slate-100">
-        <h3 class="font-display font-bold text-base text-slate-900">Fuentes de Ingreso y Gestión Técnica:</h3>
-        
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-          <h4 class="text-xs font-bold text-slate-900">1. Asignaciones Fiscales (Ley 047):</h4>
-          <p class="text-xs text-slate-600">Optimización y destino exclusivo para obras de impacto social y vialidad en las comunidades.</p>
-        </div>
+  <main class="max-w-5xl mx-auto px-4 py-10 space-y-10">
 
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-          <h4 class="text-xs font-bold text-slate-900">2. Créditos Preferenciales BDE:</h4>
-          <p class="text-xs text-slate-600">Financiamiento con tasas blandas para proyectos prioritarios de agua potable y saneamiento.</p>
-        </div>
+    <!-- Diagnóstico -->
+    <div class="stat-badge rounded-2xl p-6 text-white shadow-xl grid sm:grid-cols-2 gap-6">
+      <div>
+        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest">Realidad Rural</span>
+        <h2 class="text-2xl font-display font-black mt-1">86% de vías son de lastre</h2>
+        <p class="text-xs sm:text-sm text-slate-300 mt-1">De ese total, apenas el <strong>29% se encuentra en buen estado</strong>, dificultando el transporte de productos agrícolas y lácteos.</p>
+      </div>
+      <div class="border-t sm:border-t-0 sm:border-l border-slate-700 pt-4 sm:pt-0 sm:pl-6">
+        <span class="text-xs font-extrabold text-red-400 uppercase tracking-widest">Realidad Urbana</span>
+        <h2 class="text-2xl font-display font-black mt-1">Solo 4 intersecciones semaforizadas</h2>
+        <p class="text-xs sm:text-sm text-slate-300 mt-1">Señalización deficiente y congestión vehicular crítica en horarios de ingreso y salida de centros educativos.</p>
+      </div>
+    </div>
 
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-          <h4 class="text-xs font-bold text-slate-900">3. Cooperación Internacional:</h4>
-          <p class="text-xs text-slate-600">Fondos no reembolsables enfocados en la preservación del patrimonio histórico y fortalecimiento turístico.</p>
-        </div>
+    <!-- Acciones -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="ficha-glass-card rounded-2xl p-6 shadow-md space-y-3 border-l-4 border-l-amber-600">
+        <h4 class="font-display font-bold text-lg text-slate-900"><i class="fa-solid fa-tractor text-amber-600 mr-2"></i>Mantenimiento y Apertura Vial Rural</h4>
+        <ul class="text-xs sm:text-sm text-slate-600 space-y-2">
+          <li>• Mantenimiento permanente de vías, cunetas y pasos de agua en coordinación directa municipio-comunidad.</li>
+          <li>• Plan de apertura y ampliación vial respaldado por una <strong>Ordenanza Municipal</strong> que regule el ancho técnico de vías.</li>
+        </ul>
       </div>
 
-      <!-- Sección Multimedia (Videos y Fotos) -->
-      <div class="grid md:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
-        <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 h-44 flex items-center justify-center relative">
-          <i class="fa-solid fa-video text-2xl text-tambo-red opacity-80"></i>
-          <span class="absolute bottom-2 left-2 text-[11px] bg-white/90 px-2 py-0.5 rounded border border-slate-200 text-slate-700 font-medium">Video: Plan Presupuestario BDE</span>
-        </div>
-        <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 h-44 flex items-center justify-center relative">
-          <i class="fa-solid fa-image text-2xl text-tambo-green opacity-80"></i>
-          <span class="absolute bottom-2 left-2 text-[11px] bg-white/90 px-2 py-0.5 rounded border border-slate-200 text-slate-700 font-medium">Reunión con banca multilateral</span>
-        </div>
+      <div class="ficha-glass-card rounded-2xl p-6 shadow-md space-y-3 border-l-4 border-l-tambo-red">
+        <h4 class="font-display font-bold text-lg text-slate-900"><i class="fa-solid fa-traffic-light text-tambo-red mr-2"></i>Asfaltado y Movilidad Urbana</h4>
+        <ul class="text-xs sm:text-sm text-slate-600 space-y-2">
+          <li>• Gestión inmediata ante el <strong>Gobierno Provincial del Cañar</strong> para asfaltar accesos comunitarios usando estudios ya existentes.</li>
+          <li>• Ejecución del Plan de Movilidad Urbana, semaforización moderna y regeneración integral de calles céntricas.</li>
+        </ul>
       </div>
+    </div>
 
+    <!-- Sustento Financiero -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-4">
+      <div class="flex items-center gap-2 text-tambo-green font-extrabold text-xs uppercase tracking-widest">
+        <i class="fa-solid fa-sack-dollar"></i> Fuentes de Financiamiento y Gestión
+      </div>
+      <h3 class="text-xl font-display font-black text-slate-900">¿De dónde saldrán los recursos?</h3>
+      <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <li class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
+          <span><strong>Convenios de Concurrencia con el Gobierno Provincial:</strong> Aporte de maquinaria pesada y asfalto provincial aprovechando estudios técnicos ya pagados.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
+          <span><strong>Cogestión Comunitaria (Mingas + Equipo Caminero):</strong> Reducción de costos operativos combinando mano de obra comunitaria y equipo caminero municipal repotenciado.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flex justify-between items-center pt-4 border-t border-slate-200">
+      <a href="mano-de-obra.html" class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-extrabold flex items-center gap-2">
+        <i class="fa-solid fa-arrow-left"></i> Anterior: Pilar 01
+      </a>
+      <a href="agricultura.html" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-tambo-red text-white text-xs font-extrabold flex items-center gap-2 transition-colors">
+        Siguiente: Pilar 03 Emprendimiento <i class="fa-solid fa-arrow-right"></i>
+      </a>
     </div>
   </main>
 
+  <script src="js/ficha-interna.js"></script>
 </body>
 </html>
