@@ -193,3 +193,31 @@ h1, h2, h3, h4, h5, h6, .font-display {
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Estilos específicos para las fichas técnicas internas - El Tambo 2027 */
+.ficha-hero-bg {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.ficha-glass-card {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ficha-glass-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08);
+}
+
+.stat-badge {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-left: 4px solid #dc2626;
+}
+
+.progress-bar-fill {
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
