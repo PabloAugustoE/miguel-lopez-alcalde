@@ -3,111 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pilar 02: Vialidad y Conectividad | Miguel López 2027</title>
+  <title>Vialidad y Conectividad | Pilar 02 - Miguel López Alcalde 2027</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], display: ['"Outfit"', 'sans-serif'] },
-          colors: { tambo: { red: '#dc2626', green: '#16a34a', dark: '#0f172a', light: '#f8fafc' } }
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            tambo: {
+              red: '#dc2626',
+              green: '#16a34a',
+              dark: '#0f172a',
+              light: '#f8fafc',
+            }
+          }
         }
       }
     }
   </script>
-  <link rel="stylesheet" href="css/ficha-interna.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-tambo-light text-tambo-dark font-sans antialiased">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-amber-600 selection:text-white overflow-x-hidden">
 
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-3 shadow-sm">
-    <div class="max-w-5xl mx-auto flex items-center justify-between">
-      <a href="index.html#propuestas" class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-slate-700 hover:text-tambo-red transition-colors">
-        <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Gobierno
-      </a>
-      <span class="bg-amber-100 text-amber-800 text-[10px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Pilar 02 · Uso Interno</span>
+  <!-- ==========================================
+       HEADER / BANNER SUPERIOR (FLUJO NATURAL Y SEGURO)
+       ========================================== -->
+  <header class="relative w-full bg-slate-950 px-4 sm:px-8 pt-6 pb-10 sm:pb-14 border-b border-slate-800 overflow-hidden">
+    <!-- Imagen de fondo estricta (absolute contenida en el header) -->
+    <div class="absolute inset-0 bg-cover bg-center opacity-25 pointer-events-none" style="background-image: url('assets/img/miguel-consejales.jpg');"></div>
+    
+    <!-- Gradiente oscurecedor limitado únicamente al header -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pointer-events-none"></div>
+
+    <!-- Contenido del Header -->
+    <div class="max-w-4xl mx-auto w-full relative z-10 space-y-6">
+      
+      <!-- Barra superior de navegación -->
+      <div class="flex justify-between items-center">
+        <a href="index.html" class="text-xs sm:text-sm font-bold text-white hover:text-amber-400 transition-colors flex items-center gap-2 bg-slate-900/90 px-3.5 py-2 rounded-xl border border-slate-700 shadow-md">
+          <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Gobierno
+        </a>
+        <span class="text-[10px] sm:text-xs font-extrabold bg-amber-500/20 text-amber-300 border border-amber-400/30 px-3.5 py-1.5 rounded-full backdrop-blur-md">
+          PILAR 02 · USO INTERNO
+        </span>
+      </div>
+
+      <!-- Títulos y descripción del Banner -->
+      <div class="space-y-3 pt-2">
+        <div class="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-400/30 px-3 py-1 rounded-full backdrop-blur-md">
+          <i class="fa-solid fa-road text-amber-400 text-xs"></i>
+          <span class="text-[11px] sm:text-xs font-bold text-amber-200 uppercase tracking-wider">Infraestructura Vial y Movilidad</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-display font-black text-white tracking-tight drop-shadow-md">
+          Vialidad, Conectividad y Movilidad
+        </h1>
+        <p class="text-xs sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+          Intervención integral en caminos rurales para sacar la producción agrícola y ordenamiento del tránsito urbano con semaforización moderna y vías dignas.
+        </p>
+      </div>
+
     </div>
   </header>
 
-  <section class="ficha-hero-bg py-12 sm:py-16 px-4 text-white" style="background-image: url('assets/img/miguel-consejales.jpg');">
-    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/90 to-amber-950/80"></div>
-    <div class="max-w-5xl mx-auto relative z-10 space-y-4">
-      <div class="inline-flex items-center gap-2 bg-amber-600/30 border border-amber-400/40 px-3 py-1 rounded-full text-xs font-bold text-amber-200">
-        <i class="fa-solid fa-road"></i> Infraestructura Vial y Movilidad
-      </div>
-      <h1 class="text-3xl sm:text-5xl font-display font-black tracking-tight leading-tight">
-        Vialidad, Conectividad y Movilidad
-      </h1>
-      <p class="text-sm sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
-        Intervención integral en caminos rurales para sacar la producción agrícola y ordenamiento del tránsito urbano con semaforización moderna.
-      </p>
-    </div>
-  </section>
+  <!-- ==========================================
+       CONTENIDO PRINCIPAL AMPLIADO
+       ========================================== -->
+  <main class="relative z-20 bg-slate-50 py-8 sm:py-12 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto space-y-8 sm:space-y-10">
+      
+      <!-- 1. DIAGNÓSTICO SITUACIONAL -->
+      <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200 space-y-4">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div class="space-y-3 flex-1">
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-md">Diagnóstico Situacional</span>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900">La realidad vial y de transporte en El Tambo</h2>
+            <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+              El 86% de las vías rurales se encuentran en estado crítico de lastre deteriorado, afectando directamente la salida oportuna de los productos agrícolas hacia los mercados locales y provinciales. Asimismo, la cabecera cantonal padece de congestión vehicular crónica en horas pico, señalización deficiente y falta de un plan de movilidad moderna que garantice la seguridad de peatones y estudiantes.
+            </p>
+          </div>
+          <!-- Tarjeta de indicador lateral -->
+          <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 text-center shrink-0 w-full md:w-auto shadow-inner">
+            <span class="text-3xl sm:text-4xl font-display font-black text-amber-700 block">86%</span>
+            <span class="text-[10px] font-extrabold text-amber-900 uppercase tracking-wider block mt-1">Vías rurales críticas</span>
+          </div>
+        </div>
+      </section>
 
-  <main class="max-w-5xl mx-auto px-4 py-10 space-y-10">
+      <!-- 2. LÍNEAS DE ACCIÓN ESTRATÉGICA -->
+      <div class="space-y-6">
+        <h2 class="text-xl sm:text-3xl font-display font-black text-slate-900">Líneas de Acción Estratégica</h2>
+        
+        <div class="grid gap-6">
+          <!-- Tarjeta 1 -->
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-tractor"></i>
+            </div>
+            <h3 class="font-display font-bold text-slate-900 text-lg">1. Mantenimiento y Apertura Vial Rural</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Operación permanente del equipo caminero municipal dedicado al lastrado, cuneteo y pasos de agua en coordinación directa comunidad-municipio. Plan de apertura y ampliación vial respaldado por una <strong>Ordenanza Municipal</strong> que regule el ancho técnico de vías y evite conflictos limítrofes.
+            </p>
+          </div>
 
-    <!-- Diagnóstico -->
-    <div class="stat-badge rounded-2xl p-6 text-white shadow-xl grid sm:grid-cols-2 gap-6">
-      <div>
-        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest">Realidad Rural</span>
-        <h2 class="text-2xl font-display font-black mt-1">86% de vías son de lastre</h2>
-        <p class="text-xs sm:text-sm text-slate-300 mt-1">De ese total, apenas el <strong>29% se encuentra en buen estado</strong>, dificultando el transporte de productos agrícolas y lácteos.</p>
-      </div>
-      <div class="border-t sm:border-t-0 sm:border-l border-slate-700 pt-4 sm:pt-0 sm:pl-6">
-        <span class="text-xs font-extrabold text-red-400 uppercase tracking-widest">Realidad Urbana</span>
-        <h2 class="text-2xl font-display font-black mt-1">Solo 4 intersecciones semaforizadas</h2>
-        <p class="text-xs sm:text-sm text-slate-300 mt-1">Señalización deficiente y congestión vehicular crítica en horarios de ingreso y salida de centros educativos.</p>
-      </div>
-    </div>
-
-    <!-- Acciones -->
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="ficha-glass-card rounded-2xl p-6 shadow-md space-y-3 border-l-4 border-l-amber-600">
-        <h4 class="font-display font-bold text-lg text-slate-900"><i class="fa-solid fa-tractor text-amber-600 mr-2"></i>Mantenimiento y Apertura Vial Rural</h4>
-        <ul class="text-xs sm:text-sm text-slate-600 space-y-2">
-          <li>• Mantenimiento permanente de vías, cunetas y pasos de agua en coordinación directa municipio-comunidad.</li>
-          <li>• Plan de apertura y ampliación vial respaldado por una <strong>Ordenanza Municipal</strong> que regule el ancho técnico de vías.</li>
-        </ul>
+          <!-- Tarjeta 2 -->
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-red-100 text-tambo-red flex items-center justify-center text-lg">
+              <i class="fa-solid fa-road"></i>
+            </div>
+            <h3 class="font-display font-bold text-slate-900 text-lg">2. Asfaltado y Movilidad Urbana</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Gestión inmediata ante el <strong>Gobierno Provincial del Cañar</strong> para consolidar el asfaltado de accesos comunitarios estratégicos usando estudios ya existentes. Ejecución del Plan de Movilidad Urbana con semaforización inteligente, señalización horizontal/vertical y regeneración integral de calles céntricas.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div class="ficha-glass-card rounded-2xl p-6 shadow-md space-y-3 border-l-4 border-l-tambo-red">
-        <h4 class="font-display font-bold text-lg text-slate-900"><i class="fa-solid fa-traffic-light text-tambo-red mr-2"></i>Asfaltado y Movilidad Urbana</h4>
-        <ul class="text-xs sm:text-sm text-slate-600 space-y-2">
-          <li>• Gestión inmediata ante el <strong>Gobierno Provincial del Cañar</strong> para asfaltar accesos comunitarios usando estudios ya existentes.</li>
-          <li>• Ejecución del Plan de Movilidad Urbana, semaforización moderna y regeneración integral de calles céntricas.</li>
-        </ul>
-      </div>
-    </div>
+      <!-- 3. FUENTES DE FINANCIAMIENTO Y GESTIÓN -->
+      <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200 space-y-6">
+        <div class="space-y-2">
+          <span class="text-[10px] font-black text-amber-700 uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-md border border-amber-200">Fuentes de Financiamiento y Gestión</span>
+          <h2 class="text-xl sm:text-2xl font-display font-black text-slate-900">¿De dónde saldrán los recursos?</h2>
+        </div>
 
-    <!-- Sustento Financiero -->
-    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-4">
-      <div class="flex items-center gap-2 text-tambo-green font-extrabold text-xs uppercase tracking-widest">
-        <i class="fa-solid fa-sack-dollar"></i> Fuentes de Financiamiento y Gestión
-      </div>
-      <h3 class="text-xl font-display font-black text-slate-900">¿De dónde saldrán los recursos?</h3>
-      <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
-        <li class="flex items-start gap-3">
-          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
-          <span><strong>Convenios de Concurrencia con el Gobierno Provincial:</strong> Aporte de maquinaria pesada y asfalto provincial aprovechando estudios técnicos ya pagados.</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
-          <span><strong>Cogestión Comunitaria (Mingas + Equipo Caminero):</strong> Reducción de costos operativos combinando mano de obra comunitaria y equipo caminero municipal repotenciado.</span>
-        </li>
-      </ul>
-    </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></div>
+            <div class="space-y-1">
+              <h4 class="font-bold text-slate-900 text-xs sm:text-sm">Convenios de Concurrencia con la Prefectura</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">Aporte mancomunado de maquinaria pesada y asfalto provincial aprovechando estudios técnicos ya pagados y vigentes.</p>
+            </div>
+          </div>
 
-    <div class="flex justify-between items-center pt-4 border-t border-slate-200">
-      <a href="mano-de-obra.html" class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-extrabold flex items-center gap-2">
-        <i class="fa-solid fa-arrow-left"></i> Anterior: Pilar 01
-      </a>
-      <a href="agricultura.html" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-tambo-red text-white text-xs font-extrabold flex items-center gap-2 transition-colors">
-        Siguiente: Pilar 03 Emprendimiento <i class="fa-solid fa-arrow-right"></i>
-      </a>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></div>
+            <div class="space-y-1">
+              <h4 class="font-bold text-slate-900 text-xs sm:text-sm">Cogestión Comunitaria (Mingas + Equipo Caminero)</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">Reducción drástica de costos operativos combinando mano de obra comunitaria organizada y el equipo caminero municipal repotenciado.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra resumen inferior -->
+        <div class="bg-gradient-to-r from-amber-900 to-slate-900 text-white p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-amber-300">Modelo de Ejecución: Prefectura + Municipio + Mingas</span>
+          <span class="text-base sm:text-lg font-display font-black text-white bg-white/10 px-4 py-1.5 rounded-lg border border-white/20">Optimización del 100% en Costos</span>
+        </div>
+      </section>
+
+      <!-- BOTONERA DE NAVEGACIÓN ENTRE FICHAS -->
+      <div class="flex items-center justify-between pt-4 pb-6">
+        <a href="propuesta-salud.html" class="px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-700 text-xs font-extrabold hover:bg-slate-100 transition-all flex items-center gap-2 shadow-sm">
+          <i class="fa-solid fa-arrow-left"></i> Anterior: Pilar 01 Salud
+        </a>
+        <a href="propuesta-emprendimiento.html" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-extrabold hover:bg-slate-800 transition-all flex items-center gap-2 shadow-md">
+          Siguiente: Pilar 03 Emprendimiento <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
     </div>
   </main>
 
-  <script src="js/ficha-interna.js"></script>
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white py-8 px-4 border-t border-slate-800 relative z-20">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <span>Miguel López Alcalde · Plan de Gobierno 2027</span>
+      <a href="index.html" class="hover:text-white transition-colors"><i class="fa-solid fa-house mr-1"></i> Volver al inicio</a>
+    </div>
+  </footer>
+
 </body>
 </html>
