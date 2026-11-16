@@ -102,13 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================
-     4. REPRODUCTOR DE VIDEO INTERACTIVO (Biografía)
+     3. VIDEO INTERACTIVO "¿QUIÉN ES?"
      ========================================== */
-  const video = document.getElementById("videoQuienSoy");
-  const posterOverlay = document.getElementById("videoPosterOverlay");
-  const containerPlayBtn = document.getElementById("containerPlayBtn");
+  const videoQuienSoy = document.getElementById("videoQuienSoy");
   const btnPlayQuienSoy = document.getElementById("btnPlayQuienSoy");
-  const videoControlsBar = document.getElementById("videoControlsBar");
+  const containerPlayBtn = document.getElementById("containerPlayBtn");
+  const videoPosterOverlay = document.getElementById("videoPosterOverlay");
   const btnTogglePlay = document.getElementById("btnTogglePlay");
   const videoSeekBar = document.getElementById("videoSeekBar");
   const currentTimeDisplay = document.getElementById("currentTimeDisplay");
@@ -116,72 +115,107 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnFullscreen = document.getElementById("btnFullscreen");
 
   function formatTime(seconds) {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    let mins = Math.floor(seconds / 60);
+    let secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
   }
 
-  if (video) {
-    const startPlaying = () => {
-      if (posterOverlay) posterOverlay.style.opacity = '0';
-      if (containerPlayBtn) containerPlayBtn.style.display = 'none';
-      if (videoControlsBar) {
-        videoControlsBar.style.opacity = '1';
-        videoControlsBar.style.pointerEvents = 'auto';
-      }
-      video.play().catch(err => console.log("Play error:", err));
+  if (videoQuienSoy) {
+    const startPlayingVideo = () => {
+      if (videoPosterOverlay) videoPosterOverlay.style.opacity = "0";
+      if (containerPlayBtn) containerPlayBtn.style.display = "none";
+      setTimeout(() => {
+        if (videoPosterOverlay) videoPosterOverlay.style.display = "none";
+      }, 500);
+      videoQuienSoy.play();
       if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
     };
 
-    if (btnPlayQuienSoy) btnPlayQuienSoy.addEventListener("click", startPlaying);
-    if (containerPlayBtn) containerPlayBtn.addEventListener("click", startPlaying);
-    video.addEventListener("click", () => {
-      if (video.paused) startPlaying();
-      else {
-        video.pause();
+    if (btnPlayQuienSoy) btnPlayQuienSoy.addEventListener("click", startPlayingVideo);
+    if (containerPlayBtn) containerPlayBtn.addEventListener("click", startPlayingVideo);
+    videoQuienSoy.addEventListener("click", () => {
+      if (videoQuienSoy.paused) {
+        startPlayingVideo();
+      } else {
+        videoQuienSoy.pause();
         if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+        if (containerPlayBtn) containerPlayBtn.style.display = "flex";
       }
     });
 
     if (btnTogglePlay) {
       btnTogglePlay.addEventListener("click", () => {
-        if (video.paused) {
-          video.play();
+        if (videoQuienSoy.paused) {
+          videoQuienSoy.play();
           btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
+          if (containerPlayBtn) containerPlayBtn.style.display = "none";
+          if (videoPosterOverlay) {
+            videoPosterOverlay.style.opacity = "0";
+            setTimeout(() => (videoPosterOverlay.style.display = "none"), 500);
+          }
         } else {
-          video.pause();
+          videoQuienSoy.pause();
           btnTogglePlay.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
       });
     }
 
-    video.addEventListener("loadedmetadata", () => {
-      if (durationDisplay) durationDisplay.textContent = formatTime(video.duration);
+    videoQuienSoy.addEventListener("loadedmetadata", () => {
+      if (durationDisplay) durationDisplay.textContent = formatTime(videoQuienSoy.duration);
     });
 
-    video.addEventListener("timeupdate", () => {
-      if (video.duration) {
-        const percent = (video.currentTime / video.duration) * 100;
-        if (videoSeekBar) videoSeekBar.value = percent;
-        if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(video.currentTime);
+    videoQuienSoy.addEventListener("timeupdate", () => {
+      if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
+      if (videoSeekBar && videoQuienSoy.duration) {
+        let percent = (videoQuienSoy.currentTime / videoQuienSoy.duration) * 100;
+        videoSeekBar.value = percent;
       }
     });
 
     if (videoSeekBar) {
       videoSeekBar.addEventListener("input", () => {
-        const time = (videoSeekBar.value / 100) * video.duration;
-        video.currentTime = time;
+        if (videoQuienSoy.duration) {
+          let time = (videoSeekBar.value / 100) * videoQuienSoy.duration;
+          videoQuienSoy.currentTime = time;
+        }
       });
     }
 
     if (btnFullscreen) {
       btnFullscreen.addEventListener("click", () => {
-        if (video.requestFullscreen) video.requestFullscreen();
-        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+        if (videoQuienSoy.requestFullscreen) {
+          videoQuienSoy.requestFullscreen();
+        } else if (videoQuienSoy.webkitRequestFullscreen) {
+          videoQuienSoy.webkitRequestFullscreen();
+        } else if (videoQuienSoy.msRequestFullscreen) {
+          videoQuienSoy.msRequestFullscreen();
+        }
       });
     }
   }
 
+  /* ==========================================
+     4. APARICIÓN SECUENCIAL DE PÁRRAFOS
+     ========================================== */
+  const typingParagraphs = document.querySelectorAll(".typing-paragraph");
+
+  const observerParagraphs = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        typingParagraphs.forEach((p, idx) => {
+          setTimeout(() => {
+            p.classList.remove("opacity-0");
+            p.classList.add("opacity-100");
+          }, idx * 400); // Retardo escalonado de 400ms por párrafo
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  if (typingParagraphs.length > 0) {
+    observerParagraphs.observe(typingParagraphs[0].parentElement);
+  }
 
   /* ==========================================
      5. SIMULADOR DE PAPELETA OFICIAL (Línea Diagonal Roja Animada)
