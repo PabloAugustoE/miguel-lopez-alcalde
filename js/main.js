@@ -101,13 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentTimeDisplay = document.getElementById("currentTimeDisplay");
   const durationDisplay = document.getElementById("durationDisplay");
   const btnFullscreen = document.getElementById("btnFullscreen");
-
   function formatTime(seconds) {
     let mins = Math.floor(seconds / 60);
     let secs = Math.floor(seconds % 60);
     return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
   }
-
   if (videoQuienSoy) {
     const startPlayingVideo = () => {
       if (videoPosterOverlay) videoPosterOverlay.style.opacity = "0";
@@ -118,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
       videoQuienSoy.play();
       if (btnTogglePlay) btnTogglePlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
     };
-
     if (btnPlayQuienSoy) btnPlayQuienSoy.addEventListener("click", startPlayingVideo);
     if (containerPlayBtn) containerPlayBtn.addEventListener("click", startPlayingVideo);
     videoQuienSoy.addEventListener("click", () => {
@@ -130,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (containerPlayBtn) containerPlayBtn.style.display = "flex";
       }
     });
-
     if (btnTogglePlay) {
       btnTogglePlay.addEventListener("click", () => {
         if (videoQuienSoy.paused) {
@@ -147,11 +143,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
-
     videoQuienSoy.addEventListener("loadedmetadata", () => {
       if (durationDisplay) durationDisplay.textContent = formatTime(videoQuienSoy.duration);
     });
-
     videoQuienSoy.addEventListener("timeupdate", () => {
       if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(videoQuienSoy.currentTime);
       if (videoSeekBar && videoQuienSoy.duration) {
@@ -159,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
         videoSeekBar.value = percent;
       }
     });
-
     if (videoSeekBar) {
       videoSeekBar.addEventListener("input", () => {
         if (videoQuienSoy.duration) {
@@ -168,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
-
     if (btnFullscreen) {
       btnFullscreen.addEventListener("click", () => {
         if (videoQuienSoy.requestFullscreen) {
@@ -235,7 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const clampedIndex = Math.max(1, Math.min(index, tarjetasNoticia.length));
       if (currentIndexNovedades) currentIndexNovedades.textContent = clampedIndex;
     });
-
     tarjetasNoticia.forEach(card => {
       const hoverImg = card.getAttribute("data-hover-img");
       const defaultImg = card.getAttribute("data-default-img");
@@ -244,7 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener("mouseleave", () => card.style.backgroundImage = `url('${defaultImg}')`);
       }
     });
-
     let autoScrollIntervalNovedades = setInterval(() => {
       if (!carruselWrapper) return;
       const maxScrollLeft = carruselWrapper.scrollWidth - carruselWrapper.clientWidth;
@@ -254,7 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
         carruselWrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
       }
     }, 4500);
-
     function resetAutoScrollNovedades() {
       clearInterval(autoScrollIntervalNovedades);
       autoScrollIntervalNovedades = setInterval(() => {
@@ -281,7 +270,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeIndex = 0;
   const totalCards = cards.length;
   let coverflowInterval;
-
   if (coverflowDots && totalCards > 0) {
     for (let i = 0; i < totalCards; i++) {
       const dot = document.createElement("button");
@@ -296,7 +284,6 @@ document.addEventListener("DOMContentLoaded", () => {
       coverflowDots.appendChild(dot);
     }
   }
-
   function updateCoverflow() {
     if (cards.length === 0) return;
     cards.forEach((card, index) => {
@@ -318,7 +305,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-
   if (nextCoverflow) {
     nextCoverflow.addEventListener("click", () => {
       activeIndex = (activeIndex + 1) % totalCards;
@@ -343,7 +329,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
   function startCoverflowTimer() {
     coverflowInterval = setInterval(() => {
       activeIndex = (activeIndex + 1) % totalCards;
@@ -363,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startCoverflowTimer();
 
   /* ==========================================
-     8. ROADMAP ACORDEÓN
+     8. ROADMAP ACORDEÓN & RECURSOS TÉCNICOS
      ========================================== */
   const roadmapTriggers = document.querySelectorAll(".roadmap-trigger");
   roadmapTriggers.forEach(trigger => {
@@ -382,40 +367,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Animación de barras de progreso e indicadores presupuestarios
-  const bars = document.querySelectorAll('[data-width]');
-  setTimeout(() => {
-    bars.forEach(bar => {
-      bar.style.width = bar.getAttribute('data-width');
-    });
-  }, 300);
-
-  // 2. Acordeón de ejes técnicos de la ficha
-  const triggers = document.querySelectorAll('.eje-trigger');
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const targetId = trigger.getAttribute('data-target');
-      const content = document.getElementById(targetId);
-      const icon = trigger.querySelector('.eje-icon');
+  const recursoTriggers = document.querySelectorAll(".recurso-trigger");
+  recursoTriggers.forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      const targetId = trigger.getAttribute("data-target");
+      const targetContent = document.getElementById(targetId);
+      const targetArrow = trigger.querySelector(".recurso-arrow");
+      const isCurrentlyOpen = !targetContent.classList.contains("hidden");
       
-      content.classList.toggle('hidden');
-      if (icon) {
-        icon.classList.toggle('rotate-180');
+      document.querySelectorAll(".recurso-content").forEach(content => content.classList.add("hidden"));
+      document.querySelectorAll(".recurso-arrow").forEach(arrow => arrow.style.transform = "rotate(0deg)");
+      
+      if (!isCurrentlyOpen) {
+        targetContent.classList.remove("hidden");
+        if (targetArrow) targetArrow.style.transform = "rotate(180deg)";
       }
     });
   });
-
-  // 3. Botón de compartir ficha por WhatsApp
-  const btnShare = document.getElementById('btnCompartirFicha');
-  if (btnShare) {
-    btnShare.addEventListener('click', () => {
-      const titulo = document.title;
-      const url = window.location.href;
-      const texto = encodeURIComponent(`Conoce la propuesta oficial de Miguel López para El Tambo: ${titulo} - ${url}`);
-      window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
-    });
-  }
 });
