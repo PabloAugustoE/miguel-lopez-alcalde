@@ -14,10 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- GSAP & ScrollTrigger CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
   <script>
     tailwind.config = {
       theme: {
@@ -53,7 +49,6 @@
   </style>
 </head>
 <body class="bg-tambo-light text-tambo-dark font-sans antialiased selection:bg-tambo-green selection:text-white overflow-x-hidden relative min-h-screen">
-
   <!-- Fondo Estable y Limpio -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     <div class="absolute w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] top-[-100px] left-[-100px] bg-red-500/10 rounded-full blur-[100px] sm:blur-[120px]"></div>
@@ -97,7 +92,7 @@
           <span>Súmate</span>
           <i id="iconSumateArrow" class="fa-solid fa-chevron-down text-[9px] transition-transform duration-300"></i>
         </button>
-        <!-- Menú Desplegable (Orden: WhatsApp, Facebook, TikTok, Instagram) -->
+        <!-- Menú Desplegable -->
         <div 
           id="menuSumate" 
           class="hidden absolute right-0 mt-2 w-52 sm:w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 transition-all duration-200 transform origin-top-right">
@@ -128,7 +123,6 @@
   </header>
 
   <main class="relative z-10 pt-16 sm:pt-20">
-
     <!-- SECCIÓN 1: HERO -->
     <section id="inicio" class="sec-hero relative w-full flex flex-col justify-between items-center px-3 sm:px-6 overflow-hidden pt-2 sm:pt-4 pb-2 sm:pb-3 bg-slate-900">
       <div class="max-w-4xl mx-auto text-center relative z-20 my-1 sm:my-2">
@@ -150,10 +144,10 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 2: ¿Quién es Miguel López? -->
+    <!-- SECCIÓN 2: ¿Quién es Miguel López? (Corregida) -->
     <section id="quien-es" class="py-14 sm:py-20 px-4 sm:px-6 bg-white relative z-10 font-jakarta">
       <div class="max-w-4xl mx-auto space-y-8 sm:space-y-10">
-        <div class="text-center max-w-3xl mx-auto space-y-3 reveal-up">
+        <div class="text-center max-w-3xl mx-auto space-y-3">
           <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full mx-auto">
             <span class="w-2 h-2 rounded-full bg-tambo-red animate-pulse"></span>
             <span class="text-[11px] sm:text-xs font-bold text-tambo-red uppercase tracking-wider">Liderazgo Cercano</span>
@@ -166,9 +160,9 @@
           </p>
         </div>
 
-        <!-- Tarjeta principal con video de fondo y video interactivo -->
-        <div class="about-card-container p-3.5 sm:p-6 rounded-2xl border border-slate-200 text-center relative shadow-xl reveal-up max-w-3xl mx-auto overflow-hidden">
-          <video class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none" autoplay muted loop playsinline preload="auto">
+        <!-- Tarjeta principal con video interactivo -->
+        <div class="about-card-container p-3.5 sm:p-6 rounded-2xl border border-slate-200 text-center relative shadow-xl max-w-3xl mx-auto overflow-hidden bg-slate-900">
+          <video class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-40" autoplay muted loop playsinline preload="auto">
             <source src="assets/video/portada-fondo.mp4" type="video/mp4">
             Tu navegador no soporta video de fondo.
           </video>
@@ -213,21 +207,16 @@
           </div>
         </div>
 
-        <!-- Párrafos con reserva de espacio fija para evitar saltos mientras se escriben uno tras otro -->
-        <div id="contenedorTextoQuienSoy" class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed">
-          <div class="relative">
-            <p class="invisible pointer-events-none select-none" aria-hidden="true">Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos.</p>
-            <p class="typing-paragraph absolute inset-0 m-0" data-text="Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos."></p>
-          </div>
-          <div class="relative">
-            <p class="invisible pointer-events-none select-none" aria-hidden="true">Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar.</p>
-            <p class="typing-paragraph absolute inset-0 m-0" data-text="Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar."></p>
-          </div>
+        <!-- Párrafos con animación de letras -->
+        <div class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed">
+          <p class="typing-paragraph" data-text="Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos."></p>
+          <p class="typing-paragraph" data-text="Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar."></p>
         </div>
       </div>
-    </section>    
-    <!-- SECCIÓN 3: Simulación de Papeleta Oficial (Con Línea Diagonal Roja Animada) -->
-    <section id="simulacion-voto" class="py-10 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200 reveal-up">
+    </section>
+
+    <!-- SECCIÓN 3: Simulación de Papeleta Oficial -->
+    <section id="simulacion-voto" class="py-10 sm:py-20 bg-slate-100 text-slate-900 border-t border-slate-200">
       <div class="max-w-6xl mx-auto px-2 sm:px-6 text-center">
         <div class="max-w-2xl mx-auto mb-6 sm:mb-10 space-y-2 px-2">
           <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full shadow-sm">
@@ -274,7 +263,6 @@
             </div>
             
             <div class="grid grid-cols-6 gap-1 sm:gap-4 items-stretch pb-2">
-              
               <!-- Lista 1 -->
               <div class="border border-slate-300 sm:border-2 rounded-lg sm:rounded-xl p-1 sm:p-3 flex flex-col justify-between items-center text-center bg-slate-50/75">
                 <div class="w-full space-y-0.5 sm:space-y-1 pb-1.5 sm:pb-2 border-b border-slate-200">
@@ -423,7 +411,7 @@
           </div>
         </div>
         
-        <!-- Mensaje de Voto Simulado Actualizado -->
+        <!-- Mensaje de Voto Simulado -->
         <div id="mensajeVotoConfirmado" class="mt-5 sm:mt-8 hidden transition-all duration-300">
           <div class="inline-flex flex-col sm:flex-row items-center gap-3 bg-gradient-to-r from-amber-50 via-amber-100 to-yellow-50 text-amber-950 text-xs sm:text-base font-extrabold px-6 py-4 rounded-2xl border-2 border-amber-400 shadow-xl max-w-2xl mx-auto text-center sm:text-left">
             <div class="w-10 h-10 rounded-full bg-amber-400/30 border border-amber-500 flex items-center justify-center text-amber-600 text-xl shrink-0 shadow-inner">
@@ -439,9 +427,9 @@
         </div>
       </div>
     </section>
-    
-    <!-- SECCIÓN 4: Novedades & Actualizaciones (Con Desplazamiento Automático e Interactivo Robusto) -->
-    <section id="novedades" class="py-14 sm:py-16 bg-slate-50 text-slate-900 relative overflow-hidden border-t border-slate-200 reveal-up">
+
+    <!-- SECCIÓN 4: Novedades & Actualizaciones -->
+    <section id="novedades" class="py-14 sm:py-16 bg-slate-50 text-slate-900 relative overflow-hidden border-t border-slate-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
           <div class="space-y-1.5 max-w-2xl">
@@ -466,7 +454,6 @@
             </button>
           </div>
         </div>
-
         <div id="carruselNovedadesWrapper" class="overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing pb-4">
           <div id="carruselTrackNovedades" class="flex gap-3 sm:gap-6 w-max">
             <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-tambo-red" style="background-image: url('assets/img/novedad1.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad1.2.jpg" data-default-img="assets/img/miguel-portada.jpg">
@@ -484,7 +471,6 @@
                 </div>
               </div>
             </article>
-
             <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-emerald-600" style="background-image: url('assets/img/miguel-consejales.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/miguel-portada.jpg" data-default-img="assets/img/miguel-consejales.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
@@ -500,7 +486,6 @@
                 </div>
               </div>
             </article>
-
             <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-amber-500" style="background-image: url('assets/img/miguel-portada.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/miguel-consejales.jpg" data-default-img="assets/img/miguel-portada.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
@@ -516,7 +501,6 @@
                 </div>
               </div>
             </article>
-
             <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-blue-600" style="background-image: url('assets/img/miguel-consejales.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/miguel-portada.jpg" data-default-img="assets/img/miguel-consejales.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
@@ -532,7 +516,6 @@
                 </div>
               </div>
             </article>
-
             <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-purple-600" style="background-image: url('assets/img/miguel-portada.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/miguel-consejales.jpg" data-default-img="assets/img/miguel-portada.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
@@ -548,7 +531,6 @@
                 </div>
               </div>
             </article>
-
             <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-emerald-500" style="background-image: url('assets/img/miguel-consejales.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/miguel-portada.jpg" data-default-img="assets/img/miguel-consejales.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
@@ -570,7 +552,7 @@
     </section>
 
     <!-- SECCIÓN 5: Galería en Movimiento -->
-    <section id="galeria" class="py-14 sm:py-18 relative overflow-hidden border-t border-b border-slate-200 reveal-up bg-cover bg-center" style="background-image: url('assets/img/fondo-galeria.png');">
+    <section id="galeria" class="py-14 sm:py-18 relative overflow-hidden border-t border-b border-slate-200 bg-cover bg-center" style="background-image: url('assets/img/fondo-galeria.png');">
       <div class="max-w-7xl mx-auto px-4 mb-8 sm:mb-10 text-center space-y-1.5 relative z-10">
         <span class="text-[10px] sm:text-xs font-bold tracking-widest text-white uppercase bg-tambo-red/90 px-3 py-1 rounded-full border border-red-400 shadow">Galería en Acción</span>
         <h2 class="text-xl sm:text-4xl font-display font-extrabold text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Miguel López con el Pueblo de El Tambo</h2>
@@ -633,7 +615,6 @@
             </div>
           </div>
         </div>
-
         <!-- Fila 2 -->
         <div class="flex overflow-hidden py-1">
           <div class="marquee-track-right flex gap-4 shrink-0 items-center">
@@ -691,24 +672,20 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 6: Propuestas de Gestión de Gobierno (Carrusel 3D Coverflow con Auto-rotación y Controles Robustos) -->
-    <section id="propuestas" class="sec-proposals py-16 sm:py-24 px-2 sm:px-6 max-w-7xl mx-auto reveal-up overflow-hidden">
+    <!-- SECCIÓN 6: Propuestas de Gestión de Gobierno (Coverflow 3D) -->
+    <section id="propuestas" class="sec-proposals py-16 sm:py-24 px-2 sm:px-6 max-w-7xl mx-auto overflow-hidden">
       <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-3 px-2">
         <span class="text-[10px] sm:text-xs font-bold tracking-widest text-tambo-green uppercase bg-green-50 px-3.5 py-1.5 rounded-full border border-green-200">Plan de Gobierno Técnico</span>
         <h2 class="text-2xl sm:text-5xl font-display font-black text-slate-900 tracking-tight">Propuesta de Gestión de Gobierno</h2>
         <p class="text-xs sm:text-base text-slate-600 font-medium">Te invitamos a revisar las propuestas detalladas de nuestra gestión para transformar El Tambo.</p>
       </div>
-
       <div id="coverflowStage" class="coverflow-stage relative w-full max-w-6xl mx-auto h-[430px] sm:h-[520px] flex items-center justify-center select-none">
-        
         <button id="prevCoverflow" type="button" aria-label="Propuesta anterior" class="absolute left-2 sm:left-8 z-50 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-slate-900 shadow-2xl border border-slate-200 flex items-center justify-center hover:bg-tambo-red hover:text-white hover:border-tambo-red hover:scale-110 transition-all cursor-pointer">
           <i class="fa-solid fa-chevron-left text-sm sm:text-base"></i>
         </button>
-
         <button id="nextCoverflow" type="button" aria-label="Siguiente propuesta" class="absolute right-2 sm:right-8 z-50 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-slate-900 shadow-2xl border border-slate-200 flex items-center justify-center hover:bg-tambo-red hover:text-white hover:border-tambo-red hover:scale-110 transition-all cursor-pointer">
           <i class="fa-solid fa-chevron-right text-sm sm:text-base"></i>
         </button>
-
         <div class="coverflow-viewport relative w-full h-full flex items-center justify-center">
           
           <!-- Ficha 1 -->
@@ -732,7 +709,6 @@
               </div>
             </div>
           </a>
-
           <!-- Ficha 2 -->
           <a href="turismo.html" class="coverflow-card group" data-index="1" style="background-image: url('assets/img/miguel-consejales.jpg');">
             <div class="coverflow-overlay"></div>
@@ -754,7 +730,6 @@
               </div>
             </div>
           </a>
-
           <!-- Ficha 3 -->
           <a href="agricultura.html" class="coverflow-card group" data-index="2" style="background-image: url('assets/img/miguel-portada.jpg');">
             <div class="coverflow-overlay"></div>
@@ -776,7 +751,6 @@
               </div>
             </div>
           </a>
-
           <!-- Ficha 4 -->
           <a href="seguridad.html" class="coverflow-card group" data-index="3" style="background-image: url('assets/img/miguel-consejales.jpg');">
             <div class="coverflow-overlay"></div>
@@ -798,7 +772,6 @@
               </div>
             </div>
           </a>
-
           <!-- Ficha 5 -->
           <a href="financiamiento.html" class="coverflow-card group" data-index="4" style="background-image: url('assets/img/galeria1.jpg');">
             <div class="coverflow-overlay"></div>
@@ -820,14 +793,13 @@
               </div>
             </div>
           </a>
-
         </div>
       </div>
       <div id="coverflowDots" class="flex items-center justify-center gap-2 mt-4"></div>
     </section>
 
     <!-- SECCIÓN 7: Recursos y Sustento Operativo -->
-    <section id="recursos" class="sec-resources py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto overflow-hidden reveal-up">
+    <section id="recursos" class="sec-resources py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto overflow-hidden">
       <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-2.5">
         <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full shadow-sm">
           <span class="w-2 h-2 rounded-full bg-tambo-red animate-pulse"></span>
@@ -840,19 +812,15 @@
           Pilares clave de ejecución técnica y financiera para transformar El Tambo.
         </p>
       </div>
-
       <div class="flex flex-col gap-4 sm:gap-5">
-        
         <!-- Ficha 1 -->
         <a href="financiamiento.html" class="block w-full p-3.5 sm:p-5 rounded-2xl shadow-lg group text-left border-[2.5px] border-tambo-red bg-cover bg-center overflow-hidden relative transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-image: url('assets/img/miguel-portada.jpg');">
           <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
-          
           <div class="relative z-10 flex flex-row items-center gap-4 sm:gap-6">
             <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
               <img src="assets/img/miguel-consejales.jpg" alt="Financiamiento y BDE" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
               <div class="absolute top-1 left-1 bg-tambo-red text-white text-[8px] font-black px-1.5 py-0.2 rounded shadow uppercase">01</div>
             </div>
-
             <div class="flex-1 space-y-1.5 text-left">
               <span class="inline-block text-[9px] font-extrabold text-red-300 uppercase tracking-wider bg-red-500/20 px-2 py-0.5 rounded">Gestión Económica</span>
               <h3 class="font-display font-black text-white text-base sm:text-xl tracking-tight leading-snug group-hover:text-red-400 transition-colors">
@@ -867,17 +835,14 @@
             </div>
           </div>
         </a>
-
         <!-- Ficha 2 -->
         <a href="maquinaria.html" class="block w-full p-3.5 sm:p-5 rounded-2xl shadow-lg group text-left border-[2.5px] border-tambo-red bg-cover bg-center overflow-hidden relative transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-image: url('assets/img/miguel-consejales.jpg');">
           <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
-          
           <div class="relative z-10 flex flex-row items-center gap-4 sm:gap-6">
             <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
               <img src="assets/img/miguel-portada.jpg" alt="Equipo Caminero Propio" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
               <div class="absolute top-1 left-1 bg-tambo-red text-white text-[8px] font-black px-1.5 py-0.2 rounded shadow uppercase">02</div>
             </div>
-
             <div class="flex-1 space-y-1.5 text-left">
               <span class="inline-block text-[9px] font-extrabold text-red-300 uppercase tracking-wider bg-red-500/20 px-2 py-0.5 rounded">Infraestructura Vial</span>
               <h3 class="font-display font-black text-white text-base sm:text-xl tracking-tight leading-snug group-hover:text-red-400 transition-colors">
@@ -892,17 +857,14 @@
             </div>
           </div>
         </a>
-
         <!-- Ficha 3 -->
         <a href="mano-de-obra.html" class="block w-full p-3.5 sm:p-5 rounded-2xl shadow-lg group text-left border-[2.5px] border-tambo-red bg-cover bg-center overflow-hidden relative transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-image: url('assets/img/miguel-portada.jpg');">
           <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
-          
           <div class="relative z-10 flex flex-row items-center gap-4 sm:gap-6">
             <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
               <img src="assets/img/miguel-consejales.jpg" alt="Mano de Obra Local" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
               <div class="absolute top-1 left-1 bg-tambo-red text-white text-[8px] font-black px-1.5 py-0.2 rounded shadow uppercase">03</div>
             </div>
-
             <div class="flex-1 space-y-1.5 text-left">
               <span class="inline-block text-[9px] font-extrabold text-red-300 uppercase tracking-wider bg-red-500/20 px-2 py-0.5 rounded">Empleo y Reactivación</span>
               <h3 class="font-display font-black text-white text-base sm:text-xl tracking-tight leading-snug group-hover:text-red-400 transition-colors">
@@ -917,12 +879,11 @@
             </div>
           </div>
         </a>
-
       </div>
     </section>
 
-    <!-- SECCIÓN 8: Roadmap Acordeón con Camino Luminoso Intermitente -->
-    <section id="roadmap" class="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto relative reveal-up">
+    <!-- SECCIÓN 8: Roadmap Acordeón -->
+    <section id="roadmap" class="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto relative">
       <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
         <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full shadow-sm">
           <span class="w-2 h-2 rounded-full bg-tambo-red animate-pulse"></span>
@@ -935,20 +896,13 @@
           Haz clic en cualquier número para desplegar su fase correspondiente.
         </p>
       </div>
-
-      <!-- Contenedor del Roadmap con Línea Conectora Intermitente -->
       <div class="relative pl-6 sm:pl-10">
-        <!-- Camino vertical iluminado con pulso intermitente -->
         <div class="absolute left-[23px] sm:left-[31px] top-6 bottom-6 w-1 bg-gradient-to-b from-tambo-red via-emerald-500 to-slate-900 animate-pulse opacity-90 shadow-[0_0_12px_rgba(220,38,38,0.7)]"></div>
-
         <div class="space-y-6 sm:space-y-8">
-          
           <!-- Hito 1 -->
           <div class="roadmap-item relative flex flex-col items-start gap-3 group">
             <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-1">
-              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-tambo-red text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-                1
-              </div>
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-tambo-red text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">1</div>
               <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
                 <div>
                   <span class="text-[9px] font-extrabold text-tambo-red uppercase tracking-widest block">Mes 1 al 3</span>
@@ -960,19 +914,14 @@
             <div id="roadmap-content-1" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
               <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-tambo-red/20 text-slate-700 space-y-2">
                 <span class="text-[10px] font-extrabold text-tambo-red uppercase tracking-widest block">Fase Inicial</span>
-                <p class="text-xs sm:text-sm leading-relaxed">
-                  Asambleas participativas en barrios urbanos y las 13 comunidades para catastrar prioridades urgentes en agua potable, vialidad y riego.
-                </p>
+                <p class="text-xs sm:text-sm leading-relaxed">Asambleas participativas en barrios urbanos y las 13 comunidades para catastrar prioridades urgentes en agua potable, vialidad y riego.</p>
               </div>
             </div>
           </div>
-
           <!-- Hito 2 -->
           <div class="roadmap-item relative flex flex-col items-start gap-3 group">
             <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-2">
-              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-tambo-green text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-                2
-              </div>
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-tambo-green text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">2</div>
               <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
                 <div>
                   <span class="text-[9px] font-extrabold text-tambo-green uppercase tracking-widest block">Mes 4 al 6</span>
@@ -984,19 +933,14 @@
             <div id="roadmap-content-2" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
               <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-tambo-green/20 text-slate-700 space-y-2">
                 <span class="text-[10px] font-extrabold text-tambo-green uppercase tracking-widest block">Fase Financiera</span>
-                <p class="text-xs sm:text-sm leading-relaxed">
-                  Estructuración de presupuestos participativos, asignación de líneas de crédito preferenciales y optimización de recursos fiscales propios.
-                </p>
+                <p class="text-xs sm:text-sm leading-relaxed">Estructuración de presupuestos participativos, asignación de líneas de crédito preferenciales y optimización de recursos fiscales propios.</p>
               </div>
             </div>
           </div>
-
           <!-- Hito 3 -->
           <div class="roadmap-item relative flex flex-col items-start gap-3 group">
             <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-3">
-              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-amber-600 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-                3
-              </div>
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-amber-600 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">3</div>
               <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
                 <div>
                   <span class="text-[9px] font-extrabold text-amber-600 uppercase tracking-widest block">Año 1 al 2</span>
@@ -1008,19 +952,14 @@
             <div id="roadmap-content-3" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
               <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-amber-500/20 text-slate-700 space-y-2">
                 <span class="text-[10px] font-extrabold text-amber-600 uppercase tracking-widest block">Fase Operativa</span>
-                <p class="text-xs sm:text-sm leading-relaxed">
-                  Puesta en marcha del equipo caminero propio para el lastrado vial continuo y arranque de la renovación de redes sanitarias en el centro.
-                </p>
+                <p class="text-xs sm:text-sm leading-relaxed">Puesta en marcha del equipo caminero propio para el lastrado vial continuo y arranque de la renovación de redes sanitarias en el centro.</p>
               </div>
             </div>
           </div>
-
           <!-- Hito 4 -->
           <div class="roadmap-item relative flex flex-col items-start gap-3 group">
             <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-4">
-              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-purple-600 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-                4
-              </div>
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-purple-600 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">4</div>
               <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
                 <div>
                   <span class="text-[9px] font-extrabold text-purple-600 uppercase tracking-widest block">Año 2 al 3</span>
@@ -1032,19 +971,14 @@
             <div id="roadmap-content-4" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
               <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-purple-500/20 text-slate-700 space-y-2">
                 <span class="text-[10px] font-extrabold text-purple-600 uppercase tracking-widest block">Fase Social</span>
-                <p class="text-xs sm:text-sm leading-relaxed">
-                  Activación del circuito turístico Coyoctor-Estación del Tren, ferias agroecológicas directas y entrega de capital semilla para jóvenes emprendedores.
-                </p>
+                <p class="text-xs sm:text-sm leading-relaxed">Activación del circuito turístico Coyoctor-Estación del Tren, ferias agroecológicas directas y entrega de capital semilla para jóvenes emprendedores.</p>
               </div>
             </div>
           </div>
-
           <!-- Hito 5 -->
           <div class="roadmap-item relative flex flex-col items-start gap-3 group">
             <button type="button" class="roadmap-trigger flex items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none w-full text-left" data-target="roadmap-content-5">
-              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-slate-900 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-                5
-              </div>
+              <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-slate-900 text-white font-display font-black text-base sm:text-xl flex items-center justify-center shadow-xl border-4 border-white shrink-0 relative z-10 group-hover:scale-110 transition-transform">5</div>
               <div class="flex-1 bg-white px-5 py-3 rounded-2xl shadow-md border border-slate-200/80 flex items-center justify-between">
                 <div>
                   <span class="text-[9px] font-extrabold text-slate-900 uppercase tracking-widest block">Año 4 (2031)</span>
@@ -1056,20 +990,16 @@
             <div id="roadmap-content-5" class="roadmap-content hidden w-full pl-14 sm:pl-20 transition-all duration-300">
               <div class="bg-white p-5 rounded-2xl shadow-lg border-2 border-slate-900/20 text-slate-700 space-y-2">
                 <span class="text-[10px] font-extrabold text-slate-900 uppercase tracking-widest block">Fase Consolidación</span>
-                <p class="text-xs sm:text-sm leading-relaxed">
-                  Evaluación cantonal con cabildo abierto de rendición de cuentas, consolidando un modelo municipal eficiente, honesto y de puertas abiertas.
-                </p>
+                <p class="text-xs sm:text-sm leading-relaxed">Evaluación cantonal con cabildo abierto de rendición de cuentas, consolidando un modelo municipal eficiente, honesto y de puertas abiertas.</p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
-
   </main>
-  
-  <!-- SECCIÓN FOOTER CON FONDO SÓLIDO SUAVE Y REDES SOCIALES A COLOR -->
+
+  <!-- SECCIÓN FOOTER -->
   <footer class="sec-footer relative overflow-hidden mt-12 py-10 px-4 bg-slate-900 text-white z-10 border-t border-slate-800 shadow-inner">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-300 text-center md:text-left">
       <div class="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3">
@@ -1077,26 +1007,22 @@
         <span class="text-slate-400">© 2026. El Tambo, Cañar, Ecuador.</span>
       </div>
       <div class="flex items-center gap-5">
-        <!-- Facebook (Color Azul Original) -->
         <a href="https://www.facebook.com/share/1DwUsgrKMW/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-all shadow-md group border border-slate-700" title="Facebook">
           <i class="fa-brands fa-facebook text-[#1877F2] text-xl group-hover:scale-110 transition-transform"></i>
         </a>
-        <!-- TikTok (Color Negro/Blanco Original con acento) -->
         <a href="https://www.tiktok.com/@miguel_l78?_r=1&_t=ZS-9AfvGUDpd6C" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-all shadow-md group border border-slate-700" title="TikTok">
           <i class="fa-brands fa-tiktok text-white text-lg group-hover:scale-110 transition-transform"></i>
         </a>
-        <!-- Instagram (Degradado Rosado/Morado Original) -->
         <a href="https://www.instagram.com/miguel.lopez1912?srtk=OHRwZGl0ZHAxa2Nw" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-all shadow-md group border border-slate-700" title="Instagram">
           <i class="fa-brands fa-instagram text-[#E4405F] text-xl group-hover:scale-110 transition-transform"></i>
         </a>
-        <!-- WhatsApp (Color Verde Original) -->
         <a href="https://chat.whatsapp.com/CqIVBBFbPhqBV8ubm4bNtJ?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-all shadow-md group border border-slate-700" title="WhatsApp">
           <i class="fa-brands fa-whatsapp text-[#25D366] text-xl group-hover:scale-110 transition-transform"></i>
         </a>
       </div>
     </div>
   </footer>
-  
+
   <script src="js/main.js"></script>
 </body>
 </html>
