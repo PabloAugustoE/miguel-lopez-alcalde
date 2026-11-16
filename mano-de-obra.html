@@ -3,75 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mano de Obra Local | Miguel López Alcalde</title>
+  <title>Pilar 01: El Tambo Crece Sano | Miguel López 2027</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], display: ['"Outfit"', 'sans-serif'] },
+          colors: { tambo: { red: '#dc2626', green: '#16a34a', dark: '#0f172a', light: '#f8fafc' } }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/ficha-interna.css">
 </head>
-<body class="bg-slate-100 text-slate-900 font-sans">
+<body class="bg-tambo-light text-tambo-dark font-sans antialiased">
 
-  <!-- Header Superior Oscuro Cívico -->
-  <header class="py-4 px-6 bg-[#0f172a] text-white border-b-4 border-tambo-red shadow-md">
-    <div class="max-w-5xl mx-auto flex justify-between items-center">
-      <a href="index.html" class="text-xs font-bold text-white hover:text-red-400 flex items-center gap-2 transition-colors">
-        <i class="fa-solid fa-arrow-left"></i> Volver a la Propuesta General
+  <!-- Barra Superior de Retorno -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-3 shadow-sm">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="index.html#propuestas" class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-slate-700 hover:text-tambo-red transition-colors">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Gobierno
       </a>
-      <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-white px-3 py-1 rounded-full border border-emerald-200 shadow-sm">
-        SUSTENTO OPERATIVO: COMPROMISO LOCAL
-      </span>
+      <span class="bg-blue-100 text-blue-800 text-[10px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Pilar 01 · Uso Interno</span>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto py-12 px-4 space-y-8">
-    
-    <!-- Tarjeta Principal con Borde Rojo a la Izquierda -->
-    <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-lg border-l-8 border-l-tambo-red border-y border-r border-slate-200 space-y-6">
-      
-      <div class="flex items-center gap-4">
-        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl shrink-0">
-          <i class="fa-solid fa-people-group"></i>
-        </div>
-        <div>
-          <h1 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 leading-tight">
-            Prioridad Absoluta a la Mano de Obra Local
-          </h1>
-          <p class="text-xs font-semibold text-slate-400 mt-1">Cantón El Tambo · Provincia del Cañar</p>
-        </div>
+  <!-- Hero Ficha 1 -->
+  <section class="ficha-hero-bg py-12 sm:py-16 px-4 text-white" style="background-image: url('assets/img/miguel-portada.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/90 to-blue-950/80"></div>
+    <div class="max-w-5xl mx-auto relative z-10 space-y-4">
+      <div class="inline-flex items-center gap-2 bg-blue-600/30 border border-blue-400/40 px-3 py-1 rounded-full text-xs font-bold text-blue-200">
+        <i class="fa-solid fa-droplet"></i> Salud Pública y Saneamiento Ambiental
       </div>
-
-      <p class="text-slate-600 text-sm leading-relaxed">
-        El dinero del cantón debe quedarse en el cantón. Cada obra pública ejecutada por nuestra administración exigirá por contrato la contratación prioritaria de profesionales, constructores, canteras y proveedores tambeños.
+      <h1 class="text-3xl sm:text-5xl font-display font-black tracking-tight leading-tight">
+        El Tambo Crece Sano
+      </h1>
+      <p class="text-sm sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
+        Intervención estructural en agua potable, tratamiento de aguas servidas y atención preventiva para erradicar la desnutrición crónica infantil en El Tambo.
       </p>
+    </div>
+  </section>
 
-      <div class="space-y-4 pt-4 border-t border-slate-100">
-        <h3 class="font-display font-bold text-base text-slate-900">Compromisos de Contratación:</h3>
-        
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-          <h4 class="text-xs font-bold text-slate-900">1. Directorio Municipal de Proveedores Tambeños:</h4>
-          <p class="text-xs text-slate-600">Registro público para garantizar que la compra de materiales y servicios se realice en negocios locales.</p>
+  <!-- Contenido Principal -->
+  <main class="max-w-5xl mx-auto px-4 py-10 space-y-10">
+
+    <!-- Indicador Crítico (Diagnóstico) -->
+    <div class="stat-badge rounded-2xl p-6 text-white shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="space-y-1">
+        <span class="text-xs font-extrabold text-red-400 uppercase tracking-widest">Diagnóstico Situacional</span>
+        <h2 class="text-xl sm:text-2xl font-display font-black">37% de Desnutrición Crónica Infantil</h2>
+        <p class="text-xs sm:text-sm text-slate-300">Supera por más del doble al promedio nacional debido al consumo de agua de calidad cuestionada, falta de controles prenatales y riego de cultivos con aguas servidas del río Cushcurrún.</p>
+      </div>
+      <div class="bg-red-600/20 border border-red-500/40 px-4 py-3 rounded-xl text-center shrink-0">
+        <span class="block text-2xl sm:text-3xl font-display font-black text-red-400">+200%</span>
+        <span class="text-[10px] uppercase font-bold text-slate-200">Sobre media nacional</span>
+      </div>
+    </div>
+
+    <!-- 3 Ejes de Ejecución Técnica -->
+    <div class="space-y-4">
+      <h3 class="text-xl sm:text-2xl font-display font-black text-slate-900">Líneas de Acción Estratégica</h3>
+      
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="ficha-glass-card rounded-2xl p-5 shadow-md space-y-3 border-t-4 border-t-blue-600">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg"><i class="fa-solid fa-water"></i></div>
+          <h4 class="font-display font-bold text-lg text-slate-900">1. Plan Maestro de Alcantarillado</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Ejecución por etapas iniciando con los <strong>colectores marginales</strong> para eliminar las descargas directas de aguas servidas y salvar el río Cushcurrún.</p>
         </div>
 
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-          <h4 class="text-xs font-bold text-slate-900">2. Inclusión de Jóvenes Profesionales:</h4>
-          <p class="text-xs text-slate-600">Oportunidades de empleo técnico y fiscalización para ingenieros e ingenieras graduados del Cañar.</p>
+        <div class="ficha-glass-card rounded-2xl p-5 shadow-md space-y-3 border-t-4 border-t-emerald-600">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-flask"></i></div>
+          <h4 class="font-display font-bold text-lg text-slate-900">2. Agua 100% Segura Urbana</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Repotenciación integral de la planta de tratamiento de agua potable y modernización del laboratorio de control de calidad para consumo directo.</p>
+        </div>
+
+        <div class="ficha-glass-card rounded-2xl p-5 shadow-md space-y-3 border-t-4 border-t-tambo-red">
+          <div class="w-10 h-10 rounded-xl bg-red-100 text-tambo-red flex items-center justify-center text-lg"><i class="fa-solid fa-people-roof"></i></div>
+          <h4 class="font-display font-bold text-lg text-slate-900">3. Cobertura Rural y Juntas</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Dotación de agua segura al 100% de la población rural y fortalecimiento técnico-administrativo a las juntas comunitarias de agua.</p>
         </div>
       </div>
+    </div>
 
-      <!-- Sección Multimedia (Videos y Fotos) -->
-      <div class="grid md:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
-        <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 h-44 flex items-center justify-center relative">
-          <i class="fa-solid fa-video text-2xl text-emerald-600 opacity-80"></i>
-          <span class="absolute bottom-2 left-2 text-[11px] bg-white/90 px-2 py-0.5 rounded border border-slate-200 text-slate-700 font-medium">Testimonio de constructores locales</span>
+    <!-- Sustento Financiero (De dónde salen los recursos) -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-4">
+      <div class="flex items-center gap-2 text-tambo-green font-extrabold text-xs uppercase tracking-widest">
+        <i class="fa-solid fa-sack-dollar"></i> Fuentes de Financiamiento y Gestión
+      </div>
+      <h3 class="text-xl font-display font-black text-slate-900">¿De dónde saldrán los recursos?</h3>
+      <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <li class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
+          <span><strong>40% del Presupuesto Municipal de Inversión:</strong> Destinado por ordenanza a obras estructurales de interés cantonal (aprox. $320,000 anuales del presupuesto base de $800,000).</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
+          <span><strong>30% para Contrapartes de Convenios:</strong> Fondos municipales ($240,000 anuales) apalancados con el Banco de Desarrollo del Ecuador (BDE) y cooperación internacional para saneamiento.</span>
+        </li>
+      </ul>
+      <div class="pt-2">
+        <div class="flex justify-between text-xs font-bold mb-1">
+          <span>Asignación de Inversión Cantonal + Contrapartes</span>
+          <span class="text-tambo-green">70% del Presupuesto de Inversión</span>
         </div>
-        <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 h-44 flex items-center justify-center relative">
-          <i class="fa-solid fa-image text-2xl text-tambo-red opacity-80"></i>
-          <span class="absolute bottom-2 left-2 text-[11px] bg-white/90 px-2 py-0.5 rounded border border-slate-200 text-slate-700 font-medium">Asamblea con proveedores de canteras</span>
+        <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+          <div class="bg-tambo-green h-full progress-bar-fill" style="width: 0%" data-width="70%"></div>
         </div>
       </div>
+    </div>
 
+    <!-- Navegación entre Fichas -->
+    <div class="flex justify-between items-center pt-4 border-t border-slate-200">
+      <button id="btnCompartirFicha" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-2 shadow cursor-pointer">
+        <i class="fa-brands fa-whatsapp"></i> Compartir Ficha
+      </button>
+      <a href="maquinaria.html" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-tambo-red text-white text-xs font-extrabold flex items-center gap-2 transition-colors">
+        Siguiente: Pilar 02 Vialidad <i class="fa-solid fa-arrow-right"></i>
+      </a>
     </div>
   </main>
 
+  <script src="js/ficha-interna.js"></script>
 </body>
 </html>
