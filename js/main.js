@@ -165,40 +165,27 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     4. TIPEO INDEPENDIENTE DE PÁRRAFOS
+     4. APARICIÓN SECUENCIAL DE PÁRRAFOS
      ========================================== */
   const typingParagraphs = document.querySelectorAll(".typing-paragraph");
-  let animatedParagraphs = new Set();
-
-  function typeParagraph(element) {
-    if (!element || animatedParagraphs.has(element)) return;
-    animatedParagraphs.add(element);
-
-    let text = element.getAttribute("data-text");
-    if (!text) return;
-    element.textContent = "";
-    let idx = 0;
-
-    function addChar() {
-      if (idx < text.length) {
-        element.textContent += text.charAt(idx);
-        idx++;
-        setTimeout(addChar, 18);
-      }
-    }
-    addChar();
-  }
 
   const observerParagraphs = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        typeParagraph(entry.target);
-        observer.unobserve(entry.target);
+        typingParagraphs.forEach((p, idx) => {
+          setTimeout(() => {
+            p.classList.remove("opacity-0");
+            p.classList.add("opacity-100");
+          }, idx * 400); // Retardo escalonado de 400ms por párrafo
+        });
+        observer.disconnect();
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.2 });
 
-  typingParagraphs.forEach((p) => observerParagraphs.observe(p));
+  if (typingParagraphs.length > 0) {
+    observerParagraphs.observe(typingParagraphs[0].parentElement);
+  }
 
   /* ==========================================
      5. SIMULADOR DE PAPELETA OFICIAL
@@ -230,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     6. CARRUSEL DE NOVEDADES Y CAMBIO DE FONDO
+     6. CARRUSEL DE NOVEDADES (CON AUTOPLAY)
      ========================================== */
   const carruselTrackNovedades = document.getElementById("carruselTrackNovedades");
   const btnPrevNovedades = document.getElementById("btnPrevNovedades");
@@ -238,10 +225,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentIndexNovedades = document.getElementById("currentIndexNovedades");
   const totalIndexNovedades = document.getElementById("totalIndexNovedades");
   const noticiaCards = document.querySelectorAll(".noticia-card");
+  let novAutoplayTimer = null;
 
   if (carruselTrackNovedades && noticiaCards.length > 0) {
     if (totalIndexNovedades) totalIndexNovedades.textContent = noticiaCards.length;
-    let cardWidth = noticiaCards[0].offsetWidth + 16; // ancho + gap
+    let cardWidth = noticiaCards[0].offsetWidth + 16;
+
+    const scrollNextNov = () => {
+      if (carruselTrackNovedades.scrollLeft + carruselTrackNovedades.clientWidth >= carruselTrackNovedades.scrollWidth - 10) {
+        carruselTrackNovedades.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        carruselTrackNovedades.scrollBy({ left: cardWidth, behavior: "smooth" });
+      }
+    };
+
+    const startNovAutoplay = () => {
+      novAutoplayTimer = setInterval(scrollNextNov, 3500);
+    };
+
+    const stopNovAutoplay = () => {
+      clearInterval(novAutoplayTimer);
+    };
+
+    startNovAutoplay();
+    carruselTrackNovedades.addEventListener("mouseenter", stopNovAutoplay);
+    carruselTrackNovedades.addEventListener("mouseleave", startNovAutoplay);
 
     if (btnNextNovedades) {
       btnNextNovedades.addEventListener("click", () => {
@@ -263,7 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentIndexNovedades) currentIndexNovedades.textContent = index;
     });
 
-    // Cambio dinámico de fondo de tarjeta al hacer hover
     noticiaCards.forEach((card) => {
       let hoverImg = card.getAttribute("data-hover-img");
       let defaultImg = card.getAttribute("data-default-img");
@@ -278,18 +285,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     7. COVERFLOW 3D DE PROPUESTAS
+     7. COVERFLOW 3D DE PROPUESTAS (CON AUTOPLAY)
      ========================================== */
   const coverflowCards = document.querySelectorAll(".coverflow-card");
   const prevCoverflow = document.getElementById("prevCoverflow");
   const nextCoverflow = document.getElementById("nextCoverflow");
   let activeCoverflowIndex = 0;
+  let coverflowAutoplayTimer = null;
 
   function updateCoverflow() {
     if (coverflowCards.length === 0) return;
     coverflowCards.forEach((card, index) => {
       let offset = index - activeCoverflowIndex;
-      // Ajuste circular si se desea
       if (offset < -2) offset += coverflowCards.length;
       if (offset > 2) offset -= coverflowCards.length;
 
@@ -326,6 +333,26 @@ document.addEventListener("DOMContentLoaded", () => {
   if (coverflowCards.length > 0) {
     updateCoverflow();
 
+    const nextCoverflowSlide = () => {
+      activeCoverflowIndex = (activeCoverflowIndex + 1) % coverflowCards.length;
+      updateCoverflow();
+    };
+
+    const startCoverflowAutoplay = () => {
+      coverflowAutoplayTimer = setInterval(nextCoverflowSlide, 4000);
+    };
+
+    const stopCoverflowAutoplay = () => {
+      clearInterval(coverflowAutoplayTimer);
+    };
+
+    startCoverflowAutoplay();
+    const coverflowContainerElem = document.querySelector(".coverflow-container");
+    if (coverflowContainerElem) {
+      coverflowContainerElem.addEventListener("mouseenter", stopCoverflowAutoplay);
+      coverflowContainerElem.addEventListener("mouseleave", startCoverflowAutoplay);
+    }
+
     if (nextCoverflow) {
       nextCoverflow.addEventListener("click", () => {
         activeCoverflowIndex = (activeCoverflowIndex + 1) % coverflowCards.length;
@@ -352,65 +379,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================
-     8. SLIDER DE RECURSOS Y MAQUINARIA
-     ========================================== */
-  const resourceSlides = document.querySelectorAll(".resource-slide");
-  const prevResource = document.getElementById("prevResource");
-  const nextResource = document.getElementById("nextResource");
-  const resDots = document.querySelectorAll(".res-dot");
-  let currentResIndex = 0;
-
-  function showResourceSlide(index) {
-    if (resourceSlides.length === 0) return;
-    resourceSlides.forEach((slide, idx) => {
-      if (idx === index) {
-        slide.classList.remove("hidden");
-      } else {
-        slide.classList.add("hidden");
-      }
-    });
-
-    resDots.forEach((dot, idx) => {
-      if (idx === index) {
-        dot.classList.remove("bg-slate-300", "w-1.5");
-        dot.classList.add("bg-tambo-red", "w-5");
-      } else {
-        dot.classList.remove("bg-tambo-red", "w-5");
-        dot.classList.add("bg-slate-300", "w-1.5");
-      }
-    });
-    currentResIndex = index;
-  }
-
-  if (resourceSlides.length > 0) {
-    if (nextResource) {
-      nextResource.addEventListener("click", () => {
-        let nextIdx = (currentResIndex + 1) % resourceSlides.length;
-        showResourceSlide(nextIdx);
-      });
-    }
-
-    if (prevResource) {
-      prevResource.addEventListener("click", () => {
-        let prevIdx = (currentResIndex - 1 + resourceSlides.length) % resourceSlides.length;
-        showResourceSlide(prevIdx);
-      });
-    }
-
-    resDots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        let idx = parseInt(dot.getAttribute("data-res-idx"));
-        showResourceSlide(idx);
-      });
-    });
-  }
-
-  /* ==========================================
-     9. ROADMAP TÁCTIL INTERACTIVO
+     8. ROADMAP ACORDEÓN INTERACTIVO
      ========================================== */
   const hitoButtons = document.querySelectorAll(".btn-hito");
-  const btnToggleAllRoadmap = document.getElementById("btnToggleAllRoadmap");
-  let allRoadmapOpen = false;
 
   hitoButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -418,21 +389,15 @@ document.addEventListener("DOMContentLoaded", () => {
       let detailsDiv = document.getElementById(targetId);
       if (detailsDiv) {
         detailsDiv.classList.toggle("hidden");
+        let chevron = btn.querySelector(".fa-chevron-down");
+        if (!chevron) {
+          let parentCard = btn.closest(".bg-white");
+          if (parentCard) chevron = parentCard.querySelector(".fa-chevron-down");
+        }
+        if (chevron) {
+          chevron.style.transform = detailsDiv.classList.contains("hidden") ? "rotate(0deg)" : "rotate(180deg)";
+        }
       }
     });
   });
-
-  if (btnToggleAllRoadmap) {
-    btnToggleAllRoadmap.addEventListener("click", () => {
-      allRoadmapOpen = !allRoadmapOpen;
-      const allDetails = document.querySelectorAll(".info-desplegable");
-      allDetails.forEach((div) => {
-        if (allRoadmapOpen) {
-          div.classList.remove("hidden");
-        } else {
-          div.classList.add("hidden");
-        }
-      });
-    });
-  }
 });
