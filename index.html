@@ -58,8 +58,6 @@
   <!-- Navbar Flotante -->
   <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2 sm:py-3 px-3 sm:px-8">
     <div class="max-w-7xl mx-auto bg-white/95 backdrop-blur-md rounded-2xl px-3.5 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between shadow-lg border border-slate-100">
-      
-      <!-- Logo y Nombre -->
       <a href="#inicio" class="flex items-center gap-2 sm:gap-3 group shrink-0">
         <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-tambo-red via-tambo-green to-emerald-500 p-[2px] shadow-md group-hover:scale-105 transition-transform">
           <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
@@ -71,8 +69,6 @@
           <span class="text-[8px] sm:text-[10px] tracking-widest text-tambo-green font-bold uppercase mt-0.5 block">El Tambo · Cañar</span>
         </div>
       </a>
-
-      <!-- Enlaces de Navegación Desktop -->
       <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-xs font-bold text-slate-700 uppercase tracking-wider">
         <a href="#inicio" class="px-3 py-2 rounded-lg hover:text-tambo-red hover:bg-red-50/60 transition-colors">Inicio</a>
         <a href="#quien-es" class="px-3 py-2 rounded-lg hover:text-tambo-red hover:bg-red-50/60 transition-colors">Liderazgo</a>
@@ -81,21 +77,13 @@
         <a href="#recursos" class="px-3 py-2 rounded-lg hover:text-tambo-red hover:bg-red-50/60 transition-colors">Sustento</a>
         <a href="#roadmap" class="px-3 py-2 rounded-lg hover:text-tambo-red hover:bg-red-50/60 transition-colors">Roadmap</a>
       </nav>
-
       <!-- Botón SÚMATE Desplegable -->
       <div class="relative inline-block text-left group-sumate shrink-0">
-        <button 
-          id="btnSumate" 
-          type="button" 
-          class="bg-tambo-red hover:bg-red-700 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-3 sm:px-4 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer focus:outline-none"
-          aria-expanded="false">
+        <button id="btnSumate" type="button" class="bg-tambo-red hover:bg-red-700 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-3 sm:px-4 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer focus:outline-none" aria-expanded="false">
           <span>Súmate</span>
           <i id="iconSumateArrow" class="fa-solid fa-chevron-down text-[9px] transition-transform duration-300"></i>
         </button>
-        <!-- Menú Desplegable -->
-        <div 
-          id="menuSumate" 
-          class="hidden absolute right-0 mt-2 w-52 sm:w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 transition-all duration-200 transform origin-top-right">
+        <div id="menuSumate" class="hidden absolute right-0 mt-2 w-52 sm:w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 transition-all duration-200 transform origin-top-right">
           <div class="px-4 py-2 border-b border-slate-100">
             <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Únete a la campaña</p>
           </div>
@@ -144,7 +132,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 2: ¿Quién es Miguel López? (Corregida) -->
+    <!-- SECCIÓN 2: ¿Quién es Miguel López? -->
     <section id="quien-es" class="py-14 sm:py-20 px-4 sm:px-6 bg-white relative z-10 font-jakarta">
       <div class="max-w-4xl mx-auto space-y-8 sm:space-y-10">
         <div class="text-center max-w-3xl mx-auto space-y-3">
@@ -159,8 +147,6 @@
             Una vida de trabajo, raíces profundas y compromiso firme con El Tambo.
           </p>
         </div>
-
-        <!-- Tarjeta principal con video interactivo -->
         <div class="about-card-container p-3.5 sm:p-6 rounded-2xl border border-slate-200 text-center relative shadow-xl max-w-3xl mx-auto overflow-hidden bg-slate-900">
           <video class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-40" autoplay muted loop playsinline preload="auto">
             <source src="assets/video/portada-fondo.mp4" type="video/mp4">
@@ -169,7 +155,6 @@
           <div class="absolute top-3 right-3 sm:top-5 sm:right-5 bg-tambo-green text-white text-[10px] sm:text-[11px] font-extrabold px-3.5 py-1 rounded-full shadow-lg z-30 uppercase tracking-wider">
             El Tambo 2027
           </div>
-          
           <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 shadow-2xl bg-slate-950 border border-white/20 z-10 group">
             <div id="videoPosterOverlay" class="absolute inset-0 z-30 bg-cover bg-center transition-opacity duration-500" style="background-image: url('assets/img/miguel-portada.jpg');">
               <div class="absolute inset-0 bg-slate-950/40 pointer-events-none"></div>
@@ -186,7 +171,6 @@
                 </button>
               </div>
             </div>
-            <!-- Controles de Video -->
             <div id="videoControlsBar" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950/95 via-slate-950/70 to-transparent p-2.5 sm:p-3 z-40 flex items-center gap-2 sm:gap-3 opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
               <button id="btnTogglePlay" type="button" class="text-white hover:text-tambo-red text-xs sm:text-sm w-7 h-7 flex items-center justify-center transition-colors cursor-pointer" title="Pausar / Reproducir">
                 <i class="fa-solid fa-pause"></i>
@@ -206,8 +190,6 @@
             <p class="text-[11px] sm:text-xs text-red-300 font-extrabold uppercase tracking-widest drop-shadow">Candidato a la Alcaldía</p>
           </div>
         </div>
-
-        <!-- Párrafos con animación de letras -->
         <div class="max-w-3xl mx-auto space-y-5 text-slate-700 text-sm sm:text-lg leading-relaxed">
           <p class="typing-paragraph" data-text="Miguel López no es un político improvisado; es un hombre de territorio, nacido y criado en nuestra tierra Tambeña. Conoce de cerca el esfuerzo del agricultor, el sueño de los jóvenes y la valentía de las mujeres emprendedoras de nuestras comunidades y barrios urbanos."></p>
           <p class="typing-paragraph" data-text="Su trayectoria se define por una sola premisa: servir con honestidad y transformar con hechos, no con promesas vacías. Hoy encabeza un movimiento ciudadano que busca devolverle a El Tambo el sitial de orgullo que le corresponde en la provincia del Cañar."></p>
@@ -234,7 +216,6 @@
         <div id="papeletaContainer" class="w-full bg-white rounded-xl sm:rounded-2xl shadow-xl border-2 sm:border-4 border-slate-300 p-2 sm:p-8 relative text-left bg-cover bg-center" style="background-image: url('assets/img/papeleta-bg.jpg');">
           <div class="absolute inset-0 bg-white/93 backdrop-blur-[1px] rounded-xl sm:rounded-2xl pointer-events-none"></div>
           <div class="relative z-10 space-y-3 sm:space-y-6">
-            
             <div class="flex justify-between items-center border-b-2 border-slate-300 pb-2 sm:pb-5 gap-2">
               <div class="flex items-center gap-1.5 sm:gap-4">
                 <img src="assets/img/escudo-ecuador.jpg" alt="Ecuador" class="w-8 h-8 sm:w-16 sm:h-16 object-contain" />
@@ -411,7 +392,6 @@
           </div>
         </div>
         
-        <!-- Mensaje de Voto Simulado -->
         <div id="mensajeVotoConfirmado" class="mt-5 sm:mt-8 hidden transition-all duration-300">
           <div class="inline-flex flex-col sm:flex-row items-center gap-3 bg-gradient-to-r from-amber-50 via-amber-100 to-yellow-50 text-amber-950 text-xs sm:text-base font-extrabold px-6 py-4 rounded-2xl border-2 border-amber-400 shadow-xl max-w-2xl mx-auto text-center sm:text-left">
             <div class="w-10 h-10 rounded-full bg-amber-400/30 border border-amber-500 flex items-center justify-center text-amber-600 text-xl shrink-0 shadow-inner">
@@ -463,7 +443,7 @@
                 <span class="text-[9px] sm:text-[10px] font-bold text-slate-900 bg-white/90 px-2 sm:px-2.5 py-0.5 rounded-md">El Tambo</span>
               </div>
               <div class="relative z-10 space-y-1 sm:space-y-2 mt-auto">
-                <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">Contruyamos Futuro</h3>
+                <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">Construyamos Futuro</h3>
                 <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Hoy es momento de unir fuerzas, escuchar a nuestra gente y trabajar por nuestra tierra.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-emerald-300">El Tambo Somos Todos</span>
@@ -478,15 +458,15 @@
                 <span class="text-[9px] sm:text-[10px] font-bold text-slate-900 bg-white/90 px-2 sm:px-2.5 py-0.5 rounded-md">Zona Rural</span>
               </div>
               <div class="relative z-10 space-y-1 sm:space-y-2 mt-auto">
-                <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">Pillcopata y Romerillo se suman"</h3>
-                <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Dos comunidades que se unen a este camino de unidad, compromiso y esperanza</p>
+                <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">Pillcopata y Romerillo se suman</h3>
+                <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Dos comunidades que se unen a este camino de unidad, compromiso y esperanza.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
-                    <span class="text-[9px] sm:text-[10px] font-bold text-emerald-300">Unidos</span>
+                  <span class="text-[9px] sm:text-[10px] font-bold text-emerald-300">Unidos</span>
                   <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-emerald-300">Ver reporte <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
                 </div>
               </div>
             </article>
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-amber-500" style="background-image: url('assets/img/novedad3.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad3.2.jpg" data-default-img="assets/img/novedad2.jpg">
+            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-amber-500" style="background-image: url('assets/img/novedad3.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad3.2.jpg" data-default-img="assets/img/novedad3.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-amber-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">En Vivo</span>
@@ -494,7 +474,7 @@
               </div>
               <div class="relative z-10 space-y-1 sm:space-y-2 mt-auto">
                 <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">Campaña en marcha</h3>
-                <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Poniendo a punto los detalles para salir a las calles junto a ustedes</p>
+                <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Poniendo a punto los detalles para salir a las calles junto a ustedes.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-amber-300">En Desarrollo</span>
                   <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-amber-300">Ver directo <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
@@ -509,21 +489,21 @@
               </div>
               <div class="relative z-10 space-y-1 sm:space-y-2 mt-auto">
                 <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">Adentro del Campo</h3>
-                <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Conociendo de cerca el pulso y las necesidades de nuestra comunidades.</p>
+                <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Conociendo de cerca el pulso y las necesidades de nuestras comunidades.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-blue-300">Gestión Abierta</span>
                   <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-blue-300">Ver reporte <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
                 </div>
               </div>
             </article>
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-purple-600" style="background-image: url('assets/imgnovedad5.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad5.2.jpg" data-default-img="assets/img/novedad5.jpg">
+            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-purple-600" style="background-image: url('assets/img/novedad5.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad5.2.jpg" data-default-img="assets/img/novedad5.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-purple-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">Identidad</span>
                 <span class="text-[9px] sm:text-[10px] font-bold text-slate-900 bg-white/90 px-2 sm:px-2.5 py-0.5 rounded-md">Unidad</span>
               </div>
               <div class="relative z-10 space-y-1 sm:space-y-2 mt-auto">
-                <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">El Tambo empieza a vertirse de Rojo 17🚩</h3>
+                <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">El Tambo empieza a vestirse de Rojo 17 🚩</h3>
                 <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Las primeras pancartas ya están llegando a los hogares de nuestro cantón.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-purple-300"></span>
@@ -531,7 +511,7 @@
                 </div>
               </div>
             </article>
-            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-emerald-500" style="background-image: url('assets/img/novedad6.jpgg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad6.2.jpg" data-default-img="assets/img/novedad6.jpg">
+            <article class="noticia-card w-[44vw] sm:w-[350px] shrink-0 h-[250px] sm:h-[320px] rounded-2xl border-2 border-slate-200 overflow-hidden relative flex flex-col justify-between p-3 sm:p-6 shadow-lg group transition-all duration-500 hover:border-emerald-500" style="background-image: url('assets/img/novedad6.jpg'); background-size: cover; background-position: center;" data-hover-img="assets/img/novedad6.2.jpg" data-default-img="assets/img/novedad6.jpg">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-white/10"></div>
               <div class="relative z-10 flex justify-between items-center">
                 <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-emerald-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow">En Vivo</span>
@@ -539,10 +519,10 @@
               </div>
               <div class="relative z-10 space-y-1 sm:space-y-2 mt-auto">
                 <h3 class="text-[11px] sm:text-xl font-display font-black text-white leading-snug drop-shadow">Estos Somos: Las voces detrás de este proyecto</h3>
-                <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Un espacio cercano para conocer la historia, ideas y la visión de quienes damos la cara por nuestra gente</p>
+                <p class="text-[9px] sm:text-xs text-slate-200 line-clamp-2">Un espacio cercano para conocer la historia, ideas y la visión de quienes damos la cara por nuestra gente.</p>
                 <div class="pt-2 border-t border-white/20 flex items-center justify-between">
                   <span class="text-[9px] sm:text-[10px] font-bold text-emerald-300">Protagonistas</span>
-                  <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-emerald-300">Ver directo<i class="fa-solid fa-arrow-right text-[9px]"></i></a>
+                  <a href="#" class="text-[9px] sm:text-[11px] font-bold text-white hover:text-emerald-300">Ver directo <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
                 </div>
               </div>
             </article>
@@ -564,31 +544,6 @@
         <!-- Fila 1 -->
         <div class="flex overflow-hidden py-1">
           <div class="marquee-track-left flex gap-4 shrink-0 items-center">
-            <div class="w-48 sm:w-64 h-36 sm:h-44 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria1.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Asamblea comunitaria</span></div>
-            </div>
-            <div class="w-40 sm:w-52 h-42 sm:h-52 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria2.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Emprendedores</span></div>
-            </div>
-            <div class="w-48 sm:w-60 h-38 sm:h-48 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria3.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Diálogo con jóvenes</span></div>
-            </div>
-            <div class="w-52 sm:w-72 h-34 sm:h-40 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria4.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Sectores productivos</span></div>
-            </div>
-            <div class="w-38 sm:w-48 h-44 sm:h-56 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria5.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Cercanía ciudadana</span></div>
-            </div>
-            <div class="w-48 sm:w-64 h-36 sm:h-44 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria6.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Compromiso firme</span></div>
-            </div>
-            <!-- Duplicado loop -->
             <div class="w-48 sm:w-64 h-36 sm:h-44 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
               <img src="assets/img/galeria1.jpg" alt="El Tambo" class="w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Asamblea comunitaria</span></div>
@@ -642,31 +597,6 @@
               <img src="assets/img/galeria12.jpg" alt="El Tambo" class="w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">El Tambo 2027</span></div>
             </div>
-            <!-- Duplicado loop -->
-            <div class="w-40 sm:w-52 h-42 sm:h-52 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria7.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Compromiso cantonal</span></div>
-            </div>
-            <div class="w-48 sm:w-64 h-36 sm:h-44 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria8.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Barrios unidos</span></div>
-            </div>
-            <div class="w-52 sm:w-72 h-34 sm:h-40 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria9.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Trabajo honesto</span></div>
-            </div>
-            <div class="w-38 sm:w-48 h-44 sm:h-56 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria10.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Junto al agricultor</span></div>
-            </div>
-            <div class="w-48 sm:w-60 h-38 sm:h-48 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria11.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">Soluciones reales</span></div>
-            </div>
-            <div class="w-48 sm:w-64 h-36 sm:h-44 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/40 relative bg-white">
-              <img src="assets/img/galeria12.jpg" alt="El Tambo" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3"><span class="text-white text-[10px] sm:text-xs font-semibold">El Tambo 2027</span></div>
-            </div>
           </div>
         </div>
       </div>
@@ -688,113 +618,122 @@
         </button>
         <div class="coverflow-viewport relative w-full h-full flex items-center justify-center">
           
-          <!-- PEGAR EN index.html (Sección #propuestas - Ficha 1) -->
-<a href="mano-de-obra.html" class="coverflow-card group" data-index="0" style="background-image: url('assets/img/miguel-portada.jpg');">
-  <div class="coverflow-overlay"></div>
-  <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
-    <div class="flex items-center gap-2">
-      <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-droplet"></i></div>
-      <div class="leading-none text-left">
-        <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 01</span>
-        <span class="text-[9px] font-semibold text-slate-500 block">Salud y Agua</span>
+          <!-- Ficha 1 -->
+          <div class="coverflow-card group" data-index="0" style="background-image: url('assets/img/miguel-portada.jpg');">
+            <div class="coverflow-overlay"></div>
+            <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-droplet"></i></div>
+                <div class="leading-none text-left">
+                  <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 01</span>
+                  <span class="text-[9px] font-semibold text-slate-500 block">Salud y Agua</span>
+                </div>
+              </div>
+            </div>
+            <div class="relative z-10 space-y-2.5 mt-auto text-left">
+              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">El Tambo Crece Sano</h3>
+              <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Agua 100% segura, Plan Maestro de Alcantarillado para salvar el río Cushcurrún y combate frontal a la desnutrición infantil.</p>
+              <div class="pt-2 border-t border-white/25 flex items-center justify-between">
+                <span class="text-[10px] sm:text-xs font-bold text-blue-300">Gestión Técnica</span>
+                <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Inversión 2027</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha 2 -->
+          <div class="coverflow-card group" data-index="1" style="background-image: url('assets/img/miguel-consejales.jpg');">
+            <div class="coverflow-overlay"></div>
+            <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-amber-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-road"></i></div>
+                <div class="leading-none text-left">
+                  <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 02</span>
+                  <span class="text-[9px] font-semibold text-slate-500 block">Conectividad</span>
+                </div>
+              </div>
+            </div>
+            <div class="relative z-10 space-y-2.5 mt-auto text-left">
+              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">Vialidad y Conectividad</h3>
+              <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Recuperación del 86% de vías de lastre, asfaltado de accesos comunitarios y Plan de Movilidad con semaforización moderna.</p>
+              <div class="pt-2 border-t border-white/25 flex items-center justify-between">
+                <span class="text-[10px] sm:text-xs font-bold text-amber-300">Gestión Técnica</span>
+                <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Inversión 2027</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha 3 -->
+          <div class="coverflow-card group" data-index="2" style="background-image: url('assets/img/miguel-portada.jpg');">
+            <div class="coverflow-overlay"></div>
+            <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-seedling"></i></div>
+                <div class="leading-none text-left">
+                  <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 03</span>
+                  <span class="text-[9px] font-semibold text-slate-500 block">Economía</span>
+                </div>
+              </div>
+            </div>
+            <div class="relative z-10 space-y-2.5 mt-auto text-left">
+              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">Emprendimiento Joven</h3>
+              <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Centro Municipal del Emprendimiento, asistencia financiera, transformación agroproductiva y ferias cantonales permanentes.</p>
+              <div class="pt-2 border-t border-white/25 flex items-center justify-between">
+                <span class="text-[10px] sm:text-xs font-bold text-emerald-300">Gestión Técnica</span>
+                <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Inversión 2027</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha 4 -->
+          <div class="coverflow-card group" data-index="3" style="background-image: url('assets/img/miguel-consejales.jpg');">
+            <div class="coverflow-overlay"></div>
+            <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="leading-none text-left">
+                  <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 04</span>
+                  <span class="text-[9px] font-semibold text-slate-500 block">Paz y Deporte</span>
+                </div>
+              </div>
+            </div>
+            <div class="relative z-10 space-y-2.5 mt-auto text-left">
+              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">Seguridad y Deporte</h3>
+              <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Sistema cantonal de videovigilancia, brigadas barriales, nuevo estadio básico con pista atlética y escuelas deportivas.</p>
+              <div class="pt-2 border-t border-white/25 flex items-center justify-between">
+                <span class="text-[10px] sm:text-xs font-bold text-purple-300">Gestión Técnica</span>
+                <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Inversión 2027</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha 5 -->
+          <div class="coverflow-card group" data-index="4" style="background-image: url('assets/img/galeria1.jpg');">
+            <div class="coverflow-overlay"></div>
+            <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-tambo-red text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="leading-none text-left">
+                  <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 05</span>
+                  <span class="text-[9px] font-semibold text-slate-500 block">Transparencia</span>
+                </div>
+              </div>
+            </div>
+            <div class="relative z-10 space-y-2.5 mt-auto text-left">
+              <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">Presupuesto y Gobierno Digital</h3>
+              <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Duplicamos el presupuesto participativo a $240,000 anuales y creamos la Ventanilla Única Digital Municipal abierta 24/7.</p>
+              <div class="pt-2 border-t border-white/25 flex items-center justify-between">
+                <span class="text-[10px] sm:text-xs font-bold text-red-300">Gestión Técnica</span>
+                <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Inversión 2027</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="relative z-10 space-y-2.5 mt-auto text-left">
-    <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">El Tambo Crece Sano</h3>
-    <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Agua 100% segura, Plan Maestro de Alcantarillado para salvar el río Cushcurrún y combate frontal a la desnutrición infantil.</p>
-    <div class="pt-2 border-t border-white/25 flex items-center justify-between">
-      <span class="text-[10px] sm:text-xs font-bold text-blue-300">Ficha Interna 01</span>
-      <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Ver ficha <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
-    </div>
-  </div>
-</a>
-          <!-- PEGAR EN index.html (Sección #propuestas - Ficha 2) -->
-<a href="maquinaria.html" class="coverflow-card group" data-index="1" style="background-image: url('assets/img/miguel-consejales.jpg');">
-  <div class="coverflow-overlay"></div>
-  <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
-    <div class="flex items-center gap-2">
-      <div class="w-6 h-6 rounded-full bg-amber-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-road"></i></div>
-      <div class="leading-none text-left">
-        <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 02</span>
-        <span class="text-[9px] font-semibold text-slate-500 block">Conectividad</span>
-      </div>
-    </div>
-  </div>
-  <div class="relative z-10 space-y-2.5 mt-auto text-left">
-    <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">Vialidad y Conectividad</h3>
-    <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Recuperación del 86% de vías de lastre, asfaltado de accesos comunitarios y Plan de Movilidad con semaforización moderna.</p>
-    <div class="pt-2 border-t border-white/25 flex items-center justify-between">
-      <span class="text-[10px] sm:text-xs font-bold text-amber-300">Ficha Interna 02</span>
-      <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Ver ficha <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
-    </div>
-  </div>
-</a>
-          <!-- PEGAR EN index.html (Sección #propuestas - Ficha 3) -->
-<a href="agricultura.html" class="coverflow-card group" data-index="2" style="background-image: url('assets/img/miguel-portada.jpg');">
-  <div class="coverflow-overlay"></div>
-  <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
-    <div class="flex items-center gap-2">
-      <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-seedling"></i></div>
-      <div class="leading-none text-left">
-        <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 03</span>
-        <span class="text-[9px] font-semibold text-slate-500 block">Economía</span>
-      </div>
-    </div>
-  </div>
-  <div class="relative z-10 space-y-2.5 mt-auto text-left">
-    <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">Emprendimiento Joven</h3>
-    <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Centro Municipal del Emprendimiento, asistencia financiera, transformación agroproductiva y ferias cantonales permanentes.</p>
-    <div class="pt-2 border-t border-white/25 flex items-center justify-between">
-      <span class="text-[10px] sm:text-xs font-bold text-emerald-300">Ficha Interna 03</span>
-      <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Ver ficha <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
-    </div>
-  </div>
-</a>
-          <!-- PEGAR EN index.html (Sección #propuestas - Ficha 4) -->
-<a href="seguridad.html" class="coverflow-card group" data-index="3" style="background-image: url('assets/img/miguel-consejales.jpg');">
-  <div class="coverflow-overlay"></div>
-  <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
-    <div class="flex items-center gap-2">
-      <div class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
-      <div class="leading-none text-left">
-        <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 04</span>
-        <span class="text-[9px] font-semibold text-slate-500 block">Paz y Deporte</span>
-      </div>
-    </div>
-  </div>
-  <div class="relative z-10 space-y-2.5 mt-auto text-left">
-    <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">Seguridad y Deporte</h3>
-    <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Sistema cantonal de videovigilancia, brigadas barriales, nuevo estadio básico con pista atlética y escuelas deportivas.</p>
-    <div class="pt-2 border-t border-white/25 flex items-center justify-between">
-      <span class="text-[10px] sm:text-xs font-bold text-purple-300">Ficha Interna 04</span>
-      <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Ver ficha <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
-    </div>
-  </div>
-</a>
-          <!-- PEGAR EN index.html (Sección #propuestas - Ficha 5) -->
-<a href="financiamiento.html" class="coverflow-card group" data-index="4" style="background-image: url('assets/img/galeria1.jpg');">
-  <div class="coverflow-overlay"></div>
-  <div class="relative z-10 flex items-center justify-between bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md max-w-[190px]">
-    <div class="flex items-center gap-2">
-      <div class="w-6 h-6 rounded-full bg-tambo-red text-white flex items-center justify-center text-[10px] font-bold shrink-0"><i class="fa-solid fa-laptop-code"></i></div>
-      <div class="leading-none text-left">
-        <span class="text-[11px] font-extrabold text-slate-900 block">Pilar 05</span>
-        <span class="text-[9px] font-semibold text-slate-500 block">Transparencia</span>
-      </div>
-    </div>
-  </div>
-  <div class="relative z-10 space-y-2.5 mt-auto text-left">
-    <h3 class="text-lg sm:text-2xl font-display font-black text-white leading-tight drop-shadow">Presupuesto y Gobierno Digital</h3>
-    <p class="text-[11px] sm:text-xs text-slate-200 line-clamp-3 leading-relaxed">Duplicamos el presupuesto participativo a $240,000 anuales y creamos la Ventanilla Única Digital Municipal abierta 24/7.</p>
-    <div class="pt-2 border-t border-white/25 flex items-center justify-between">
-      <span class="text-[10px] sm:text-xs font-bold text-red-300">Ficha Interna 05</span>
-      <span class="text-[10px] sm:text-xs font-extrabold text-white flex items-center gap-1">Ver ficha <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
-    </div>
-  </div>
-</a>
-          
-    <!-- SECCIÓN 7: Recursos y Sustento Operativo -->
+      <div id="coverflowDots" class="flex items-center justify-center gap-2 mt-4"></div>
+    </section>
+
+    <!-- SECCIÓN 7: Recursos y Sustento Operativo (ACORDÉONES DESPLEGABLES INTERNOS) -->
     <section id="recursos" class="sec-resources py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto overflow-hidden">
       <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-2.5">
         <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1 rounded-full shadow-sm">
@@ -805,19 +744,21 @@
           Inversores, Maquinaria y Materiales
         </h2>
         <p class="text-xs sm:text-sm text-slate-600 font-medium">
-          Pilares clave de ejecución técnica y financiera para transformar El Tambo.
+          Pilares clave de ejecución técnica y financiera para transformar El Tambo. Haz clic en cada ficha para desplegar los detalles.
         </p>
       </div>
+
       <div class="flex flex-col gap-4 sm:gap-5">
-        <!-- Ficha 1 -->
-        <a href="financiamiento.html" class="block w-full p-3.5 sm:p-5 rounded-2xl shadow-lg group text-left border-[2.5px] border-tambo-red bg-cover bg-center overflow-hidden relative transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-image: url('assets/img/miguel-portada.jpg');">
-          <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
-          <div class="relative z-10 flex flex-row items-center gap-4 sm:gap-6">
-            <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
+        
+        <!-- Ficha 1: Financiamiento y BDE (Desplegable) -->
+        <div class="recurso-acordeon-container rounded-2xl shadow-lg border-[2.5px] border-tambo-red bg-white overflow-hidden transition-all duration-300">
+          <button type="button" class="recurso-trigger w-full p-3.5 sm:p-5 text-left bg-cover bg-center relative flex flex-row items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none group" style="background-image: url('assets/img/miguel-portada.jpg');" data-target="recurso-content-1">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
+            <div class="relative z-10 w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
               <img src="assets/img/miguel-consejales.jpg" alt="Financiamiento y BDE" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
               <div class="absolute top-1 left-1 bg-tambo-red text-white text-[8px] font-black px-1.5 py-0.2 rounded shadow uppercase">01</div>
             </div>
-            <div class="flex-1 space-y-1.5 text-left">
+            <div class="relative z-10 flex-1 space-y-1.5 text-left">
               <span class="inline-block text-[9px] font-extrabold text-red-300 uppercase tracking-wider bg-red-500/20 px-2 py-0.5 rounded">Gestión Económica</span>
               <h3 class="font-display font-black text-white text-base sm:text-xl tracking-tight leading-snug group-hover:text-red-400 transition-colors">
                 Financiamiento y BDE
@@ -825,21 +766,36 @@
               <p class="text-[11px] sm:text-xs text-slate-200 leading-tight line-clamp-2">
                 Créditos BDE y cooperación internacional directa para ejecutar obras sin endeudamiento lesivo.
               </p>
-              <div class="pt-1 flex items-center text-[10px] sm:text-xs font-extrabold text-red-400 group-hover:text-red-300 gap-1 transition-colors">
-                <span>Ingresar a la ficha</span> <i class="fa-solid fa-arrow-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+              <div class="pt-1 flex items-center justify-between text-[10px] sm:text-xs font-extrabold text-red-400 group-hover:text-red-300 transition-colors">
+                <span class="flex items-center gap-1"><span>Ver ejecución técnica y financiera</span> <i class="fa-solid fa-chevron-down text-[9px] recurso-arrow transition-transform duration-300"></i></span>
+              </div>
+            </div>
+          </button>
+          
+          <!-- Contenido Desplegable Ficha 1 -->
+          <div id="recurso-content-1" class="recurso-content hidden bg-slate-50 p-5 sm:p-6 border-t border-slate-200 space-y-4 text-slate-700 text-xs sm:text-sm">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+                <h4 class="font-display font-bold text-slate-900 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-pie text-tambo-red"></i> Ejecución Financiera</h4>
+                <p>Aplicación rigurosa de la ordenanza municipal: <strong>40% a inversión cantonal</strong> y <strong>30% a contrapartes de convenios</strong>, apalancando recursos frescos con el Banco de Desarrollo del Ecuador (BDE) y fondos no reembolsables de cooperación internacional.</p>
+              </div>
+              <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+                <h4 class="font-display font-bold text-slate-900 text-sm flex items-center gap-2"><i class="fa-solid fa-shield-halved text-tambo-green"></i> Sostenibilidad Fiscal</h4>
+                <p>Digitalización catastral y Ventanilla Única para ampliar la recaudación tributaria propia sin incrementar impuestos a las familias vulnerables, garantizando liquidez para el mantenimiento de obras.</p>
               </div>
             </div>
           </div>
-        </a>
-        <!-- Ficha 2 -->
-        <a href="maquinaria.html" class="block w-full p-3.5 sm:p-5 rounded-2xl shadow-lg group text-left border-[2.5px] border-tambo-red bg-cover bg-center overflow-hidden relative transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-image: url('assets/img/miguel-consejales.jpg');">
-          <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
-          <div class="relative z-10 flex flex-row items-center gap-4 sm:gap-6">
-            <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
+        </div>
+
+        <!-- Ficha 2: Equipo Caminero Propio (Desplegable) -->
+        <div class="recurso-acordeon-container rounded-2xl shadow-lg border-[2.5px] border-tambo-red bg-white overflow-hidden transition-all duration-300">
+          <button type="button" class="recurso-trigger w-full p-3.5 sm:p-5 text-left bg-cover bg-center relative flex flex-row items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none group" style="background-image: url('assets/img/miguel-consejales.jpg');" data-target="recurso-content-2">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
+            <div class="relative z-10 w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
               <img src="assets/img/miguel-portada.jpg" alt="Equipo Caminero Propio" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
               <div class="absolute top-1 left-1 bg-tambo-red text-white text-[8px] font-black px-1.5 py-0.2 rounded shadow uppercase">02</div>
             </div>
-            <div class="flex-1 space-y-1.5 text-left">
+            <div class="relative z-10 flex-1 space-y-1.5 text-left">
               <span class="inline-block text-[9px] font-extrabold text-red-300 uppercase tracking-wider bg-red-500/20 px-2 py-0.5 rounded">Infraestructura Vial</span>
               <h3 class="font-display font-black text-white text-base sm:text-xl tracking-tight leading-snug group-hover:text-red-400 transition-colors">
                 Equipo Caminero Propio
@@ -847,21 +803,36 @@
               <p class="text-[11px] sm:text-xs text-slate-200 leading-tight line-clamp-2">
                 Adquisición y repotenciación de maquinaria para el mantenimiento permanente de las vías rurales.
               </p>
-              <div class="pt-1 flex items-center text-[10px] sm:text-xs font-extrabold text-red-400 group-hover:text-red-300 gap-1 transition-colors">
-                <span>Ingresar a la ficha</span> <i class="fa-solid fa-arrow-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+              <div class="pt-1 flex items-center justify-between text-[10px] sm:text-xs font-extrabold text-red-400 group-hover:text-red-300 transition-colors">
+                <span class="flex items-center gap-1"><span>Ver ejecución técnica y financiera</span> <i class="fa-solid fa-chevron-down text-[9px] recurso-arrow transition-transform duration-300"></i></span>
+              </div>
+            </div>
+          </button>
+          
+          <!-- Contenido Desplegable Ficha 2 -->
+          <div id="recurso-content-2" class="recurso-content hidden bg-slate-50 p-5 sm:p-6 border-t border-slate-200 space-y-4 text-slate-700 text-xs sm:text-sm">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+                <h4 class="font-display font-bold text-slate-900 text-sm flex items-center gap-2"><i class="fa-solid fa-tractor text-amber-600"></i> Ejecución Técnica</h4>
+                <p>Operación directa de un equipo caminero municipal dedicado al lastrado continuo, limpieza de cunetas y apertura vial en las 13 comunidades, articulando convenios de concurrencia con la Prefectura del Cañar.</p>
+              </div>
+              <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+                <h4 class="font-display font-bold text-slate-900 text-sm flex items-center gap-2"><i class="fa-solid fa-coins text-tambo-green"></i> Optimización de Costos</h4>
+                <p>Reducción del costo por kilómetro rehabilitado al eliminar alquileres a terceros y eficientcribiendo el uso de combustible y mantenimiento preventivo mediante talleres municipales optimizados.</p>
               </div>
             </div>
           </div>
-        </a>
-        <!-- Ficha 3 -->
-        <a href="mano-de-obra.html" class="block w-full p-3.5 sm:p-5 rounded-2xl shadow-lg group text-left border-[2.5px] border-tambo-red bg-cover bg-center overflow-hidden relative transition-all duration-300 hover:scale-[1.02] hover:shadow-xl" style="background-image: url('assets/img/miguel-portada.jpg');">
-          <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
-          <div class="relative z-10 flex flex-row items-center gap-4 sm:gap-6">
-            <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
+        </div>
+
+        <!-- Ficha 3: Mano de Obra Local (Desplegable) -->
+        <div class="recurso-acordeon-container rounded-2xl shadow-lg border-[2.5px] border-tambo-red bg-white overflow-hidden transition-all duration-300">
+          <button type="button" class="recurso-trigger w-full p-3.5 sm:p-5 text-left bg-cover bg-center relative flex flex-row items-center gap-4 sm:gap-6 cursor-pointer focus:outline-none group" style="background-image: url('assets/img/miguel-portada.jpg');" data-target="recurso-content-3">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/50 pointer-events-none"></div>
+            <div class="relative z-10 w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-red-500 shadow-lg shrink-0 relative bg-slate-900">
               <img src="assets/img/miguel-consejales.jpg" alt="Mano de Obra Local" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
               <div class="absolute top-1 left-1 bg-tambo-red text-white text-[8px] font-black px-1.5 py-0.2 rounded shadow uppercase">03</div>
             </div>
-            <div class="flex-1 space-y-1.5 text-left">
+            <div class="relative z-10 flex-1 space-y-1.5 text-left">
               <span class="inline-block text-[9px] font-extrabold text-red-300 uppercase tracking-wider bg-red-500/20 px-2 py-0.5 rounded">Empleo y Reactivación</span>
               <h3 class="font-display font-black text-white text-base sm:text-xl tracking-tight leading-snug group-hover:text-red-400 transition-colors">
                 Mano de Obra Local
@@ -869,12 +840,27 @@
               <p class="text-[11px] sm:text-xs text-slate-200 leading-tight line-clamp-2">
                 Contratación preferente de constructores y proveedores de El Tambo para dinamizar la economía local.
               </p>
-              <div class="pt-1 flex items-center text-[10px] sm:text-xs font-extrabold text-red-400 group-hover:text-red-300 gap-1 transition-colors">
-                <span>Ingresar a la ficha</span> <i class="fa-solid fa-arrow-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+              <div class="pt-1 flex items-center justify-between text-[10px] sm:text-xs font-extrabold text-red-400 group-hover:text-red-300 transition-colors">
+                <span class="flex items-center gap-1"><span>Ver ejecución técnica y financiera</span> <i class="fa-solid fa-chevron-down text-[9px] recurso-arrow transition-transform duration-300"></i></span>
+              </div>
+            </div>
+          </button>
+          
+          <!-- Contenido Desplegable Ficha 3 -->
+          <div id="recurso-content-3" class="recurso-content hidden bg-slate-50 p-5 sm:p-6 border-t border-slate-200 space-y-4 text-slate-700 text-xs sm:text-sm">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+                <h4 class="font-display font-bold text-slate-900 text-sm flex items-center gap-2"><i class="fa-solid fa-users-gear text-blue-600"></i> Ejecución Técnica</h4>
+                <p>Inclusión de cláusulas en pliegues contractuales y compras públicas cantonales para priorizar mano de obra, maestros de obra, ingenieros y proveedores locales de materiales de construcción.</p>
+              </div>
+              <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+                <h4 class="font-display font-bold text-slate-900 text-sm flex items-center gap-2"><i class="fa-solid fa-wallet text-tambo-green"></i> Impacto Financiero Circular</h4>
+                <p>Retención del circulante económico dentro de El Tambo (evitando la fuga de capitales hacia contratistas externos), dinamizando el comercio minorista y reduciendo el desempleo juvenil y adulto en un 40%.</p>
               </div>
             </div>
           </div>
-        </a>
+        </div>
+
       </div>
     </section>
 
