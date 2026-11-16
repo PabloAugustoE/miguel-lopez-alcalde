@@ -2,65 +2,109 @@
 <html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale5.0">
-  <title>Soberanía Agrícola | Miguel López Alcalde</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilar 03: Emprendimiento Joven y Agroproducción | Miguel López 2027</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    /* Estilo CSS exclusivo para la ficha de Agricultura */
-    :root { --accent-agri: #059669; --bg-agri: #ecfdf5; }
-    .agri-header { background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%); border-bottom: 4px solid var(--accent-agri); }
-    .agri-card { background: #ffffff; border-left: 5px solid var(--accent-agri); box-shadow: 0 10px 30px rgba(5, 150, 105, 0.08); }
-    .badge-agri { background: var(--bg-agri); color: var(--accent-agri); border: 1px solid #a7f3d0; }
-  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], display: ['"Outfit"', 'sans-serif'] },
+          colors: { tambo: { red: '#dc2626', green: '#16a34a', dark: '#0f172a', light: '#f8fafc' } }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/ficha-interna.css">
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
-  
-  <header class="agri-header py-5 px-6 text-white">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-      <a href="index.html" class="text-xs font-bold text-slate-300 hover:text-white flex items-center gap-2 transition-colors"><i class="fa-solid fa-arrow-left"></i> Volver a la Propuesta General</a>
-      <span class="badge-agri text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Eje 3: Soberanía Agrícola</span>
+<body class="bg-tambo-light text-tambo-dark font-sans antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-3 shadow-sm">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="index.html#propuestas" class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-slate-700 hover:text-tambo-red transition-colors">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Gobierno
+      </a>
+      <span class="bg-emerald-100 text-emerald-800 text-[10px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Pilar 03 · Uso Interno</span>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto py-12 px-4 space-y-8">
-    <div class="agri-card p-8 sm:p-12 rounded-3xl space-y-6">
-      <div class="flex items-center gap-4">
-        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl shrink-0">
-          <i class="fa-solid fa-wheat-awn"></i>
-        </div>
-        <div>
-          <h1 class="text-2xl sm:text-4xl font-display font-extrabold text-slate-900">Centro de Acopio y Soberanía Agrícola</h1>
-          <p class="text-xs text-slate-500 mt-1">Cantón El Tambo · Provincia del Cañar</p>
-        </div>
+  <section class="ficha-hero-bg py-12 sm:py-16 px-4 text-white" style="background-image: url('assets/img/miguel-portada.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/90 to-emerald-950/80"></div>
+    <div class="max-w-5xl mx-auto relative z-10 space-y-4">
+      <div class="inline-flex items-center gap-2 bg-emerald-600/30 border border-emerald-400/40 px-3 py-1 rounded-full text-xs font-bold text-emerald-200">
+        <i class="fa-solid fa-seedling"></i> Reactivación Económica y Juventud
       </div>
-
-      <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-        El productor agrícola de El Tambo sufre históricamente la especulación de intermediarios que pagan precios injustos por sus cosechas de papa, maíz y hortalizas. Proponemos un sistema municipal de comercialización directa y fortalecimiento técnico.
+      <h1 class="text-3xl sm:text-5xl font-display font-black tracking-tight leading-tight">
+        Emprendimiento Joven y Agroproducción
+      </h1>
+      <p class="text-sm sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
+        Frenar la migración juvenil mediante acompañamiento técnico, acceso a mercados digitales y transformación industrial de nuestra producción local.
       </p>
+    </div>
+  </section>
 
-      <div class="space-y-4 pt-4 border-t border-slate-100">
-        <h3 class="font-display font-bold text-lg text-slate-900">Estrategias de Producción y Comercialización:</h3>
-        <div class="grid gap-3 text-xs sm:text-sm text-slate-700">
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <strong>1. Creación del Centro Municipal de Acopio:</strong> Infraestructura con áreas de clasificación, almacenamiento seguro y cadena de frío para evitar pérdidas post-cosecha.
-          </div>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <strong>2. Asistencia Técnica Agronómica:</strong> Convenios con universidades e ingenieros agrónomos para entregar semillas certificadas y asesoría en control fitosanitario.
-          </div>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <strong>3. Ruedas de Negocios Directas:</strong> Enlace comercial institucional entre los productores tambeños y mercados mayoristas regionales sin intermediarios abusivos.
-          </div>
-        </div>
+  <main class="max-w-5xl mx-auto px-4 py-10 space-y-10">
+
+    <!-- Diagnóstico -->
+    <div class="stat-badge rounded-2xl p-6 text-white shadow-xl grid sm:grid-cols-2 gap-6">
+      <div>
+        <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Desempleo Juvenil</span>
+        <h2 class="text-2xl font-display font-black mt-1">4 de cada 10 jóvenes sin empleo</h2>
+        <p class="text-xs sm:text-sm text-slate-300 mt-1">Los jóvenes emprendedores operan aislados, sin acceso a créditos ni asistencia técnica, cerrando sus negocios con deudas.</p>
       </div>
-
-      <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-200 text-emerald-900">
-        <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Meta Concreta al 2031</h4>
-        <p class="text-xs sm:text-sm font-medium">Incrementar al menos un 30% los ingresos netos de las familias agricultoras del cantón mediante la venta directa regulada.</p>
+      <div class="border-t sm:border-t-0 sm:border-l border-slate-700 pt-4 sm:pt-0 sm:pl-6">
+        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest">Dependencia Económica</span>
+        <h2 class="text-2xl font-display font-black mt-1">75% depende del comercio básico</h2>
+        <p class="text-xs sm:text-sm text-slate-300 mt-1">Economía poco diversificada que vende materia prima sin valor agregado.</p>
       </div>
     </div>
+
+    <!-- Propuestas -->
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="ficha-glass-card rounded-2xl p-5 shadow-md space-y-3 border-t-4 border-t-emerald-600">
+        <h4 class="font-display font-bold text-lg text-slate-900">Centro Municipal del Emprendimiento</h4>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Espacio permanente de orientación, educación financiera, estructuración de planes de negocio e incubación empresarial.</p>
+      </div>
+      <div class="ficha-glass-card rounded-2xl p-5 shadow-md space-y-3 border-t-4 border-t-blue-600">
+        <h4 class="font-display font-bold text-lg text-slate-900">Plataformas Digitales Globales</h4>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Vitrinas virtuales y comercio electrónico municipal para posicionar los productos tambeños en mercados nacionales e internacionales.</p>
+      </div>
+      <div class="ficha-glass-card rounded-2xl p-5 shadow-md space-y-3 border-t-4 border-t-amber-600">
+        <h4 class="font-display font-bold text-lg text-slate-900">Valor Agregado y Ferias</h4>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Impulso a agroindustrias locales y activación de ferias agroproductivas, artesanales y de emprendimiento sin intermediarios.</p>
+      </div>
+    </div>
+
+    <!-- Sustento Financiero -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-4">
+      <div class="flex items-center gap-2 text-tambo-green font-extrabold text-xs uppercase tracking-widest">
+        <i class="fa-solid fa-sack-dollar"></i> Fuentes de Financiamiento y Gestión
+      </div>
+      <h3 class="text-xl font-display font-black text-slate-900">¿De dónde saldrán los recursos?</h3>
+      <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <li class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
+          <span><strong>Convenios con Academia y Cooperación (30% Fondo Contrapartes):</strong> Alianzas con universidades de la región, MAG y ONG para asistencia técnica gratuita y capital semilla.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-check text-tambo-green mt-1"></i>
+          <span><strong>Reasignación de Infraestructura Municipal Subutilizada:</strong> Adecuación de espacios municipales existentes para el Centro del Emprendimiento y ferias cantonales.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flex justify-between items-center pt-4 border-t border-slate-200">
+      <a href="maquinaria.html" class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-extrabold flex items-center gap-2">
+        <i class="fa-solid fa-arrow-left"></i> Anterior: Pilar 02
+      </a>
+      <a href="seguridad.html" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-tambo-red text-white text-xs font-extrabold flex items-center gap-2 transition-colors">
+        Siguiente: Pilar 04 Seguridad y Deporte <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
   </main>
+
+  <script src="js/ficha-interna.js"></script>
 </body>
 </html>
